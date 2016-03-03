@@ -1,0 +1,40 @@
+
+Testing indexing.  It seems like our indexing is consistent with samtools depth, with the
+exception that pysam is 0-based and samtools is 1-based.
+
+samtools depth /gscmnt/gc12001/info/build_merged_alignments/merged-alignment-blade9-2-10.gsc.wustl.edu-apipe-builder-15464-41fcada6e9b84815acdf7b90cc3550e5/41fcada6e9b84815acdf7b90cc3550e5.bam | head
+    1   10000   1
+    1   10001   43
+    1   10002   93
+    1   10003   127
+    1   10004   166
+    1   10005   199
+    1   10006   242
+    1   10007   264
+    1   10008   286
+    1   10009   296
+
+pysam / depthFilter
+    By Region
+    1   10000   43
+    1   10001   93
+    1   10002   126
+    1   10003   166
+    1   10004   197
+    1   10005   242
+    1   10006   263
+    1   10007   286
+    1   10008   296
+    1   10009   303
+                      
+    By Basepair
+    1 10000   43
+    1 10001   93
+    1 10002   126
+    1 10003   166
+    1 10004   197
+    1 10005   242
+    1 10006   263
+    1 10007   286
+    1 10008   296
+    1 10009   303

@@ -1,0 +1,88 @@
+Build 00c4eeb2a00e42df9cb1b349396278bf
+
+Analysis of contents of variants directory
+    Has two breakdancer and one squaredancer runs in,
+        /gscmnt/gc12001/info/model_data/19d60b23a3db4a78a29952e374eb20d2/build00c4eeb2a00e42df9cb1b349396278bf/variants/sv
+
+    * breakdancer-1.3-98688b2a95a82929250787e6b89bfdd8
+      - no CTX in svs.hq
+      - referred to in files 55101474.err and 55101475.err
+      - associated with sv breakdancer 1.3 #8: 
+
+    * breakdancer-1.3-a982926d23b1011d2f6bf7d36a2ef31c
+      - has CTX
+      - referred to in files 55101471.err 55101472.err 55101473.err
+      - associated with sv breakdancer 1.3 #7: 
+
+    * squaredancer-0.1-d41d8cd98f00b204e9800998ecf8427e
+      - has CTX
+      - referred to in files
+            55101435.err 55101436.err 55101457.err 55101458.err 55101459.err 55101460.err
+            55101463.err 55101467.err 55101468.err 55101469.err 55101470.err 55101472.err
+            55101473.err 55101475.err 55101476.err 55101478.err 55101479.err 55101480.err 55101481.err
+
+
+Build details from imp.  
+    All output files (nnnnnnnn.err, nnnnnnnn.out) in,
+        /gscmnt/gc12001/info/model_data/19d60b23a3db4a78a29952e374eb20d2/build00c4eeb2a00e42df9cb1b349396278bf/variants/55101432
+
+    sv breakdancer 1.3 #7: 
+        Duration: 1:00:03:49
+        output: 55101471.err/out
+
+    sv breakdancer 1.3 #8: 
+        duration: 01:16:20
+        output: 55101474.err
+
+    sv squaredancer 0.1 #1
+        duration: 15:42:47
+        output:     55101479.err
+
+    sv_breakdancer_1.3_#7 novo-realign v1 #1
+        55101472.err
+    sv_breakdancer_1.3_#8 tigra-validation v1 #1
+        55101475.err
+    sv_squaredancer_0.1_#1 tigra-validation v1 #1
+        55101480.err
+    sv_breakdancer_1.3_#7 tigra-validation v1 #1
+        55101473.err
+    union sv_breakdancer_1.3_#7 sv_breakdancer_1.3_#8
+        55101483.err
+    union union-sv_breakdancer_1.3__7-sv_breakdancer_1.3__8 sv_squaredancer_0.1_#1
+        55101484.err
+
+
+Software background:
+
+    Breakdancer documentation: https://github.com/genome/breakdancer
+        Column 7 is the type of SV detected: DEL (deletions), INS (insertion), INV (inversion), ITX (intra-chromosomal translocation), CTX (inter-chromosomal translocation), and Unknown.
+        Column 9 is the confidence score associated with the prediction. 
+
+    dispatcher.cmd (found in variants directory) line relevant to SV:
+        --sv-detection-strategy '(breakdancer 1.3 [-g -h:-a -t -q 10 -d] filtered by novo-realign v1 then tigra-validation v1 union breakdancer 1.3 [-g -h:-a -q 10 -o] filtered by tigra-validation v1) union squaredancer 0.1 filtered by tigra-validation v1'
+        Note: The -d option dumps CTX supporting read pairs into fastq files (in this case BRC6.ctx) by library.
+
+
+Counts of CTX events:
+
+    9751 CTX events in breakdancer-1.3-a982926d23b1011d2f6bf7d36a2ef31c svs.hq
+        of these, 2562 are have a confidence score of 99 (highest)
+
+    squaredancer-0.1-d41d8cd98f00b204e9800998ecf8427e svs.hq
+        724 CTX events, 462 have Score 50 and 262 have Score 99
+
+    union-sv_breakdancer_1.3__7-sv_breakdancer_1.3__8 
+        CTX counts in given files: 
+            Inter.svs.merge.file: 262
+            svs.hq: 442
+            svs.hq.merge.annot.somatic: 105
+
+    union-union-sv_breakdancer_1.3__7-sv_breakdancer_1.3__8-sv_squaredancer_0.1__1
+        CTX counts in given files: 
+            Inter.svs.merge.file: 262
+            squaredancer.svs.merge.file: 300
+            svs.hq: 793
+            svs.hq.merge.annot.somatic: 216
+            svs.merge.file.somatic: 195
+
+

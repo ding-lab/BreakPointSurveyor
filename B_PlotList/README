@@ -1,0 +1,16 @@
+Obtaining inter-chromosomal translocation positions from somatic variant pipeline.
+
+Per Mike McLellan email 12/1/15, inter-chromosomal positions are identified as CTX in the 
+variants/svs.hq file.
+
+Constructing two types of files in step 1, BPC and dBPC.  See below for more details:
+    /gscuser/mwyczalk/projects/TCGA_SARC/ICGC/A_AnalyzeVCF/README
+BPC files are used later for plotting, while dBPC are used for making BED files.
+
+Constructing BED files of SV events:
+Simply taking all dBPC positions into one BED file results in a large (1000+ lines) BED file which takes a very long
+    time to process (days).
+Instead, we will cluster breakpoints by a given radius to create a clustered BPR file.
+
+We then create a PlotList from BPR directly.  There is then one plot (and two read depth calculations) per line of 
+PlotList file.
