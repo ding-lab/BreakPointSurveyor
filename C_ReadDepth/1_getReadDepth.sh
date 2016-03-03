@@ -1,17 +1,14 @@
 # Evaluating read depth with pysam-based depth calculations.
 # For every line in PLOT_LIST, evaluate depth for range.A and range.B
 
-BAMLIST="../A_Data/dat/DDLS_WGS_tumor.dat"
-PLOT_LIST="../B_PlotList/dat/PlotList.BPS.50K.dat"
-
-echo TODO:
-echo It will be useful to incorporate flank region size in depth data filename
+BAMLIST="../A_DataPaths/dat/DDLS_WGS_tumor.dat"
+PLOT_LIST="../B_PlotList/dat/Combined.PlotList.50K.dat"
 
 mkdir -p DEPTH
 
 # limit number of points to 1K or so per segment.
 N="-N 1000"
-BIN="/usr/bin/python2.7 ../../src/depthFilter.py"
+BIN="/usr/bin/python2.7 ../../BreakpointSurveyor/src/analysis/depthFilter.py"
 
 # usage: process_chrom CHROM_ID NAME BAM CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
@@ -23,13 +20,17 @@ function get_depth {
     START=$5
     END=$6
 
-    OUT="DEPTH/${NAME}.${CHROM_ID}.DEPTH.dat"
+    OUTD="DEPTH/$BAR"
+    mkdir -p $OUTD
+    OUT="$OUTD/${NAME}.${CHROM_ID}.50K.DEPTH.dat"
 
     ARGS=$N
     # -t is timing
-    echo $CHROM $START $END
+    echo $NAME $CHROM $START $END
     $BIN $N -o $OUT $CHROM $START $END $BAM
 }
+
+
 
 while read l; do
 # barcode name    chrom.A event.A.start   event.A.end range.A.start   range.A.end chrom.B event.B.start   event.B.end range.B.start   range.B.end
@@ -58,9 +59,3 @@ get_depth A $NAME $BAM $A_CHROM $A_START $A_END
 get_depth B $NAME $BAM $B_CHROM $B_START $B_END
 
 done < $PLOT_LIST
-
-
-
-
-
-
