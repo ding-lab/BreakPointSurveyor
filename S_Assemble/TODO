@@ -1,0 +1,6 @@
+* put commas in coordiantes
+    - see ~/Data/TCGA_SARC/ICGC/BreakpointSurveyor/E_Breakpoint/src/BreakpointCruncher.R
+* indicate how many breakpoints and what the scale of the plot is
+* indicate chromosome on the axes
+* Indicate breakpoints on depth plots
+* test with histogram

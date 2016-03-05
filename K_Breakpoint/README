@@ -1,0 +1,6 @@
+Plot CTX breakpoint coordinates.
+
+Note that if we want to plot other breakpoint coordinates or regions from
+other lines of evidence (Pindel, for instance), this will be done in
+a different directory.  For instance, P_Pindel directory may add Pindel
+marks to both breakpoint coordinate as well as read depth plots.
