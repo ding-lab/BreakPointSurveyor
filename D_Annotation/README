@@ -1,0 +1,26 @@
+This directory contains gene and exon definitions based on Ensembl release 75 which are
+used for gene/exon annotation plots, as well as a workflow to recreate it for other Ensembl versions.
+This workflow is necessary only if gene/exon definitions need to be recreated for other Ensembl
+versions.
+
+dat/genes.ens75.bed contains gene definitions
+dat/exons.ens75.bed contains exon definitions
+
+GTF file from ftp.ensembl.org/pub/release-75/gtf/homo_sapiens/Homo_sapiens.GRCh37.75.gtf.gz
+
+Workflow parses Ensemble GTF file directly to pull out genes and exons.  Details of the selection process
+are in GTFFilter.py.  Specifically, to call a feature a gene or exon we require the 
+following values for GTF columns:
+    Genes: feature = "gene" and source = "protein_coding"
+    Exons: feature = "exon" and source = "protein_coding"
+
+We also provide a script called src/TLAExamine.R (see 3_examine_GTF.sh)
+which conveniently examines GTF files by expanding the attributes column into
+multiple columns.
+
+1_get_merged_exon_bed.sh and 2_get_gene_bed.sh are production scripts which extract genes and exons
+    from GTF file.  These need to be run just once and then the resulting features file can be used
+    for downstream applications.
+    -> dat/exons.ens75.bed
+    -> dat/genes.ens75.bed
+3_examine_GTF.sh and 4_make_gtf_test.sh are test scripts and are not used for production
