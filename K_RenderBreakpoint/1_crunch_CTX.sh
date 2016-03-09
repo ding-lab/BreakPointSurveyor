@@ -1,14 +1,9 @@
-# Creates a series of CTX Breakpoint Coordinate GGP files
+# Create CTX Breakpoint Coordinate GGP files
 
-# that are used for creating the combined plot.  
-# No plotting takes place here.
+DATD="../B_PlotList/dat"
+PLOT_LIST="$DATD/Combined.PlotList.50K.dat"
 
-# create discordant.ggp for every row in PlotList.dat
-DATD="../A_Data/origdata"
-FLANKN="50K"
-PLOT_LIST="$DATD/PlotList.BPS.${FLANKN}.dat"
-
-BIN="/Users/mwyczalk/Data/TCGA_SARC/ICGC/BreakpointSurveyor/E_Breakpoint/src/BreakpointCruncher.R"
+BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/BreakpointCruncher.R"
 
 OUTD="GGP"
 mkdir -p $OUTD
@@ -25,31 +20,19 @@ function process_plot {
     B_END=$8
 
     # Breakpoint coordinate file
-    BPC="$DATD/BP/${BAR}.BPC.dat"
+    BPC="$DATD/${BAR}.BPC.dat"
 
-#    PIN="../A_Data/origdata/RP/${BAR}_RP"   
-#    RSBPFN="$SBPD/${BAR}.rSBP.dat"
-#    QSBPFN="$SBPD/${BAR}.qSBP.dat"
-#    if [ -e $RSBPFN ]; then
-#        RSBP="-r $RSBPFN"
-#    fi
+    OUTDD="$OUTD/$BAR"
+    mkdir -p $OUTDD
+    OUT="$OUTDD/${NAME}.Breakpoints.CTX.ggp"  
 
-    # for now not plotting QSBP, which connects breakpoints on same contig
-    #if [ -e $QSBPFN ]; then
-    #    QSBP="-q $QSBPFN"
-    #fi
-
-    OUT="$OUTD/${NAME}.Breakpoints.CTX.ggp"
-    OUT="$OUTD/${NAME}.Breakpoints.CTX.pdf"  # testing
-
-# Usage: Rscript BreakpointCruncher.R [-v] [-A range.A] [-B range.B] [-F] [-g fn.ggp] [-p plot.type] 
+# Usage: Rscript BreakpointCruncher.R [-v] [-P] [-A range.A] [-B range.B] [-F] [-G fn.ggp] [-p plot.type] 
 #                [-a alpha][-c color][-f fill][-s shape][-z size] BP.fn breakpoint.ggp
 # default CTX values: geom_point.  color="#377EB8", alpha = 0.5
     RANGE_A="-A ${A_CHROM}:${A_START}-${A_END}" 
     RANGE_B="-B ${B_CHROM}:${B_START}-${B_END}" 
-    ARGS=" -a 1.0 -P"
+    ARGS=" -a 1.0 "
     Rscript $BIN $RANGE_A $RANGE_B $ARGS $BPC $OUT
-
 }
 
 while read l
@@ -70,6 +53,7 @@ B_START=`echo "$l" | cut -f 11`
 B_END=`echo "$l" | cut -f 12`
 
 process_plot $BAR $NAME $A_CHROM $A_START $A_END $B_CHROM $B_START $B_END 
+echo Quitting after one
 exit
 
 done < $PLOT_LIST
