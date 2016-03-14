@@ -3,7 +3,7 @@ FLANKN="50K"
 DATD="../A_Data/origdata"
 PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/HistogramCruncher.R"
+BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/HistogramRenderer.R"
 
 # Histogram options are defined in the file below.  Only hist.max is currently supported.
 # This is a mechanism for the user to easily specify histogram options on a per-plot basis.
@@ -67,7 +67,7 @@ OUT="$OUTDD/${NAME}.${FLANKN}.histogram.ggp"
 # ARGS=" -n $NUMREADS -l $READLEN $HISTMAX -N 100 "
 ARGS="-d"
 
-# Usage: Rscript HistogramCruncher.R [-v] [-n num.reads] [-l read.length] [-N nbin] [-m hist.max] [-d] [-P]
+# Usage: Rscript HistogramRenderer.R [-v] [-n num.reads] [-l read.length] [-N nbin] [-m hist.max] [-d] [-P]
 #       depth.A.fn depth.B.fn out.ggp
 
 Rscript $BIN $ARGS $DEPA $DEPB $OUT

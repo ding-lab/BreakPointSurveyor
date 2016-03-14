@@ -4,7 +4,7 @@ DATD="../A_Data/origdata"
 
 PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthCruncher.R"
+BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthRenderer.R"
 
 # not currently implemented.  Should be calculated along with read depth.
 # FLAGSTAT="$DATD/read_count_map.dat"
@@ -48,7 +48,7 @@ function process_chrom {
 
     ARGS=" -A ${CHROM}:${START}-${END}"
 
-# Usage: Rscript DepthCruncher.R [-v] [-P] [-A range] [-F] [-g fn.ggp] [-p plot.type]
+# Usage: Rscript DepthRenderer.R [-v] [-P] [-A range] [-F] [-g fn.ggp] [-p plot.type]
 #                [-u num.reads] [-l read.length] [-m chrom] [-C] [-L]
 #                [-a alpha] [-c color] [-f fill] [-s shape][-z size] data.fn depth.ggp
 

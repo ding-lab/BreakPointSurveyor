@@ -3,7 +3,7 @@ FLANKN="50K"
 DATD="../B_PlotList/dat"
 PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/AnnotationCruncher.R"
+BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/AnnotationRenderer.R"
 
 OUTD="GGP"
 mkdir -p $OUTD
