@@ -26,7 +26,7 @@ OUTD="GGP.DEP"
 mkdir -p $OUTD
 
 # the aim is to make ./GGP a link to the most current GGP files
-ln -s $OUTD GGP
+ln -fs $OUTD GGP
 
 
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END

@@ -1,4 +1,0 @@
-* GGP objects should be built up one annotation at a time rather than all at once. This will simplify processing.
-* implement read depth normalization
-* Add breakpoint marks to read depth
-

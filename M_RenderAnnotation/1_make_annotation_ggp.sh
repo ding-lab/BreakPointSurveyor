@@ -1,16 +1,26 @@
-# create chrom annotation GGP file for every row in PlotList.dat
-DATD="../A_Data/origdata"
-PLOT_LIST="$DATD/PlotList.BPS.50K.dat"
-#PLOT_LIST="test.PlotList.BPS.50K.dat"
-BIN="/Users/mwyczalk/Data/TCGA_SARC/ICGC/BreakpointSurveyor/G_Annotation/src/AnnotationCruncher.R"
+# create two annotation GGP files for every row in PlotList.dat
+FLANKN="50K"
+DATD="../B_PlotList/dat"
+PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
+
+BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/AnnotationCruncher.R"
 
 OUTD="GGP"
 mkdir -p $OUTD
 
-GENES="$DATD/genes.ens75.bed"
-EXONS="$DATD/exons.ens75.bed"
+AD="../D_Annotation/dat"
+GENES="$AD/genes.ens75.bed"
+EXONS="$AD/exons.ens75.bed"
 
-FLANK="50K"
+# usage: process_chrom A
+function process_chrom {
+    CHROM_ID=$1
+    FLAG=$2
+
+    OUT="$OUTDD/${NAME}.chrom.${CHROM_ID}.annotation.ggp"
+    ARGS="$FLAG -A $CHR:$START-$END"
+    Rscript $BIN $ARGS -e $EXONS $GENES $OUT
+}
 
 while read l
 do
@@ -29,25 +39,24 @@ do
 [[ $l = \#* ]] && continue
 [[ $l = barcode* ]] && continue
 
-#Chrom A
+
 NAME=`echo "$l" | cut -f 2`     
 BAR=`echo "$l" | cut -f 1`
+OUTDD="$OUTD/$BAR"
+mkdir -p $OUTDD
+
+# Chrom A
 CHR=`echo "$l" | cut -f 3`
 START=`echo "$l" | cut -f 6`
 END=`echo "$l" | cut -f 7`
-
-OUT="$OUTD/${NAME}.chrom.A.annotation.ggp"
-ARGS=" $E -a $START -b $END -c $CHR"
-Rscript $BIN $ARGS -e $EXONS $GENES $OUT
+process_chrom A 
 
 # Chrom B
 CHR=`echo "$l" | cut -f 8`
 START=`echo "$l" | cut -f 11`
 END=`echo "$l" | cut -f 12`
 
-OUT="$OUTD/${NAME}.chrom.B.annotation.ggp"
-ARGS=" $E -a $START -b $END -c $CHR"
-Rscript $BIN  -B $ARGS -e $EXONS $GENES $OUT
+process_chrom B "-B"
 exit
 
 done < $PLOT_LIST

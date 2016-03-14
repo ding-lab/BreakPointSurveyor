@@ -1,26 +1,28 @@
-# Combines GGP data for all integration events and writes a Breakpoint Surveyor PDF figure.
-DISD="../E_Breakpoint/GGP"
-DEPD="../F_ReadDepth/GGP"
-ANND="../G_Annotation/GGP"
+# Combine GGP panels and draw a Breakpoint Surveyor PDF figure for each line in PlotList
+BPD="../K_RenderBreakpoint/GGP"
+DEPD="../L_RenderDepth/GGP"
+ANND="../M_RenderAnnotation/GGP"
+HISTD="../N_RenderHistogram/GGP"
 
-PLOT_LIST="../A_Data/origdata/PlotList.BPS.50K.dat"
+FLANKN="50K"
+PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
 
-BIN="/Users/mwyczalk/Data/TCGA_SARC/ICGC/BreakpointSurveyor/S_Draw/src/BreakpointDrawer.R"
+BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/BreakpointDrawer.R"
 
 OUTD="plots"
 mkdir -p $OUTD
 
 # Usage: process_plot NAME
 function process_plot {
-    BREAKPOINTS="$DISD/${NAME}.breakpoints.ggp"
+    BREAKPOINTS="$BPD/$BAR/${NAME}.Breakpoints.CTX.ggp"
 #TCGA-DX-A1KW-01A-22D-A24N-09.AA.chr_1_10.A.DEPTH.ggp
-    A_DEPTH="$DEPD/${NAME}.A.DEPTH.ggp"
-    B_DEPTH="$DEPD/${NAME}.B.DEPTH.ggp"
-    # HISTOGRAM="$DEPD/${NAME}.histogram.ggp"
+    A_DEPTH="$DEPD/$BAR/${NAME}.A.${FLANKN}.depth.ggp"
+    B_DEPTH="$DEPD/$BAR/${NAME}.B.${FLANKN}.depth.ggp"
+    HISTOGRAM="$HISTD/$BAR/${NAME}.${FLANKN}.histogram.ggp"
 
     # chrom annotation may not exist in cases where no gene features in region of interest.  Handle this gracefully.
-    ANNOTATION_A="$ANND/${NAME}.chrom.A.annotation.ggp"
-    ANNOTATION_B="$ANND/${NAME}.chrom.B.annotation.ggp"
+    ANNOTATION_A="$ANND/$BAR/${NAME}.chrom.A.annotation.ggp"
+    ANNOTATION_B="$ANND/$BAR/${NAME}.chrom.B.annotation.ggp"
     if [ -f $ANNOTATION_A ]; then
         AA="-a $ANNOTATION_A"
     fi
@@ -28,16 +30,12 @@ function process_plot {
         AB="-A $ANNOTATION_B"
     fi
 
-    OUT="$OUTD/${NAME}.BreakpointSurvey.pdf"
+    OUTDD="$OUTD/$BAR"
+    mkdir -p $OUTDD
+    OUT="$OUTDD/${NAME}.BreakpointSurvey.pdf"
 
-    #TITLE=`echo $BAR | cut -c 6-15`
-    #TITLE="${NAME} (${DIS})"
-
-    #ARGS="$CA -A $VIRUS_ANNOTATION"
-
-    #Rscript src/BreakpointDrawer.R -t "$TITLE" -H $HISTOGRAM $ARGS $DISCORDANT $CHROM_DEPTH $VIRUS_DEPTH $OUT
-
-    Rscript $BIN $AA $AB -t "$NAME" $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
+    Rscript $BIN $AA $AB -t "$NAME" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
+exit
 
 }
 
