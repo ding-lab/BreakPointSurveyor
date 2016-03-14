@@ -13,6 +13,12 @@ mkdir -p $OUTD
 rm -f GGP
 ln -s $OUTD GGP
 
+# The flagstat data file contains pre-calculated statistics about BAM partly obtained from
+# the BAM's flagstat file.
+# For normalizing read depth, we use number of mapped reads and read length 
+# normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
+FLAGSTAT="../C_ReadDepth/DEPTH/TCGA_SARC.flagstat.dat"
+
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
 function process_chrom {
@@ -31,7 +37,14 @@ function process_chrom {
     mkdir -p $OUTDD
     OUT="$OUTDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
-    ARGS=" -A ${CHROM}:${START}-${END} -m $CHROM_ID"
+
+    # barcode	filesize	read_length	reads_total	reads_mapped
+    # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
+    NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
+    READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
+    # TODO: deal gracefully if numreads, readlen unknown.
+
+    ARGS=" -A ${CHROM}:${START}-${END} -m $CHROM_ID -u $NUMREADS -l $READLEN "
 
 # Usage: Rscript DepthRenderer.R [-v] [-P] [-A range] [-F] [-G fn.ggp] [-p plot.type]
 #                [-u num.reads] [-l read.length] [-m chrom] [-C] [-L]

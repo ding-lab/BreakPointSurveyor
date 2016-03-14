@@ -6,26 +6,17 @@ PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
 
 BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthRenderer.R"
 
-# not currently implemented.  Should be calculated along with read depth.
-# FLAGSTAT="$DATD/read_count_map.dat"
-    # The flagstat data file contains pre-calculated statistics about BAM partly obtained from
-    # the BAM's flagstat file.
-    # For normalizing read depth, we use number of mapped reads and read length 
-    # normalize read depth by num_reads * bp_per_read / num_reads_in_genome
-    # currently we don't have this information calculated for test data
+# The flagstat data file contains pre-calculated statistics about BAM partly obtained from
+# the BAM's flagstat file.
+# For normalizing read depth, we use number of mapped reads and read length 
+# normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
+FLAGSTAT="../C_ReadDepth/DEPTH/TCGA_SARC.flagstat.dat"
 
-    #barcode	analysis	reads_total	reads_mapped	read_length
-    #TCGA-AK-3455-01A-01D-2233-10	WGS	990044820	943303610	101
-    # NUMREADS=`grep $BAR $FLAGSTAT | cut -f 4`  # using number of mapped reads
-    # READLEN=`grep $BAR $FLAGSTAT | cut -f 5`
-
-    # -u $NUMREADS \
-    # -l $READLEN \
 
 OUTD="GGP.DEP"
 mkdir -p $OUTD
 
-# the aim is to make ./GGP a link to the most current GGP files
+# make ./GGP a link to the most current GGP files
 ln -fs $OUTD GGP
 
 
@@ -46,7 +37,16 @@ function process_chrom {
 
     OUT="$OUTDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
-    ARGS=" -A ${CHROM}:${START}-${END}"
+    # barcode	filesize	read_length	reads_total	reads_mapped
+    # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
+    NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
+    READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
+    # TODO: deal gracefully if numreads, readlen unknown.
+
+
+    ARGS=" -A ${CHROM}:${START}-${END} \
+           -u $NUMREADS \
+           -l $READLEN "
 
 # Usage: Rscript DepthRenderer.R [-v] [-P] [-A range] [-F] [-g fn.ggp] [-p plot.type]
 #                [-u num.reads] [-l read.length] [-m chrom] [-C] [-L]

@@ -13,6 +13,12 @@ HIST_OPTS="Histogram.PlotOpts.special"
 OUTD="GGP"
 mkdir -p $OUTD
 
+# The flagstat data file contains pre-calculated statistics about BAM partly obtained from
+# the BAM's flagstat file.
+# For normalizing read depth, we use number of mapped reads and read length 
+# normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
+FLAGSTAT="../C_ReadDepth/DEPTH/TCGA_SARC.flagstat.dat"
+
 while read l; do  
 # name	barcode	disease	virus	chrom	integration.start	integration.end	range.start	range.end
 # TCGA-BA-4077-01B-01D-2268-08.chr14A	TCGA-BA-4077-01B-01D-2268-08	HNSC	HPV16	14	68683065	68742035	68633064	68792035
@@ -34,21 +40,11 @@ INT_END=`echo "$l" | cut -f 7`
 DEPA="../C_ReadDepth/DEPTH/${BAR}/${NAME}.A.${FLANKN}.DEPTH.dat"
 DEPB="../C_ReadDepth/DEPTH/${BAR}/${NAME}.B.${FLANKN}.DEPTH.dat"
 
-# not currently implemented.  Should be calculated along with read depth.
-# FLAGSTAT="$DATD/read_count_map.dat"
-    # The flagstat data file contains pre-calculated statistics about BAM partly obtained from
-    # the BAM's flagstat file.
-    # For normalizing read depth, we use number of mapped reads and read length 
-    # normalize read depth by num_reads * bp_per_read / num_reads_in_genome
-    # currently we don't have this information calculated for test data
-
-    #barcode	analysis	reads_total	reads_mapped	read_length
-    #TCGA-AK-3455-01A-01D-2233-10	WGS	990044820	943303610	101
-    # NUMREADS=`grep $BAR $FLAGSTAT | cut -f 4`  # using number of mapped reads
-    # READLEN=`grep $BAR $FLAGSTAT | cut -f 5`
-
-    # -u $NUMREADS \
-    # -l $READLEN \
+# barcode	filesize	read_length	reads_total	reads_mapped
+# TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
+NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
+READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
+# TODO: deal gracefully if numreads, readlen unknown.
 
 
 # if histogram options file defined and histogram max range is set, define HISTMAX accordingly
@@ -65,7 +61,7 @@ mkdir -p $OUTDD
 OUT="$OUTDD/${NAME}.${FLANKN}.histogram.ggp"
 
 # ARGS=" -n $NUMREADS -l $READLEN $HISTMAX -N 100 "
-ARGS="-d"
+ARGS="-d -n $NUMREADS -l $READLEN "
 
 # Usage: Rscript HistogramRenderer.R [-v] [-n num.reads] [-l read.length] [-N nbin] [-m hist.max] [-d] [-P]
 #       depth.A.fn depth.B.fn out.ggp
