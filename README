@@ -8,7 +8,7 @@ B_CTX,... - Various SV predictions and other evidence based on primary data.  In
 
 G_PlotList - Defines regions of interest / plot ranges based on upstream discovery
 
-H_Depth,... - PlotList-driven analyses of primary data
+H_ReadDepth,... - PlotList-driven analyses of primary data
 
 M_Reference - Reference-specific and other static data not specific to project.  Data
     for selected reference distributed with project.  Optional.
@@ -17,4 +17,4 @@ N_RenderBreakpoint, O_RenderDepth, P_RenderAnnotation, Q_RenderHistogram - Creat
     which correspond to particular panels in combined BPS plot.  These and sebsequent steps 
     rely only on secondary data generated in steps B-M.
 
-W_Assemble - Create composite PDF figure based on GGP objects.
+W_AssembleBPS - Create composite BreakpointSurveyor PDF figure based on GGP objects.
