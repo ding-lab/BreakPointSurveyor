@@ -3,8 +3,6 @@
 
 # Somatic variation paths for all samples of interest are here:
 # ../A_Data/dat/SARC_DDLS.somatic_variation.dat
-# for the time being, we'll just focus on the first one:
-# TCGA-DX-A1KW-01A-22D-A24N-09    /gscmnt/gc12001/info/model_data/19d60b23a3db4a78a29952e374eb20d2/build00c4eeb2a00e42df9cb1b349396278bf
 
 #set +o posix
 mkdir -p dat

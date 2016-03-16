@@ -5,11 +5,13 @@ BIN="../../BreakpointSurveyor/src/util/makeBreakpointRegions.py"
 
 # Create BPR file which has regions of breakpoint events.
 # Such events are in the context of unique chromA/chromB pairs, so we process each of these pairs individually.
-# Combine all breakpoints on chrom A as well as those on chrom B
-# which are within a distance of RADIUS from each other into one region.  
+# Combine into one region all breakpoints on chrom A as well as those on chrom B
+# which are within a distance of D from each other along both chromosomes.
+
+# writing all output per sample to dat/*combined.BPR
 
 # Combine all events 5Mbp of each other
-RADIUS=5000000
+D=5000000
 set +o posix
 
 DATA_LIST="../A_DataPaths/dat/SARC_DDLS.somatic_variation.dat"
@@ -30,7 +32,7 @@ CHROMB=`echo $m | awk '{print $2}'`
 
 # process chrom
 
-python $BIN -A $CHROMA -B $CHROMB -R $RADIUS $DAT stdout  >> $OUT
+python $BIN -A $CHROMA -B $CHROMB -R $D $DAT stdout  >> $OUT
 
 done < <(cut -f 1,3 $DAT | sort -u)
 

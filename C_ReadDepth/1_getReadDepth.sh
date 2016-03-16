@@ -4,6 +4,9 @@
 BAMLIST="../A_DataPaths/dat/DDLS_WGS_tumor.dat"
 PLOT_LIST="../B_PlotList/dat/Combined.PlotList.50K.dat"
 
+# Reads BAM files, loops over PlotList
+# Writes two depth files per PlotList entry to dat/BAR/*.50K.DEPTH.dat
+
 mkdir -p DEPTH
 
 # limit number of points to 1K or so per segment.

@@ -1,3 +1,5 @@
+You may not need to do anything here.
+
 This directory contains gene and exon definitions based on Ensembl release 75 which are
 used for gene/exon annotation plots, as well as a workflow to recreate it for other Ensembl versions.
 This workflow is necessary only if gene/exon definitions need to be recreated for other Ensembl

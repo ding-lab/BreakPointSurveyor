@@ -2,6 +2,9 @@
 # for filename fn.bam, assume that fn.bam.flagstat exists
 # "barcode" is assumed to be unique identifier of BAM file
 
+# Reads A_DataPaths/dat/DDLS_WGS_tumor.dat and flagstat files based on BAM path
+# Writes file DEPTH/TCGA_SARC.flagstat.dat
+
 # example flagstat file (note, there is some variation in this)
     #415354654 + 0 in total (QC-passed reads + QC-failed reads)
     #7043441 + 0 duplicates
