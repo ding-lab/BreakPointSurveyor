@@ -5,7 +5,7 @@ SRC="/gscuser/mwyczalk/projects/TCGA_SARC/TCGA_SARC.bps/H_ReadDepth/tar/$TAR"
 
 scp linus300:$SRC .
 tar -zxf $TAR
-mkdir origdata
+mkdir -p origdata
 mv $TAR origdata
 
 echo $TAR expanded and moved to origdata
