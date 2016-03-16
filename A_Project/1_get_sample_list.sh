@@ -7,6 +7,10 @@
 #1) get list of all Dedifferentiated liposarcoma samples (-> dat/DDLS.dat).  This uses McLellan's clinical data file
 #   on gsc and is copy/pasted into dat/DDLS.dat
 #
+
+# Reads list of clinical SARC data 
+# Writes dat/DDLS.dat, a list of participant IDs
+
 mkdir -p dat
 OUT="dat/DDLS.dat"
 DAT="/gscuser/mmclella/shared/TCGA_SARC/Samples/Clinical/2014-12-17/nationwidechildrens.org_clinical_patient_sarc.txt"

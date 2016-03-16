@@ -1,16 +1,20 @@
-MGI-Specific
+The aim of this directory is to generate TCGA_SARC.samples.dat,  a canonical list of samples 
+with paths to primary data sources.
 
+Currently bam paths and paths to variant calls are listed.  Additional data sources can be incorporated into this file.
 
-Getting list of all "Dedifferentiated liposarcoma" tumor WGS samples.
--> This yields reference alignment models, which are not what we want
-    Work based on McLellan's work here:
-        /gscuser/mmclella/shared/TCGA_SARC/Samples/WGS_Selection/Selection3
-    and 
-        /gscuser/mmclella/shared/TCGA_SARC/Samples/Clinical/2014-12-17
+Work in this directory is TCGA-SARC and MGI-Specific
 
-    List generated in step 2 of all available samples is identical to McLellan's in the directory above.
+Workflow:
 
-Based on Mike's email 11/3/15, we really want somatic variation builds, which incorporate SV detection.
+1) Get list of all "Dedifferentiated liposarcoma" tumor WGS samples 
+  * Based on McLellan's work here: /gscuser/mmclella/shared/TCGA_SARC/Samples/WGS_Selection/Selection3
+
+2) Get sample BAM paths
+
+3) Obtain paths to variant calls based on somatic variation builds.
     The model group ID of interest is, 49b5bfdec8d84b79946640611892fa17
-    This is done in step 4 and written to dat/SARC_DDLS.somatic_variation.dat
+    Duplicates have been found to occur.  It is up to the user to remove duplicates.
 
+4) merge BAM and variant paths into a unified data file TCGA_SARC.samples.dat.  Subsequent processing
+   steps will refer to this file for further processing.
