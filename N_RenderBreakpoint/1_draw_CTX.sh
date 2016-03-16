@@ -1,7 +1,8 @@
 # Create CTX Breakpoint Coordinate GGP files
 
-DATD="../B_PlotList/dat"
-PLOT_LIST="$DATD/Combined.PlotList.50K.dat"
+DATD_CTX="../B_CTX/dat"
+DATD_PL="../G_PlotList/dat"
+PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.50K.dat"
 
 BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/BreakpointDrawer.R"
 
@@ -20,7 +21,7 @@ function process_plot {
     B_END=$8
 
     # Breakpoint coordinate file
-    BPC="$DATD/${BAR}.BPC.dat"
+    BPC="$DATD_CTX/${BAR}.CTX.BPC.dat"
 
     OUTDD="$OUTD/$BAR"
     mkdir -p $OUTDD
@@ -53,8 +54,6 @@ B_START=`echo "$l" | cut -f 11`
 B_END=`echo "$l" | cut -f 12`
 
 process_plot $BAR $NAME $A_CHROM $A_START $A_END $B_CHROM $B_START $B_END 
-echo Quitting after one
-exit
 
 done < $PLOT_LIST
 

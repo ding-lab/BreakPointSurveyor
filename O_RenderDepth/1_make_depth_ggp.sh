@@ -1,8 +1,10 @@
 # create two GGP for every row in PlotList
 FLANKN="50K"
-DATD="../A_Data/origdata"
 
-PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
+DATD_DEP="../H_ReadDepth/DEPTH"
+
+DATD_PL="../G_PlotList/dat"
+PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.${FLANKN}.dat"
 
 BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthDrawer.R"
 
@@ -10,7 +12,7 @@ BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthDr
 # the BAM's flagstat file.
 # For normalizing read depth, we use number of mapped reads and read length 
 # normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
-FLAGSTAT="../C_ReadDepth/DEPTH/TCGA_SARC.flagstat.dat"
+FLAGSTAT="$DATD_DEP/TCGA_SARC.flagstat.dat"
 
 
 OUTD="GGP.DEP"
@@ -30,7 +32,7 @@ function process_chrom {
     START=$5
     END=$6
 
-    DEP="../C_ReadDepth/DEPTH/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
+    DEP="$DATD_DEP/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
 
     OUTDD="$OUTD/$BAR"
     mkdir -p $OUTDD
@@ -59,13 +61,9 @@ function process_chrom {
     Rscript $BIN $ARGS -p depth $DEP $OUT
 }
 
-
-
-
 while read l; do  
 # barcode name    chrom.A event.A.start   event.A.end range.A.start   range.A.end chrom.B event.B.start   event.B.end range.B.start   range.B.end
 # TCGA-IS-A3KA-01A-11D-A21Q-09    TCGA-IS-A3KA-01A-11D-A21Q-09.chr_1_2.aa 1   5156542 207193935   5106542 207243935   2   122476446   228566993   122426446   228616993
-
 
 # Skip comments and header
 [[ $l = \#* ]] && continue
@@ -85,7 +83,6 @@ B_END=`echo "$l" | cut -f 12`
 
 process_chrom A $BAR $NAME $A_CHROM $A_START $A_END
 process_chrom B $BAR $NAME $B_CHROM $B_START $B_END
-exit
 
 done < $PLOT_LIST
 

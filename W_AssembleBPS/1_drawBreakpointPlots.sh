@@ -1,11 +1,13 @@
 # Combine GGP panels and draw a Breakpoint Surveyor PDF figure for each line in PlotList
-BPD="../K_RenderBreakpoint/GGP"
-DEPD="../L_RenderDepth/GGP"
-ANND="../M_RenderAnnotation/GGP"
-HISTD="../N_RenderHistogram/GGP"
+BPD="../N_RenderBreakpoint/GGP"
+DEPD="../O_RenderDepth/GGP"
+ANND="../P_RenderAnnotation/GGP"
+HISTD="../Q_RenderHistogram/GGP"
 
 FLANKN="50K"
-PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
+
+DATD_PL="../G_PlotList/dat"
+PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.${FLANKN}.dat"
 
 BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/BreakpointSurveyAssembler.R"
 
@@ -39,8 +41,6 @@ function process_plot {
     TITLE="$BAR Interchromosomal Translocation"
 
     Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
-exit
-
 }
 
 while read l
@@ -60,8 +60,6 @@ B_START=`echo "$l" | cut -f 11`
 B_END=`echo "$l" | cut -f 12`
 
 process_plot $NAME
-exit
-
 done < $PLOT_LIST
 
 

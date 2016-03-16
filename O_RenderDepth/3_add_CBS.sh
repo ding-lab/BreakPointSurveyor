@@ -1,8 +1,9 @@
 # add CBS segments to depth plots
 FLANKN="50K"
-DATD="../B_PlotList/dat"
 
-PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
+DATD_DEP="../H_ReadDepth/DEPTH"
+DATD_PL="../G_PlotList/dat"
+PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.${FLANKN}.dat"
 
 BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthDrawer.R"
 
@@ -17,7 +18,7 @@ ln -s $OUTD GGP
 # the BAM's flagstat file.
 # For normalizing read depth, we use number of mapped reads and read length 
 # normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
-FLAGSTAT="../C_ReadDepth/DEPTH/TCGA_SARC.flagstat.dat"
+FLAGSTAT="$DATD_DEP/TCGA_SARC.flagstat.dat"
 
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
@@ -29,7 +30,7 @@ function process_chrom {
     START=$5
     END=$6
 
-    DEP="../C_ReadDepth/DEPTH/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
+    DEP="$DATD_DEP/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
 
     GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
@@ -49,18 +50,12 @@ function process_chrom {
 # Usage: Rscript DepthDrawer.R [-v] [-P] [-A range] [-F] [-G fn.ggp] [-p plot.type]
 #                [-u num.reads] [-l read.length] [-m chrom] [-C] [-L]
 #                [-a alpha] [-c color] [-f fill] [-s shape][-z size] data.fn depth.ggp
-
     Rscript $BIN $ARGS -G $GGP -p CBS -c "#E41A1C" $DEP $OUT
-
 }
-
-
-
 
 while read l; do  
 # barcode name    chrom.A event.A.start   event.A.end range.A.start   range.A.end chrom.B event.B.start   event.B.end range.B.start   range.B.end
 # TCGA-IS-A3KA-01A-11D-A21Q-09    TCGA-IS-A3KA-01A-11D-A21Q-09.chr_1_2.aa 1   5156542 207193935   5106542 207243935   2   122476446   228566993   122426446   228616993
-
 
 # Skip comments and header
 [[ $l = \#* ]] && continue
@@ -80,7 +75,6 @@ B_END=`echo "$l" | cut -f 12`
 
 process_chrom A $BAR $NAME $A_CHROM $A_START $A_END
 process_chrom B $BAR $NAME $B_CHROM $B_START $B_END
-exit
 
 done < $PLOT_LIST
 

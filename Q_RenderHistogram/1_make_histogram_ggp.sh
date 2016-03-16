@@ -1,7 +1,9 @@
 # create two GGP for every row in PlotList
 FLANKN="50K"
-DATD="../A_Data/origdata"
-PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
+
+DATD_DEP="../H_ReadDepth/DEPTH"
+DATD_PL="../G_PlotList/dat"
+PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.${FLANKN}.dat"
 
 BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/HistogramDrawer.R"
 
@@ -17,7 +19,7 @@ mkdir -p $OUTD
 # the BAM's flagstat file.
 # For normalizing read depth, we use number of mapped reads and read length 
 # normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
-FLAGSTAT="../C_ReadDepth/DEPTH/TCGA_SARC.flagstat.dat"
+FLAGSTAT="$DATD_DEP/TCGA_SARC.flagstat.dat"
 
 while read l; do  
 # name	barcode	disease	virus	chrom	integration.start	integration.end	range.start	range.end
@@ -37,15 +39,14 @@ INT_END=`echo "$l" | cut -f 7`
 
 #echo Processing $NAME
 
-DEPA="../C_ReadDepth/DEPTH/${BAR}/${NAME}.A.${FLANKN}.DEPTH.dat"
-DEPB="../C_ReadDepth/DEPTH/${BAR}/${NAME}.B.${FLANKN}.DEPTH.dat"
+DEPA="$DATD_DEP/${BAR}/${NAME}.A.${FLANKN}.DEPTH.dat"
+DEPB="$DATD_DEP/${BAR}/${NAME}.B.${FLANKN}.DEPTH.dat"
 
 # barcode	filesize	read_length	reads_total	reads_mapped
 # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
 NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
 READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
 # TODO: deal gracefully if numreads, readlen unknown.
-
 
 # if histogram options file defined and histogram max range is set, define HISTMAX accordingly
 HISTMAX=""
@@ -67,7 +68,6 @@ ARGS="-d -n $NUMREADS -l $READLEN "
 #       depth.A.fn depth.B.fn out.ggp
 
 Rscript $BIN $ARGS $DEPA $DEPB $OUT
-exit
 
 done < $PLOT_LIST
 

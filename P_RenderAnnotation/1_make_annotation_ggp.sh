@@ -1,14 +1,15 @@
 # create two annotation GGP files for every row in PlotList.dat
 FLANKN="50K"
-DATD="../B_PlotList/dat"
-PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
+
+DATD_PL="../G_PlotList/dat"
+PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.${FLANKN}.dat"
 
 BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/AnnotationDrawer.R"
 
 OUTD="GGP"
 mkdir -p $OUTD
 
-AD="../D_Annotation/dat"
+AD="../M_Reference/dat"
 GENES="$AD/genes.ens75.bed"
 EXONS="$AD/exons.ens75.bed"
 
@@ -39,7 +40,6 @@ do
 [[ $l = \#* ]] && continue
 [[ $l = barcode* ]] && continue
 
-
 NAME=`echo "$l" | cut -f 2`     
 BAR=`echo "$l" | cut -f 1`
 OUTDD="$OUTD/$BAR"
@@ -55,9 +55,7 @@ process_chrom A
 CHR=`echo "$l" | cut -f 8`
 START=`echo "$l" | cut -f 11`
 END=`echo "$l" | cut -f 12`
-
 process_chrom B "-B"
-exit
 
 done < $PLOT_LIST
 

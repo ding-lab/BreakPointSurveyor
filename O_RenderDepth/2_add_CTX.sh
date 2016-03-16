@@ -1,8 +1,9 @@
 # add CTX breakpoints to depth plots
 FLANKN="50K"
-DATD="../B_PlotList/dat"
+DATD="../B_CTX/dat"
 
-PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
+DATD_PL="../G_PlotList/dat"
+PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.${FLANKN}.dat"
 
 BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthDrawer.R"
 
@@ -23,7 +24,7 @@ function process_chrom {
     START=$5
     END=$6
 
-    BPC="$DATD/${BAR}.BPC.dat"
+    BPC="$DATD/${BAR}.CTX.BPC.dat"
 
     GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
@@ -36,18 +37,12 @@ function process_chrom {
 # Usage: Rscript DepthDrawer.R [-v] [-P] [-A range] [-F] [-G fn.ggp] [-p plot.type]
 #                [-u num.reads] [-l read.length] [-m chrom] [-C] [-L]
 #                [-a alpha] [-c color] [-f fill] [-s shape][-z size] data.fn depth.ggp
-
     Rscript $BIN $ARGS -G $GGP -p vline $BPC $OUT
-
 }
-
-
-
 
 while read l; do  
 # barcode name    chrom.A event.A.start   event.A.end range.A.start   range.A.end chrom.B event.B.start   event.B.end range.B.start   range.B.end
 # TCGA-IS-A3KA-01A-11D-A21Q-09    TCGA-IS-A3KA-01A-11D-A21Q-09.chr_1_2.aa 1   5156542 207193935   5106542 207243935   2   122476446   228566993   122426446   228616993
-
 
 # Skip comments and header
 [[ $l = \#* ]] && continue
@@ -67,7 +62,6 @@ B_END=`echo "$l" | cut -f 12`
 
 process_chrom A $BAR $NAME $A_CHROM $A_START $A_END
 process_chrom B $BAR $NAME $B_CHROM $B_START $B_END
-exit
 
 done < $PLOT_LIST
 
