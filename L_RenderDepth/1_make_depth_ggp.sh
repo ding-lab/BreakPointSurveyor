@@ -4,7 +4,7 @@ DATD="../A_Data/origdata"
 
 PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthRenderer.R"
+BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthDrawer.R"
 
 # The flagstat data file contains pre-calculated statistics about BAM partly obtained from
 # the BAM's flagstat file.
@@ -48,7 +48,11 @@ function process_chrom {
            -u $NUMREADS \
            -l $READLEN "
 
-# Usage: Rscript DepthRenderer.R [-v] [-P] [-A range] [-F] [-g fn.ggp] [-p plot.type]
+    if [ $CHROM_ID == 'B' ]; then
+        ARGS="$ARGS -B"
+    fi
+
+# Usage: Rscript DepthDrawer.R [-v] [-P] [-A range] [-F] [-g fn.ggp] [-p plot.type]
 #                [-u num.reads] [-l read.length] [-m chrom] [-C] [-L]
 #                [-a alpha] [-c color] [-f fill] [-s shape][-z size] data.fn depth.ggp
 

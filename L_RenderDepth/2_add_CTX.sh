@@ -4,7 +4,7 @@ DATD="../B_PlotList/dat"
 
 PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthRenderer.R"
+BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthDrawer.R"
 
 IND="GGP.DEP"
 OUTD="GGP.CTX"
@@ -33,7 +33,7 @@ function process_chrom {
 
     ARGS=" -A ${CHROM}:${START}-${END} -m $CHROM_ID"
 
-# Usage: Rscript DepthRenderer.R [-v] [-P] [-A range] [-F] [-G fn.ggp] [-p plot.type]
+# Usage: Rscript DepthDrawer.R [-v] [-P] [-A range] [-F] [-G fn.ggp] [-p plot.type]
 #                [-u num.reads] [-l read.length] [-m chrom] [-C] [-L]
 #                [-a alpha] [-c color] [-f fill] [-s shape][-z size] data.fn depth.ggp
 

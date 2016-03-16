@@ -3,7 +3,7 @@
 DATD="../B_PlotList/dat"
 PLOT_LIST="$DATD/Combined.PlotList.50K.dat"
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/BreakpointRenderer.R"
+BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/BreakpointDrawer.R"
 
 OUTD="GGP"
 mkdir -p $OUTD
@@ -26,7 +26,7 @@ function process_plot {
     mkdir -p $OUTDD
     OUT="$OUTDD/${NAME}.Breakpoints.CTX.ggp"  
 
-# Usage: Rscript BreakpointRenderer.R [-v] [-P] [-A range.A] [-B range.B] [-F] [-G fn.ggp] [-p plot.type] 
+# Usage: Rscript BreakpointDrawer.R [-v] [-P] [-A range.A] [-B range.B] [-F] [-G fn.ggp] [-p plot.type] 
 #                [-a alpha][-c color][-f fill][-s shape][-z size] BP.fn breakpoint.ggp
 # default CTX values: geom_point.  color="#377EB8", alpha = 0.5
     RANGE_A="-A ${A_CHROM}:${A_START}-${A_END}" 

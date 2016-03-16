@@ -7,12 +7,12 @@ HISTD="../N_RenderHistogram/GGP"
 FLANKN="50K"
 PLOT_LIST="../B_PlotList/dat/Combined.PlotList.${FLANKN}.dat"
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/BreakpointDrawer.R"
+BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/BreakpointSurveyAssembler.R"
 
 OUTD="plots"
 mkdir -p $OUTD
 
-# Usage: process_plot NAME
+# Usage: process_plot NAME 
 function process_plot {
     BREAKPOINTS="$BPD/$BAR/${NAME}.Breakpoints.CTX.ggp"
 #TCGA-DX-A1KW-01A-22D-A24N-09.AA.chr_1_10.A.DEPTH.ggp
@@ -34,7 +34,11 @@ function process_plot {
     mkdir -p $OUTDD
     OUT="$OUTDD/${NAME}.BreakpointSurvey.pdf"
 
-    Rscript $BIN $AA $AB -t "$NAME" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
+    #MARKS="-N -d 33075000,33100000,33145000 -D 120820000,120880000,120895000"
+    ARGS="-c $A_CHROM -C $B_CHROM"
+    TITLE="$BAR Interchromosomal Translocation"
+
+    Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
 exit
 
 }
