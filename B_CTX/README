@@ -23,5 +23,6 @@ Summary
 1) get list of "dedifferentiated liposarcoma" WGS samples and their corresponding MGI somatic variation model IDs
 2) Obtain interchromosomal translocation positions (CTX) from MGI pipeline. Create BPC file per sample of CTX coordinates
 3) Cluster all breakpoints into breakpoint regions with script makeBreakpointRegions.py.  This creates per-sample BPR file
-4) 
+4) Prioritize clusters based on number of CTX breakpoints with cluster
+5) Create PlotList file from prioritized CTX breakpoint clusters
 

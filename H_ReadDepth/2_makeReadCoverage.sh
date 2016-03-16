@@ -18,7 +18,7 @@
     #2136932 + 0 with mate mapped to a different chr
     #1091817 + 0 with mate mapped to a different chr (mapQ>=5)
 
-BAMLIST="../A_DataPaths/dat/DDLS_WGS_tumor.dat"
+BAMLIST="../A_Project/dat/TCGA_SARC.samples.dat"
 
 OUTD="DEPTH"
 mkdir -p $OUTD

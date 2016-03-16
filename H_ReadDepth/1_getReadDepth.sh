@@ -1,17 +1,23 @@
 # Evaluating read depth with pysam-based depth calculations.
 # For every line in PLOT_LIST, evaluate depth for range.A and range.B
 
-BAMLIST="../A_DataPaths/dat/DDLS_WGS_tumor.dat"
-PLOT_LIST="../B_PlotList/dat/Combined.PlotList.50K.dat"
+BAMLIST="../A_Project/dat/TCGA_SARC.samples.dat"
+PLOT_LIST="../G_PlotList/dat/TCGA_SARC.PlotList.50K.dat"
 
 # Reads BAM files, loops over PlotList
 # Writes two depth files per PlotList entry to dat/BAR/*.50K.DEPTH.dat
 
 mkdir -p DEPTH
+# relevant for finding installed pysam libraries
+PYTHON="/usr/bin/python2.7"
+
+BPS_PATH="/gscuser/mwyczalk/projects/TCGA_SARC/BreakpointSurveyor"
+BIN="$BPS_PATH/src/analysis/depthFilter.py"
+
+
 
 # limit number of points to 1K or so per segment.
 N="-N 1000"
-BIN="/usr/bin/python2.7 ../../BreakpointSurveyor/src/analysis/depthFilter.py"
 
 # usage: process_chrom CHROM_ID NAME BAM CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
@@ -30,7 +36,7 @@ function get_depth {
     ARGS=$N
     # -t is timing
     echo $NAME $CHROM $START $END
-    $BIN $N -o $OUT $CHROM $START $END $BAM
+    $PYTHON $BIN $N -o $OUT $CHROM $START $END $BAM
 }
 
 
