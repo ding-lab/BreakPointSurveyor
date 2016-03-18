@@ -1,20 +1,31 @@
-The aim of this directory is to generate TCGA_SARC.samples.dat,  a canonical list of samples 
-with paths to primary data sources.
+Analysis of preliminary 1000SV Pindel and Breakdancer calls
 
-Currently bam paths and paths to variant calls are listed.  Additional data sources can be incorporated into this file.
+Jay 2/2/16
+The high-coverage CRAMs and converted BAMs for the nine samples are under
+    /gscmnt/gc2500/dinglab/1000G_svtrio/data_collections/hgsv_sv_discovery/*/high_cov_alignment/
+Reference files are under
+    /gscmnt/gc2500/dinglab/1000G_svtrio/data_collections/reference
 
-Work in this directory is TCGA-SARC and MGI-Specific
+Jay 3/14/16
+My local pindel results are available here to help you with developing your methods until Kai can provide (albeit perhaps with different parameters):
+    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group0/pindel.out.group0.raw
+    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group0/pindel.out.group0.current_final.gvip.denovo.vcf
+    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group1/pindel.out.group1.raw
+    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group1/pindel.out.group1.current_final.gvip.denovo.vcf
+    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group2/pindel.out.group2.raw
+    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group2/pindel.out.group2.current_final.gvip.denovo.vcf
 
-Workflow:
+I checked the FTP site; these high-coverage data are advertised as WGS and aligned to GRCh38.
+You should be able to access the BAMs from the links in /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/genomes
+My BreakDancer calls are in
+    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/breakdancer/breakdancer/group*/{ITX,CTX}/*triofilter_pass
+where calls were deemed to have passed if there were supporting reads from child only.
 
-1) Get list of all "Dedifferentiated liposarcoma" tumor WGS samples 
-  * Based on McLellan's work here: /gscuser/mmclella/shared/TCGA_SARC/Samples/WGS_Selection/Selection3
+Jay 3/17/16
+These are the pindel read pairs with support in the child only:
+    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group0/merged_RP.raw.child_only
+    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group1/merged_RP.raw.child_only
+    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group2/merged_RP.raw.child_only
+These were derived from the files "merged_RP.raw" in the same directories.
 
-2) Get sample BAM paths
 
-3) Obtain paths to variant calls based on somatic variation builds.
-    The model group ID of interest is, 49b5bfdec8d84b79946640611892fa17
-    Duplicates have been found to occur.  It is up to the user to remove duplicates.
-
-4) merge BAM and variant paths into a unified data file TCGA_SARC.samples.dat.  Subsequent processing
-   steps will refer to this file for further processing.

@@ -1,20 +1,18 @@
-# Merge BAM and SV data paths to create per-sample list of BAM and CTX data files.
+# Merge BAM, CTC, and Pindel_RP data paths
+# only samples with all three datasets retained
 
-# Writing to TCGA_SARC.samples.dat
+# Writing to 1000SV.samples.dat
 
-set +o posix
+# set +o posix
 
-BAMS="dat/TCGA_SARC.bam_path.dat"
-SV="dat/TCGA_SARC.somatic_variation.dat"
+BAM="dat/1000SV.bam_path.dat"
+CTX="dat/1000SV.CTX.dat"
+PIN="dat/1000SV.Pindel_RP.dat"
 
 OUT="dat/TCGA_SARC.samples.dat"
 
-# 1) write header
-# 2) append path to SV variants file to SV data
-# 3) merge BAM and SV by barcode
+echo -e "barcode\tbam_path\tCTX_path\tPindel_path" > $OUT
 
-echo -e "barcode\tbam_path\tCTX_path" > $OUT
-
-join $BAMS <(sed 's/$/\/variants\/svs.hq/' $SV) | tr ' ' '\t' >> $OUT
+join $BAM $CTX | join - $PIN | tr ' ' '\t' >> $OUT
 
 echo Written to $OUT

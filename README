@@ -1,5 +1,3 @@
-
-
 Workflow Architecture 
 
 A_Project - contains most locale and project-specific information, e.g. paths to primary data, sample IDs
