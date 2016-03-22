@@ -1,9 +1,10 @@
 # Make a list of all DDLS SARC WGS tumor samples, their BAM paths, and model IDs
 
+source ./A_Project.config
+
 DATD="/gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/genomes"
 
-mkdir -p dat
-OUT="dat/1000SV.bam_path.dat"
+OUT="$OUTD/1000SV.bam_path.dat"
 
 rm -f $OUT
 

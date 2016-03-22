@@ -1,13 +1,14 @@
 # Get translocation breakpoints from somatic variation
 # file format: https://gscweb.gsc.wustl.edu/mediawiki/index.php/Filespec/BreakDancer
 
-# Somatic variation paths for all samples of interest are in column 3 of,
-# ../A_Project/dat/TCGA_SARC.samples.dat
+# CTX paths from column 3 of $BPS_DATA/A_Project/dat/1000SV.samples.dat
 
 # Writes dat/BAR.BPC.dat for each barcode
 
-mkdir -p dat
-DATA_LIST="../A_Project/dat/TCGA_SARC.samples.dat"
+source ./B_CTX.config
+
+DATA_LIST="$BPS_DATA/A_Project/dat/1000SV.samples.dat"
+echo Data list: $DATA_LIST
 
 while read l; do
 # barcode bam_path    CTX_path
@@ -19,12 +20,17 @@ while read l; do
 #    BPC: chromA, posA, chromB, posB
 
 BAR=`echo $l | awk '{print $1}'`
-VAR_FN=`echo $l | awk '{print $3}'`
+CTX_FN=`echo $l | awk '{print $3}'`   # read column 3
 
-OUT="dat/${BAR}.CTX.BPC.dat"
+OUT="$OUTD/${BAR}.CTX.BPC.dat"
+
+echo $BAR $CTX_FN
+echo $OUT
+exit
+
 
 # (we cast chrom name into string with $1"" so that string comparison is used)
-grep CTX $VAR_FN | awk 'BEGIN{FS="\t";OFS="\t"}{if ($1"" <= $4"") print $1,$2,$4,$5; else print $4,$5,$1,$2}' | sort > $OUT
+grep CTX $CTX_FN | awk 'BEGIN{FS="\t";OFS="\t"}{if ($1"" <= $4"") print $1,$2,$4,$5; else print $4,$5,$1,$2}' | sort > $OUT
 echo Written to $OUT
 
 done < $DATA_LIST

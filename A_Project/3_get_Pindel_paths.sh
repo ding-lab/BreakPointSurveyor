@@ -4,7 +4,8 @@
 #     /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group2/merged_RP.raw.child_only
 # These were derived from the files "merged_RP.raw" in the same directories.
 
-OUT="dat/1000SV.Pindel_RP.dat"
+source ./A_Project.config
+OUT="$OUTD/1000SV.Pindel_RP.dat"
 
 # turns out it is easier to assign the data by hand here.
 

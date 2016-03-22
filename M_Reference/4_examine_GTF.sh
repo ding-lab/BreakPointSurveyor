@@ -3,20 +3,26 @@
 # all the attributes as uniform columns.  It is probably too slow to be used for genome-wide
 # analysis but is useful for exploratory work
 
+source ./M_Reference.config
+BIN="$BPS_CORE/src/annotation/TLAExamine.R"
+
 set +o posix  # enable process substitution.  Alternative is to use TMP code
 
 GENE=RAD51B # extract and examine all features associated with this gene
-BIN="../../BreakpointSurveyor/src/annotation/TLAExamine.R"
 
-#mkdir -p tmp
-mkdir -p dat
-GTF="dat/Homo_sapiens.GRCh37.75.gtf"
-#TMP="tmp/${GENE}.gtf"
-OUT="dat/${GENE}.gtf.tsv"
+GTF="$OUTD/Homo_sapiens.GRCh37.75.gtf.gz"
+OUT="$OUTD/${GENE}.37.75.gtf.tsv"
 
-#fgrep $GENE $GTF > $TMP
+#GTF="$OUTD/Homo_sapiens.GRCh38.84.gtf.gz"
+#OUT="$OUTD/${GENE}.38.84.gtf.tsv"
 
-Rscript $BIN -m gtf < <(fgrep $GENE $GTF) > $OUT
+# Using this to create test GTF files
+# OUT="$OUTD/${GENE}.37.75.gtf"
+# zcat $GTF | fgrep $GENE > $OUT
+# echo WRitten to $OUT
+# exit
+
+Rscript $BIN -m gtf < <(zcat $GTF | fgrep $GENE) > $OUT
 
 echo Written to $OUT
 

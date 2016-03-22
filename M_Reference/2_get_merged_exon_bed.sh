@@ -1,21 +1,26 @@
 # Generate a BED file of all exons in GTF file, merging all overlapping exons into one feature
 
-mkdir -p tmp
-mkdir -p dat
+source ./M_Reference.config
 
-BIN="../../BreakpointSurveyor/src/annotation/GTFFilter.py"
+TMP="$OUTD/../tmp"
+mkdir -p $TMP
 
-GTF="dat/Homo_sapiens.GRCh37.75.gtf"
-#GTF="GTF/TCGA-BA-4077-01B-01D-2268-08.gtf"
+BIN="$BPS_CORE/src/annotation/GTFFilter.py"
 
+#GTF="$OUTD/Homo_sapiens.GRCh37.75.gtf"
+GTF="$OUTD/Homo_sapiens.GRCh38.84.gtf"
+GTF="$OUTD/Homo.100000.gtf"
 
-OUT="dat/exons.ens75.bed"
+#OUT="$OUTD/exons.ens75.bed"
+OUT="$OUTD/exons.ens84.bed"
   
-TMP1="tmp/all.exons.bed"        # temporary BED file of unsorted and unmerged exons
-TMP2="tmp/merged.exons.bed"     # temporary BED file of merged but unsorted exons
+TMP1="$TMP/all.exons.bed"        # temporary BED file of unsorted and unmerged exons
+TMP2="$TMP/merged.exons.bed"     # temporary BED file of merged but unsorted exons
 rm -f $TMP2; touch $TMP2
 
-python $BIN -s -b exon  < $GTF | bedtools sort -i stdin > $TMP1
+python $BIN -s -b exon  < $GTF 
+exit
+#python $BIN -s -b exon  < $GTF | bedtools sort -i stdin > $TMP1
 echo Written to $TMP1
 
 # now go through genes one by one and and merge all their beds together
