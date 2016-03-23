@@ -10,18 +10,21 @@ set +o posix  # enable process substitution.  Alternative is to use TMP code
 
 GENE=RAD51B # extract and examine all features associated with this gene
 
+# process Ensembl release 75
+function define_75 {
 GTF="$OUTD/Homo_sapiens.GRCh37.75.gtf.gz"
 OUT="$OUTD/${GENE}.37.75.gtf.tsv"
+}
 
-#GTF="$OUTD/Homo_sapiens.GRCh38.84.gtf.gz"
-#OUT="$OUTD/${GENE}.38.84.gtf.tsv"
+# process Ensembl release 84
+function define_84 {
+GTF="$OUTD/Homo_sapiens.GRCh38.84.gtf.gz"
+OUT="$OUTD/${GENE}.38.84.gtf.tsv"
+}
 
-# Using this to create test GTF files
-# OUT="$OUTD/${GENE}.37.75.gtf"
-# zcat $GTF | fgrep $GENE > $OUT
-# echo WRitten to $OUT
-# exit
-
+# define_75
+define_84
+  
 Rscript $BIN -m gtf < <(zcat $GTF | fgrep $GENE) > $OUT
 
 echo Written to $OUT

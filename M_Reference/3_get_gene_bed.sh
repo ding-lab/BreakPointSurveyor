@@ -1,12 +1,29 @@
 #GTF="dat/Homo_sapiens.GRCh37.75.gtf"
 #OUT="dat/genes.ens75.bed"
 
+source ./M_Reference.config
+set +o posix
+
+BIN="$BPS_CORE/src/annotation/GTFFilter.py"
 
 
-GTF="dat/Homo_sapiens.GRCh38.84.gtf"
-OUT="dat/genes.ens84.bed"
-BIN="../../BreakpointSurveyor/src/annotation/GTFFilter.py"
+# process Ensembl release 75
+function define_75 {
+GTF="$OUTD/Homo_sapiens.GRCh37.75.gtf.gz"
+OUT="$OUTD/exons.ens75.bed"
+ARG="-e 75"
+}
 
-python $BIN -b gene < $GTF | bedtools sort -i stdin > $OUT
+# process Ensembl release 84
+function define_84 {
+GTF="$OUTD/Homo_sapiens.GRCh38.84.gtf.gz"
+OUT="$OUTD/exons.ens84.bed"
+ARG="-e 84"
+}
+
+# define_75
+define_84
+  
+python $BIN $ARG -b gene < <(zcat $GTF) | bedtools sort -i stdin > $OUT
 
 echo Written to $OUT
