@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# this is a template file for bps.config
+# paths below specify data and program (core) paths.
+# During installation, copy this file to bps.config as,
+#   cp bps.config.template bps.config
+# and edit bps.config as appropriate
+
+# Define BPS component paths
+BPS_CORE="/gscuser/mwyczalk/src/BreakpointSurveyor"
+BPS_DATA="/gscmnt/gc2510/dinglab/maw/BreakpointSurveyor/1000SV.Data"
+
