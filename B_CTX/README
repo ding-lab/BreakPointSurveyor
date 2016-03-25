@@ -1,28 +1,3 @@
-Obtaining inter-chromosomal translocation positions from somatic variant pipeline.
+Obtaining inter-chromosomal translocation positions.
 
-Per Mike McLellan email 12/1/15, inter-chromosomal positions are identified as CTX in the 
-variants/svs.hq file.
-
-Constructing two types of files in step 1, BPC and dBPC.  See below for more details:
-    /gscuser/mwyczalk/projects/TCGA_SARC/ICGC/A_AnalyzeVCF/README
-BPC files are used later for plotting, while dBPC are used for making BED files.
-
-Constructing BED files of SV events:
-Simply taking all dBPC positions into one BED file results in a large (1000+ lines) BED file which takes a very long
-    time to process (days).
-Instead, we will cluster breakpoints by a given radius to create a clustered BPR file.
-
-We then create a PlotList from BPR directly.  There is then one plot (and two read depth calculations) per line of 
-PlotList file.
-
-TODO:
-* indicate these are CTX files
-
----
-Summary
-1) get list of "dedifferentiated liposarcoma" WGS samples and their corresponding MGI somatic variation model IDs
-2) Obtain interchromosomal translocation positions (CTX) from MGI pipeline. Create BPC file per sample of CTX coordinates
-3) Cluster all breakpoints into breakpoint regions with script makeBreakpointRegions.py.  This creates per-sample BPR file
-4) Prioritize clusters based on number of CTX breakpoints with cluster
-5) Create PlotList file from prioritized CTX breakpoint clusters
-
+Constructing BPC from CTX data which are used for plotting.
