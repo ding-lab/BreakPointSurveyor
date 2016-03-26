@@ -2,7 +2,7 @@
 
 # Writes dat/BAR.PindelRP.BPR.dat for each sample
 
-source ./C_PindelRP.config
+source ./PindelRP.config
 
 DATA_LIST="$BPS_DATA/A_Project/dat/1000SV.samples.dat"
 BIN="$BPS_CORE/src/analysis/Pindel_RP.Reader.R"

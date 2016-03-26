@@ -2,7 +2,7 @@
 #    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/breakdancer/breakdancer/group*/{ITX,CTX}/*triofilter_pass
 # where calls were deemed to have passed if there were supporting reads from child only.
 
-source ./A_Project.config
+source ./Project.config
 
 OUT="$OUTD/1000SV.CTX.dat"
 

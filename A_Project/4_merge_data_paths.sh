@@ -4,7 +4,7 @@
 # Writing to $OUTD/1000SV.samples.dat
 
 # set +o posix
-source ./A_Project.config
+source ./Project.config
 
 BAM="$OUTD/1000SV.bam_path.dat"
 CTX="$OUTD/1000SV.CTX.dat"

@@ -5,7 +5,7 @@
 
 # Writes dat/BAR.BPC.dat for each barcode
 
-source ./B_CTX.config
+source ./CTX.config
 
 DATA_LIST="$BPS_DATA/A_Project/dat/1000SV.samples.dat"
 echo Data list: $DATA_LIST
