@@ -1,4 +1,4 @@
-# Prioritize clusters based on number of breakpoints
+# Prioritize PindelRP clusters based on number of breakpoints
 
 source ./PlotList.config
 # Retain top 5 clusters per sample to use to create PlotList
@@ -14,8 +14,8 @@ while read l; do  # iterate over all barcodes
     [[ $l = barcode* ]] && continue
 
     BAR=`echo $l | awk '{print $1}'`
-    DAT="$OUTD/${BAR}.CTX-cluster.BPR.dat"
-    OUT="$OUTD/${BAR}.CTX-prioritized.BPR.dat"
+    DAT="$OUTD/${BAR}.PindelRP-cluster.BPR.dat"
+    OUT="$OUTD/${BAR}.PindelRP-prioritized.BPR.dat"
 
     head -n1 $DAT > $OUT
     grep -v barcode $DAT | sort -k7 -nr | head -n $NCLUST >> $OUT

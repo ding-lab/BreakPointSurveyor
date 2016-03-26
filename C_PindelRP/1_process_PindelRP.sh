@@ -17,7 +17,6 @@ while read l; do
 BAR=`echo $l | awk '{print $1}'`
 PIN_FN=`echo $l | awk '{print $4}'`   # read column 3
 
-
 ARGS="-S" 
 OUT="$OUTD/${BAR}.PindelRP.BPR.dat"
 

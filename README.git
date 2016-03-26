@@ -8,3 +8,6 @@ The idea is that the BPS.Data projects can be (optionally) managed by git and be
 
 Citation about using git to manage data:
 http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3639880/
+
+bps.config is defined differently for each repository.  To keep it from being updated, do
+    git update-index --assume-unchanged bps.config
