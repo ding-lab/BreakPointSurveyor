@@ -2,8 +2,7 @@
 # for filename fn.bam, assume that fn.bam.flagstat exists
 # "barcode" is assumed to be unique identifier of BAM file
 
-# Reads A_DataPaths/dat/DDLS_WGS_tumor.dat and flagstat files based on BAM path
-# Writes file DEPTH/TCGA_SARC.flagstat.dat
+# Reads flagstat files based on BAM path
 
 # example flagstat file (note, there is some variation in this)
     #415354654 + 0 in total (QC-passed reads + QC-failed reads)
@@ -18,11 +17,12 @@
     #2136932 + 0 with mate mapped to a different chr
     #1091817 + 0 with mate mapped to a different chr (mapQ>=5)
 
-BAMLIST="../A_Project/dat/TCGA_SARC.samples.dat"
+source ./ReadDepth.config
 
-OUTD="DEPTH"
-mkdir -p $OUTD
-OUT="$OUTD/TCGA_SARC.flagstat.dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/1000SV.PlotList.50K.dat"
+DATA_LIST="$BPS_DATA/A_Project/dat/1000SV.samples.dat"
+
+OUT="$OUTD/1000SV.flagstat.dat"
 
 # Usage: parse_flagstat barcode bampath 
 # Writes flagstat statistics to $OUT. Statistics include,
@@ -64,8 +64,8 @@ while read l; do
 BAR=`echo "$l" | cut -f 1`
 BAM=`echo "$l" | cut -f 2`
 
-parse_flagstat $BAR $BAM
+echo parse_flagstat $BAR $BAM
 
-done < $BAMLIST
+done < $DATA_LIST
 
 echo Written to $OUT

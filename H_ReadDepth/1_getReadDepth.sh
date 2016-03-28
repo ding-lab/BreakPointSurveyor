@@ -1,23 +1,24 @@
-# Evaluating read depth with pysam-based depth calculations.
-# For every line in PLOT_LIST, evaluate depth for range.A and range.B
+# Obtain read depth from BAM files.  Evaluate depth for range.A and range.B
+# for every line in PLOT_LIST
 
-BAMLIST="../A_Project/dat/TCGA_SARC.samples.dat"
-PLOT_LIST="../G_PlotList/dat/TCGA_SARC.PlotList.50K.dat"
+source ./ReadDepth.config
 
-# Reads BAM files, loops over PlotList
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/1000SV.PlotList.50K.dat"
+
+DATA_LIST="$BPS_DATA/A_Project/dat/1000SV.samples.dat"
+
+# loops over PlotList, reads BAM files,.
 # Writes two depth files per PlotList entry to dat/BAR/*.50K.DEPTH.dat
 
-mkdir -p DEPTH
 # relevant for finding installed pysam libraries
 PYTHON="/usr/bin/python2.7"
 
-BPS_PATH="/gscuser/mwyczalk/projects/TCGA_SARC/BreakpointSurveyor"
-BIN="$BPS_PATH/src/analysis/depthFilter.py"
+BIN="$BPS_CORE/src/analysis/depthFilter.py"
 
 
 
-# limit number of points to 1K or so per segment.
-N="-N 1000"
+# limit number of points to 10K or so per segment.
+N="-N 10000"
 
 # usage: process_chrom CHROM_ID NAME BAM CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
@@ -29,17 +30,15 @@ function get_depth {
     START=$5
     END=$6
 
-    OUTD="DEPTH/$BAR"
-    mkdir -p $OUTD
-    OUT="$OUTD/${NAME}.${CHROM_ID}.50K.DEPTH.dat"
+    OUTDD="$OUTD/$BAR"
+    mkdir -p $OUTDD
+    OUT="$OUTDD/${NAME}.${CHROM_ID}.50K.DEPTH.dat"
 
     ARGS=$N
     # -t is timing
     echo $NAME $CHROM $START $END
     $PYTHON $BIN $N -o $OUT $CHROM $START $END $BAM
 }
-
-
 
 while read l; do
 # barcode name    chrom.A event.A.start   event.A.end range.A.start   range.A.end chrom.B event.B.start   event.B.end range.B.start   range.B.end
@@ -61,7 +60,8 @@ B_CHROM=`echo "$l" | cut -f 8`
 B_START=`echo "$l" | cut -f 11`
 B_END=`echo "$l" | cut -f 12`
 
-BAM=`grep $BAR $BAMLIST | cut -f 2`
+# barcode bam_path    CTX_path    Pindel_path
+BAM=`grep $BAR $DATA_LIST | cut -f 2`
 
 # usage: process_chrom CHROM_ID NAME BAM CHROM RANGE_START RANGE_END
 get_depth A $NAME $BAM $A_CHROM $A_START $A_END
