@@ -1,13 +1,15 @@
-# Create CTX Breakpoint Coordinate GGP files
+# Create Breakpoint Coordinates GGP file for each PlotList line with PindelRP regions drawn
+source ./RenderBreakpoint.config
 
-DATD_CTX="../B_CTX/dat"
-DATD_PL="../G_PlotList/dat"
-PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.50K.dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/1000SV.PlotList.50K.dat"
+DATD="$BPS_DATA/C_PindelRP/dat"
+BIN="$BPS_CORE/src/plot/BreakpointDrawer.R"
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/BreakpointDrawer.R"
+OUTDD="$OUTD/GGP.PindelRP"
+mkdir -p $OUTDD
 
-OUTD="GGP"
-mkdir -p $OUTD
+rm -f $OUTD/GGP  # GGP is a link
+ln -s $OUTDD $OUTD/GGP
 
 # Usage: process_plot BAR NAME A_CHROM A_START A_END B_CHROM B_START B_END 
 function process_plot {
@@ -21,18 +23,15 @@ function process_plot {
     B_END=$8
 
     # Breakpoint coordinate file
-    BPC="$DATD_CTX/${BAR}.CTX.BPC.dat"
+    BPC="$DATD/${BAR}.PindelRP.BPR.dat"
 
-    OUTDD="$OUTD/$BAR"
-    mkdir -p $OUTDD
-    OUT="$OUTDD/${NAME}.Breakpoints.CTX.ggp"  
+    OUTDDD="$OUTDD/$BAR"
+    mkdir -p $OUTDDD
+    OUT="$OUTDDD/${NAME}.Breakpoints.PindelRP.ggp"  
 
-# Usage: Rscript BreakpointDrawer.R [-v] [-P] [-A range.A] [-B range.B] [-F] [-G fn.ggp] [-p plot.type] 
-#                [-a alpha][-c color][-f fill][-s shape][-z size] BP.fn breakpoint.ggp
-# default CTX values: geom_point.  color="#377EB8", alpha = 0.5
     RANGE_A="-A ${A_CHROM}:${A_START}-${A_END}" 
     RANGE_B="-B ${B_CHROM}:${B_START}-${B_END}" 
-    ARGS=" -a 1.0 "
+    ARGS=" -a 1.0 -p region"
     Rscript $BIN $RANGE_A $RANGE_B $ARGS $BPC $OUT
 }
 
