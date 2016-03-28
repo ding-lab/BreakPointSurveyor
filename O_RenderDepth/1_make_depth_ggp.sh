@@ -1,26 +1,25 @@
-# create two GGP for every row in PlotList
+# Create GGP objects with read depth information
+#   two files for every row in PlotList
+
+source ./DrawDepth.config
+
 FLANKN="50K"
 
-DATD_DEP="../H_ReadDepth/DEPTH"
+DATD="$BPS_DATA/H_ReadDepth/dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/1000SV.PlotList.50K.dat"
+BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
-DATD_PL="../G_PlotList/dat"
-PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.${FLANKN}.dat"
+OUTDD="$OUTD/GGP.Depth"
+mkdir -p $OUTDD
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthDrawer.R"
+rm -f $OUTD/GGP  # GGP is a link
+ln -s $OUTDD $OUTD/GGP
 
 # The flagstat data file contains pre-calculated statistics about BAM partly obtained from
 # the BAM's flagstat file.
 # For normalizing read depth, we use number of mapped reads and read length 
 # normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
-FLAGSTAT="$DATD_DEP/TCGA_SARC.flagstat.dat"
-
-
-OUTD="GGP.DEP"
-mkdir -p $OUTD
-
-# make ./GGP a link to the most current GGP files
-ln -fs $OUTD GGP
-
+FLAGSTAT="$DATD/1000SV.flagstat.dat"
 
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
@@ -32,12 +31,12 @@ function process_chrom {
     START=$5
     END=$6
 
-    DEP="$DATD_DEP/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
+    DEP="$DATD/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
 
-    OUTDD="$OUTD/$BAR"
-    mkdir -p $OUTDD
+    OUTDDD="$OUTD/$BAR"
+    mkdir -p $OUTDDD
 
-    OUT="$OUTDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
+    OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
     # barcode	filesize	read_length	reads_total	reads_mapped
     # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
@@ -48,7 +47,8 @@ function process_chrom {
 
     ARGS=" -A ${CHROM}:${START}-${END} \
            -u $NUMREADS \
-           -l $READLEN "
+           -l $READLEN \
+            -P "  # TESTING
 
     if [ $CHROM_ID == 'B' ]; then
         ARGS="$ARGS -B"
