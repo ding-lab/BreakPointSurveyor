@@ -1,5 +1,4 @@
 # obtain read count and length for every BAM file in BAM list by reading associated flagstat file
-# for filename fn.bam, assume that fn.bam.flagstat exists
 # "barcode" is assumed to be unique identifier of BAM file
 
 # Reads flagstat files based on BAM path
@@ -35,7 +34,8 @@ function parse_flagstat {
     SEQ=`samtools view $BAM | head -n1 | cut -f 10`
     READLEN=`expr length $SEQ`
 
-    FLAGSTAT=${BAM}.flagstat
+    # FLAGSTAT=${BAM}.flagstat    # This if flagstat is based on BAM filename
+    FLAGSTAT="$OUTD/${BAR}.flagstat"  # this if flagstat created in step 2_
 
     # Deal appropriately with missing flagstat file
     if [ ! -e $FLAGSTAT ];
@@ -46,7 +46,8 @@ function parse_flagstat {
     TOT=`grep "in total" $FLAGSTAT | awk '{print $1}'`
     MAPPED=`grep "mapped (" $FLAGSTAT | awk '{print $1}'`
 
-    FILESIZE=`stat -c%s $BAM`
+    BAMF=`readlink -f $BAM`   # BAMF is canonical filename, with all links dereferenced.
+    FILESIZE=`stat -c%s $BAMF`
     echo -e "${BAR}\t${FILESIZE}\t${READLEN}\t${TOT}\t${MAPPED}" >> $OUT
 }
 
@@ -64,7 +65,7 @@ while read l; do
 BAR=`echo "$l" | cut -f 1`
 BAM=`echo "$l" | cut -f 2`
 
-echo parse_flagstat $BAR $BAM
+parse_flagstat $BAR $BAM
 
 done < $DATA_LIST
 
