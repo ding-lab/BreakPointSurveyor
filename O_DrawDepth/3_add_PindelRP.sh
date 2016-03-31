@@ -1,25 +1,23 @@
-# Create GGP objects with read depth information
-#   two files for every row in PlotList
+# Add Pindel_RP annotation to depth plots
 
 source ./DrawDepth.config
 
 FLANKN="50K"
 
-DATD="$BPS_DATA/H_ReadDepth/dat"
+DATD="$BPS_DATA/C_PindelRP/dat"
 PLOT_LIST="$BPS_DATA/G_PlotList/dat/1000SV.PlotList.50K.dat"
+
+#PLOT_LIST="./test.PlotList.dat"
+# echo Using $PLOT_LIST for testing only
+
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
-OUTDD="$OUTD/GGP.Depth"
+IND="$OUTD/GGP.CBS"
+OUTDD="$OUTD/GGP.PindelRP"
 mkdir -p $OUTDD
 
 rm -f $OUTD/GGP  # GGP is a link
 ln -s $OUTDD $OUTD/GGP
-
-# The flagstat data file contains pre-calculated statistics about BAM partly obtained from
-# the BAM's flagstat file.
-# For normalizing read depth, we use number of mapped reads and read length 
-# normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
-FLAGSTAT="$DATD/1000SV.flagstat.dat"
 
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
@@ -31,27 +29,17 @@ function process_chrom {
     START=$5
     END=$6
 
-    DEP="$DATD/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
+    BPC="$DATD/${BAR}.PindelRP.BPR.dat"
+
+    GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
-
     OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
-    # barcode	filesize	read_length	reads_total	reads_mapped
-    # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
-    NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
-    READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
+    ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID"
 
-    ARGS=" -M ${CHROM}:${START}-${END} \
-           -u $NUMREADS \
-           -l $READLEN -L "
-
-    if [ $CHROM_ID == 'B' ]; then
-        ARGS="$ARGS -B"
-    fi
-
-    Rscript $BIN $ARGS -p depth $DEP $OUT
+    Rscript $BIN $ARGS -G $GGP -p region $BPC $OUT
 }
 
 while read l; do  

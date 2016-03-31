@@ -1,24 +1,26 @@
-# add CBS segments to depth plots
+# Add CBS (circular binary segmentation) annotation to depth plots
+
+source ./DrawDepth.config
+
 FLANKN="50K"
 
-DATD_DEP="../H_ReadDepth/DEPTH"
-DATD_PL="../G_PlotList/dat"
-PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.${FLANKN}.dat"
+DATD="$BPS_DATA/H_ReadDepth/dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/1000SV.PlotList.50K.dat"
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthDrawer.R"
+BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
-IND="GGP.CTX"
-OUTD="GGP.CBS"
-mkdir -p $OUTD
+IND="$OUTD/GGP.Depth"
+OUTDD="$OUTD/GGP.CBS"
+mkdir -p $OUTDD
 
-rm -f GGP
-ln -s $OUTD GGP
+rm -f $OUTD/GGP  # GGP is a link
+ln -s $OUTDD $OUTD/GGP
 
 # The flagstat data file contains pre-calculated statistics about BAM partly obtained from
 # the BAM's flagstat file.
 # For normalizing read depth, we use number of mapped reads and read length 
 # normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
-FLAGSTAT="$DATD_DEP/TCGA_SARC.flagstat.dat"
+FLAGSTAT="$DATD/1000SV.flagstat.dat"
 
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
@@ -30,14 +32,13 @@ function process_chrom {
     START=$5
     END=$6
 
-    DEP="$DATD_DEP/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
+    DEP="$DATD/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
 
     GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
-    OUTDD="$OUTD/$BAR"
-    mkdir -p $OUTDD
-    OUT="$OUTDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
-
+    OUTDDD="$OUTDD/$BAR"
+    mkdir -p $OUTDDD
+    OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
     # barcode	filesize	read_length	reads_total	reads_mapped
     # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
@@ -45,11 +46,8 @@ function process_chrom {
     READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
     # TODO: deal gracefully if numreads, readlen unknown.
 
-    ARGS=" -A ${CHROM}:${START}-${END} -m $CHROM_ID -u $NUMREADS -l $READLEN "
+    ARGS=" -L -M ${CHROM}:${START}-${END} -m $CHROM_ID -u $NUMREADS -l $READLEN "
 
-# Usage: Rscript DepthDrawer.R [-v] [-P] [-A range] [-F] [-G fn.ggp] [-p plot.type]
-#                [-u num.reads] [-l read.length] [-m chrom] [-C] [-L]
-#                [-a alpha] [-c color] [-f fill] [-s shape][-z size] data.fn depth.ggp
     Rscript $BIN $ARGS -G $GGP -p CBS -c "#E41A1C" $DEP $OUT
 }
 

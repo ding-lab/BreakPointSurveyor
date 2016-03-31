@@ -1,18 +1,23 @@
-# add CTX breakpoints to depth plots
+# Add CTX breakpoints to depth plots
+
+source ./DrawDepth.config
+
 FLANKN="50K"
-DATD="../B_CTX/dat"
 
-DATD_PL="../G_PlotList/dat"
-PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.${FLANKN}.dat"
+DATD="$BPS_DATA/B_CTX/dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/1000SV.PlotList.50K.dat"
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/DepthDrawer.R"
+#PLOT_LIST="./test.PlotList.dat"
+# echo Using $PLOT_LIST for testing only
 
-IND="GGP.DEP"
-OUTD="GGP.CTX"
-mkdir -p $OUTD
+BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
-rm -f GGP
-ln -s $OUTD GGP
+IND="$OUTD/GGP.PindelRP"
+OUTDD="$OUTD/GGP.CTX"
+mkdir -p $OUTDD
+
+rm -f $OUTD/GGP  # GGP is a link
+ln -s $OUTDD $OUTD/GGP
 
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
@@ -28,15 +33,12 @@ function process_chrom {
 
     GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
-    OUTDD="$OUTD/$BAR"
-    mkdir -p $OUTDD
-    OUT="$OUTDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
+    OUTDDD="$OUTDD/$BAR"
+    mkdir -p $OUTDDD
+    OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
-    ARGS=" -A ${CHROM}:${START}-${END} -m $CHROM_ID"
+    ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID"
 
-# Usage: Rscript DepthDrawer.R [-v] [-P] [-A range] [-F] [-G fn.ggp] [-p plot.type]
-#                [-u num.reads] [-l read.length] [-m chrom] [-C] [-L]
-#                [-a alpha] [-c color] [-f fill] [-s shape][-z size] data.fn depth.ggp
     Rscript $BIN $ARGS -G $GGP -p vline $BPC $OUT
 }
 
