@@ -1,25 +1,28 @@
-# create two annotation GGP files for every row in PlotList.dat
+# create two gene annotation GGP files for every row in PlotList.dat
+# Using annotation from Ensembl 84, for GRCh38
+
+source ./DrawAnnotation.config
+
 FLANKN="50K"
 
-DATD_PL="../G_PlotList/dat"
-PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.${FLANKN}.dat"
+DATD="$BPS_DATA/H_ReadDepth/dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/1000SV.PlotList.50K.dat"
+BIN="$BPS_CORE/src/plot/AnnotationDrawer.R"
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/AnnotationDrawer.R"
+OUTDD="$OUTD/GGP"
+mkdir -p $OUTDD
 
-OUTD="GGP"
-mkdir -p $OUTD
-
-AD="../M_Reference/dat"
-GENES="$AD/genes.ens75.bed"
-EXONS="$AD/exons.ens75.bed"
+AD="$BPS_DATA/M_Reference/dat"
+GENES="$AD/genes.ens84.norm.bed"
+EXONS="$AD/exons.ens84.norm.bed"
 
 # usage: process_chrom A
 function process_chrom {
     CHROM_ID=$1
     FLAG=$2
 
-    OUT="$OUTDD/${NAME}.chrom.${CHROM_ID}.annotation.ggp"
-    ARGS="$FLAG -A $CHR:$START-$END"
+    OUT="$OUTDDD/${NAME}.chrom.${CHROM_ID}.annotation.ggp"
+    ARGS=" $FLAG -A $CHR:$START-$END"
     Rscript $BIN $ARGS -e $EXONS $GENES $OUT
 }
 
@@ -42,8 +45,8 @@ do
 
 NAME=`echo "$l" | cut -f 2`     
 BAR=`echo "$l" | cut -f 1`
-OUTDD="$OUTD/$BAR"
-mkdir -p $OUTDD
+OUTDDD="$OUTDD/$BAR"
+mkdir -p $OUTDDD
 
 # Chrom A
 CHR=`echo "$l" | cut -f 3`

@@ -19,4 +19,4 @@ multiple columns.  It is useful for debugging and understanding these files bett
     from GTF file.  These need to be run just once and then the resulting features file can be used
     for downstream applications.
 
-
+TODO: Add discussion of chrom renaming
