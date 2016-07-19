@@ -1,0 +1,11 @@
+Incorporate Discordant Read information.
+
+This is a stub, taking advantage of processing done elsewhere.  See here
+for processing of files to extract discordant reads,
+/gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/discordant_pair/Sweep/A_DiscordantFilter/3_create_bsub_runs.sh
+
+In particular, here are the commands,
+    samtools view  $BAM | awk 'BEGIN{FS=\"\t\"} {if ((\$3 ~ /^gi/) || (\$7 ~/^gi/))  print}' > $VNAM
+    awk 'BEGIN{FS=\"\t\"} {if ( (\$3 ~ /^gi/) && (\$7 !~/^gi/)  && (\$7 !~ /=/)) print}' $VNAM > $DNAM
+Here, all virus reads written to VNAM file, then this is parsed to extract all virus->human discordant reads.
+Assuming all virus reads have a reference name starting with 'gi'
