@@ -1,0 +1,6 @@
+
+Here, for now, performing two steps:
+1. construct list of Pindel output files from 
+    /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/discordant_pair/Sweep/B_Pindel
+   and related processing
+2. Create BPR files which indicate regions where breakpoints detected by Pindel.
