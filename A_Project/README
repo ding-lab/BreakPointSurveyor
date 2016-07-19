@@ -1,31 +1,19 @@
-Analysis of preliminary 1000SV Pindel and Breakdancer calls
+Create here TCGA_Virus.SampleList.dat, which contains the following fields for each sample of interest,
+* Barcode - unique identifier
+* BAM_path - path to BAM file realigned to human + virus reference
+* REF_path - path to reference FASTA the BAM is aligned to
+* SAM_path - path to SAM file containing discordant reads
 
-Jay 2/2/16
-The high-coverage CRAMs and converted BAMs for the nine samples are under
-    /gscmnt/gc2500/dinglab/1000G_svtrio/data_collections/hgsv_sv_discovery/*/high_cov_alignment/
-Reference files are under
-    /gscmnt/gc2500/dinglab/1000G_svtrio/data_collections/reference
+We will evaluate the following five samples,
+* CV-5971 chr 20
+* BT-A20V chr 9
+* FD-A3B4 chr 9
+* CR-7385 chr 21
+* BA-4077 chr 14 (confirm)
 
-Jay 3/14/16
-My local pindel results are available here to help you with developing your methods until Kai can provide (albeit perhaps with different parameters):
-    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group0/pindel.out.group0.raw
-    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group0/pindel.out.group0.current_final.gvip.denovo.vcf
-    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group1/pindel.out.group1.raw
-    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group1/pindel.out.group1.current_final.gvip.denovo.vcf
-    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group2/pindel.out.group2.raw
-    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group2/pindel.out.group2.current_final.gvip.denovo.vcf
+Here, we construct the SampleList.dat incrementally, with several files with Barcode/Data merged
+together at the end.  This is to simulate how SampleList would be constructed with data from 
+other upstream analyses (e.g., alignment)
 
-I checked the FTP site; these high-coverage data are advertised as WGS and aligned to GRCh38.
-You should be able to access the BAMs from the links in /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/genomes
-My BreakDancer calls are in
-    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/breakdancer/breakdancer/group*/{ITX,CTX}/*triofilter_pass
-where calls were deemed to have passed if there were supporting reads from child only.
-
-Jay 3/17/16
-These are the pindel read pairs with support in the child only:
-    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group0/merged_RP.raw.child_only
-    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group1/merged_RP.raw.child_only
-    /gscmnt/gc2510/dinglab/rmashl/1000g_svtrios_runs/pindel/pindel/group2/merged_RP.raw.child_only
-These were derived from the files "merged_RP.raw" in the same directories.
-
-
+Data source:
+    /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/UnifiedVirus2/O_Integration/dat
