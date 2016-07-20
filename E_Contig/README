@@ -1,0 +1,5 @@
+Based on work here: /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/UnifiedVirus2/R_Contigs
+
+Create a Tigra configuration file for based on results of Pindel, then run Tigra for every breakpoint
+in the Pindel BPR file.
+
