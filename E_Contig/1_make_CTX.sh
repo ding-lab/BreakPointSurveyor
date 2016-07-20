@@ -9,23 +9,26 @@
 
 source ./Contig.config
 #OUT="$OUTD/TCGA_Virus.Pindel_RP.dat"
+BIN="$BPS_CORE/src/analysis/TigraCTXMaker.R"
 
 
-DAT="$OUTD/../A_Project/TCGA_Virus.samples.dat"
+LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
+PIND="$BPS_DATA/C_PindelRP/dat"    # Pindel data directory
+
 mkdir -p $OUTD/CTX
 
 while read l; do  # iterate over all rows of TCGA_Virus.samples.dat 
-# barcode	BAMpath	RPpath	REFpath	batch
-# TCGA-BA-4077-01B-01D-1431-02	...d436.bam	.../TCGA-BA-4077-01B-01D-1431-02_RP	.../all_sequences.fa	Normals.9a
 
 # Skip comments and header
 [[ $l = \#* ]] && continue
 [[ $l = barcode* ]] && continue
 
+# assume RP file exists for all samples.  Can create test to make sure this is true, skip if not.
 BAR=`echo $l | awk '{print $1}'`
-RP=`echo $l | awk '{print $3}'`
-OUT="CTX/${BAR}.ctx"
 
-Rscript src/TigraCTXMaker.R $RP $OUT
+DAT="$PIND/$BAR.PindelRP.BPR.dat"
+OUT="$OUTD/CTX/${BAR}.ctx"
 
-done < $DAT
+Rscript $BIN -b $DAT $OUT
+
+done < $LIST
