@@ -17,7 +17,7 @@ mkdir -p bsub
 fi  
 mkdir -p $OUTD/contig
 
-while read l; do  # iterate over all rows of TigraList.dat
+while read l; do  # iterate over all rows of samples.dat
 # barcode	BAMpath	RPpath	REFpath	batch
 # TCGA-BA-4077-01B-01D-1431-02	...d436.bam	.../TCGA-BA-4077-01B-01D-1431-02_RP	.../all_sequences.fa	Normals.9a
 

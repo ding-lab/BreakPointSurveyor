@@ -3,3 +3,17 @@ Based on work here: /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/Unif
 Create a Tigra configuration file for based on results of Pindel, then run Tigra for every breakpoint
 in the Pindel BPR file.
 
+
+Creating SBP files ("SAM BreakPoint") from bwa-mem-aligned reads.  These contain
+base-pair resolution information about breakpoints detected between chimeric segment.
+    Three step process:
+    1. SAMReader.py: takes SAM file, finds breakpoints for every line.
+            (note, contigs span two lines).  Writes pSBP file, which has the columns,
+        "query_name", "ref_name", "bp_pos", "end_pos", "ref_pos", "is_reverse", "is_left"
+        (ref_pos is refrerence position of nearest mapped position to breakpoint)
+    2. BreakpointParser.R: Creates SBP file by merging a pair of pSBP lines based on query_name
+        to create the SBP.  Segments Sa and Sb correspond to left and right end of chimeric
+        segment, resp. Multiple breakpoints per contig result in multiple (N-1) lines in BreakpointParser
+    3. SBPprocessor.R: creates simple rSBP (reduced SBP) file with human, virus breakpoint positions (1-index format)
+        A qSBP file is optionally generated which gives information about paired breakpoints (more than 
+        one breakpoint per contig)
