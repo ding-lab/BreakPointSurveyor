@@ -18,10 +18,10 @@
 
 source ./ReadDepth.config
 
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/1000SV.PlotList.50K.dat"
-DATA_LIST="$BPS_DATA/A_Project/dat/1000SV.samples.dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
 
-OUT="$OUTD/1000SV.flagstat.dat"
+OUT="$OUTD/TCGA_Virus.flagstat.dat"
 
 # Usage: parse_flagstat barcode bampath 
 # Writes flagstat statistics to $OUT. Statistics include,
@@ -35,7 +35,7 @@ function parse_flagstat {
     READLEN=`expr length $SEQ`
 
     # FLAGSTAT=${BAM}.flagstat    # This if flagstat is based on BAM filename
-    FLAGSTAT="$OUTD/${BAR}.flagstat"  # this if flagstat created in step 2_
+    FLAGSTAT="$OUTD/flagstat/${BAR}.flagstat"  # this if flagstat created in step 2_
 
     # Deal appropriately with missing flagstat file
     if [ ! -e $FLAGSTAT ];

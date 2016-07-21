@@ -1,21 +1,33 @@
 # Generate flagstat files summarizing BAM read counts.
 # see 3_makeReadCoverage.sh for details about flagstat files
-# This step is optional: some workflows generate flagstat files automatically.
-# Information is necessary only for normalizing read depth to get copy number
+# Note that some workflows generate flagstat files automatically.
+# if flagstat file exists for the BAM, simply copy that file
+# Information is optional, necessary for normalizing read depth to get copy number
 
 source ./ReadDepth.config
 
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/1000SV.PlotList.50K.dat"
-DATA_LIST="$BPS_DATA/A_Project/dat/1000SV.samples.dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
+
+OUTDD="$OUTD/flagstat"
+mkdir -p $OUTDD
 
 function make_flagstat {
     BAR=$1
     BAM=$2
 
-    OUT="$OUTD/${BAR}.flagstat"
+    FLAGSTAT="$BAM.flagstat"  # see if this exists
+    OUT="$OUTDD/${BAR}.flagstat"
 
-    samtools flagstat $BAM > $OUT
-    echo Written to $OUT
+    if [ -f $FLAGSTAT ]; then
+        echo "FLAGSTAT file for $BAR exists."
+        echo "Copying to $OUT"
+        cp $FLAGSTAT $OUT
+    else
+        echo "Creating FLAGSTAT for $BAR..."
+        samtools flagstat $BAM > $OUT
+        echo Written to $OUT
+    fi
 }
 
 while read l; do
@@ -29,7 +41,7 @@ while read l; do
 BAR=`echo "$l" | cut -f 1`
 BAM=`echo "$l" | cut -f 2`
 
-echo Processing flagstat $BAR $BAM
+#echo Processing flagstat $BAR $BAM
 
 make_flagstat $BAR $BAM
 
