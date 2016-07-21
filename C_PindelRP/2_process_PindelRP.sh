@@ -9,6 +9,9 @@ BIN="$BPS_CORE/src/analysis/Pindel_RP.Reader.R"
 echo Data list: $DATA_LIST
 echo \$BIN: $BIN
 
+OUTDD="$OUTD/BPR"
+mkdir -p $OUTDD
+
 while read l; do
 [[ $l = \#* ]] && continue
 [[ $l = barcode* ]] && continue
@@ -16,8 +19,8 @@ while read l; do
 BAR=`echo $l | awk '{print $1}'`
 PIN_FN=`echo $l | awk '{print $2}'`   
 
-ARGS="-S" 
-OUT="$OUTD/${BAR}.PindelRP.BPR.dat"
+ARGS="-S -V" 
+OUT="$OUTDD/${BAR}.PindelRP.BPR.dat"
 
 # keep only first 12 columns of Pindel_RP file
 #cut -f 1-12 $PIN_FN | Rscript $BIN $ARGS stdin $OUT
