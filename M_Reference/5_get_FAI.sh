@@ -1,5 +1,8 @@
 # Obtain FAI file. (Details: https://www.biostars.org/p/11523/#11524 )
 
+# Note that this may not be needed - in most cases .fai files can be obtained by appending
+# ".fai" onto reference filename
+
 source ./M_Reference.config
 
 # process GRCh37
