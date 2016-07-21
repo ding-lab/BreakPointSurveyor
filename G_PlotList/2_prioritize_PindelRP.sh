@@ -12,14 +12,16 @@ LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
 
 mkdir -p $OUTD
 
+OUTDD="$OUTD/BPR"
+
 while read l; do  # iterate over all barcodes
     # barcode bam_path    CTX_path
     [[ $l = \#* ]] && continue
     [[ $l = barcode* ]] && continue
 
     BAR=`echo $l | awk '{print $1}'`
-    DAT="$OUTD/${BAR}.PindelRP-cluster.BPR.dat"
-    OUT="$OUTD/${BAR}.PindelRP-prioritized.BPR.dat"
+    DAT="$OUTDD/${BAR}.PindelRP-cluster.BPR.dat"
+    OUT="$OUTDD/${BAR}.PindelRP-prioritized.BPR.dat"
 
     head -n1 $DAT > $OUT
     grep -v breakpointCount $DAT | sort -k7 -nr | head -n $NCLUST >> $OUT

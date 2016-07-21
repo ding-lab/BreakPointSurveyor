@@ -44,7 +44,7 @@ while read l; do  # iterate over all barcodes
     FAI="$FAI.fai"
 
     # Choose PindelRP data
-    DAT="$OUTD/${BAR}.PindelRP-prioritized.BPR.dat"
+    DAT="$OUTD/BPR/${BAR}.PindelRP-prioritized.BPR.dat"
 
     # python $BIN -c $FLANK -i $DAT -o $OUT -r $REF -n $BAR  # this if writing per-barcode
 

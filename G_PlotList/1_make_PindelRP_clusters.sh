@@ -21,6 +21,9 @@ set +o posix
 
 LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
 
+OUTDD="$OUTD/BPR"
+mkdir -p $OUTDD
+
 # For each sample to process, loop over all unique (chromA, chromB) pairs
 # Call makeBreakpointRegions.py on each such pair.
 while read l; do  # iterate over all barcodes
@@ -33,7 +36,7 @@ while read l; do  # iterate over all barcodes
     # chrom.A pos.A.start pos.A.end   chrom.B pos.B.start pos.B.end   strand
     # chr1    27825414    27826540    chr15   77617773    77618899    A- B+
 
-    OUT="$OUTD/${BAR}.PindelRP-cluster.BPR.dat"
+    OUT="$OUTDD/${BAR}.PindelRP-cluster.BPR.dat"
     rm -f $OUT
     HEADER="-H"
 
