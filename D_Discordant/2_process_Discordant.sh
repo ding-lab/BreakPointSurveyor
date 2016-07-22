@@ -7,6 +7,9 @@ source ./Discordant.config
 DATA_LIST="$OUTD/TCGA_Virus.Discordant.dat"
 echo Data list: $DATA_LIST
 
+OUTDD="$OUTD/BPC"
+mkdir -p $OUTDD
+
 while read l; do
 [[ $l = \#* ]] && continue
 [[ $l = barcode* ]] && continue
@@ -16,7 +19,7 @@ while read l; do
 BAR=`echo $l | awk '{print $1}'`
 DAT_FN=`echo $l | awk '{print $2}'`   
 
-OUT="$OUTD/${BAR}.Discordant.BPC.dat"
+OUT="$OUTDD/${BAR}.Discordant.BPC.dat"
 
 echo $DAT_FN
 # (we cast chrom name into string with $1"" so that string comparison is used)
