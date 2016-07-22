@@ -7,6 +7,9 @@ FLANKN="50K"
 
 DATD="$BPS_DATA/H_ReadDepth/dat"
 PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+#PLOT_LIST="PlotList.test.dat"
+
+
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
 OUTDD="$OUTD/GGP.Depth"
@@ -45,7 +48,7 @@ function process_chrom {
 
     ARGS=" -M ${CHROM}:${START}-${END} \
            -u $NUMREADS \
-           -l $READLEN -L "
+           -l $READLEN -L -a 0.1 "
 
     if [ $CHROM_ID == 'B' ]; then
         ARGS="$ARGS -B"

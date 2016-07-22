@@ -29,7 +29,7 @@ function process_chrom {
     START=$5
     END=$6
 
-    BPC="$DATD/${BAR}.PindelRP.BPR.dat"
+    BPR="$DATD/BPR/${BAR}.PindelRP.BPR.dat"
 
     GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
@@ -39,7 +39,7 @@ function process_chrom {
 
     ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID"
 
-    Rscript $BIN $ARGS -G $GGP -p region $BPC $OUT
+    Rscript $BIN $ARGS -G $GGP -p region $BPR $OUT
 }
 
 while read l; do  

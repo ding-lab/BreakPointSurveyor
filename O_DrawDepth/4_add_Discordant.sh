@@ -1,10 +1,10 @@
-# Add CTX breakpoints to depth plots
+# Add Discordant breakpoints to depth plots
 
 source ./DrawDepth.config
 
 FLANKN="50K"
 
-DATD="$BPS_DATA/B_CTX/dat"
+DATD="$BPS_DATA/D_Discordant/dat"
 PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 
 #PLOT_LIST="./test.PlotList.dat"
@@ -13,7 +13,7 @@ PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
 IND="$OUTD/GGP.PindelRP"
-OUTDD="$OUTD/GGP.CTX"
+OUTDD="$OUTD/GGP.Discordant"
 mkdir -p $OUTDD
 
 rm -f $OUTD/GGP  # GGP is a link
@@ -29,7 +29,7 @@ function process_chrom {
     START=$5
     END=$6
 
-    BPC="$DATD/${BAR}.CTX.BPC.dat"
+    BPC="$DATD/BPC/${BAR}.Discordant.BPC.dat"
 
     GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
