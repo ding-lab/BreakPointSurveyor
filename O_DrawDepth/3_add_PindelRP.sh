@@ -5,7 +5,7 @@ source ./DrawDepth.config
 FLANKN="50K"
 
 DATD="$BPS_DATA/C_PindelRP/dat"
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/1000SV.PlotList.50K.dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 
 #PLOT_LIST="./test.PlotList.dat"
 # echo Using $PLOT_LIST for testing only

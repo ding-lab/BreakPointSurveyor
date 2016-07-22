@@ -1,4 +1,4 @@
-Plot CTX breakpoint coordinates.
+Plot breakpoint coordinates.
 
 Note that if we want to plot other breakpoint coordinates or regions from
 other lines of evidence (Pindel, for instance), this will be done in

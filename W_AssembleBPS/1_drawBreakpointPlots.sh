@@ -7,7 +7,7 @@ HISTD="../Q_RenderHistogram/GGP"
 FLANKN="50K"
 
 DATD_PL="../G_PlotList/dat"
-PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.${FLANKN}.dat"
+PLOT_LIST="$DATD_PL/TCGA_Virus.PlotList.${FLANKN}.dat"
 
 BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/BreakpointSurveyAssembler.R"
 

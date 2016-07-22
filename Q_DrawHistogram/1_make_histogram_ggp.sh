@@ -3,7 +3,7 @@ FLANKN="50K"
 
 DATD_DEP="../H_ReadDepth/DEPTH"
 DATD_PL="../G_PlotList/dat"
-PLOT_LIST="$DATD_PL/TCGA_SARC.PlotList.${FLANKN}.dat"
+PLOT_LIST="$DATD_PL/TCGA_Virus.PlotList.${FLANKN}.dat"
 
 BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/HistogramDrawer.R"
 
@@ -19,7 +19,7 @@ mkdir -p $OUTD
 # the BAM's flagstat file.
 # For normalizing read depth, we use number of mapped reads and read length 
 # normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
-FLAGSTAT="$DATD_DEP/TCGA_SARC.flagstat.dat"
+FLAGSTAT="$DATD_DEP/TCGA_Virus.flagstat.dat"
 
 while read l; do  
 # name	barcode	disease	virus	chrom	integration.start	integration.end	range.start	range.end
