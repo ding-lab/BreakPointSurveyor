@@ -23,7 +23,8 @@ function process_chrom {
 
     OUT="$OUTDDD/${NAME}.chrom.${CHROM_ID}.annotation.ggp"
     ARGS=" $FLAG -A $CHR:$START-$END"
-    Rscript $BIN $ARGS -e $EXONS $GENES $OUT
+echo    Rscript $BIN $ARGS -e $EXONS $GENES $OUT
+exit
 }
 
 while read l
