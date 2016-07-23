@@ -13,8 +13,8 @@ OUTDD="$OUTD/GGP"
 mkdir -p $OUTDD
 
 AD="$BPS_DATA/M_Reference/dat"
-GENES="$AD/genes.ens84.norm.bed"
-EXONS="$AD/exons.ens84.norm.bed"
+GENES="$AD/genes.ens75.bed"
+EXONS="$AD/exons.ens75.bed"
 
 # usage: process_chrom A
 function process_chrom {
@@ -23,8 +23,7 @@ function process_chrom {
 
     OUT="$OUTDDD/${NAME}.chrom.${CHROM_ID}.annotation.ggp"
     ARGS=" $FLAG -A $CHR:$START-$END"
-echo    Rscript $BIN $ARGS -e $EXONS $GENES $OUT
-exit
+    Rscript $BIN $ARGS -e $EXONS $GENES $OUT
 }
 
 while read l
