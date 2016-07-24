@@ -28,8 +28,9 @@ function process_plot {
 
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
-    IN="$OUTD/GGP.PindelRP/$BAR/${NAME}.Breakpoints.PindelRP.ggp"  
-    OUT="$OUTDDD/${NAME}.Breakpoints.Discordant.ggp"  
+    # removing step name from output filename so can access it uniformly down the road
+    IN="$OUTD/GGP.PindelRP/$BAR/${NAME}.Breakpoints.ggp"  
+    OUT="$OUTDDD/${NAME}.Breakpoints.ggp"  
 
     RANGE_A="-A ${A_CHROM}:${A_START}-${A_END}" 
     RANGE_B="-B ${B_CHROM}:${B_START}-${B_END}" 

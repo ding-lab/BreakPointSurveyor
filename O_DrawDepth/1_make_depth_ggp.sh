@@ -6,7 +6,7 @@ source ./DrawDepth.config
 FLANKN="50K"
 
 DATD="$BPS_DATA/H_ReadDepth/dat"
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.${FLANKN}.dat"
 #PLOT_LIST="PlotList.test.dat"
 
 
