@@ -1,22 +1,23 @@
 # Combine GGP panels and draw a Breakpoint Surveyor PDF figure for each line in PlotList
-BPD="../N_RenderBreakpoint/GGP"
-DEPD="../O_RenderDepth/GGP"
-ANND="../P_RenderAnnotation/GGP"
-HISTD="../Q_RenderHistogram/GGP"
+source ./AssembleBPS.config
+
+DATD="$BPS_DATA/H_ReadDepth/dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+
+BPD="$BPS_DATA/N_DrawBreakpoint/dat/GGP"
+DEPD="$BPS_DATA/O_DrawDepth/dat/GGP"
+ANND="$BPS_DATA/P_DrawAnnotation/dat/GGP"
+HISTD="$BPS_DATA/Q_DrawHistogram/dat/GGP"
 
 FLANKN="50K"
 
-DATD_PL="../G_PlotList/dat"
-PLOT_LIST="$DATD_PL/TCGA_Virus.PlotList.${FLANKN}.dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.${FLANKN}.dat"
 
-BIN="/Users/mwyczalk/Data/BreakpointSurveyor/BreakpointSurveyor/src/plot/BreakpointSurveyAssembler.R"
-
-OUTD="plots"
-mkdir -p $OUTD
+BIN="$BPS_CORE/src/plot/BreakpointSurveyAssembler.R"
 
 # Usage: process_plot NAME 
 function process_plot {
-    BREAKPOINTS="$BPD/$BAR/${NAME}.Breakpoints.CTX.ggp"
+    BREAKPOINTS="$BPD/$BAR/${NAME}.Breakpoints.ggp"
 #TCGA-DX-A1KW-01A-22D-A24N-09.AA.chr_1_10.A.DEPTH.ggp
     A_DEPTH="$DEPD/$BAR/${NAME}.A.${FLANKN}.depth.ggp"
     B_DEPTH="$DEPD/$BAR/${NAME}.B.${FLANKN}.depth.ggp"
@@ -38,9 +39,11 @@ function process_plot {
 
     #MARKS="-N -d 33075000,33100000,33145000 -D 120820000,120880000,120895000"
     ARGS="-c $A_CHROM -C $B_CHROM"
-    TITLE="$BAR Interchromosomal Translocation"
+    TITLE="$BAR Virus Info"
 
-    Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
+# echo    Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
+# no histogram for now
+    Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
 }
 
 while read l
