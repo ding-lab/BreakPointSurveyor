@@ -1,12 +1,12 @@
-# Append Discordant read data to Breakpoint Coordinates GGP files
+# Append contig data to Breakpoint Coordinates GGP files
 source ./DrawBreakpoint.config
 
 PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
-DATD="$BPS_DATA/D_Discordant/dat/BPC"
+DATD="$BPS_DATA/E_Contig/dat/rSBP"
 BIN="$BPS_CORE/src/plot/BreakpointDrawer.R"
 
-INDD="$OUTD/GGP.PindelRP"
-OUTDD="$OUTD/GGP.Discordant"
+INDD="$OUTD/GGP.Discordant"
+OUTDD="$OUTD/GGP.Contig"
 mkdir -p $OUTDD
 
 rm -f $OUTD/GGP  # GGP is a link
@@ -24,18 +24,20 @@ function process_plot {
     B_END=$8
 
     # Breakpoint coordinate file
-    BPC="$DATD/${BAR}.Discordant.BPC.dat"
+    BPC="$DATD/${BAR}.rSBP.dat"
 
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
-    # removing step name from output filename so can access it uniformly down the road
     IN="$INDD/$BAR/${NAME}.Breakpoints.ggp"  
     OUT="$OUTDDD/${NAME}.Breakpoints.ggp"  
 
     RANGE_A="-A ${A_CHROM}:${A_START}-${A_END}" 
     RANGE_B="-B ${B_CHROM}:${B_START}-${B_END}" 
-    ARGS=" -p point -a 1.0 -G $IN"
-    Rscript $BIN $RANGE_A $RANGE_B $ARGS $BPC $OUT
+# rSBP: geom_point.  color="#4DAF4A", alpha=0.75, shape=3, size=4, show_guide=FALSE
+    #ARGS=" -p point -a 0.75 -s 3 -z 4 -c "\#4DAF4A" -G $IN"
+    ARGS=" -p point -a 0.75 -s 3 -z 4 -c #4DAF4A "
+    Rscript $BIN $RANGE_A $RANGE_B $ARGS -G $IN $BPC $OUT
+exit
 }
 
 while read l
