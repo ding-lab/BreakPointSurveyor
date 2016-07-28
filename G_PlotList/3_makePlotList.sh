@@ -40,7 +40,7 @@ while read l; do  # iterate over all barcodes
     # when looping around multiple barcodes, combine them all into one output file
     BAR=`echo $l | awk '{print $1}'`
     # We assume that appending .fai to reference file gives name of corresponding .fai file
-    FAI=`echo $l | awk '{print $3}'`
+    FAI=`echo $l | awk '{print $4}'`
     FAI="$FAI.fai"
 
     # Choose PindelRP data

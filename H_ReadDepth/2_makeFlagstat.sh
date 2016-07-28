@@ -31,15 +31,13 @@ function make_flagstat {
 }
 
 while read l; do
-# barcode	bam_path	build_id	data_path
-
 # Skip comments and header
 [[ $l = \#* ]] && continue
 [[ $l = barcode* ]] && continue
 
 # extract sample names
 BAR=`echo "$l" | cut -f 1`
-BAM=`echo "$l" | cut -f 2`
+BAM=`echo "$l" | cut -f 3`
 
 #echo Processing flagstat $BAR $BAM
 

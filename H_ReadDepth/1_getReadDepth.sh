@@ -4,7 +4,6 @@
 source ./ReadDepth.config
 
 PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
-
 DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
 
 # loops over PlotList, reads BAM files,.
@@ -14,8 +13,6 @@ DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
 PYTHON="/usr/bin/python2.7"
 
 BIN="$BPS_CORE/src/analysis/depthFilter.py"
-
-
 
 # limit number of points to 10K or so per segment.
 N="-N 10000"
@@ -60,8 +57,8 @@ B_CHROM=`echo "$l" | cut -f 8`
 B_START=`echo "$l" | cut -f 11`
 B_END=`echo "$l" | cut -f 12`
 
-# barcode bam_path    CTX_path    Pindel_path
-BAM=`grep $BAR $DATA_LIST | cut -f 2`
+# barcode disease   bam_path    CTX_path    Pindel_path
+BAM=`grep $BAR $DATA_LIST | cut -f 3`
 
 # usage: process_chrom CHROM_ID NAME BAM CHROM RANGE_START RANGE_END
 get_depth A $NAME $BAM $A_CHROM $A_START $A_END

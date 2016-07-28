@@ -25,7 +25,7 @@ while read l; do  # iterate over all rows of TCGA_Virus.samples.dat
 
 # assume RP file exists for all samples.  Can create test to make sure this is true, skip if not.
 BAR=`echo $l | awk '{print $1}'`
-FASTA=`echo $l | awk '{print $3}'`
+FASTA=`echo $l | awk '{print $4}'`
 
 DAT="$OUTD/$BAR.contig"
 OUT="$OUTD/BWA/$BAR.sam"

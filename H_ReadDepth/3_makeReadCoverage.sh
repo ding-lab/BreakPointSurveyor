@@ -55,7 +55,6 @@ function parse_flagstat {
 echo -e "barcode\tfilesize\tread_length\treads_total\treads_mapped" > $OUT
 
 while read l; do
-# barcode	bam_path	build_id	data_path
 
 # Skip comments and header
 [[ $l = \#* ]] && continue
@@ -63,7 +62,7 @@ while read l; do
 
 # extract sample names
 BAR=`echo "$l" | cut -f 1`
-BAM=`echo "$l" | cut -f 2`
+BAM=`echo "$l" | cut -f 3`
 
 parse_flagstat $BAR $BAM
 

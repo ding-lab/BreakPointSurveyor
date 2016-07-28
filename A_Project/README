@@ -3,6 +3,7 @@ Create here TCGA_Virus.SampleList.dat, which contains the following fields for e
 * BAM_path - path to BAM file realigned to human + virus reference
 * REF_path - path to reference FASTA the BAM is aligned to
 * SAM_path - path to SAM file containing discordant reads
+* disease - TCGA code of cancer type
 
 We will evaluate the following five samples,
 * CV-5971 chr 20
