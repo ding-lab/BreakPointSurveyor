@@ -1,0 +1,10 @@
+Analyze expression in vicinity of integration events.
+
+This analysis proceeds in three steps:
+1) Create BED files which indicate regions of interest for each disease type
+2) Analyze RNA-Seq data for both cases (sample with integration event in given region)
+   and controls (all other samples with same cancer type as case).  This analysis 
+   is performed by VirusScan (confirm) and not included here.
+3) Evaluate expression of case exons vs. control, and combine to obtain per-gene p-value
+   of case expression disregulation.
+
