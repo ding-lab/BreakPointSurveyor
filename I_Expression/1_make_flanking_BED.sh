@@ -1,7 +1,8 @@
 # Based on /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/UnifiedVirus2/W_PostIntegrationList/F_NeighborExons
 
-# Create BED files based on Integration List regions with given "flank"
+# Create BED files based on Integration List regions with given "flank", or padding around integration event.
 # One BED file is created for every integration event on chrom A (human).  
+# writes e.g., $DAT/BED/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.A.1M.bed
 
 source ./Expression.config
 

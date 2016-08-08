@@ -1,4 +1,4 @@
-# add stream information (whether upstram, downstream, or intra) to each neighbor exon BED file.
+# add stream information (whether upstram, downstream, or intra) to each exon BED file.
 # We process all exons constained within a certain distance of integration event
 # Doing only Chrom A (human in human/virus bp), but Chrom B is supported
 
@@ -8,6 +8,8 @@
 #   Genes with exon in integration event:
 #   Genes with intronic integration event: RAD51B
 # this is saved to NeighborSummary.dat for later processing.
+
+# Writes e.g., $DAT/BED/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.A.neighbor.exon.bed
 
 source ./Expression.config
 OUTDD="$OUTD/BED"

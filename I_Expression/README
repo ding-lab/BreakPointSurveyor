@@ -8,3 +8,34 @@ This analysis proceeds in three steps:
 3) Evaluate expression of case exons vs. control, and combine to obtain per-gene p-value
    of case expression disregulation.
 
+
+*** step 2 *** clean up discussion
+
+We want to evaluate the RNA expression of exons in the vicinity of integration events.  For each case (sample with integration event at
+a known genomic location) we compare RPKM expression of controls (tumor samples of same disease) versus the case for exons near the case integration
+location.  This proceeds as follows.
+0. Given location of integration events for all controls, Song created RPKM expression data for nearby exons for all cases.
+   (note that cases are lumped in with controls here).
+1. For each disease, combine expression of all controls into one master file.  The master file has a format similar to that obtained
+   from firehose RSEM data, with columns representing case samples and rows representing exons.  This is perfomed by the
+   script 3_create_rpkm_master_datafile.sh
+2. Separate master file into per-case files.  For every sample with integration event (case), extract rows corresponding to exons
+   near the integration event into a file named after the case.  Note that there may be more than one integration event per
+   case, and that the case barcode will appear in the column headers together with all the controls.
+
+Song RPKM: /gscmnt/gc2517/dinglab/virus_rpkm/virus/exons_rpkm_for_matt_bed_v2/blca/data/blca_TCGA-2F-A9KO-01A-11R-A38B-07.rpkm
+chr9    117096435   117099586   AKNA:.:-    3.67476410919677
+coverageBed output:
+chr9    117096435   117099586   1256    2761    3151    0.8762298
+Understanding coverageBed
+     After each entry in B, reports:
+       1) The number of features in A that overlapped the B interval.
+       2) The number of bases in B that had non-zero coverage.
+       3) The length of the entry in B.
+       4) The fraction of bases in B that had non-zero coverage.
+Mapped reads 108470532, from 
+    /gscmnt/gc7000/info/alignment_data/imported/6f4fe6bd7f804cb483225f52c7513a41/all_sequences.bam.flagstat
+formula for RPKM,
+  1256 (number mapped reads) * 1KM * / (3151 * mapped reads)
+  = 1256 * 1000000000 / (3151 * 108470532)
+  = 3.67476410919676928708

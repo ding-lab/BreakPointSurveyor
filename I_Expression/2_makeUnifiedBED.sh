@@ -1,8 +1,8 @@
 # Create a BED file of exons of interest for each disease type
 # this is just a concatenation of all beds of interest according to disease
 # and is used to provide regions of interest for RPKM calculations
-# Doing only Chrom A (human in human/virus breakpoints) but 
-# Chrom B is supported (albeit untested)
+# Doing only Chrom A (human in human/virus breakpoints) but Chrom B is supported
+# Writes e.g., $DAT/BED/HNSC.roi.bed
 
 
 source ./Expression.config
@@ -15,18 +15,21 @@ TMPD="$OUTD/tmp"
 mkdir -p $TMPD
 rm -f $TMPD/*
 
+OUTDD="$OUTD/BED"
+mkdir -p $OUTDD
+
 # usage: sortBED DIS
 function sortBED {
     DIS=$1
     DAT="$TMPD/${DIS}.tmp"
-    OUT="$OUTD/${DIS}.roi.bed"
+    OUT="$OUTDD/${DIS}.roi.bed"
 
     if [ ! -f $DAT ]; then
         echo $DAT unknown
         return
     fi
 
-    bedtools sort -i $DAT > $OUT
+    bedtools sort -i $DAT | sed 's/^/chr/' | grep -v "PATCH" | cut -f 1-4 > $OUT
     echo Written to $OUT
 }
 
