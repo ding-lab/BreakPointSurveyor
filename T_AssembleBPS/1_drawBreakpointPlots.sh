@@ -41,9 +41,10 @@ function process_plot {
     ARGS="-c $A_CHROM -C $B_CHROM"
     TITLE="$BAR Virus Info"
 
-# echo    Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
-# no histogram for now
-    Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
+    Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
+
+
+#    Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
 }
 
 while read l
