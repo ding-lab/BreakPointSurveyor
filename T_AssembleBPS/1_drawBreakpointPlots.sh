@@ -18,7 +18,6 @@ BIN="$BPS_CORE/src/plot/BreakpointSurveyAssembler.R"
 # Usage: process_plot NAME 
 function process_plot {
     BREAKPOINTS="$BPD/$BAR/${NAME}.Breakpoints.ggp"
-#TCGA-DX-A1KW-01A-22D-A24N-09.AA.chr_1_10.A.DEPTH.ggp
     A_DEPTH="$DEPD/$BAR/${NAME}.A.${FLANKN}.depth.ggp"
     B_DEPTH="$DEPD/$BAR/${NAME}.B.${FLANKN}.depth.ggp"
     HISTOGRAM="$HISTD/$BAR/${NAME}.${FLANKN}.histogram.ggp"
@@ -26,6 +25,7 @@ function process_plot {
     # chrom annotation may not exist in cases where no gene features in region of interest.  Handle this gracefully.
     ANNOTATION_A="$ANND/$BAR/${NAME}.chrom.A.annotation.ggp"
     ANNOTATION_B="$ANND/$BAR/${NAME}.chrom.B.annotation.ggp"
+
     if [ -f $ANNOTATION_A ]; then
         AA="-a $ANNOTATION_A"
     fi
@@ -37,12 +37,10 @@ function process_plot {
     mkdir -p $OUTDD
     OUT="$OUTDD/${NAME}.BreakpointSurvey.pdf"
 
-    #MARKS="-N -d 33075000,33100000,33145000 -D 120820000,120880000,120895000"
-    ARGS="-c $A_CHROM -C $B_CHROM"
     TITLE="$BAR Virus Info"
 
+    ARGS="-c $A_CHROM -C $B_CHROM"
     Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
-
 
 #    Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
 }

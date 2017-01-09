@@ -12,11 +12,6 @@ BIN="$BPS_CORE/src/analysis/ExonExpressionAnalyzer.R"
 # Turn on queuing by uncommenting line below
 USE_BSUB=1
 
-# NOTE: for future runs, -F flag in $ARGS will calculate FDR right away.  It is not being calculated
-# now because rerunning this script takes a number of hours; FDR calculations are instead performed with 3_calculate_FDR.sh
-# Running this with -F in the future will avoid need for step 3.  
-# Note: -F and $OUT are already modified to make this run right in the future.
-
 EXOND="$OUTD/BED"
 RPKMD="$OUTD"
 OUTDD="$OUTD/FDR"

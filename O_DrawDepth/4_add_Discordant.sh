@@ -19,6 +19,12 @@ mkdir -p $OUTDD
 rm -f $OUTD/GGP  # GGP is a link
 ln -s $OUTDD $OUTD/GGP
 
+# In the assembled plot, chrom positions A and B correspond to x, y coordinates, respectively.
+# By default, chrom A < chrom B (by string comparison), as in BPC/BPR files.
+# This order can be switched by setting FLIPAB=1 (by default, FLIPAB=0)
+# Note that this option will need to be defined consistently in any steps which process BPC/BPR files
+FLIPAB=1
+
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
 function process_chrom {
@@ -37,9 +43,14 @@ function process_chrom {
     mkdir -p $OUTDDD
     OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
-    ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID"
+    ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID "
+    if [ $FLIPAB == 1 ]; then
+        ARGS="$ARGS -l"
+    fi
 
-    Rscript $BIN $ARGS -G $GGP -p vline $BPC $OUT
+    COLOR="-c #377EB8 -z 2.5 -a 0.25"
+
+    Rscript $BIN $ARGS $COLOR -G $GGP -p point $BPC $OUT
 }
 
 while read l; do  
