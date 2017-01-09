@@ -24,8 +24,9 @@ OUT="$OUTDD/${BAR}.Discordant.BPC.dat"
 echo $DAT_FN
 # (we cast chrom name into string with $1"" so that string comparison is used)
 # SAM file specs: 3:RNAME, 4:POS, 7:RNEXT, 8:PNEXT
-awk 'BEGIN{FS="\t";OFS="\t"}{if ($3"" <= $7"") print $3,$4,$7,$8; else print $7,$8,$3,$4}' $DAT_FN | sort > $OUT
-#grep CTX $CTX_FN | awk 'BEGIN{FS="\t";OFS="\t"}{if ($1"" <= $4"") print $1,$2,$4,$5; else print $4,$5,$1,$2}' | sort > $OUT
+# Note that a discordant read is listed twice for each read pair, so we keep only one
+
+awk 'BEGIN{FS="\t";OFS="\t"}{if ($3"" <= $7"") print $3,$4,$7,$8}' $DAT_FN | sort > $OUT
 
 echo Written to $OUT
 
