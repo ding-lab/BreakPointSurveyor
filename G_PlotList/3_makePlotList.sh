@@ -16,6 +16,12 @@
 # both chromosomes.  The range sets the limits of the plots, and is often +/- 50Kbp around
 # the event.
 
+# In the assembled plot, chrom positions A and B correspond to x, y coordinates, respectively.
+# By default in the PlotList, chrom A < chrom B (by string comparison), just as in BPC/BPR files.
+# This order can be switched by setting FLIPAB=1 (by default, FLIPAB=0)
+# Note that this option will need to be defined consistently in any steps which process BPC/BPR files
+FLIPAB=1
+
 # We collect all PlotList lines for all samples into one PlotList file.
 
 source ./PlotList.config
@@ -42,13 +48,16 @@ while read l; do  # iterate over all barcodes
     # We assume that appending .fai to reference file gives name of corresponding .fai file
     FAI=`echo $l | awk '{print $4}'`
     FAI="$FAI.fai"
+    # FAI="all_sequences.fa.fai"  # testing only
 
     # Choose PindelRP data
     DAT="$OUTD/BPR/${BAR}.PindelRP-prioritized.BPR.dat"
 
-    # python $BIN -c $FLANK -i $DAT -o $OUT -r $REF -n $BAR  # this if writing per-barcode
+    if [ $FLIPAB == 1 ]; then
+        FLIP="-l"
+    fi
 
-    python $BIN $HEADER -c $FLANK -i $DAT -o stdout -r $FAI -n $BAR -N A -p chr >> $OUT
+    python $BIN $HEADER -c $FLANK -i $DAT -o stdout -r $FAI -n $BAR -N A -p chr $FLIP >> $OUT  # production
     HEADER=""
 
 done < $LIST  # iterate over all barcodes
