@@ -3,8 +3,6 @@
 # SAM files to a hex string using an MD5 hash; matching QUNAMEs will remain matching,
 # which is important for the processing here.
 
-# From, /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/UnifiedVirus2/U_SAMBreakpoints
-
 source ./Contig.config
 BIN="/usr/bin/python2.7 $BPS_CORE/src/contig/qname_convert.py"
 
