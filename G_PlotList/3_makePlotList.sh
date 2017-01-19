@@ -16,12 +16,6 @@
 # both chromosomes.  The range sets the limits of the plots, and is often +/- 50Kbp around
 # the event.
 
-# In the assembled plot, chrom positions A and B correspond to x, y coordinates, respectively.
-# By default in the PlotList, chrom A < chrom B (by string comparison), just as in BPC/BPR files.
-# This order can be switched by setting FLIPAB=1 (by default, FLIPAB=0)
-# Note that this option will need to be defined consistently in any steps which process BPC/BPR files
-FLIPAB=1
-
 # We collect all PlotList lines for all samples into one PlotList file.
 
 source ./PlotList.config
@@ -53,7 +47,7 @@ while read l; do  # iterate over all barcodes
     # Choose PindelRP data
     DAT="$OUTD/BPR/${BAR}.PindelRP-prioritized.BPR.dat"
 
-    if [ $FLIPAB == 1 ]; then
+    if [ $FLIPAB == 1 ]; then  # defined in ../bps.config
         FLIP="-l"
     fi
 

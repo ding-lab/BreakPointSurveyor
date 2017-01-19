@@ -19,12 +19,6 @@ mkdir -p $OUTDD
 rm -f $OUTD/GGP  # GGP is a link
 ln -s $OUTDD $OUTD/GGP
 
-# In the assembled plot, chrom positions A and B correspond to x, y coordinates, respectively.
-# By default, chrom A < chrom B (by string comparison), as in BPC/BPR files.
-# This order can be switched by setting FLIPAB=1 (by default, FLIPAB=0)
-# Note that this option will need to be defined consistently in any steps which process BPC/BPR files
-FLIPAB=1
-
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
 function process_chrom {
@@ -34,6 +28,9 @@ function process_chrom {
     CHROM=$4
     START=$5
     END=$6
+    N_CHROM=$7   # N_ is the "opposite" chrom or virus
+    N_START=$8
+    N_END=$9
 
     BPC="$DATD/BPC/${BAR}.Discordant.BPC.dat"
 
@@ -44,7 +41,9 @@ function process_chrom {
     OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
     ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID "
-    if [ $FLIPAB == 1 ]; then
+    # filter data according to range of the opposite chrom/virus
+    ARGS="$ARGS -N ${N_CHROM}:${N_START}-${N_END}"
+    if [ $FLIPAB == 1 ]; then    # defined in ../bps.config
         ARGS="$ARGS -l"
     fi
 
@@ -73,8 +72,8 @@ B_CHROM=`echo "$l" | cut -f 8`
 B_START=`echo "$l" | cut -f 11`
 B_END=`echo "$l" | cut -f 12`
 
-process_chrom A $BAR $NAME $A_CHROM $A_START $A_END
-process_chrom B $BAR $NAME $B_CHROM $B_START $B_END
+process_chrom A $BAR $NAME $A_CHROM $A_START $A_END $B_CHROM $B_START $B_END
+process_chrom B $BAR $NAME $B_CHROM $B_START $B_END $A_CHROM $A_START $A_END
 
 done < $PLOT_LIST
 

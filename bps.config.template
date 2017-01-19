@@ -10,3 +10,9 @@
 BPS_CORE="/gscuser/mwyczalk/src/BreakpointSurveyor"
 BPS_DATA="/gscmnt/gc2510/dinglab/maw/BreakpointSurveyor/1000SV.Data"
 
+# In the assembled plot, chrom positions A and B correspond to x, y coordinates, respectively.
+# By default, chrom A < chrom B (by string comparison), as in BPC/BPR files.
+# This order can be switched by setting FLIPAB=1 (by default, FLIPAB=0)
+# Note that this option will need to be defined consistently in any steps which process BPC/BPR files
+FLIPAB=1
+

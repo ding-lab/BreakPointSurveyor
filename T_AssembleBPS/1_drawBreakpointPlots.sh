@@ -2,7 +2,6 @@
 source ./AssembleBPS.config
 
 DATD="$BPS_DATA/H_ReadDepth/dat"
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 
 BPD="$BPS_DATA/N_DrawBreakpoint/dat/GGP"
 DEPD="$BPS_DATA/O_DrawDepth/dat/GGP"
@@ -10,8 +9,7 @@ ANND="$BPS_DATA/P_DrawAnnotation/dat/GGP"
 HISTD="$BPS_DATA/Q_DrawHistogram/dat/GGP"
 
 FLANKN="50K"
-
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.${FLANKN}.dat"
+PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 
 BIN="$BPS_CORE/src/plot/BreakpointSurveyAssembler.R"
 
@@ -37,13 +35,30 @@ function process_plot {
     mkdir -p $OUTDD
     OUT="$OUTDD/${NAME}.BreakpointSurvey.pdf"
 
-    TITLE="$BAR Virus Info"
+    TITLE="$BAR Breakpoint Surveyor Structure Plot"
 
     ARGS="-c $A_CHROM -C $B_CHROM"
     Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
 
-#    Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
 }
+
+VIRUS_DICT="$BPS_DATA/M_Reference/dat/virus_names.dat"
+function rename_chrom {
+    OLDN=$1
+
+    # Make nicer names.  Remap virus code to virus name using database below.
+    # if not in database, assume chrom name, and append "Chr" prefix
+    # template:
+    if grep -q "^$OLDN" $VIRUS_DICT; then
+        NEWN=`grep "^$OLDN" $VIRUS_DICT | cut -f 2 -d ' '`
+    else
+        NEWN="Chr.$OLDN"
+    fi
+
+    echo $NEWN
+}
+
+
 
 while read l
 do
@@ -60,6 +75,10 @@ A_END=`echo "$l" | cut -f 7`
 B_CHROM=`echo "$l" | cut -f 8`
 B_START=`echo "$l" | cut -f 11`
 B_END=`echo "$l" | cut -f 12`
+
+# rename chrom names to something more readable
+A_CHROM=$(rename_chrom $A_CHROM)   
+B_CHROM=$(rename_chrom $B_CHROM)   
 
 process_plot $NAME
 done < $PLOT_LIST

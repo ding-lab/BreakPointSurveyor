@@ -23,12 +23,38 @@ mkdir -p $OUTDD
 FLAGSTAT="$DATD_DEP/TCGA_Virus.flagstat.dat"
 
 
+# This code also in T_AssembleBPS/1_drawBreakpointPlots.sh
+VIRUS_DICT="$BPS_DATA/M_Reference/dat/virus_names.dat"
+function rename_chrom {
+    OLDN=$1
+
+    # Make nicer names.  Remap virus code to virus name using database below.
+    # if not in database, assume chrom name, and append "Chr" prefix
+    # template:
+    if grep -q "^$OLDN" $VIRUS_DICT; then
+        NEWN=`grep "^$OLDN" $VIRUS_DICT | cut -f 2 -d ' '`
+    else
+        NEWN="Chr.$OLDN"
+    fi
+
+    echo $NEWN
+}
+
 function process_chrom {
     BAR=$1
     NAME=$2
+    A_CHROM=$3
+    B_CHROM=$4
 
-    DEPA="$DATD_DEP/${BAR}/${NAME}.A.${FLANKN}.DEPTH.dat"
-    DEPB="$DATD_DEP/${BAR}/${NAME}.B.${FLANKN}.DEPTH.dat"
+#    if [ $FLIPAB == 1 ]; then    # defined in ../bps.config
+#        DEPB="$DATD_DEP/${BAR}/${NAME}.A.${FLANKN}.DEPTH.dat"
+#        DEPA="$DATD_DEP/${BAR}/${NAME}.B.${FLANKN}.DEPTH.dat"
+#        LABELS="-e $B_CHROM,$A_CHROM"
+#    else
+        DEPA="$DATD_DEP/${BAR}/${NAME}.A.${FLANKN}.DEPTH.dat"
+        DEPB="$DATD_DEP/${BAR}/${NAME}.B.${FLANKN}.DEPTH.dat"
+        LABELS="-e $A_CHROM,$B_CHROM"
+#    fi
 
     # barcode	filesize	read_length	reads_total	reads_mapped
     # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
@@ -49,16 +75,10 @@ function process_chrom {
     mkdir -p $OUTDDD
     OUT="$OUTDDD/${NAME}.${FLANKN}.histogram.ggp"
 
-    # ARGS=" -n $NUMREADS -l $READLEN $HISTMAX -N 100 "
-    ARGS="-d -n $NUMREADS -l $READLEN "
-
-    # Usage: Rscript HistogramDrawer.R [-v] [-n num.reads] [-l read.length] [-N nbin] [-m hist.max] [-d] [-P]
-    #       depth.A.fn depth.B.fn out.ggp
+    ARGS="-d -u $NUMREADS -n $READLEN $LABELS"
 
     Rscript $BIN $ARGS $DEPA $DEPB $OUT
 }
-
-
 
 while read l; do  
 
@@ -70,8 +90,15 @@ while read l; do
 BAR=`echo "$l" | cut -f 1`
 NAME=`echo "$l" | cut -f 2`     # NAME is unique per integration event and should be used for all filenames
 
+A_CHROM=`echo "$l" | cut -f 3`
+B_CHROM=`echo "$l" | cut -f 8`
+
+# For legend, rename chrom names to something more reader friendly
+A_CHROM=$(rename_chrom $A_CHROM)
+B_CHROM=$(rename_chrom $B_CHROM)
+
 #echo Processing $NAME
-process_chrom $BAR $NAME
+process_chrom $BAR $NAME $A_CHROM $B_CHROM
 
 
 done < $PLOT_LIST

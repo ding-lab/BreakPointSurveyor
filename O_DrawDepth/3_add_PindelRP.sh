@@ -19,12 +19,6 @@ mkdir -p $OUTDD
 rm -f $OUTD/GGP  # GGP is a link
 ln -s $OUTDD $OUTD/GGP
 
-# In the assembled plot, chrom positions A and B correspond to x, y coordinates, respectively.
-# By default, chrom A < chrom B (by string comparison), as in BPC/BPR files.
-# This order can be switched by setting FLIPAB=1 (by default, FLIPAB=0)
-# Note that this option will need to be defined consistently in any steps which process BPC/BPR files
-FLIPAB=1
-
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
 function process_chrom {
@@ -46,7 +40,7 @@ function process_chrom {
     # Make Pindel annotation light gray and partly transparent
     COLOR="-a 0.1 -f gray10"
     ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID $COLOR"
-    if [ $FLIPAB == 1 ]; then
+    if [ $FLIPAB == 1 ]; then     # defined in ../bps.config
         ARGS="$ARGS -l"
     fi
 

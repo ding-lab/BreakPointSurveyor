@@ -11,12 +11,6 @@ mkdir -p $OUTDD
 rm -f $OUTD/GGP  # GGP is a link
 ln -s $OUTDD $OUTD/GGP
 
-# In the assembled plot, chrom positions A and B correspond to x, y coordinates, respectively.
-# By default, chrom A < chrom B (by string comparison), as in BPC/BPR files.
-# This order can be switched by setting FLIPAB=1 (by default, FLIPAB=0)
-# Note that this option will need to be defined consistently in any steps which process BPC/BPR files
-FLIPAB=1
-
 # Usage: process_plot BAR NAME A_CHROM A_START A_END B_CHROM B_START B_END 
 function process_plot {
     BAR=$1
@@ -39,7 +33,7 @@ function process_plot {
 
     RANGE_A="-A ${A_CHROM}:${A_START}-${A_END}" 
     RANGE_B="-B ${B_CHROM}:${B_START}-${B_END}" 
-    if [ $FLIPAB == 1 ]; then
+    if [ $FLIPAB == 1 ]; then       # defined in ../bps.config
         ARGS="$ARGS -l"
     fi
     Rscript $BIN $RANGE_A $RANGE_B $ARGS $BPC $OUT

@@ -22,12 +22,6 @@ ln -s $OUTDD $OUTD/GGP
 # normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
 FLAGSTAT="$DATD/TCGA_Virus.flagstat.dat"
 
-# In the assembled plot, chrom positions A and B correspond to x, y coordinates, respectively.
-# By default, chrom A < chrom B (by string comparison), as in BPC/BPR files.
-# This order can be switched by setting FLIPAB=1 (by default, FLIPAB=0)
-# Note that this option will need to be defined consistently in any steps which process BPC/BPR files
-FLIPAB=1
-
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
 function process_chrom {
@@ -52,16 +46,12 @@ function process_chrom {
 
     ARGS=" -M ${CHROM}:${START}-${END} \
            -u $NUMREADS \
-           -n $READLEN -L -a 0.1 "
-
-    #if [ $CHROM_ID == 'B' ]; then
-    #    ARGS="$ARGS -B"
-    #fi
+           -n $READLEN -a 0.1 "
 
     if [ $CHROM_ID == 'B' ]; then
         ARGS="$ARGS -B"
     fi
-    if [ $FLIPAB == 1 ]; then
+    if [ $FLIPAB == 1 ]; then    # defined in ../bps.config
         ARGS="$ARGS -l"
     fi
 

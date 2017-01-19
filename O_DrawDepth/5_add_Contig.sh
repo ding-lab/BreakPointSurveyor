@@ -1,27 +1,20 @@
-# Add CBS (circular binary segmentation) annotation to depth plots
+# Add contig breakpoints to depth plots
 
 source ./DrawDepth.config
 
 FLANKN="50K"
 
-DATD="$BPS_DATA/H_ReadDepth/dat"
+DATD="$BPS_DATA/E_Contig/dat/rSBP"
 PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
-#PLOT_LIST="PlotList.test.dat"
 
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
-IND="$OUTD/GGP.Depth"
-OUTDD="$OUTD/GGP.CBS"
+IND="$OUTD/GGP.Discordant"
+OUTDD="$OUTD/GGP.Contig"
 mkdir -p $OUTDD
 
 rm -f $OUTD/GGP  # GGP is a link
 ln -s $OUTDD $OUTD/GGP
-
-# The flagstat data file contains pre-calculated statistics about BAM partly obtained from
-# the BAM's flagstat file.
-# For normalizing read depth, we use number of mapped reads and read length 
-# normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
-FLAGSTAT="$DATD/TCGA_Virus.flagstat.dat"
 
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
@@ -32,8 +25,11 @@ function process_chrom {
     CHROM=$4
     START=$5
     END=$6
+    N_CHROM=$7   # N_ is the "opposite" chrom or virus
+    N_START=$8
+    N_END=$9
 
-    DEP="$DATD/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
+    BPC="$DATD/${BAR}.rSBP.dat"
 
     GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
@@ -41,15 +37,23 @@ function process_chrom {
     mkdir -p $OUTDDD
     OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
-    # barcode	filesize	read_length	reads_total	reads_mapped
-    # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
-    NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
-    READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
-    # TODO: deal gracefully if numreads, readlen unknown.
+    # If data file does not exist, simply copy IN to OUT (so it exists for downstream processing) and continue
+    if [ ! -f $BPC ]; then
+        echo "$BPC does not exist - skipping..."
+        cp -f $IN $OUT
+        return
+    fi
 
-    ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID -u $NUMREADS -n $READLEN "
+    ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID "
+    # filter data according to range of the opposite chrom/virus
+    ARGS="$ARGS -N ${N_CHROM}:${N_START}-${N_END}"
+    if [ $FLIPAB == 1 ]; then       # defined in ../bps.config
+        ARGS="$ARGS -l"
+    fi
 
-    Rscript $BIN $ARGS -G $GGP -p CBS -c "#E41A1C" $DEP $OUT
+    COLOR="-c #4DAF4A "
+
+    Rscript $BIN $ARGS $COLOR -G $GGP -p vline $BPC $OUT
 }
 
 while read l; do  
@@ -72,8 +76,8 @@ B_CHROM=`echo "$l" | cut -f 8`
 B_START=`echo "$l" | cut -f 11`
 B_END=`echo "$l" | cut -f 12`
 
-process_chrom A $BAR $NAME $A_CHROM $A_START $A_END
-process_chrom B $BAR $NAME $B_CHROM $B_START $B_END
+process_chrom A $BAR $NAME $A_CHROM $A_START $A_END $B_CHROM $B_START $B_END
+process_chrom B $BAR $NAME $B_CHROM $B_START $B_END $A_CHROM $A_START $A_END
 
 done < $PLOT_LIST
 
