@@ -5,9 +5,10 @@ DATD="$BPS_DATA/I_Expression/dat"
 
 BIN="$BPS_CORE/src/plot/PvalBubblePlotter.R"
 
-#FLANK="600000"
 FLANK="1000000"
 
+# We plot either panel A or B by choosing PLOTA=0 or 1, resp.
+PLOTA=1
 
 PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 while read L; do
@@ -18,11 +19,18 @@ while read L; do
 [[ $L = \#* ]] && continue
 [[ $L = barcode* ]] && continue
 
+
 BAR=`echo $L | awk '{print $1}'`
 NAM=`echo $L | awk '{print $2}'`
-CHR=`echo $L | awk '{print $3}'`
-START=`echo $L | awk '{print $4}'`
-END=`echo $L | awk '{print $5}'`
+if [ $PLOTA == 0 ]; then    
+    CHR=`echo $L | awk '{print $3}'`
+    START=`echo $L | awk '{print $4}'`
+    END=`echo $L | awk '{print $5}'`
+else
+    CHR=`echo $L | awk '{print $8}'`
+    START=`echo $L | awk '{print $9}'`
+    END=`echo $L | awk '{print $10}'`
+fi
 
 SAM=`echo $BAR | cut -c 1-15` # TCGA Sample Name, E.g., TCGA-BA-4077
 
