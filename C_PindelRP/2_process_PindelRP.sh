@@ -12,6 +12,19 @@ echo \$BIN: $BIN
 OUTDD="$OUTD/BPR"
 mkdir -p $OUTDD
 
+function process {
+    BAR=$1
+    PIN_FN=$2
+
+    ARGS="-S -V" 
+    OUT="$OUTDD/${BAR}.PindelRP.BPR.dat"
+
+    # keep only first 12 columns of Pindel_RP file
+    #cut -f 1-12 $PIN_FN | Rscript $BIN $ARGS stdin $OUT
+    cut -f 1-12 $PIN_FN | Rscript $BIN $ARGS stdin $OUT
+
+}
+
 while read l; do
 [[ $l = \#* ]] && continue
 [[ $l = barcode* ]] && continue
@@ -19,12 +32,8 @@ while read l; do
 BAR=`echo $l | awk '{print $1}'`
 PIN_FN=`echo $l | awk '{print $2}'`   
 
-ARGS="-S -V" 
-OUT="$OUTDD/${BAR}.PindelRP.BPR.dat"
+process $BAR $PIN_FN
 
-# keep only first 12 columns of Pindel_RP file
-#cut -f 1-12 $PIN_FN | Rscript $BIN $ARGS stdin $OUT
-cut -f 1-12 $PIN_FN | Rscript $BIN $ARGS stdin $OUT
 
 echo Written to $OUT
 
