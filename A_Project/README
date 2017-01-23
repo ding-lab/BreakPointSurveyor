@@ -6,15 +6,8 @@ Create here TCGA_Virus.SampleList.dat, which contains the following fields for e
 * disease - TCGA code of cancer type
 
 We will evaluate the following five samples,
-* CV-5971 chr 20
-* BT-A20V chr 9
-* FD-A3B4 chr 9
-* CR-7385 chr 21
-* BA-4077 chr 14 (confirm)
+* BA-4077 chr 14 
 
 Here, we construct the SampleList.dat incrementally, with several files with Barcode/Data merged
 together at the end.  This is to simulate how SampleList would be constructed with data from 
 other upstream analyses (e.g., alignment)
-
-Data source:
-    /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/UnifiedVirus2/O_Integration/dat
