@@ -1,13 +1,9 @@
 Create here TCGA_Virus.SampleList.dat, which contains the following fields for each sample of interest,
 * Barcode - unique identifier
+* disease - TCGA code of cancer type
 * BAM_path - path to BAM file realigned to human + virus reference
 * REF_path - path to reference FASTA the BAM is aligned to
-* SAM_path - path to SAM file containing discordant reads
-* disease - TCGA code of cancer type
 
 We will evaluate the following five samples,
 * BA-4077 chr 14 
 
-Here, we construct the SampleList.dat incrementally, with several files with Barcode/Data merged
-together at the end.  This is to simulate how SampleList would be constructed with data from 
-other upstream analyses (e.g., alignment)
