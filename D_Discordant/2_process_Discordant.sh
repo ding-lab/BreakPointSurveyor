@@ -1,11 +1,10 @@
 # Get discordant read pair positions
 
-# Writes dat/BAR.Discordant.BPC.dat for each sample
+# Writes dat/BPC/BAR.Discordant.BPC.dat for each sample
 
 source ./Discordant.config
 
-DATA_LIST="$OUTD/TCGA_Virus.Discordant.dat"
-echo Data list: $DATA_LIST
+LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
 
 OUTDD="$OUTD/BPC"
 mkdir -p $OUTDD
@@ -14,14 +13,13 @@ while read l; do
 [[ $l = \#* ]] && continue
 [[ $l = barcode* ]] && continue
 
-# first we write BPC file - this has all breakpoint coordinates listed just once.
+# write BPC file - this has all breakpoint coordinates listed just once.
 #    BPC: chromA, posA, chromB, posB
 BAR=`echo $l | awk '{print $1}'`
-DAT_FN=`echo $l | awk '{print $2}'`   
+DAT_FN="$OUTD/discordant_$BAR.sam"
 
 OUT="$OUTDD/${BAR}.Discordant.BPC.dat"
 
-echo $DAT_FN
 # (we cast chrom name into string with $1"" so that string comparison is used)
 # SAM file specs: 3:RNAME, 4:POS, 7:RNEXT, 8:PNEXT
 # Note that a discordant read is listed twice for each read pair, so we keep only one
@@ -30,5 +28,5 @@ awk 'BEGIN{FS="\t";OFS="\t"}{if ($3"" <= $7"") print $3,$4,$7,$8}' $DAT_FN | sor
 
 echo Written to $OUT
 
-done < $DATA_LIST
+done < $LIST
 
