@@ -1,0 +1,6 @@
+# CTX file created by TigraCTXMaker.R
+# Data source: ../C_PindelRP/dat/BPR/TCGA-BA-4077-01B-01D-2268-08.PindelRP.BPR.dat
+# Created 2017-01-31 12:32:44
+14	68683616	- 	gi|310698439|ref|NC_001526.2|	3783	+	CTX	-143
+14	68741484	+ 	gi|310698439|ref|NC_001526.2|	3478	-	CTX	-143
+14	68699726	- 	gi|310698439|ref|NC_001526.2|	756	+	CTX	-143

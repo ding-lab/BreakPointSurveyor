@@ -1,8 +1,6 @@
 # Normalize SBP for downstream analysis.  
-# From, /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/UnifiedVirus2/U_SAMBreakpoints/4_make_rSBP.sh
 # Note that assuming virus breakpoint
-
-UTD="rSBP"
+# old name rSBP = new name BPC
 
 source ./Contig.config
 
@@ -10,14 +8,14 @@ LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
 BIN="$BPS_CORE/src/contig/SBPprocessor.R"
 
 DATD="$OUTD/SBP" 
-OUTDD="$OUTD/rSBP"  
+OUTDD="$OUTD/BPC"  
 mkdir -p $OUTDD
 
 function process {
     BAR=$1
 
     DAT="$DATD/${BAR}.SBP.dat" 
-    ROUT="$OUTDD/${BAR}.rSBP.dat"
+    ROUT="$OUTDD/${BAR}.BPC.dat"
     QOUT="$OUTDD/${BAR}.qSBP.dat"
 
     if [ ! -e $DAT ]; then

@@ -26,7 +26,7 @@ while read l; do  # iterate over all rows of TCGA_Virus.samples.dat
 # assume RP file exists for all samples.  Can create test to make sure this is true, skip if not.
 BAR=`echo $l | awk '{print $1}'`
 
-DAT="$PIND/$BAR.PindelRP.BPR.dat"
+DAT="$PIND/BPR/$BAR.PindelRP.BPR.dat"
 OUT="$OUTD/CTX/${BAR}.ctx"
 
 Rscript $BIN -b $DAT $OUT
