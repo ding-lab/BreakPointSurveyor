@@ -1,6 +1,6 @@
 # Create a PlotList.BPS data file for Breakpoint Surveyor plots
 # 
-# PlotList based on PindelRP data.  
+# This PlotList based on PindelRP data.  
 
 # PlotList is TSV format with the following columns,
 #  * barcode
@@ -15,6 +15,9 @@
 # For SVs, we have the positions of the event on Chrom A and B, as well as the "range" for
 # both chromosomes.  The range sets the limits of the plots, and is often +/- 50Kbp around
 # the event.
+
+# Processing requires an FAI file, which defines size of each chrom or virus in the reference.
+# We assume that it can be found by appending .fai to the reference filename
 
 # We collect all PlotList lines for all samples into one PlotList file.
 
@@ -31,6 +34,22 @@ rm -f $OUT
 
 HEADER="-H"
 
+function process {
+    BAR=$1
+    FAI=$2
+
+    # Choose PindelRP data
+    DAT="$OUTD/BPR/${BAR}.PindelRP-prioritized.BPR.dat"
+
+    if [ $FLIPAB == 1 ]; then  # see ../bps.config
+        FLIP="-l"
+    fi
+
+    python $BIN $HEADER -c $FLANK -i $DAT -o stdout -r $FAI -n $BAR -N A -p chr $FLIP >> $OUT  
+    HEADER=""
+
+}
+
 LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
 while read l; do  # iterate over all barcodes
     # barcode bam_path    CTX_path
@@ -42,17 +61,8 @@ while read l; do  # iterate over all barcodes
     # We assume that appending .fai to reference file gives name of corresponding .fai file
     FAI=`echo $l | awk '{print $4}'`
     FAI="$FAI.fai"
-    # FAI="all_sequences.fa.fai"  # testing only
 
-    # Choose PindelRP data
-    DAT="$OUTD/BPR/${BAR}.PindelRP-prioritized.BPR.dat"
-
-    if [ $FLIPAB == 1 ]; then  # defined in ../bps.config
-        FLIP="-l"
-    fi
-
-    python $BIN $HEADER -c $FLANK -i $DAT -o stdout -r $FAI -n $BAR -N A -p chr $FLIP >> $OUT  # production
-    HEADER=""
+    process $BAR $FAI
 
 done < $LIST  # iterate over all barcodes
 
