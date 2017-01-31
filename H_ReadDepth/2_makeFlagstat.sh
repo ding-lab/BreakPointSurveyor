@@ -2,7 +2,7 @@
 # see 3_makeReadCoverage.sh for details about flagstat files
 # Note that some workflows generate flagstat files automatically.
 # if flagstat file exists for the BAM, simply copy that file
-# Information is optional, necessary for normalizing read depth to get copy number
+# This step is optional, but necessary for normalizing read depth to get copy number
 
 source ./ReadDepth.config
 
