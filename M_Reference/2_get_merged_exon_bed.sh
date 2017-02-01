@@ -6,13 +6,15 @@
 # For version 84, keeping just a subset (canonical?) list of exons.
 # in both cases, all overlapping exons are combined into one exon feature.
 #
+# This is a relatively slow process (several hours)
+#
 # File $OUTD/exons.ensXX.bed is generated, which is used to illustrate gene
 # positions in BreakpointSurveyor plot.
 
 source ./M_Reference.config
 set +o posix
 
-TMP="$OUTD/../tmp"
+TMP="$OUTD/tmp"
 mkdir -p $TMP
 
 BIN="$BPS_CORE/src/annotation/GTFFilter.py"
@@ -31,8 +33,8 @@ OUT="$OUTD/exons.ens84.bed"
 ARG="-e 84"
 }
 
-# define_75
-define_84
+define_75
+#define_84
   
 TMP1="$TMP/all.exons.bed"        # temporary BED file of unsorted and unmerged exons
 TMP2="$TMP/merged.exons.bed"     # temporary BED file of merged but unsorted exons

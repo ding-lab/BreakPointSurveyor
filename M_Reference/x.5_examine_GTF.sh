@@ -1,4 +1,4 @@
-# Example script for examining GTF files.
+# Example script for examining GTF files. This script is NOT needed for TCGA_Virus workflow
 # TLAExamine.R makes GTF files easier to analyze and view in e.g. spreadsheet by expanding
 # all the attributes as uniform columns.  It is probably too slow to be used for genome-wide
 # analysis but is useful for exploratory work

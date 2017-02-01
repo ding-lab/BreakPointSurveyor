@@ -1,10 +1,10 @@
 # Download Ensembl GTF file for a given release
 source ./M_Reference.config
 
-# GTF="Homo_sapiens.GRCh37.75.gtf.gz"
-# SRC="ftp.ensembl.org/pub/release-75/gtf/homo_sapiens/$GTF"
-GTF="Homo_sapiens.GRCh38.84.gtf.gz"
-SRC="ftp.ensembl.org/pub/release-84/gtf/homo_sapiens/$GTF"
+GTF="Homo_sapiens.GRCh37.75.gtf.gz"
+SRC="ftp.ensembl.org/pub/release-75/gtf/homo_sapiens/$GTF"
+#GTF="Homo_sapiens.GRCh38.84.gtf.gz"
+#SRC="ftp.ensembl.org/pub/release-84/gtf/homo_sapiens/$GTF"
 DEST="$OUTD"
 
 mkdir -p $DEST

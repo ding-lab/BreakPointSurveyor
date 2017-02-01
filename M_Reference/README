@@ -9,7 +9,8 @@ dat/genes.ensXX.bed contains gene definitions
 dat/exons.ensXX.bed contains exon definitions
 
 Workflow parses Ensemble GTF file directly to pull out genes and exons.  Details of the selection process
-are in GTFFilter.py.  They are ad hoc and vary according to ensembl version.
+are in GTFFilter.py.  They are ad hoc and vary according to ensembl version.  There may be better and
+more standard ways to obtain gene and exon definitions, which would replace the work here.
 
 We also provide a script called src/TLAExamine.R (see 4_examine_GTF.sh)
 which conveniently examines GTF files by expanding the attributes column into
@@ -19,4 +20,4 @@ multiple columns.  It is useful for debugging and understanding these files bett
     from GTF file.  These need to be run just once and then the resulting features file can be used
     for downstream applications.
 
-TODO: Add discussion of chrom renaming
+Steps starting with x are optional or may be necessary only for certain ensembl releases
