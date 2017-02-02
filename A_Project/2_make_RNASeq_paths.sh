@@ -6,6 +6,7 @@ OUT="$OUTD/TCGA_Virus.samples.RNA-Seq.dat"
 
 echo -e "barcode\tdisease\tBAM_path" > $OUT
 cat <<EOF | sort | tr ' ' '\t' >> $OUT
+TCGA-BA-4077-01B-01R-1436-07 HNSC /gscmnt/gc9007/info/alignment_data/imported/2891007355/all_sequences.bam
 TCGA-CV-6942-01A-21R-2016-07 HNSC /gscmnt/gc8000/info/alignment_data/imported/2892780600/all_sequences.bam
 TCGA-CR-7380-01A-11R-2016-07 HNSC /gscmnt/gc8000/info/alignment_data/imported/2892780239/all_sequences.bam
 TCGA-BB-7861-01A-11R-2232-07 HNSC /gscmnt/ams1142/info/alignment_data/imported/2891008491/all_sequences.bam
