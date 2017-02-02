@@ -23,7 +23,6 @@
 
 source ./PlotList.config
 
-#REF="$BPS_DATA/M_Reference/dat/GRCh38-full.fa.fai"
 BIN="$BPS_CORE/src/util/PlotListMaker.py"
 
 FLANK="50000"  # distance around each integration region to be included in PlotList

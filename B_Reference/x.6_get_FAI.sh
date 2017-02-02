@@ -3,7 +3,7 @@
 # Note that this may not be needed - in most cases .fai files can be obtained by appending
 # ".fai" onto reference filename
 
-source ./M_Reference.config
+source ./Reference.config
 
 # process GRCh37
 function define_37 {

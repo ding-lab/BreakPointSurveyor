@@ -3,7 +3,7 @@
 
 # From: /gscmnt/gc7210/info/medseq/maw/Virus/Virus_2013.9a/analysis/Genbank/virus_codes.dat
 
-source ./M_Reference.config
+source ./Reference.config
 
 OUT="$OUTD/virus_names.dat"
 

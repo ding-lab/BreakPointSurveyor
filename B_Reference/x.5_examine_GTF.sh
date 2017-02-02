@@ -3,7 +3,7 @@
 # all the attributes as uniform columns.  It is probably too slow to be used for genome-wide
 # analysis but is useful for exploratory work
 
-source ./M_Reference.config
+source ./Reference.config
 BIN="$BPS_CORE/src/annotation/TLAExamine.R"
 
 set +o posix  # enable process substitution.  Alternative is to use TMP code

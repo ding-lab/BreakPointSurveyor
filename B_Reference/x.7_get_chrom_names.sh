@@ -8,7 +8,7 @@
 #
 # Here, just download the mapping file
 
-source ./M_Reference.config
+source ./Reference.config
 
 FN="GRCh38_ensembl2gencode.txt"
 OUT="$OUTD/$FN"
