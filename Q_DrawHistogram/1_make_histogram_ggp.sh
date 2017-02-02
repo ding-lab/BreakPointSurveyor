@@ -24,7 +24,7 @@ FLAGSTAT="$DATD_DEP/TCGA_Virus.flagstat.dat"
 
 
 # This code also in T_AssembleBPS/1_drawBreakpointPlots.sh
-VIRUS_DICT="$BPS_DATA/M_Reference/dat/virus_names.dat"
+VIRUS_DICT="$BPS_DATA/B_Reference/dat/virus_names.dat"
 function rename_chrom {
     OLDN=$1
 

@@ -42,7 +42,7 @@ function process_plot {
 
 }
 
-VIRUS_DICT="$BPS_DATA/M_Reference/dat/virus_names.dat"
+VIRUS_DICT="$BPS_DATA/B_Reference/dat/virus_names.dat"
 function rename_chrom {
     OLDN=$1
 

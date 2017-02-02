@@ -14,7 +14,7 @@ OUTDD="$OUTD/GGP.Depth"
 mkdir -p $OUTDD
 
 rm -f $OUTD/GGP  # GGP is a link
-ln -s $OUTDD $OUTD/GGP
+ln -s ../$OUTDD $OUTD/GGP
 
 # The flagstat data file contains pre-calculated statistics about BAM partly obtained from
 # the BAM's flagstat file.

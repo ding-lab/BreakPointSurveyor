@@ -2,7 +2,7 @@
 source ./DrawBreakpoint.config
 
 PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
-DATD="$BPS_DATA/E_Contig/dat/rSBP"
+DATD="$BPS_DATA/E_Contig/dat/BPC"
 BIN="$BPS_CORE/src/plot/BreakpointDrawer.R"
 
 INDD="$OUTD/GGP.Discordant"
@@ -10,7 +10,7 @@ OUTDD="$OUTD/GGP.Contig"
 mkdir -p $OUTDD
 
 rm -f $OUTD/GGP  # GGP is a link
-ln -s $OUTDD $OUTD/GGP
+ln -s ../$OUTDD $OUTD/GGP
 
 # Usage: process_plot BAR NAME A_CHROM A_START A_END B_CHROM B_START B_END 
 function process_plot {
@@ -24,7 +24,7 @@ function process_plot {
     B_END=$8
 
     # Breakpoint coordinate file
-    BPC="$DATD/${BAR}.rSBP.dat"
+    BPC="$DATD/${BAR}.BPC.dat"
 
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD

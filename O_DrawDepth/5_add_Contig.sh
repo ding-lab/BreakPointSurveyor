@@ -4,7 +4,7 @@ source ./DrawDepth.config
 
 FLANKN="50K"
 
-DATD="$BPS_DATA/E_Contig/dat/rSBP"
+DATD="$BPS_DATA/E_Contig/dat/BPC"
 PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
@@ -14,7 +14,7 @@ OUTDD="$OUTD/GGP.Contig"
 mkdir -p $OUTDD
 
 rm -f $OUTD/GGP  # GGP is a link
-ln -s $OUTDD $OUTD/GGP
+ln -s ../$OUTDD $OUTD/GGP
 
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
@@ -29,7 +29,7 @@ function process_chrom {
     N_START=$8
     N_END=$9
 
-    BPC="$DATD/${BAR}.rSBP.dat"
+    BPC="$DATD/${BAR}.BPC.dat"
 
     GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 

@@ -12,7 +12,7 @@ BIN="$BPS_CORE/src/plot/AnnotationDrawer.R"
 OUTDD="$OUTD/GGP"
 mkdir -p $OUTDD
 
-AD="$BPS_DATA/M_Reference/dat"
+AD="$BPS_DATA/B_Reference/dat"
 GENES="$AD/genes.ens75.bed"
 EXONS="$AD/exons.ens75.bed"
 
