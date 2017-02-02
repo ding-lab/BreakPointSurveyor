@@ -1,7 +1,7 @@
 # Create a BED file of exons of interest for each disease type
 # this is just a concatenation of all beds of interest according to disease
 # and is used to provide regions of interest for RPKM calculations
-# Doing only Chrom A (human in human/virus breakpoints) but Chrom B is supported
+# Doing only human chrom (A unless FLIPAB=1) but Chrom B is supported
 # Writes e.g., $DAT/BED/HNSC.roi.bed
 
 
@@ -54,18 +54,20 @@ do
 [[ $l = barcode* ]] && continue
 
 # extract sample names
-BAR=`echo "$l" | cut -f 1`
-NAME=`echo "$l" | cut -f 2`     
+    BAR=`echo "$l" | cut -f 1`
+    NAME=`echo "$l" | cut -f 2`     
 
-DIS=`grep $BAR $DATA_LIST | cut -f 2`
+    DIS=`grep $BAR $DATA_LIST | cut -f 2`
 
-# Note that we're only considering chrom A, which is human in human/virus events
-process $NAME A $DIS
+# Note that we're only considering chrom A, which is human in human/virus events (unless FLIPAB=1)
+    if [ $FLIPAB == 1 ]; then  # see ../bps.config
+        process $NAME B $DIS
+    else
+        process $NAME A $DIS
+    fi
 
 done < $PLOT_LIST
 
-sortBED BLCA
-sortBED CESC
+#sortBED BLCA
 sortBED HNSC
-sortBED STAD
 

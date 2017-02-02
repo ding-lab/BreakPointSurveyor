@@ -1,7 +1,7 @@
-# Based on /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/UnifiedVirus2/W_PostIntegrationList/F_NeighborExons
-
-# Create BED files based on Integration List regions with given "flank", or padding around integration event.
-# One BED file is created for every integration event on chrom A (human).  
+# Create BED files based on PlotList regions with given "flank", or padding around integration event.
+# This region is independent of the "50K" region in PlotList, and is used to identify genes whose expression
+# will be evaluated.
+# One BED file is created for every integration event on human chrom.  
 # writes e.g., $DAT/BED/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.A.1M.bed
 
 source ./Expression.config
@@ -58,14 +58,18 @@ while read l; do
     B_START=`echo "$l" | cut -f 9`
     B_END=`echo "$l" | cut -f 10`
 
-    # barcode BAM_path    ref_path    SAM
-    REF=`grep $BAR $DATA_LIST | cut -f 3`
+    # barcode   disease BAM_path    ref_path
+    REF=`grep $BAR $DATA_LIST | cut -f 4`
     FAI="$REF.fai"
 
     # usage: process NAME CHROM_ID CHR START END FAI
-    # Processing only human, which is chrom A of an integration event.  
+    # Processing only human, which is typically chrom A of an integration event (B if FLIPAB=1)
     # To incude virus, need to add virus genes and exons to M_Reference/dat/genes.ens75.bed, exons.ens75.bed
-    process $NAME A $A_CHROM $A_START $A_END $FAI
-    # process $NAME B $B_CHROM $B_START $B_END $FAI
+
+    if [ $FLIPAB == 1 ]; then  # see ../bps.config
+        process $NAME B $B_CHROM $B_START $B_END $FAI
+    else
+        process $NAME A $A_CHROM $A_START $A_END $FAI
+    fi
 
 done < $PLOT_LIST

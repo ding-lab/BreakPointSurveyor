@@ -1,6 +1,12 @@
-# Based on /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/UnifiedVirus2/W_PostIntegrationList/H_ExonExpression/2_process_RPKM_data.sh
+# Calcuate p-values representing degree of over/under-expression of 
+# case relative to controls.  See notes in ExonExpressionAnalyzer.R
+#
+# TODO: Describe algorithm 
 
-# TODO: Describe process
+# Support provided for cluster queuing system (bsub)
+# Turn queuing on/off with USE_BSUB=1/0
+USE_BSUB=1
+
 
 source ./Expression.config
 
@@ -8,16 +14,12 @@ PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
 BIN="$BPS_CORE/src/analysis/ExonExpressionAnalyzer.R"
 
-# Support provided for cluster queuing system (bsub)
-# Turn on queuing by uncommenting line below
-USE_BSUB=1
-
 EXOND="$OUTD/BED"
 RPKMD="$OUTD"
 OUTDD="$OUTD/FDR"
 mkdir -p $OUTDD
 
-if [ ! -z $USE_BSUB ]; then
+if [ $USE_BSUB == 1 ]; then
     # using bsub
     mkdir -p bsub
 fi
@@ -48,7 +50,7 @@ function process {
 
     CMD="Rscript $BIN $ARGS -s $OUTGENE $SAM $RPKM $EXONS"
 
-    if [ -z $USE_BSUB ]; then
+    if [ $USE_BSUB == 0 ]; then
         echo Executing: $CMD
         $CMD
     else
@@ -66,7 +68,11 @@ do
     BAR=`echo "$l" | cut -f 1`
     DIS=`grep $BAR $DATA_LIST | cut -f 2`
 
-    # focus on chrom A only for now
-    process $NAME A $BAR $DIS
+    # focus on human chrom for now
+    if [ $FLIPAB == 1 ]; then       # defined in ../bps.config
+        process $NAME B $BAR $DIS
+    else
+        process $NAME A $BAR $DIS
+    fi
 
 done < $PLOT_LIST

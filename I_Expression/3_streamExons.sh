@@ -1,6 +1,6 @@
 # add stream information (whether upstram, downstream, or intra) to each exon BED file.
 # We process all exons constained within a certain distance of integration event
-# Doing only Chrom A (human in human/virus bp), but Chrom B is supported
+# Doing only Chrom A (human in human/virus bp, unless FLIPAB=1)
 
 # during processing the ExonPicker.R script prints out stats about whether integration event is
 # intronic or exonic, like,
@@ -59,7 +59,11 @@ do
     START_B=`echo "$l" | cut -f 9`
     END_B=`echo "$l" | cut -f 10`
 
-    process $NAME A $CHR_A $START_A $END_A
+    if [ $FLIPAB == 1 ]; then  # see ../bps.config
+        process $NAME B $CHR_B $START_B $END_B
+    else
+        process $NAME A $CHR_A $START_A $END_A
+    fi
 
 done < $PLOT_LIST
 

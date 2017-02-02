@@ -7,7 +7,7 @@
 # and number of mapped reads is taken from the flagstat file.
 
 # Support provided for cluster queuing system (bsub)
-# Turn on/off queuing by uncommenting/commenting line below
+# Turn queuing on/off with USE_BSUB=1/0
 USE_BSUB=1
 
 source ./Expression.config
@@ -18,7 +18,7 @@ DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.RNA-Seq.dat"
 BEDD="$OUTD/BED"
 FLAGDAT="$BPS_DATA/H_ReadDepth/dat/TCGA_Virus.RNA-Seq.flagstat.dat"
 
-if [ ! -z $USE_BSUB ]; then
+if [ $USE_BSUB == 1 ]; then
     # using bsub
     mkdir -p bsub
     BSUBOUT="bsub/run-all.4_get_RPKM.sh"
@@ -38,7 +38,9 @@ function process {
     # coverageBed output:
     # chr9    140335737   140335901   ENTPD8  0   0   164 0.0000000
 
-    if [ -z $USE_BSUB ]; then
+    # TODO: follow technique in ../D_Discordant/1_get_Discordant_reads.sh to first construct a command, then
+    # execute it either here or in bsub
+    if [ $USE_BSUB == 0 ]; then
         echo Running $BAR
         samtools view -b -L $BED $BAM | bedtools bamtobed -split -i stdin | coverageBed -a stdin -b $BED | \
             awk -v mc=$MAPCOUNT 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,$4,$5*1e9/($7*mc)}' > $OUT
@@ -51,6 +53,7 @@ function process {
         echo $CMD > $SCRIPT
         echo "bsub -oo bsub/out-4.$BAR.bsub sh $SCRIPT" >> $BSUBOUT
     fi
+    exit
 }
 
 while read l
@@ -68,7 +71,7 @@ process $BAR $DIS $BAM
 
 done < $DATA_LIST
 
-if [ ! -z $USE_BSUB ]; then
+if [ $USE_BSUB == 1 ]; then
     # using bsub
     echo Please run $BSUBOUT
 fi

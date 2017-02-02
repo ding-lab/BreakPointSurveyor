@@ -41,5 +41,5 @@ echo Creating Barcode List
 make_barcode_list
 echo Written to $OUTD/*_barcodes.dat
 
-process $OUTD/BLCA_barcodes.dat $OUTD/BLCA_RPKM.dat
+#process $OUTD/BLCA_barcodes.dat $OUTD/BLCA_RPKM.dat
 process $OUTD/HNSC_barcodes.dat $OUTD/HNSC_RPKM.dat
