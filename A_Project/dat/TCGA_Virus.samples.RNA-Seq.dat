@@ -2,7 +2,7 @@ barcode	disease	BAM_path
 TCGA-BA-4074-01A-01R-1436-07	HNSC	/gscmnt/gc13000/info/alignment_data/imported/2892785134/all_sequences.bam
 TCGA-BA-4075-01A-01R-1436-07	HNSC	/gscmnt/gc9007/info/alignment_data/imported/2891007358/all_sequences.bam
 TCGA-BA-4076-01A-01R-1436-07	HNSC	/gscmnt/gc9007/info/alignment_data/imported/2891007308/all_sequences.bam
-TCGA-BA-4077-01B-01R-1436-07	HNSC	/gscmnt/gc9007/info/alignment_data/imported/2891007355/all_sequences.bam
+TCGA-BA-4077-01B-01R-1436-07	HNSC	/gscmnt/gc13000/info/alignment_data/imported/2891007355/all_sequences.bam
 TCGA-BA-4078-01A-01R-1436-07	HNSC	/gscmnt/ams1175/info/alignment_data/imported/2891007311/all_sequences.bam
 TCGA-BA-5149-01A-01R-1514-07	HNSC	/gscmnt/ams1175/info/alignment_data/imported/2891007312/all_sequences.bam
 TCGA-BA-5151-01A-01R-1436-07	HNSC	/gscmnt/ams1175/info/alignment_data/imported/2891007310/all_sequences.bam
