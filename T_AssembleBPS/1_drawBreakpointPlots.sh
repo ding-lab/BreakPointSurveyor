@@ -31,7 +31,8 @@ function process_plot {
         AB="-A $ANNOTATION_B"
     fi
 
-    OUTDD="$OUTD/$BAR"
+    # OUTDD="$OUTD/$BAR"  # this is good if lots of output, not necessary for Lite
+    OUTDD="$OUTD"
     mkdir -p $OUTDD
     OUT="$OUTDD/${NAME}.BreakpointSurvey.pdf"
 

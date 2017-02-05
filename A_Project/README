@@ -1,9 +1,0 @@
-Create here TCGA_Virus.SampleList.dat, which contains the following fields for each sample of interest,
-* Barcode - unique identifier
-* disease - TCGA code of cancer type
-* BAM_path - path to BAM file realigned to human + virus reference
-* REF_path - path to reference FASTA the BAM is aligned to
-
-We will evaluate the following five samples,
-* BA-4077 chr 14 
-

@@ -1,20 +1,23 @@
-Plot breakpoint coordinates.
+In some cases a contig may have more than one breakpoint, and we can draw a line 
+between breakpoints co-occurring on a contig to illustrate this relationship.
+This functionality is not fully implemented, but can be based on processing of the
+qSBP file.  Below are notes to guide future implementation.
 
-Note that if we want to plot other breakpoint coordinates or regions from
-other lines of evidence (Pindel, for instance), this will be done in
-a different directory.  For instance, P_Pindel directory may add Pindel
-marks to both breakpoint coordinate as well as read depth plots.
 
 Contig drawing based on work here:
-/Users/mwyczalk/Data/Virus/Virus_2013.9a/CombinedPlot/BreakpointSurveyor/E_Discordant/2_test_crunch_discordant.sh
-and
-/Users/mwyczalk/Data/Virus/Virus_2013.9a/CombinedPlot/BreakpointSurveyor/E_Discordant/src/DiscordantCruncher.R
-  in particular, see function render.annotation, which draws SBP breakpoints and contigs based on rSBP and
-  qSBP, resp.
 
-    Below is a sample line from qSBP file for BA-4077.  Note that it only includes endpoints of the contig, not
-    the breakpoint itself, so that only one straight line is drawn.  Instead, we want a straight line from contig start
-    to breakpoint, then from breakpoint to contig end.  As such, qSBP will need to be reworked.
+```
+/Users/mwyczalk/Data/Virus/Virus_2013.9a/CombinedPlot/BreakpointSurveyor/E_Discordant/2_test_crunch_discordant.sh
+/Users/mwyczalk/Data/Virus/Virus_2013.9a/CombinedPlot/BreakpointSurveyor/E_Discordant/src/DiscordantCruncher.R
+```
+
+in particular, see function `render.annotation`, which draws SBP breakpoints and contigs based on rSBP and
+qSBP, resp.
+
+Below is a sample line from qSBP file for BA-4077.  Note that it only includes endpoints of the contig, not
+the breakpoint itself, so that only one straight line is drawn.  Instead, we want a straight line from contig start
+to breakpoint, then from breakpoint to contig end.  As such, qSBP will need to be reworked.
+```
          1  contig.id   107
          2  pair.id 1
          3  bp.id.bpM   1
@@ -33,4 +36,4 @@ and
         16  B.bp.rpos.bpN   3979
         17  A.is_forward.bpN    TRUE
         18  B.is_forward.bpN    TRUE
-
+```
