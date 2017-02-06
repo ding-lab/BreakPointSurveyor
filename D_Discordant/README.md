@@ -13,6 +13,8 @@ Two files are created for each BAM:
 
 This step can be time consuming, so support provided for cluster queuing system (bsub)
 
+**Note** Due to TCGA restrictions we do not distribute the virus and discordant .sam files
+
 ## Step 2
 
 Create BPC (breakpoint coordinates) file which lists human-virus discordant reads.

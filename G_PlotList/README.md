@@ -13,6 +13,10 @@ or any other BPC or BPR file.  To keep the list of regions a manageable size for
 techniques which have high false positive rates, we prioritize those regions which
 have the most breakpoint predictions.
 
+Steps `x.1_` and `x.2_` cluster discordant reads and prioritize the clusters.  This analysis
+is not used for PlotList generation, but serves as a reference for parsing BPC breakpoint
+predictions.
+
 Once the PlotList is defined here automatically, it can be manually modified before
 further processing.
 
