@@ -1,4 +1,5 @@
 bps.config
 .DS_Store
 flagstat/
+tmp/
 *.sam

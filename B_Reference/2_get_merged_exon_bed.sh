@@ -45,9 +45,14 @@ echo Written to $TMP1
 
 # now go through genes one by one and and merge all their beds together
 for GENE in `cut -f 4 $TMP1 | sort -u `; do
-fgrep -w $GENE $TMP1 | mergeBed -nms -i stdin | sed 's/;.*//' >> $TMP2
-# newer versions of bedtools don't support -nms.  the following works with bedtools 2.24.0
-# fgrep -w $GENE $TMP1 | mergeBed -c 4 -o collapse  -i stdin | sed 's/,.*//' >> $TMP2
+
+# Bedtools < 2.20.0 
+# fgrep -w $GENE $TMP1 | mergeBed -nms -i stdin | sed 's/;.*//' >> $TMP2
+
+# bedtools >= 2.20.0 don't support -nms.  
+# https://github.com/arq5x/bedtools2/releases/tag/v2.20.0
+fgrep -w $GENE $TMP1 | mergeBed -c 4 -o collapse  -i stdin | sed 's/,.*//' >> $TMP2
+
 done
 echo Written to $TMP2
 
