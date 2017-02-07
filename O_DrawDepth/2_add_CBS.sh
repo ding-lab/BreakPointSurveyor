@@ -4,8 +4,8 @@ source ./DrawDepth.config
 
 FLANKN="50K"
 
-DATD="$BPS_DATA/H_ReadDepth/dat"
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+DATD="$BPS_DATA/K_ReadDepth/dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 #PLOT_LIST="PlotList.test.dat"
 
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"

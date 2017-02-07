@@ -1,8 +1,8 @@
 # Create Breakpoint Coordinates GGP file for each PlotList line with PindelRP regions drawn
 source ./DrawBreakpoint.config
 
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
-DATD="$BPS_DATA/C_PindelRP/dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+DATD="$BPS_DATA/F_PindelRP/dat"
 BIN="$BPS_CORE/src/plot/BreakpointDrawer.R"
 
 OUTDD="$OUTD/GGP.PindelRP"

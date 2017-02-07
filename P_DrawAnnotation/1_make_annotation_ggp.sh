@@ -5,14 +5,14 @@ source ./DrawAnnotation.config
 
 FLANKN="50K"
 
-DATD="$BPS_DATA/H_ReadDepth/dat"
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+DATD="$BPS_DATA/K_ReadDepth/dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 BIN="$BPS_CORE/src/plot/AnnotationDrawer.R"
 
 OUTDD="$OUTD/GGP"
 mkdir -p $OUTDD
 
-AD="$BPS_DATA/B_Reference/dat"
+AD="$BPS_DATA/B_ExonGene/dat"
 GENES="$AD/genes.ens75.bed"
 EXONS="$AD/exons.ens75.bed"
 
