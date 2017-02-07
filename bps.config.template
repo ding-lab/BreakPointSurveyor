@@ -1,15 +1,24 @@
 #!/usr/bin/env bash
 
 # this is a template file for bps.config
+#
 # paths below specify data and program (core) paths.
 # During installation, copy this file to bps.config as,
 #   cp bps.config.template bps.config
 # and edit bps.config as appropriate
 
-# Define BPS component paths
-BPS_CORE="/gscuser/mwyczalk/src/BreakpointSurveyor"
-BPS_DATA="/gscmnt/gc2510/dinglab/maw/BreakpointSurveyor/1000SV.Data"
+# Define BreakPointSurveyor-Core path
+BPS_CORE="/path/to/BreakpointSurveyor"
 
+# Define Data layer path.  
+
+# Data may be written in directory dat/ relative to each stage directory 
+# or in a separate data directory
+BPS_DATA=".."  # ./dat relative to stage directory, default for Lite
+#
+#BPS_DATA="/path/to/Data"
+
+#
 # In the assembled plot, chrom positions A and B correspond to x, y coordinates, respectively.
 # By default, chrom A < chrom B (by string comparison), as in BPC/BPR files.
 # This order can be switched by setting FLIPAB=1 (by default, FLIPAB=0)
