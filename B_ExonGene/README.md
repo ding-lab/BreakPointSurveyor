@@ -1,4 +1,4 @@
-# Reference
+# ExonGene
 
 *Reference-specific analysis and files.*
 
