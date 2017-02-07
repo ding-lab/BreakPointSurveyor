@@ -3,9 +3,9 @@
 source ./DrawHistogram.config
 FLANKN="50K"
 
-DATD_DEP="$BPS_DATA/H_ReadDepth/dat"
-DATD_PL="$BPS_DATA/G_PlotList/dat"
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.${FLANKN}.dat"
+DATD_DEP="$BPS_DATA/K_ReadDepth/dat"
+DATD_PL="$BPS_DATA/J_PlotList/dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.${FLANKN}.dat"
 
 BIN="$BPS_CORE/src/plot/HistogramDrawer.R"
 
@@ -24,7 +24,7 @@ FLAGSTAT="$DATD_DEP/TCGA_Virus.flagstat.dat"
 
 
 # This code also in T_AssembleBPS/1_drawBreakpointPlots.sh
-VIRUS_DICT="$BPS_DATA/B_Reference/dat/virus_names.dat"
+VIRUS_DICT="$BPS_DATA/B_ExonGene/dat/virus_names.dat"
 function rename_chrom {
     OLDN=$1
 

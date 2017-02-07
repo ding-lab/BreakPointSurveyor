@@ -9,7 +9,7 @@
 #
 # Not needed for Ensembl75
 
-source ./Reference.config
+source ./ExonGene.config
 
 FN="GRCh38_ensembl2gencode.txt"
 MAP="$OUTD/$FN"

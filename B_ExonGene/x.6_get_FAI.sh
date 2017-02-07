@@ -3,7 +3,7 @@
 # Note that this may not be needed - in most cases .fai files can be obtained by appending
 # ".fai" onto reference filename
 
-source ./Reference.config
+source ./ExonGene.config
 
 # process GRCh37
 function define_37 {

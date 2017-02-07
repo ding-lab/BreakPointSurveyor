@@ -12,7 +12,9 @@ Install [BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor
 ### Installing
 * Install from [GitHub](https://github.com/)
 
-```git clone https://github.com/ding-lab/BPS.TCGA_Virus.Lite```
+```
+git clone https://github.com/ding-lab/BPS.TCGA_Virus.Lite
+```
 
 * Create and edit local configuration file
 

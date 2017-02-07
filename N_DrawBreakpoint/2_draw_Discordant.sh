@@ -1,8 +1,8 @@
 # Append Discordant read data to Breakpoint Coordinates GGP files
 source ./DrawBreakpoint.config
 
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
-DATD="$BPS_DATA/D_Discordant/dat/BPC"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+DATD="$BPS_DATA/G_Discordant/dat/BPC"
 BIN="$BPS_CORE/src/plot/BreakpointDrawer.R"
 
 INDD="$OUTD/GGP.PindelRP"

@@ -16,7 +16,7 @@ mkdir -p $OUTDD
 
 DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.RNA-Seq.dat"
 BEDD="$OUTD/BED"
-FLAGDAT="$BPS_DATA/H_ReadDepth/dat/TCGA_Virus.RNA-Seq.flagstat.dat"
+FLAGDAT="$BPS_DATA/K_ReadDepth/dat/TCGA_Virus.RNA-Seq.flagstat.dat"
 
 if [ $USE_BSUB == 1 ]; then
     # using bsub
@@ -38,7 +38,7 @@ function process {
     # coverageBed output:
     # chr9    140335737   140335901   ENTPD8  0   0   164 0.0000000
 
-    # TODO: follow technique in ../D_Discordant/1_get_Discordant_reads.sh to first construct a command, then
+    # TODO: follow technique in ../G_Discordant/1_get_Discordant_reads.sh to first construct a command, then
     # execute it either here or in bsub
     if [ $USE_BSUB == 0 ]; then
         echo Running $BAR

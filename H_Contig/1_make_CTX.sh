@@ -13,7 +13,7 @@ BIN="$BPS_CORE/src/analysis/TigraCTXMaker.R"
 
 
 LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
-PIND="$BPS_DATA/C_PindelRP/dat"    # Pindel data directory
+PIND="$BPS_DATA/F_PindelRP/dat"    # Pindel data directory
 
 mkdir -p $OUTD/CTX
 

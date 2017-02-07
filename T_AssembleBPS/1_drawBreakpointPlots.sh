@@ -1,7 +1,7 @@
 # Combine GGP panels and draw a Breakpoint Surveyor PDF figure for each line in PlotList
 source ./AssembleBPS.config
 
-DATD="$BPS_DATA/H_ReadDepth/dat"
+DATD="$BPS_DATA/K_ReadDepth/dat"
 
 BPD="$BPS_DATA/N_DrawBreakpoint/dat/GGP"
 DEPD="$BPS_DATA/O_DrawDepth/dat/GGP"
@@ -9,7 +9,7 @@ ANND="$BPS_DATA/P_DrawAnnotation/dat/GGP"
 HISTD="$BPS_DATA/Q_DrawHistogram/dat/GGP"
 
 FLANKN="50K"
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 
 BIN="$BPS_CORE/src/plot/BreakpointSurveyAssembler.R"
 
@@ -43,7 +43,7 @@ function process_plot {
 
 }
 
-VIRUS_DICT="$BPS_DATA/B_Reference/dat/virus_names.dat"
+VIRUS_DICT="$BPS_DATA/B_ExonGene/dat/virus_names.dat"
 function rename_chrom {
     OLDN=$1
 

@@ -6,11 +6,11 @@
 
 source ./Expression.config
 
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
 
-EXONS="$BPS_DATA/B_Reference/dat/exons.ens75.bed"
-GENES="$BPS_DATA/B_Reference/dat/genes.ens75.bed"
+EXONS="$BPS_DATA/B_ExonGene/dat/exons.ens75.bed"
+GENES="$BPS_DATA/B_ExonGene/dat/genes.ens75.bed"
 
 FLANK="1000000"  # distance around each integration region to be included in BED file
 FLANKN="1M"
@@ -64,7 +64,7 @@ while read l; do
 
     # usage: process NAME CHROM_ID CHR START END FAI
     # Processing only human, which is typically chrom A of an integration event (B if FLIPAB=1)
-    # To incude virus, need to add virus genes and exons to B_Reference/dat/genes.ens75.bed, exons.ens75.bed
+    # To incude virus, need to add virus genes and exons to B_ExonGene/dat/genes.ens75.bed, exons.ens75.bed
 
     if [ $FLIPAB == 1 ]; then  # see ../bps.config
         process $NAME B $B_CHROM $B_START $B_END $FAI

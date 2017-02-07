@@ -1,8 +1,7 @@
-# Cluster nearby PindelRP breakpoint regions
+# Cluster nearby discordant breakpoints
 
-# This workflow can also be done with BPC data (e.g., discordant read BPC)
+# This workflow is analogous to that for Pindel, except that BPC data used as input
 
-# Since PindelRP has regions (BPR), consider midpoint of region as breakpoint coordinate.  
 # Create BPR file which has regions of clustered breakpoints.
 # Such events are per unique chromA/chromB pair
 # In makeBreakpointRegions.py we combine into one region all breakpoints on chrom A as well as those on chrom B
@@ -15,22 +14,22 @@ source ./PlotList.config
 BIN="$BPS_CORE/src/util/makeBreakpointRegions.py"
 echo $BIN
 
-# writing all output per sample to BPR/BAR.CTX-cluster.BPR.dat
+# writing all output per sample to BPC/BAR.Discordant-cluster.BPC.dat
 # Define D as 5M; combine all breakpoints that are within D of each other along both chrom into one cluster
 D=5000000
 set +o posix
 
 LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
 
-OUTDD="$OUTD/BPR"
+OUTDD="$OUTD/BPC"
 mkdir -p $OUTDD
 
-function process_BPR {
+function process_BPC {
     BAR=$1
 
-    # Making assumptions about where Pindel data live
-    DAT="$BPS_DATA/C_PindelRP/dat/BPR/$BAR.PindelRP.BPR.dat"
-    OUT="$OUTDD/${BAR}.PindelRP-cluster.BPR.dat"
+    # Making assumptions about where Discordant data live
+    DAT="$BPS_DATA/G_Discordant/dat/BPC/$BAR.Discordant.BPC.dat"
+    OUT="$OUTDD/${BAR}.Discordant-cluster.BPR.dat"
     rm -f $OUT
     HEADER="-H"
 
@@ -43,22 +42,14 @@ function process_BPR {
         CHROMA=`echo $m | awk '{print $1}'`
         CHROMB=`echo $m | awk '{print $2}'`
 
-        python $BIN $HEADER -r -c -A $CHROMA -B $CHROMB -R $D $DAT stdout >> $OUT
+        python $BIN $HEADER -c -A $CHROMA -B $CHROMB -R $D $DAT stdout >> $OUT
         HEADER=""
     # NOTE: the line below selects chromA, B columns from $DAT.  Assumptions about BPC, BPR format are embedded.
-    done < <(grep -v "^#" $DAT | cut -f 1,4 | sort -u)  # this selects all unique chromA, chromB pairs and loops over them
+    done < <(grep -v "^#" $DAT | cut -f 1,3 | sort -u)  # this selects all unique chromA, chromB pairs and loops over them
 
     echo Written to $OUT
 
 }
-
-# function process_BPC is unimplemented, but the key difference is that CHROMB comes from
-# a different column:
-    # ...
-    # done < <(grep -v "^#" $DAT | cut -f 1,3 | sort -u)  
-# Also, get rid of the -r when calling makeBreakpointRegions.py 
-# c.f. /gscuser/mwyczalk/projects/1000SV/1000SV.Workflow/G_PlotList/1_make_CTX_clusters.sh
-
 
 # For each sample to process, loop over all unique (chromA, chromB) pairs
 # Call makeBreakpointRegions.py on each such pair.
@@ -68,6 +59,6 @@ while read l; do  # iterate over all barcodes
     [[ $l = barcode* ]] && continue
 
     BAR=`echo $l | awk '{print $1}'`
-    process_BPR $BAR
+    process_BPC $BAR
 
 done < $LIST  # iterate over all barcodes

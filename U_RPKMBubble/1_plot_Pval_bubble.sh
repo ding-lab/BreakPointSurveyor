@@ -1,7 +1,7 @@
 # Create visual representation of per-gene Pval data 
 # Breakpoint positions given by Chrom A
 source ./RPKMBubble.config
-DATD="$BPS_DATA/I_Expression/dat"
+DATD="$BPS_DATA/L_Expression/dat"
 
 BIN="$BPS_CORE/src/plot/PvalBubblePlotter.R"
 
@@ -10,7 +10,7 @@ FLANK="1000000"
 # We plot either panel A or B by choosing PLOTA=0 or 1, resp.
 PLOTA=1
 
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 while read L; do
 
 # barcode name    chrom.A event.A.start   event.A.end range.A.start   range.A.end chrom.B event.B.start   event.B.end range.B.start   range.B.end

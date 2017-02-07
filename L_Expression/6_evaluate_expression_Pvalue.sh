@@ -10,7 +10,7 @@ USE_BSUB=1
 
 source ./Expression.config
 
-PLOT_LIST="$BPS_DATA/G_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
 DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
 BIN="$BPS_CORE/src/analysis/ExonExpressionAnalyzer.R"
 
