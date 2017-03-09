@@ -5,9 +5,12 @@ for one TCGA virus-positive sample (TCGA-BA-4077-01).
 ## Getting Started
 ### Prerequisites
 
+#### BreakPointSurveyor-Core
 Install [BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor-Core)
 
 ```git clone https://github.com/ding-lab/BreakPointSurveyor-Core```
+
+#### Tigra-SV
 
 ### Installing
 * Install from [GitHub](https://github.com/)
