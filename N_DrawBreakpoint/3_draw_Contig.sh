@@ -1,7 +1,7 @@
 # Append contig data to Breakpoint Coordinates GGP files
 source ./DrawBreakpoint.config
 
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 DATD="$BPS_DATA/H_Contig/dat/BPC"
 BIN="$BPS_CORE/src/plot/BreakpointDrawer.R"
 

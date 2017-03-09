@@ -4,7 +4,7 @@
 
 source ./Discordant.config
 
-LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
+LIST="$BPS_DATA/A_Project/dat/samples.dat"
 
 OUTDD="$OUTD/BPC"
 mkdir -p $OUTDD

@@ -4,7 +4,7 @@
 
 source ./PindelRP.config
 
-DATA_LIST="$OUTD/TCGA_Virus.Pindel_RP.dat"
+DATA_LIST="$OUTD/Pindel_RP.dat"
 BIN="$BPS_CORE/src/analysis/Pindel_RP.Reader.R"
 echo Data list: $DATA_LIST
 echo \$BIN: $BIN

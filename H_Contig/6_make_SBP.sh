@@ -3,7 +3,7 @@
 
 source ./Contig.config
 
-LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
+LIST="$BPS_DATA/A_Project/dat/samples.dat"
 BIN="$BPS_CORE/src/contig/BreakPointParser.R"
 
 DATD="$OUTD/pSBP" 

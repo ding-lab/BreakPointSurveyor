@@ -8,7 +8,7 @@ USE_BSUB=0
 source ./Contig.config
 BWA="/usr/bin/bwa0.7.10 mem"
 
-LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
+LIST="$BPS_DATA/A_Project/dat/samples.dat"
 
 mkdir -p $OUTD/BWA
 
@@ -37,7 +37,7 @@ function process {
 
 
 
-while read l; do  # iterate over all rows of TCGA_Virus.samples.dat 
+while read l; do  # iterate over all rows of samples.dat 
 
 # Skip comments and header
 [[ $l = \#* ]] && continue

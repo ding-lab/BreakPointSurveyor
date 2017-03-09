@@ -4,7 +4,7 @@
 source ./Contig.config
 BIN="/usr/bin/python2.7 $BPS_CORE/src/contig/SAMReader.py"
 
-LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
+LIST="$BPS_DATA/A_Project/dat/samples.dat"
 
 DATD="$OUTD/SAM" 
 OUTDD="$OUTD/pSBP"

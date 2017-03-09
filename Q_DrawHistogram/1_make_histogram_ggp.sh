@@ -5,7 +5,7 @@ FLANKN="50K"
 
 DATD_DEP="$BPS_DATA/K_ReadDepth/dat"
 DATD_PL="$BPS_DATA/J_PlotList/dat"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.${FLANKN}.dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.${FLANKN}.dat"
 
 BIN="$BPS_CORE/src/plot/HistogramDrawer.R"
 
@@ -20,7 +20,7 @@ mkdir -p $OUTDD
 # the BAM's flagstat file.
 # For normalizing read depth, we use number of mapped reads and read length 
 # normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
-FLAGSTAT="$DATD_DEP/TCGA_Virus.flagstat.dat"
+FLAGSTAT="$DATD_DEP/flagstat.dat"
 
 
 # This code also in T_AssembleBPS/1_drawBreakpointPlots.sh

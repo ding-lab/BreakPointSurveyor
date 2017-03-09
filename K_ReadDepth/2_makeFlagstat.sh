@@ -6,7 +6,7 @@
 
 source ./ReadDepth.config
 
-DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
+DATA_LIST="$BPS_DATA/A_Project/dat/samples.dat"
 
 OUTDD="$OUTD/flagstat"
 mkdir -p $OUTDD

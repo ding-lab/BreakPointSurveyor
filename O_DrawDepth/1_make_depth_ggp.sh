@@ -6,7 +6,7 @@ source ./DrawDepth.config
 FLANKN="50K"
 
 DATD="$BPS_DATA/K_ReadDepth/dat"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.${FLANKN}.dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.${FLANKN}.dat"
 
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
@@ -20,7 +20,7 @@ ln -s ../$OUTDD $OUTD/GGP
 # the BAM's flagstat file.
 # For normalizing read depth, we use number of mapped reads and read length 
 # normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
-FLAGSTAT="$DATD/TCGA_Virus.flagstat.dat"
+FLAGSTAT="$DATD/flagstat.dat"
 
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B

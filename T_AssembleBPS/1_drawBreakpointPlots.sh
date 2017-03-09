@@ -9,7 +9,7 @@ ANND="$BPS_DATA/P_DrawAnnotation/dat/GGP"
 HISTD="$BPS_DATA/Q_DrawHistogram/dat/GGP"
 
 FLANKN="50K"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 
 BIN="$BPS_CORE/src/plot/BreakpointSurveyAssembler.R"
 

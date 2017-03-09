@@ -2,7 +2,7 @@
 
 source ./Project.config
 
-OUT="$OUTD/TCGA_Virus.samples.RNA-Seq.dat"
+OUT="$OUTD/RNA-Seq.samples.dat"
 
 echo -e "barcode\tdisease\tBAM_path" > $OUT
 cat <<EOF | sort | tr ' ' '\t' >> $OUT

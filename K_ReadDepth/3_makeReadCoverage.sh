@@ -18,9 +18,9 @@
 
 source ./ReadDepth.config
 
-DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
+DATA_LIST="$BPS_DATA/A_Project/dat/samples.dat"
 
-OUT="$OUTD/TCGA_Virus.flagstat.dat"
+OUT="$OUTD/flagstat.dat"
 
 # Usage: parse_flagstat barcode bampath 
 # Writes flagstat statistics to $OUT. Statistics include,

@@ -8,16 +8,16 @@
 #   Note that we could use Pindel RP directly, but will read BPR file since that performs filtering and normalization of breakpoints
 
 source ./Contig.config
-#OUT="$OUTD/TCGA_Virus.Pindel_RP.dat"
+#OUT="$OUTD/Pindel_RP.dat"
 BIN="$BPS_CORE/src/analysis/TigraCTXMaker.R"
 
 
-LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
+LIST="$BPS_DATA/A_Project/dat/samples.dat"
 PIND="$BPS_DATA/F_PindelRP/dat"    # Pindel data directory
 
 mkdir -p $OUTD/CTX
 
-while read l; do  # iterate over all rows of TCGA_Virus.samples.dat 
+while read l; do  # iterate over all rows of samples.dat 
 
 # Skip comments and header
 [[ $l = \#* ]] && continue

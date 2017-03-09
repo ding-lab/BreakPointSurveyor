@@ -28,7 +28,7 @@ BIN="$BPS_CORE/src/util/PlotListMaker.py"
 FLANK="50000"  # distance around each integration region to be included in PlotList
 FLANKN="50K"   # a short "code" for the above 
 
-OUT="$OUTD/TCGA_Virus.PlotList.50K.dat"
+OUT="$OUTD/PlotList.50K.dat"
 rm -f $OUT
 
 HEADER="-H"
@@ -49,7 +49,7 @@ function process {
 
 }
 
-LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
+LIST="$BPS_DATA/A_Project/dat/samples.dat"
 while read l; do  # iterate over all barcodes
     # barcode bam_path    CTX_path
     [[ $l = \#* ]] && continue

@@ -8,7 +8,7 @@ source ./Contig.config
 # Tigra version used is 0.4.2; see https://bitbucket.org/xianfan/tigra
 
 BIN="/gscuser/mwyczalk/src/tigra-0.4.2/tigra/tigra-sv"
-DAT="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
+DAT="$BPS_DATA/A_Project/dat/samples.dat"
 
 if [ $USE_BSUB == 1 ]; then    
     # using bsub

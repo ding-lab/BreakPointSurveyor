@@ -14,9 +14,9 @@ source ./Expression.config
 OUTDD="$OUTD/RPKM"
 mkdir -p $OUTDD
 
-DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.RNA-Seq.dat"
+DATA_LIST="$BPS_DATA/A_Project/dat/samples.RNA-Seq.dat"
 BEDD="$OUTD/BED"
-FLAGDAT="$BPS_DATA/K_ReadDepth/dat/TCGA_Virus.RNA-Seq.flagstat.dat"
+FLAGDAT="$BPS_DATA/K_ReadDepth/dat/RNA-Seq.flagstat.dat"
 
 if [ $USE_BSUB == 1 ]; then
     # using bsub

@@ -2,7 +2,7 @@
 
 source ./Project.config
 
-OUT="$OUTD/TCGA_Virus.samples.dat"
+OUT="$OUTD/WGS.samples.dat"
 
 echo -e "barcode\tdisease\tBAM_path\tref_path" > $OUT
 cat <<EOF | sort | tr ' ' '\t' >> $OUT

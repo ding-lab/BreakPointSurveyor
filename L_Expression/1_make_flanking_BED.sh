@@ -6,8 +6,8 @@
 
 source ./Expression.config
 
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/TCGA_Virus.PlotList.50K.dat"
-DATA_LIST="$BPS_DATA/A_Project/dat/TCGA_Virus.samples.dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
+DATA_LIST="$BPS_DATA/A_Project/dat/samples.dat"
 
 EXONS="$BPS_DATA/B_ExonGene/dat/exons.ens75.bed"
 GENES="$BPS_DATA/B_ExonGene/dat/genes.ens75.bed"
