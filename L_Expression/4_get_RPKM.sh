@@ -14,7 +14,7 @@ source ./Expression.config
 OUTDD="$OUTD/RPKM"
 mkdir -p $OUTDD
 
-DATA_LIST="$BPS_DATA/A_Project/dat/samples.RNA-Seq.dat"
+DATA_LIST="$BPS_DATA/A_Project/dat/RNA-Seq.samples.dat"
 BEDD="$OUTD/BED"
 FLAGDAT="$BPS_DATA/K_ReadDepth/dat/RNA-Seq.flagstat.dat"
 

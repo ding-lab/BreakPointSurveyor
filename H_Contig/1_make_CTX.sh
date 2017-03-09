@@ -12,12 +12,12 @@ source ./Contig.config
 BIN="$BPS_CORE/src/analysis/TigraCTXMaker.R"
 
 
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
+LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
 PIND="$BPS_DATA/F_PindelRP/dat"    # Pindel data directory
 
 mkdir -p $OUTD/CTX
 
-while read l; do  # iterate over all rows of samples.dat 
+while read l; do  # iterate over all rows of WGS.samples.dat 
 
 # Skip comments and header
 [[ $l = \#* ]] && continue

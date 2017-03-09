@@ -8,7 +8,7 @@ source ./Contig.config
 # Tigra version used is 0.4.2; see https://bitbucket.org/xianfan/tigra
 
 BIN="/gscuser/mwyczalk/src/tigra-0.4.2/tigra/tigra-sv"
-DAT="$BPS_DATA/A_Project/dat/samples.dat"
+DAT="$BPS_DATA/A_Project/dat/WGS.samples.dat"
 
 if [ $USE_BSUB == 1 ]; then    
     # using bsub
@@ -40,7 +40,7 @@ function process {
     fi  
 }
 
-while read l; do  # iterate over all rows of samples.dat
+while read l; do  # iterate over all rows of WGS.samples.dat
 # barcode	disease BAMpath	RPpath	REFpath	batch
 # TCGA-BA-4077-01B-01D-1431-02	HNSC    ...d436.bam	.../TCGA-BA-4077-01B-01D-1431-02_RP	.../all_sequences.fa	Normals.9a
 

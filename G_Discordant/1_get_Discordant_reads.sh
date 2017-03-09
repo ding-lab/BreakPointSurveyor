@@ -1,18 +1,16 @@
-# Extract from BAMs all virus reads and human->virus paired-end discordant reads
-# Two files are created for each BAM:
-# * virus_XXX.sam - has all reads which contain a virus
-# * discordant_XXX.sam - subset of above which has just reads which map to human whose mate maps to virus
-
-# Skips samples which have already been processed, so that this script 
-# can be run repeatedly as additional samples finish alignment.
+# Extract all discordant reads (those for whom RNEXT != "=")
+# with mapping quality > 25
 
 # Support provided for cluster queuing system (bsub)
 # - Creates a processing script $BSUBNAM, which can be executed locally or on cluster
+# - this is also useful if you want to generate script to run prior to executing it
 # Turn on queuing by setting USE_BSUB=1
-USE_BSUB=0
+USE_BSUB=1
+
+MAPQ=25	# Reads with quality < MAPQ are discarded
 
 source ./Discordant.config
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
+LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
 
 if [ $USE_BSUB == 1 ]; then    
     # using bsub
@@ -26,37 +24,26 @@ function process {
     BAR=$1
     BAM=$2
 
-    # First, print all viral reads (into VOUT)
-    # Then, process VOUT to get just the discordant reads (written to DOUT)
-    VOUT="$OUTD/virus_$BAR.sam"
+    # process BAM to get just the discordant reads (written to DOUT)
     DOUT="$OUTD/discordant_$BAR.sam"
 
-    if [ -f $VOUT ]; then # this is a safety thing so data not clobbered.  It can be discarded if necessary
-        echo Skipping $BAR
-        continue
-    fi
+    # SAM specs: https://samtools.github.io/hts-specs/SAMv1.pdf
+    # col 5 is MAPQ of read
+    # col 7 is RNEXT.  If RNEXT is "=", it is the same as mate, and is not discordant by our definition
+
+    # keeping just high quality discordant reads
+
     echo Processing $BAR
 
-    # TODO: it would be helpful to split this into two independent steps:
-    #   1. extract virus reads (SHCMD1) - this is the part that may want to use bsub
-    #   2. extract discordant reads (SHCMD2) - this part is much faster, doesn't need bsub
-    # Splitting these up would make step-by-step processing easier.
-    #
-    # assuming that all virus references start with 'gi'.  We don't evaluate human-human discordant reads here
-    SHCMD1="samtools view  $BAM | awk 'BEGIN{FS=\"\t\"} {if ((\$3 ~ /^gi/) || (\$7 ~/^gi/))  print}' > $VOUT"
-    # keeping just those pairs which map from human to virus
-    SHCMD2="awk 'BEGIN{FS=\"\t\"} {if ( (\$3 !~ /^gi/) && (\$7 ~ /^gi/) && (\$7 !~ /=/)) print}' $VOUT > $DOUT"
+    SHCMD1="samtools view  $BAM | awk -v mapq=$MAPQ 'BEGIN{FS=\"\t\"} {if ((\$7 !~ /=/) && (\$5 >= mapq))  print}' > $DOUT"
 
     if [ $USE_BSUB == 1 ]; then
         SHNAM="bsub/run_$BAR.sh"
         echo $SHCMD1 >  $SHNAM
-        echo $SHCMD2 >> $SHNAM
 
         echo "bsub -o bsub/$BAR.out -e bsub/$BAR.err sh $SHNAM" >> $BSUBNAM
     else
         echo $SHCMD1 | sh
-        echo Written to $VOUT
-        echo $SHCMD2 | sh
         echo Written to $DOUT
     fi
 }
@@ -70,7 +57,7 @@ do
     BAR=`echo $l | awk '{print $1}'`
     BAM=`echo $l | awk '{print $3}'`
 
-    process $BAR $BAM
+echo     process $BAR $BAM
 done < $LIST
 
 

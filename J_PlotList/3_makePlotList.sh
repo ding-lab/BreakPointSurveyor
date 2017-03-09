@@ -49,7 +49,7 @@ function process {
 
 }
 
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
+LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
 while read l; do  # iterate over all barcodes
     # barcode bam_path    CTX_path
     [[ $l = \#* ]] && continue

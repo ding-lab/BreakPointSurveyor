@@ -3,7 +3,7 @@
 
 source ./Contig.config
 
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
+LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
 BIN="$BPS_CORE/src/contig/BreakPointParser.R"
 
 DATD="$OUTD/pSBP" 
@@ -20,7 +20,7 @@ function process {
     echo Written to $OUT
 }
 
-while read l; do  # iterate over all rows of samples.dat
+while read l; do  # iterate over all rows of WGS.samples.dat
 
     # Skip comments and header
     [[ $l = \#* ]] && continue

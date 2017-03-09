@@ -4,7 +4,7 @@
 
 source ./Contig.config
 
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
+LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
 BIN="$BPS_CORE/src/contig/SBPprocessor.R"
 
 DATD="$OUTD/SBP" 
@@ -26,7 +26,7 @@ function process {
     Rscript $BIN -o $ROUT -q $QOUT $DAT
 }
 
-while read l; do  # iterate over all rows of samples.dat
+while read l; do  # iterate over all rows of WGS.samples.dat
 
     # Skip comments and header
     [[ $l = \#* ]] && continue

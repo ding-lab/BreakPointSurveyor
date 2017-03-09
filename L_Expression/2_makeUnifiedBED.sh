@@ -8,7 +8,7 @@
 source ./Expression.config
 
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-DATA_LIST="$BPS_DATA/A_Project/dat/samples.dat"
+DATA_LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
 FLANKN="1M"
 
 TMPD="$OUTD/tmp"

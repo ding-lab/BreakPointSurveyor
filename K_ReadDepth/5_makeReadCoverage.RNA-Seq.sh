@@ -2,7 +2,7 @@
 
 source ./ReadDepth.config
 
-DATA_LIST="$BPS_DATA/A_Project/dat/samples.RNA-Seq.dat"
+DATA_LIST="$BPS_DATA/A_Project/dat/RNA-Seq.samples.dat"
 
 OUT="$OUTD/RNA-Seq.flagstat.dat"
 
