@@ -5,7 +5,7 @@
 # - Creates a processing script $BSUBNAM, which can be executed locally or on cluster
 # - this is also useful if you want to generate script to run prior to executing it
 # Turn on queuing by setting USE_BSUB=1
-USE_BSUB=1
+USE_BSUB=0
 
 MAPQ=25	# Reads with quality < MAPQ are discarded
 
@@ -57,7 +57,7 @@ do
     BAR=`echo $l | awk '{print $1}'`
     BAM=`echo $l | awk '{print $3}'`
 
-echo     process $BAR $BAM
+    process $BAR $BAM
 done < $LIST
 
 
