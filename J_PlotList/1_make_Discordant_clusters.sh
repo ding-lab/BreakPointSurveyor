@@ -1,7 +1,5 @@
 # Cluster nearby discordant breakpoints
 
-# This workflow is analogous to that for Pindel, except that BPC data used as input
-
 # Create BPR file which has regions of clustered breakpoints.
 # Such events are per unique chromA/chromB pair
 # In makeBreakpointRegions.py we combine into one region all breakpoints on chrom A as well as those on chrom B
@@ -15,8 +13,8 @@ BIN="$BPS_CORE/src/util/makeBreakpointRegions.py"
 echo $BIN
 
 # writing all output per sample to BPC/BAR.Discordant-cluster.BPC.dat
-# Define D as 5M; combine all breakpoints that are within D of each other along both chrom into one cluster
-D=5000000
+# Define D as 50K; combine all breakpoints that are within D of each other along both chrom into one cluster
+D=50000
 set +o posix
 
 LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
@@ -32,10 +30,6 @@ function process_BPC {
     OUT="$OUTDD/${BAR}.Discordant-cluster.BPR.dat"
     rm -f $OUT
     HEADER="-H"
-
-    # Pindel _RP format:
-    # chrom.A pos.A.start pos.A.end   chrom.B pos.B.start pos.B.end   strand
-    # chr1    27825414    27826540    chr15   77617773    77618899    A- B+
 
     # Iterate over all unique chromA, chromB pairs in each sample
     while read m; do

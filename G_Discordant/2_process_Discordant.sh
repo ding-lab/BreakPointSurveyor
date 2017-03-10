@@ -2,6 +2,13 @@
 
 # Writes dat/BPC/BAR.Discordant.BPC.dat for each sample
 
+# Removes the following "chromosomes":
+# - *_alt
+# - *_decoy
+# - *_random
+# - chrUn_
+# - HLA-
+
 source ./Discordant.config
 
 LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
@@ -24,7 +31,7 @@ OUT="$OUTDD/${BAR}.Discordant.BPC.dat"
 # SAM file specs: 3:RNAME, 4:POS, 7:RNEXT, 8:PNEXT
 # Note that a discordant read is listed twice for each read pair, so we keep only one
 
-awk 'BEGIN{FS="\t";OFS="\t"}{if ($3"" <= $7"") print $3,$4,$7,$8}' $DAT_FN | sort > $OUT
+awk 'BEGIN{FS="\t";OFS="\t"}{if ($3"" <= $7"") print $3,$4,$7,$8}' $DAT_FN | grep -v "_alt\|_decoy\|_random\|chrUn_\|HLA-" | sort > $OUT
 
 echo Written to $OUT
 
