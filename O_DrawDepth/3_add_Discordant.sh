@@ -1,16 +1,19 @@
-# Add contig breakpoints to depth plots
+# Add Discordant breakpoints to depth plots
 
 source ./DrawDepth.config
 
 FLANKN="50K"
 
-DATD="$BPS_DATA/H_Contig/dat/BPC"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/K.dat"
+DATD="$BPS_DATA/G_Discordant/dat"
+PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
+
+#PLOT_LIST="./test.PlotList.dat"
+# echo Using $PLOT_LIST for testing only
 
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
-IND="$OUTD/GGP.Discordant"
-OUTDD="$OUTD/GGP.Contig"
+INDD="$OUTD/GGP.CBS"
+OUTDD="$OUTD/GGP.Discordant"
 mkdir -p $OUTDD
 
 rm -f $OUTD/GGP  # GGP is a link
@@ -29,31 +32,22 @@ function process_chrom {
     N_START=$8
     N_END=$9
 
-    BPC="$DATD/${BAR}.BPC.dat"
-
-    GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
-
+    BPC="$DATD/BPC/${BAR}.Discordant.BPC.dat"
+    GGP="$INDD/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
     OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
 
-    # If data file does not exist, simply copy IN to OUT (so it exists for downstream processing) and continue
-    if [ ! -f $BPC ]; then
-        echo "$BPC does not exist - skipping..."
-        cp -f $IN $OUT
-        return
-    fi
-
     ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID "
     # filter data according to range of the opposite chrom/virus
     ARGS="$ARGS -N ${N_CHROM}:${N_START}-${N_END}"
-    if [ $FLIPAB == 1 ]; then       # defined in ../bps.config
+    if [ $FLIPAB == 1 ]; then    # defined in ../bps.config
         ARGS="$ARGS -l"
     fi
 
-    COLOR="-c #4DAF4A "
+    COLOR="-c #377EB8 -z 2.5 -a 0.25"
 
-    Rscript $BIN $ARGS $COLOR -G $GGP -p vline $BPC $OUT
+    Rscript $BIN $ARGS $COLOR -G $GGP -p point $BPC $OUT
 }
 
 while read l; do  
