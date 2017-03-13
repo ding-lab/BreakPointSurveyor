@@ -2,6 +2,9 @@
 
 *Identify target regions for further processing and visualization*
 
+
+*TODO* mention that use FAI in step 3.  Focusing on BPC since doing discordant.
+
 Defining the PlotList is a critical step for downstream plotting and analysis:
 it defines the list of regions for further processing.  In particular, the "range"
 defined in PlotList defines the region which will be plotted, in this case the
