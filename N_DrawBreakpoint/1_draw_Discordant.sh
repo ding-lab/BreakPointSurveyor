@@ -5,7 +5,7 @@ PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 DATD="$BPS_DATA/G_Discordant/dat/BPC"
 BIN="$BPS_CORE/src/plot/BreakpointDrawer.R"
 
-INDD="$OUTD/GGP.PindelRP"
+#INDD="$OUTD/GGP.PindelRP"
 OUTDD="$OUTD/GGP.Discordant"
 mkdir -p $OUTDD
 
@@ -29,13 +29,14 @@ function process_plot {
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
     # removing step name from output filename so can access it uniformly down the road
-    IN="$INDD/$BAR/${NAME}.Breakpoints.ggp"  
+#    IN="$INDD/$BAR/${NAME}.Breakpoints.ggp"  
     OUT="$OUTDDD/${NAME}.Breakpoints.ggp"  
  
     RANGE_A="-A ${A_CHROM}:${A_START}-${A_END}" 
     RANGE_B="-B ${B_CHROM}:${B_START}-${B_END}" 
 
-    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -G $IN"
+#    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -G $IN"
+    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8"
     if [ $FLIPAB == 1 ]; then  # defined in ../bps.config
         ARGS="$ARGS -l"
     fi
