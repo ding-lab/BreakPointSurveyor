@@ -13,8 +13,8 @@ OUTDD="$OUTD/GGP"
 mkdir -p $OUTDD
 
 AD="$BPS_DATA/B_ExonGene/dat"
-GENES="$AD/genes.ens75.bed"
-EXONS="$AD/exons.ens75.bed"
+GENES="$AD/genes.ens84.norm.bed"
+EXONS="$AD/exons.ens84.norm.bed"
 
 # usage: process_chrom A
 function process_chrom {
