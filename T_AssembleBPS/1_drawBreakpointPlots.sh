@@ -43,24 +43,6 @@ function process_plot {
 
 }
 
-VIRUS_DICT="$BPS_DATA/B_ExonGene/dat/virus_names.dat"
-function rename_chrom {
-    OLDN=$1
-
-    # Make nicer names.  Remap virus code to virus name using database below.
-    # if not in database, assume chrom name, and append "Chr" prefix
-    # template:
-    if grep -q "^$OLDN" $VIRUS_DICT; then
-        NEWN=`grep "^$OLDN" $VIRUS_DICT | cut -f 2 -d ' '`
-    else
-        NEWN="Chr.$OLDN"
-    fi
-
-    echo $NEWN
-}
-
-
-
 while read l
 do
 [[ $l = \#* ]] && continue
@@ -76,10 +58,6 @@ A_END=`echo "$l" | cut -f 7`
 B_CHROM=`echo "$l" | cut -f 8`
 B_START=`echo "$l" | cut -f 11`
 B_END=`echo "$l" | cut -f 12`
-
-# rename chrom names to something more readable
-A_CHROM=$(rename_chrom $A_CHROM)   
-B_CHROM=$(rename_chrom $B_CHROM)   
 
 process_plot $NAME
 done < $PLOT_LIST
