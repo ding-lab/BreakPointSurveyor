@@ -9,8 +9,8 @@ PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.${FLANKN}.dat"
 
 BIN="$BPS_CORE/src/plot/HistogramDrawer.R"
 
-# Histogram options are defined in the file below.  Only hist.max is currently supported.
-# This is a mechanism for the user to easily specify histogram options on a per-plot basis.
+# Histogram options are defined in the TSV file below.  
+# This is a mechanism for the user to easily specify histogram max value on a per-plot basis.
 HIST_OPTS="Histogram.PlotOpts.special"
 
 OUTDD="$OUTD/GGP"
@@ -22,24 +22,15 @@ mkdir -p $OUTDD
 # normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
 FLAGSTAT="$DATD_DEP/flagstat.dat"
 
-
-# This code also in T_AssembleBPS/1_drawBreakpointPlots.sh
-VIRUS_DICT="$BPS_DATA/B_ExonGene/dat/virus_names.dat"
 function process_chrom {
     BAR=$1
     NAME=$2
     A_CHROM=$3
     B_CHROM=$4
 
-#    if [ $FLIPAB == 1 ]; then    # defined in ../bps.config
-#        DEPB="$DATD_DEP/${BAR}/${NAME}.A.${FLANKN}.DEPTH.dat"
-#        DEPA="$DATD_DEP/${BAR}/${NAME}.B.${FLANKN}.DEPTH.dat"
-#        LABELS="-e $B_CHROM,$A_CHROM"
-#    else
-        DEPA="$DATD_DEP/${BAR}/${NAME}.A.${FLANKN}.DEPTH.dat"
-        DEPB="$DATD_DEP/${BAR}/${NAME}.B.${FLANKN}.DEPTH.dat"
-        LABELS="-e $A_CHROM,$B_CHROM"
-#    fi
+    DEPA="$DATD_DEP/${BAR}/${NAME}.A.${FLANKN}.DEPTH.dat"
+    DEPB="$DATD_DEP/${BAR}/${NAME}.B.${FLANKN}.DEPTH.dat"
+    LABELS="-e $A_CHROM,$B_CHROM"
 
     # barcode	filesize	read_length	reads_total	reads_mapped
     # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
@@ -50,9 +41,13 @@ function process_chrom {
     # if histogram options file defined and histogram max range is set, define HISTMAX accordingly
     HISTMAX=""
     if [ -f $HIST_OPTS ]; then
-        HM=`grep $NAME $HIST_OPTS | sed 's/#.*$//' | cut -f 2`
-        if [ -n $HISTMAX ]; then    # if value not defined then set to default value
-            HISTMAX="-m $HM"
+
+        if grep -Fq $NAME $HIST_OPTS
+        then
+            HM=`grep $NAME $HIST_OPTS | sed 's/#.*$//' | cut -f 2`
+            if [ -n $HISTMAX ]; then    # if value not defined then set to default value
+                HISTMAX="-m $HM"
+            fi
         fi
     fi
 
@@ -60,7 +55,7 @@ function process_chrom {
     mkdir -p $OUTDDD
     OUT="$OUTDDD/${NAME}.${FLANKN}.histogram.ggp"
 
-    ARGS="-d -u $NUMREADS -n $READLEN $LABELS"
+    ARGS="-d -u $NUMREADS -n $READLEN $LABELS $HISTMAX"
 
     Rscript $BIN $ARGS $DEPA $DEPB $OUT
 }
