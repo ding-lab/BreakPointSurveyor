@@ -1,6 +1,7 @@
 # BPS.TCGA_Virus.Lite 
-Sample BreakPoint Surveyor project.  Comprehensive workflow and data
-for one TCGA virus-positive sample (TCGA-BA-4077-01).
+Sample BreakPoint Surveyor project.  Data for NA19240 human-human breakpoint
+
+
 
 ## Getting Started
 ### Prerequisites
