@@ -45,7 +45,7 @@ function process_chrom {
         ARGS="$ARGS -l"
     fi
 
-    COLOR="-c #377EB8 -z 2.5 -a 0.25"
+    COLOR="-c #377EB8 -z 2.5 -a 0.05 -s 16"
 
     Rscript $BIN $ARGS $COLOR -G $GGP -p point $BPC $OUT
 }

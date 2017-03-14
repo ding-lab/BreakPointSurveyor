@@ -47,6 +47,7 @@ function process_chrom {
     ARGS=" -M ${CHROM}:${START}-${END} \
            -u $NUMREADS \
            -n $READLEN -a 0.1 "
+    COLOR="-a 0.2 -s 16"
 
     if [ $CHROM_ID == 'B' ]; then
         ARGS="$ARGS -B"
@@ -55,7 +56,7 @@ function process_chrom {
         ARGS="$ARGS -l"
     fi
 
-    Rscript $BIN $ARGS -p depth $DEP $OUT
+    Rscript $BIN $ARGS $COLOR -p depth $DEP $OUT
 }
 
 while read l; do  
