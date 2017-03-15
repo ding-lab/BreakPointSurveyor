@@ -17,7 +17,7 @@ echo $BIN
 D=50000
 set +o posix
 
-LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
+LIST="$BPS_DATA/C_Project/dat/WGS.samples.dat"
 
 OUTDD="$OUTD/BPC"
 mkdir -p $OUTDD

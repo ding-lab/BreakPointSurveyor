@@ -4,7 +4,6 @@
 source ./Project.config
 BWA="$HOME/pkg/bwa-0.7.15/bwa mem"
 
-REF="../C_Reference/dat/reference.chr9_chr22.fa"
 
 mkdir -p $OUTD/BWA
 
@@ -29,7 +28,7 @@ function process {
 
 DAT1="dat/synthetic.reads1.fq"
 DAT2="dat/synthetic.reads2.fq"
-REF="../C_Reference/dat/reference.chr9_chr22.fa"
+REF="../A_Reference/dat/reference.chr9_chr22.fa"
 OUT="dat/synthetic.BWA.bam"
 
 process $DAT1 $DAT2 $REF $OUT

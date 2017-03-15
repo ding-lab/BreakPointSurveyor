@@ -18,7 +18,7 @@
 
 source ./ReadDepth.config
 
-DATA_LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
+DATA_LIST="$BPS_DATA/C_Project/dat/WGS.samples.dat"
 
 OUT="$OUTD/flagstat.dat"
 

@@ -6,7 +6,7 @@ source ./PlotList.config
 # Retain top 5 clusters per sample to use to create PlotList
 NCLUST=25
 
-LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
+LIST="$BPS_DATA/C_Project/dat/WGS.samples.dat"
 
 mkdir -p $OUTD
 

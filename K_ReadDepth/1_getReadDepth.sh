@@ -4,7 +4,7 @@
 source ./ReadDepth.config
 
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-DATA_LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
+DATA_LIST="$BPS_DATA/C_Project/dat/WGS.samples.dat"
 
 # loops over PlotList, reads BAM files,.
 # Writes two depth files per PlotList entry to dat/BAR/*.50K.DEPTH.dat

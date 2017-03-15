@@ -11,7 +11,7 @@
 
 source ./Discordant.config
 
-LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
+LIST="$BPS_DATA/C_Project/dat/WGS.samples.dat"
 
 OUTDD="$OUTD/BPC"
 mkdir -p $OUTDD
