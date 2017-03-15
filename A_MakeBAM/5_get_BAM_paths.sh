@@ -1,6 +1,3 @@
-# List of paths to aligned BAM files
-
-# for 1000SV, reference obtained from alignment file
 
 source ./Project.config
 

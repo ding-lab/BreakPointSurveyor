@@ -1,5 +1,5 @@
-# BPS.TCGA_Virus.Lite 
-Sample BreakPoint Surveyor project.  Data for NA19240 human-human breakpoint
+# BPS.TCGA_Virus.Lite - Synthetic branch
+Sample BreakPoint Surveyor project.  Data for synthetic human-human breakpoint
 
 
 
@@ -12,6 +12,12 @@ Install [BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor
 ```git clone https://github.com/ding-lab/BreakPointSurveyor-Core```
 
 #### Tigra-SV
+
+#### Perl XML 
+
+Used currently only for testing of sequence download.
+
+```cpanm XML::XPath```
 
 ### Installing
 * Install from [GitHub](https://github.com/)
