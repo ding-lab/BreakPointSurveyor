@@ -8,3 +8,6 @@ at a specified position between chr9:130,850,000 and chr22:23,260,000
 * Generate synthetic reads using wgsim
 * Align synthetic reads using bwa to generate synthetic BAM file
 
+*NOTE* breakpoint seems to occur on 
+* chr9:128,087,721
+* chr22:22,917,830

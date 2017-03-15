@@ -19,6 +19,10 @@ Used currently only for testing of sequence download.
 
 ```cpanm XML::XPath```
 
+#### BWA
+
+https://sourceforge.net/projects/bio-bwa/files/
+
 ### Installing
 * Install from [GitHub](https://github.com/)
 

@@ -1,7 +1,7 @@
 
 source ./Project.config
 
-OUT="$OUTD/merged.fa"
+OUT="$OUTD/synthetic.fa"
 
 BIN="src/get_FASTA.pl"
 
@@ -19,11 +19,11 @@ perl $BIN $SEG > $OUTMP
 SEG1="chr9:130840000,130850000"
 SEG2="chr22:23260000,23270000"
 
-OUT1="$OUTD/seg1.fa"
-OUT2="$OUTD/seg2.fa"
+OUT1="$OUTD/synthetic1.fa"
+OUT2="$OUTD/synthetic2.fa"
 
-get_FASTA $SEG1 "$OUTD/seg1.fa"
-get_FASTA $SEG2 "$OUTD/seg2.fa"
+get_FASTA $SEG1 $OUT1
+get_FASTA $SEG2 $OUT2
 
 paste -d ''  $OUT1 $OUT2 > $OUT
 

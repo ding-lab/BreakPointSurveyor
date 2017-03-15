@@ -13,9 +13,9 @@ NREADS=15000
 
 ARGS="-N $NREADS -1 126 -2 126"
 
-DAT="$OUTD/merged.fa"
-OUT1="$OUTD/out.read1.fq"
-OUT2="$OUTD/out.read2.fq"
+DAT="$OUTD/synthetic.fa"
+OUT1="$OUTD/synthetic.reads1.fq"
+OUT2="$OUTD/synthetic.reads2.fq"
 
 $BIN $ARGS $DAT $OUT1 $OUT2
 
