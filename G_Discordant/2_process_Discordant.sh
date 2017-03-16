@@ -11,8 +11,6 @@
 
 source ./Discordant.config
 
-LIST="$BPS_DATA/C_Project/dat/WGS.samples.dat"
-
 OUTDD="$OUTD/BPC"
 mkdir -p $OUTDD
 
@@ -35,5 +33,5 @@ awk 'BEGIN{FS="\t";OFS="\t"}{if ($3"" <= $7"") print $3,$4,$7,$8}' $DAT_FN | gre
 
 echo Written to $OUT
 
-done < $LIST
+done < $SAMPLE_LIST
 

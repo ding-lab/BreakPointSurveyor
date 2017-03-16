@@ -18,8 +18,6 @@
 
 source ./ReadDepth.config
 
-DATA_LIST="$BPS_DATA/C_Project/dat/WGS.samples.dat"
-
 OUT="$OUTD/flagstat.dat"
 
 # Usage: parse_flagstat barcode bampath 
@@ -65,6 +63,6 @@ BAM=`echo "$l" | cut -f 3`
 
 parse_flagstat $BAR $BAM
 
-done < $DATA_LIST
+done < $SAMPLE_LIST
 
 echo Written to $OUT

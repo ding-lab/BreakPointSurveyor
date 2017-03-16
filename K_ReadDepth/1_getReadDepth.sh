@@ -4,8 +4,6 @@
 source ./ReadDepth.config
 
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-DATA_LIST="$BPS_DATA/C_Project/dat/WGS.samples.dat"
-
 # loops over PlotList, reads BAM files,.
 # Writes two depth files per PlotList entry to dat/BAR/*.50K.DEPTH.dat
 
@@ -58,7 +56,7 @@ B_START=`echo "$l" | cut -f 11`
 B_END=`echo "$l" | cut -f 12`
 
 # barcode disease   bam_path    CTX_path    Pindel_path
-BAM=`grep $BAR $DATA_LIST | cut -f 3`
+BAM=`grep $BAR $SAMPLE_LIST | cut -f 3`
 
 # usage: process_chrom CHROM_ID NAME BAM CHROM RANGE_START RANGE_END
 get_depth A $NAME $BAM $A_CHROM $A_START $A_END

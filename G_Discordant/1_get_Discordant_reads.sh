@@ -10,7 +10,6 @@ USE_BSUB=0
 MAPQ=25	# Reads with quality < MAPQ are discarded
 
 source ./Discordant.config
-LIST="$BPS_DATA/C_Project/dat/WGS.samples.dat"
 
 if [ $USE_BSUB == 1 ]; then    
     # using bsub
@@ -58,7 +57,7 @@ do
     BAM=`echo $l | awk '{print $3}'`
 
     process $BAR $BAM
-done < $LIST
+done < $SAMPLE_LIST 
 
 
 if [ $USE_BSUB == 1 ]; then

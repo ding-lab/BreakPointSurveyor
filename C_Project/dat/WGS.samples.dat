@@ -1,2 +1,0 @@
-barcode	disease	BAM_path	ref_path
-synthetic.9-22	NA	../C_Project/dat/synthetic.BWA.bam	reference.chr9_chr22.fa
