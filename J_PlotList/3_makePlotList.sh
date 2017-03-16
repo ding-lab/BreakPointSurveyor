@@ -50,7 +50,6 @@ function process {
 
 }
 
-LIST="$BPS_DATA/A_Project/dat/WGS.samples.dat"
 while read l; do  # iterate over all barcodes
     # barcode bam_path    CTX_path
     [[ $l = \#* ]] && continue
@@ -64,6 +63,6 @@ while read l; do  # iterate over all barcodes
 
     process $BAR $FAI
 
-done < $LIST  # iterate over all barcodes
+done < $SAMPLE_LIST  # iterate over all barcodes
 
 echo Written to $OUT
