@@ -2,7 +2,7 @@
 
 source ./ReadDepth.config
 
-DATA_LIST="$BPS_DATA/A_Project/dat/samples.RNA-Seq.dat"
+RNA_SAMPLE_LIST="$BPS_DATA/C_Project/dat/RNA-Seq.samples.dat"
 
 OUT="$OUTD/RNA-Seq.flagstat.dat"
 
@@ -55,6 +55,6 @@ BAM=`echo "$l" | cut -f 3`
 
 parse_flagstat $BAR $BAM
 
-done < $DATA_LIST
+done < $RNA_SAMPLE_LIST
 
 echo Written to $OUT

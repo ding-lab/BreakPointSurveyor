@@ -6,8 +6,6 @@
 source ./Contig.config
 BIN="/usr/bin/python2.7 $BPS_CORE/src/contig/qname_convert.py"
 
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
-
 DATD="$OUTD/BWA" # BWA-mem output SAM files:
 
 OUTDD="$OUTD/SAM"
@@ -32,5 +30,5 @@ while read l; do  # iterate over all rows of samples.dat
 
     process $BAR
 
-done < $LIST
+done < $SAMPLE_LIST
 

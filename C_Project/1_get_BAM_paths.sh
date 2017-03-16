@@ -2,7 +2,9 @@
 
 source ./Project.config
 
-OUT="$OUTD/WGS.samples.dat"
+# SAMPLE_LIST is defined in bps.config so that it is uniform across all stages
+
+OUT=$SAMPLE_LIST
 
 echo -e "barcode\tdisease\tBAM_path\tref_path" > $OUT
 cat <<EOF | sort | tr ' ' '\t' >> $OUT

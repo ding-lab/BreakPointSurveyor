@@ -14,7 +14,7 @@ source ./Expression.config
 OUTDD="$OUTD/RPKM"
 mkdir -p $OUTDD
 
-DATA_LIST="$BPS_DATA/A_Project/dat/samples.RNA-Seq.dat"
+RNA_SAMPLE_LIST="$BPS_DATA/A_Project/dat/RNA-Seq.samples.dat"
 BEDD="$OUTD/BED"
 FLAGDAT="$BPS_DATA/K_ReadDepth/dat/RNA-Seq.flagstat.dat"
 
@@ -69,7 +69,7 @@ BAM=`echo "$l" | cut -f 3`
 
 process $BAR $DIS $BAM
 
-done < $DATA_LIST
+done < $RNA_SAMPLE_LIST
 
 if [ $USE_BSUB == 1 ]; then
     # using bsub

@@ -6,8 +6,6 @@
 
 source ./ReadDepth.config
 
-DATA_LIST="$BPS_DATA/A_Project/dat/samples.dat"
-
 OUTDD="$OUTD/flagstat"
 mkdir -p $OUTDD
 
@@ -42,5 +40,5 @@ BAM=`echo "$l" | cut -f 3`
 
 make_flagstat $BAR $BAM
 
-done < $DATA_LIST
+done < $SAMPLE_LIST
 

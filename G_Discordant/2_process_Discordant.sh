@@ -4,8 +4,6 @@
 
 source ./Discordant.config
 
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
-
 OUTDD="$OUTD/BPC"
 mkdir -p $OUTDD
 
@@ -28,5 +26,5 @@ awk 'BEGIN{FS="\t";OFS="\t"}{if ($3"" <= $7"") print $3,$4,$7,$8}' $DAT_FN | sor
 
 echo Written to $OUT
 
-done < $LIST
+done < $SAMPLE_LIST
 

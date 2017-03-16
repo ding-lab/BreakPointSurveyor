@@ -8,8 +8,6 @@ USE_BSUB=0
 source ./Contig.config
 BWA="/usr/bin/bwa0.7.10 mem"
 
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
-
 mkdir -p $OUTD/BWA
 
 if [ $USE_BSUB == 1 ]; then    
@@ -49,4 +47,4 @@ FASTA=`echo $l | awk '{print $4}'`
 
 process $BAR $FASTA
 
-done < $LIST
+done < $SAMPLE_LIST

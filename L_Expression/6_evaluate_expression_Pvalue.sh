@@ -11,7 +11,6 @@ USE_BSUB=1
 source ./Expression.config
 
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-DATA_LIST="$BPS_DATA/A_Project/dat/samples.dat"
 BIN="$BPS_CORE/src/analysis/ExonExpressionAnalyzer.R"
 
 EXOND="$OUTD/BED"
@@ -66,7 +65,7 @@ do
     # extract sample names
     NAME=`echo "$l" | cut -f 2`     # NAME is unique per integration event and should be used for all filenames
     BAR=`echo "$l" | cut -f 1`
-    DIS=`grep $BAR $DATA_LIST | cut -f 2`
+    DIS=`grep $BAR $SAMPLE_LIST | cut -f 2`
 
     # focus on human chrom for now
     if [ $FLIPAB == 1 ]; then       # defined in ../bps.config

@@ -8,7 +8,6 @@
 source ./Expression.config
 
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-DATA_LIST="$BPS_DATA/A_Project/dat/samples.dat"
 FLANKN="1M"
 
 TMPD="$OUTD/tmp"
@@ -57,7 +56,7 @@ do
     BAR=`echo "$l" | cut -f 1`
     NAME=`echo "$l" | cut -f 2`     
 
-    DIS=`grep $BAR $DATA_LIST | cut -f 2`
+    DIS=`grep $BAR $SAMPLE_LIST | cut -f 2`
 
 # Note that we're only considering chrom A, which is human in human/virus events (unless FLIPAB=1)
     if [ $FLIPAB == 1 ]; then  # see ../bps.config

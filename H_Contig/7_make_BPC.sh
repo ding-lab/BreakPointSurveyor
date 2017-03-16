@@ -4,7 +4,6 @@
 
 source ./Contig.config
 
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
 BIN="$BPS_CORE/src/contig/SBPprocessor.R"
 
 DATD="$OUTD/SBP" 
@@ -36,4 +35,4 @@ while read l; do  # iterate over all rows of samples.dat
 
     process $BAR
 
-done < $LIST
+done < $SAMPLE_LIST

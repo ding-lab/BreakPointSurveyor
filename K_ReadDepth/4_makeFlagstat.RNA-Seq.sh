@@ -3,7 +3,7 @@
 
 source ./ReadDepth.config
 
-DATA_LIST="$BPS_DATA/A_Project/dat/samples.RNA-Seq.dat"
+RNA_SAMPLE_LIST="$BPS_DATA/C_Project/dat/RNA-Seq.samples.dat"
 
 OUTDD="$OUTD/flagstat"
 mkdir -p $OUTDD
@@ -39,5 +39,5 @@ BAM=`echo "$l" | cut -f 3`
 
 make_flagstat $BAR $BAM
 
-done < $DATA_LIST
+done < $RNA_SAMPLE_LIST
 

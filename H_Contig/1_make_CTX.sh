@@ -12,7 +12,6 @@ source ./Contig.config
 BIN="$BPS_CORE/src/analysis/TigraCTXMaker.R"
 
 
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
 PIND="$BPS_DATA/F_PindelRP/dat"    # Pindel data directory
 
 mkdir -p $OUTD/CTX
@@ -31,4 +30,4 @@ OUT="$OUTD/CTX/${BAR}.ctx"
 
 Rscript $BIN -b $DAT $OUT
 
-done < $LIST
+done < $SAMPLE_LIST

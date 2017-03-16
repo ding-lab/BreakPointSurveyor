@@ -4,8 +4,6 @@
 source ./Contig.config
 BIN="/usr/bin/python2.7 $BPS_CORE/src/contig/SAMReader.py"
 
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
-
 DATD="$OUTD/SAM" 
 OUTDD="$OUTD/pSBP"
 mkdir -p $OUTDD
@@ -30,5 +28,5 @@ while read l; do  # iterate over all rows of samples.dat
 
     process $BAR
 
-done < $LIST
+done < $SAMPLE_LIST
 

@@ -7,7 +7,6 @@
 source ./Expression.config
 
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-DATA_LIST="$BPS_DATA/A_Project/dat/samples.dat"
 
 EXONS="$BPS_DATA/B_ExonGene/dat/exons.ens75.bed"
 GENES="$BPS_DATA/B_ExonGene/dat/genes.ens75.bed"
@@ -59,7 +58,7 @@ while read l; do
     B_END=`echo "$l" | cut -f 10`
 
     # barcode   disease BAM_path    ref_path
-    REF=`grep $BAR $DATA_LIST | cut -f 4`
+    REF=`grep $BAR $SAMPLE_LIST | cut -f 4`
     FAI="$REF.fai"
 
     # usage: process NAME CHROM_ID CHR START END FAI

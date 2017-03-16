@@ -12,7 +12,6 @@
 USE_BSUB=0
 
 source ./Discordant.config
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
 
 if [ $USE_BSUB == 1 ]; then    
     # using bsub
@@ -71,7 +70,7 @@ do
     BAM=`echo $l | awk '{print $3}'`
 
     process $BAR $BAM
-done < $LIST
+done < $SAMPLE_LIST 
 
 
 if [ $USE_BSUB == 1 ]; then

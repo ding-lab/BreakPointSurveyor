@@ -19,8 +19,6 @@ echo $BIN
 D=5000000
 set +o posix
 
-LIST="$BPS_DATA/A_Project/dat/samples.dat"
-
 OUTDD="$OUTD/BPC"
 mkdir -p $OUTDD
 
@@ -61,4 +59,4 @@ while read l; do  # iterate over all barcodes
     BAR=`echo $l | awk '{print $1}'`
     process_BPC $BAR
 
-done < $LIST  # iterate over all barcodes
+done < $SAMPLE_LIST  # iterate over all barcodes
