@@ -1,6 +1,23 @@
 # BPS.TCGA_Virus.Lite 
 Sample BreakPoint Surveyor project.  Data for NA19240 human-human breakpoint
 
+Focusing on two events:
+
+"AQ" event: chr10:41854249-41915847	to chr20:31051980-31241883	
+AQ is between chr10 and chr20, and has a discordant read signature which is frequently found: no pattern to discordant reads, and a spike in copy number (see histogram).  I haven’t confirmed, but this is probably anomalous mapping between two repetitive regions.
+
+"AU" event: chr13:62947705-63061713	to chr17:221247350-22180085	
+AU between chr13 and chr17 has a very different discordant read pattern, with the reads falling cleanly on a diagonal.  Chr13 has “gene” RP11-527N12.2 involved:
+
+"RP11 is a code identifying an individual anonymous human donor to a The BAC
+clone library started at Roswell Park Cancer Institute by Dr.Pieter de Jong.
+Initially, samples were obtained from 10 men and 10 women. During the
+processing of the samples, DNA from one individual (RP11) emerged as the best
+quality most complete set and became the source for much of the BAC clone
+library that much of the Human Gnome project studied. As new genes were
+discovered and named, the names include the source info "RP11.”” (source:
+[biostars](https://www.biostars.org/p/51456/))
+
 
 
 ## Getting Started
