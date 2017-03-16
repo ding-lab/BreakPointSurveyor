@@ -1,6 +1,8 @@
 # Project
 *Create list of BAMs, both realigned WGS and RNA-Seq.*
 
+Constructing a "minimal" BAM to demonstrate events.
+
 Create here TCGA_Virus.SampleList.dat, which contains the following fields for each sample of interest,
 * Barcode - unique identifier
 * disease - TCGA code of cancer type
