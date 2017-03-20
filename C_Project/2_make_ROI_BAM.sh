@@ -47,10 +47,10 @@ function process_BED {
     done < $BED
 }
 
+function merge {
+    samtools index $OUT
+
+}
+
 # Obtain BAM file for all regions of interest in BAM
 process_BED $OUTD/1000SV.ROI.bed
-
-samtools merge $OUTD/NA19240.AQ.bam $OUTD/NA19240.AQ?.bam
-samtools merge $OUTD/NA19240.AU.bam $OUTD/NA19240.AU?.bam
-
-# NA19240.AQ?.bam can be deleted
