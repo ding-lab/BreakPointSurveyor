@@ -2,6 +2,9 @@
 
 *Identify target regions for further processing and visualization*
 
+"AQ" event: chr10:41854249-41915847	to chr20:31051980-31241883	
+"AU" event: chr13:62947705-63061713	to chr17:221247350-22180085	
+
 
 *TODO* mention that use FAI in step 3.  Focusing on BPC since doing discordant.
 
