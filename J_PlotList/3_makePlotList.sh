@@ -24,7 +24,7 @@
 source ./PlotList.config
 
 BIN="$BPS_CORE/src/util/PlotListMaker.py"
-REFD="../C_Reference/dat"  # this is where reference lives
+REFD="../A_Reference/dat"  # this is where reference lives
 
 FLANK="50000"  # distance around each integration region to be included in PlotList
 FLANKN="50K"   # a short "code" for the above 
