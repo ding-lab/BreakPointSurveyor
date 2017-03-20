@@ -2,7 +2,6 @@ bps.config
 .DS_Store
 flagstat/
 tmp/
-*.sam
 *.Discordant.BPC.dat
 bsub/
 run_all_bsub.sh

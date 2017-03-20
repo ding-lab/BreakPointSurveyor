@@ -1,3 +1,3 @@
 barcode	disease	BAM_path	ref_path
-NA19240	NA	../C_Project/dat/NA19240.AQ.bam	GRCh38_full_analysis_set_plus_decoy_hla.fa
-NA19240	NA	../C_Project/dat/NA19240.AU.bam	GRCh38_full_analysis_set_plus_decoy_hla.fa
+NA19240.AQ	NA	../C_Project/dat/NA19240.AQ.bam	GRCh38_full_analysis_set_plus_decoy_hla.fa
+NA19240.AU	NA	../C_Project/dat/NA19240.AU.bam	GRCh38_full_analysis_set_plus_decoy_hla.fa
