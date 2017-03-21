@@ -12,6 +12,10 @@ Install [BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor
 
 #### Tigra-SV
 
+#### Pindel
+
+```https://github.com/genome/pindel```
+
 ### Installing
 * Install from [GitHub](https://github.com/)
 
