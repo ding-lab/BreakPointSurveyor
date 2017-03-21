@@ -30,6 +30,12 @@ Install [BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor
 
 #### Tigra-SV
 
+#### bcftools
+
+Confirm if needed.  Used for parsing 1000SV VCFs
+
+[See instructions here](https://github.com/samtools/bcftools)
+
 ### Installing
 * Install from [GitHub](https://github.com/)
 
