@@ -1,7 +1,9 @@
 # Contig
 *Create contigs using Tigra-SV and realign them*
 
-## Background 
+TODO: *copy notes from notebook p. 125*
+
+## Background
 
 Contig alignment improves breakpoint predictions by assembling a consensus
 sequence (contig) from reads spanning a breakpoint, then re-aligning the contig
@@ -38,12 +40,10 @@ contigs span two lines).  Writes pSBP file, which has the columns,
 2. `BreakpointParser.R`: Creates SBP file by merging a pair of pSBP lines based on query_name
     to create the SBP.  Segments Sa and Sb correspond to left and right end of chimeric
     segment, resp. Multiple breakpoints per contig result in multiple (N-1) lines in BreakpointParser
-3. `SBPprocessor.R`: creates simple BPC (aka rSBP = reduced SBP) file with human, virus breakpoint positions (1-index format)
-    A qSBP file is optionally generated which gives information about paired breakpoints (more than 
+3. `SBPprocessor.R`: creates simple BPC (aka rSBP = reduced SBP) file with chromA/chromB breakpoint positions (1-index format)
+    A qSBP file is optionally generated which gives information about paired breakpoints (more than
     one breakpoint per contig)
 
 Tigra-sv sometimes creates pathologically long contig names
 which makes samtools (and pysam) choke.  `qname_convert.py`
 shortens QNAMEs in all SAM files to a hex string using an MD5 hash.
-
-
