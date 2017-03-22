@@ -1,6 +1,8 @@
 # Contig
 *Create contigs using Tigra-SV and realign them*
 
+TODO: *copy notes from notebook p. 125*
+
 ## Background 
 
 Contig alignment improves breakpoint predictions by assembling a consensus
@@ -38,7 +40,7 @@ contigs span two lines).  Writes pSBP file, which has the columns,
 2. `BreakpointParser.R`: Creates SBP file by merging a pair of pSBP lines based on query_name
     to create the SBP.  Segments Sa and Sb correspond to left and right end of chimeric
     segment, resp. Multiple breakpoints per contig result in multiple (N-1) lines in BreakpointParser
-3. `SBPprocessor.R`: creates simple BPC (aka rSBP = reduced SBP) file with human, virus breakpoint positions (1-index format)
+3. `SBPprocessor.R`: creates simple BPC (aka rSBP = reduced SBP) file with chromA/chromB breakpoint positions (1-index format)
     A qSBP file is optionally generated which gives information about paired breakpoints (more than 
     one breakpoint per contig)
 
