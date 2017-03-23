@@ -4,7 +4,7 @@ source ./PindelRP.config
 
 # This BED file lists just the virus genomes
 # This makes Pindel faster by focusing only on virus/virus and virus/human breakpoints
-BED="pindel_ROI.BA-4077.bed"
+BED="$BPS_DATA/A_Reference/selectedVirus_2013.9a.bed"
 BIN='/gscuser/mwyczalk/src/pindel/pindel'
 
 
