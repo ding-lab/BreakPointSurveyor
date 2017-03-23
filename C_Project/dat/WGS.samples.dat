@@ -1,2 +1,2 @@
 barcode	disease	BAM_path	ref_path
-TCGA-BA-4077-01B-01D-2268-08	HNSC	/home/archive/mwyczalk/BreakPointSurveyor.TCGA_Data/248c12a95d464254bc62d627d3db8152.bam	/home/archive/mwyczalk/BreakPointSurveyor.TCGA_Data/all_sequences.fa
+TCGA-BA-4077-01B-01D-2268-08	HNSC	/home/archive/mwyczalk/BreakPointSurveyor.TCGA_Data/248c12a95d464254bc62d627d3db8152.bam	/home/archive/mwyczalk/BreakPointSurveyor.TCGA_Data/GRCh37-lite-+-selected-virus-2013.9.a/all_sequences.fa

@@ -2,11 +2,10 @@
 
 source ./PindelRP.config
 
-BED="$CWD/dat/selectedVirus_2013.10a.bed"
-BIN='pindel'
-
-# NOTE: if this is a 9a run, need to use 9a BAMs, otherwise Pindel seg faults
-# this is not currently done.
+# This BED file lists just the virus genomes
+# This makes Pindel faster by focusing only on virus/virus and virus/human breakpoints
+BED="pindel_ROI.BA-4077.bed"
+BIN='/gscuser/mwyczalk/src/pindel/pindel'
 
 function process {
     BAR=$1
@@ -15,9 +14,11 @@ function process {
 
     CFG="$OUTD/config/${BAR}.cfg"
     POUT="$OUTD/$BAR"
-    SHCMD="$BIN -f $REF -i $CFG -j $BED -o $POUT"
 
-    echo $SHCMD
+    JBED="-j $BED"
+    SHCMD="$BIN -f $REF -i $CFG $JBED -o $POUT"
+
+    $SHCMD
 }
 
 
