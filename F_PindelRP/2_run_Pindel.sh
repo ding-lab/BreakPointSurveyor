@@ -7,6 +7,7 @@ source ./PindelRP.config
 BED="pindel_ROI.BA-4077.bed"
 BIN='/gscuser/mwyczalk/src/pindel/pindel'
 
+
 function process {
     BAR=$1
     BAM=$2
@@ -15,7 +16,8 @@ function process {
     CFG="$OUTD/config/${BAR}.cfg"
     POUT="$OUTD/$BAR"
 
-    JBED="-j $BED"
+    # -I allows interchromosomal event detection
+    JBED="-j $BED -I "
     SHCMD="$BIN -f $REF -i $CFG $JBED -o $POUT"
 
     $SHCMD
