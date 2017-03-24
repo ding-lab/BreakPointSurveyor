@@ -5,9 +5,8 @@ USE_BSUB=0
 
 source ./Contig.config
 
-# Tigra version used is 0.4.2; see https://bitbucket.org/xianfan/tigra
-
-BIN="/gscuser/mwyczalk/src/tigra-0.4.2/tigra/tigra-sv"
+# Tigra version used is 0.4.3; see https://bitbucket.org/xianfan/tigra
+BIN="tigra-sv"
 
 if [ $USE_BSUB == 1 ]; then    
     # using bsub
