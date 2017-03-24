@@ -2,7 +2,7 @@
 source ./DrawBreakpoint.config
 
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-DATD="$BPS_DATA/H_Contig/dat/BPC"
+DATD="$BPS_DATA/I_Contig/dat/BPC"
 BIN="$BPS_CORE/src/plot/BreakpointDrawer.R"
 
 INDD="$OUTD/GGP.Discordant"
