@@ -4,7 +4,7 @@ source ./DrawDepth.config
 
 FLANKN="50K"
 
-DATD="$BPS_DATA/H_Contig/dat/BPC"
+DATD="$BPS_DATA/I_Contig/dat/BPC"
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/K.dat"
 
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"

@@ -1,0 +1,10 @@
+####################################################################################################
+0	TD 93	NT 0 ""	ChrID gi|310698439|ref|NC_001526.2|	BP 3871	3965	BP_range 3871	3965	Supports 1	1	+ 1	1	- 0	0	S1 2	SUM_MS 60	1	NumSupSamples 1	1	TCGA-BA-4077-01B-01D-2268-08 608 551 1 1 0 0
+ACTGCATCCACAACATTACTGGCGTGCTTTTTGCTTTGCTTTTGTGTGCTTTTGTGTGTCTGCCTATTAATACGTCCGCTGCTTTTGTCTGTGTCTACATAcacaacattactggcgtgctttttgctttgcttttgtgtgcttttgtgtgtctgcctattaatacgtccgctgcttttgtctgtgtctacatacacatcat
+                                                                                             TCTCCATCCACAACAATACTGGCGTGCTTTTTGCTTTGCTTTTGTGTGCTTTTGTGTGTCTGCCTATTAATTCGTCCGCTGCTTTTGTCTGTGTCTACATA
+	+	3574	60	TCGA-BA-4077-01B-01D-2268-08	@C0V04ACXX120821:8:1208:16473:49395/1
+####################################################################################################
+1	TD 98	NT 0 ""	ChrID gi|310698439|ref|NC_001526.2|	BP 6320	6419	BP_range 6320	6419	Supports 1	1	+ 1	1	- 0	0	S1 2	SUM_MS 60	1	NumSupSamples 1	1	TCGA-BA-4077-01B-01D-2268-08 802 785 1 1 0 0
+TATTTGCAAATATCCAGATTATATTAAAATGGTGTCAGAACCATATGGCGACAGCTTATTTTTTTATTTACGAAGGGAACAAATGTTTGTTAGACATTTATttgcaaatatccagattatattaaaatggtgtcagaaccatatggcgacagcttatttttttatttacgaagggaacaaatgtttgttagacatttattta
+                                                                                            GACATCTATTTGCCAATAGCCAGATTATATTAAAATGGTGTCAGAACCATATGGCGACAGCTTAGTTTTTTATTTACGAAGGGAACAAATGTTTGTTAGAC
+	+	6002	60	TCGA-BA-4077-01B-01D-2268-08	@C0V04ACXX120821:4:2111:3694:10889/1
