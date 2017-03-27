@@ -35,7 +35,13 @@ function process_plot {
     RANGE_A="-A ${A_CHROM}:${A_START}-${A_END}" 
     RANGE_B="-B ${B_CHROM}:${B_START}-${B_END}" 
 
-    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -G $IN"
+#    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -G $IN"
+    # -s 1: -c is outside, no fill
+    # -s 16: -c is fill, no outside
+    # -s 19: -c is fill and outside
+    # -s 21: -c is outside, -f is inside of circle
+    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -s 16"
+
     if [ $FLIPAB == 1 ]; then  # defined in ../bps.config
         ARGS="$ARGS -l"
     fi

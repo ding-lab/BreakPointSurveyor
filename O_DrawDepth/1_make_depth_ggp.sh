@@ -46,7 +46,7 @@ function process_chrom {
 
     ARGS=" -M ${CHROM}:${START}-${END} \
            -u $NUMREADS \
-           -n $READLEN -a 0.1 "
+           -n $READLEN -a 0.1 -s 16"
 
     if [ $CHROM_ID == 'B' ]; then
         ARGS="$ARGS -B"

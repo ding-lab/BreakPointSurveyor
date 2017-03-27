@@ -29,7 +29,8 @@ function process_plot {
     mkdir -p $OUTDDD
     OUT="$OUTDDD/${NAME}.Breakpoints.ggp"  
 
-    ARGS=" -a 0.5 -c gray50 -f gray50 -z 0 -p region"
+    #ARGS=" -a 0.5 -c gray50 -f gray50 -z 0 -p region"
+    ARGS=" -a 0.5 -c NA -f gray50 -z 0 -p region"
 
     RANGE_A="-A ${A_CHROM}:${A_START}-${A_END}" 
     RANGE_B="-B ${B_CHROM}:${B_START}-${B_END}" 

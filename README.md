@@ -43,6 +43,11 @@ _Mandatory in_ `Synthetic` _branch._
 
 [See instructions here](https://github.com/samtools/bcftools).  Needed for parsing 1000SV VCFs.  _Optional._ 
 
+#### ImageMagick
+
+[See instructions here](https://www.imagemagick.org/script/download.php).  Needed for converting PDF images to PNG.  _Optional._
+
+**TODO** Install this on DC2, make updated PNGs for all output
 
 ### Installing BPS Workflow
 
