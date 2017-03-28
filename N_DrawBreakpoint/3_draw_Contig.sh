@@ -41,6 +41,12 @@ function process_plot {
     RANGE_A="-A ${A_CHROM}:${A_START}-${A_END}" 
     RANGE_B="-B ${B_CHROM}:${B_START}-${B_END}" 
 
+    # Define how the point looks here:
+    #   See [BreakpointSurveyor-Core]/src/plot/BreakpointDrawer.R for details
+    # -a: transparency (0-1)
+    # -s: shape - see http://www.cookbook-r.com/Graphs/Shapes_and_line_types/
+    # -z: size
+    # -c: color
     ARGS=" -p point -a 0.75 -s 3 -z 4 -c #4DAF4A "
     if [ $FLIPAB == 1 ]; then   # defined in ../bps.config
         ARGS="$ARGS -l"

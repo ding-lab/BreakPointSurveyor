@@ -1,5 +1,16 @@
 # PlotList
 
+**TODO**
+
+Provide step-by-step example of how might implement new datasets into PlotList
+generation.  Considerations
+
+* May be BPC or BPR - point out 1000SV branch has BPC implementation
+  * Change name of steps in these two branches to reflect the BPC/BPR distinction
+* May or may not need clustering
+  * Synthetic branch just creates the PlotList file de novo
+    * Maybe have a script to generate PlotList in Synthetic?
+
 *Identify target regions for further processing and visualization*
 
 Defining the PlotList is a critical step for downstream plotting and analysis:

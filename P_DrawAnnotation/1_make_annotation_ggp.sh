@@ -3,8 +3,6 @@
 
 source ./DrawAnnotation.config
 
-FLANKN="50K"
-
 DATD="$BPS_DATA/K_ReadDepth/dat"
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 BIN="$BPS_CORE/src/plot/AnnotationDrawer.R"
