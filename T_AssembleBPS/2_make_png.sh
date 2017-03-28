@@ -9,7 +9,7 @@ BIN="convert"
 function process {
     DAT=$1
     OUT=$2
-    $BIN -density 300 -resize 50% $DAT $OUT
+    $BIN -flatten -density 300 -resize 50% $DAT $OUT
 
     echo Written to $OUT
 

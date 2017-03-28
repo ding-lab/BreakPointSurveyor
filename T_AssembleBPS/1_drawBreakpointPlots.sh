@@ -38,7 +38,7 @@ function process_plot {
 
     TITLE="$BAR Breakpoint Surveyor Structure Plot"
 
-    ARGS="-c $A_CHROM -C $B_CHROM"
+    ARGS="-c $A_CHROM -C $B_CHROM -b 12 "
     Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
 
 }
