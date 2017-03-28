@@ -40,7 +40,7 @@ function process_plot {
     # -s 16: -c is fill, no outside
     # -s 19: -c is fill and outside
     # -s 21: -c is outside, -f is inside of circle
-    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -s 16"
+    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -s 16 -G $IN"
 
     if [ $FLIPAB == 1 ]; then  # defined in ../bps.config
         ARGS="$ARGS -l"
