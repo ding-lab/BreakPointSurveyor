@@ -11,7 +11,7 @@
 # Turn on queuing by setting USE_BSUB=1
 USE_BSUB=0
 
-source ./Discordant.config
+source ./BPS_Stage.config
 
 if [ $USE_BSUB == 1 ]; then    
     # using bsub

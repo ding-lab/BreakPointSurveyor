@@ -1,7 +1,7 @@
 # Obtain read depth from BAM files.  Evaluate depth for range.A and range.B
 # for every line in PLOT_LIST
 
-source ./ReadDepth.config
+source ./BPS_Stage.config
 
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 

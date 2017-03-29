@@ -1,7 +1,7 @@
 # See README for details of processing here.
 # From, /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/UnifiedVirus2/U_SAMBreakpoints/2_make_pSBP.sh
 
-source ./Contig.config
+source ./BPS_Stage.config
 BIN="/usr/bin/python2.7 $BPS_CORE/src/contig/SAMReader.py"
 
 DATD="$OUTD/SAM" 

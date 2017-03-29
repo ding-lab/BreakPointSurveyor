@@ -2,7 +2,7 @@
 
 # Writes dat/BAR.PindelRP.BPR.dat for each sample
 
-source ./PindelRP.config
+source ./BPS_Stage.config
 
 BIN="$BPS_CORE/src/analysis/Pindel_RP.Reader.R"
 

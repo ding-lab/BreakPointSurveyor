@@ -2,7 +2,7 @@
 # Note that assuming virus breakpoint
 # old name rSBP = new name BPC
 
-source ./Contig.config
+source ./BPS_Stage.config
 
 BIN="$BPS_CORE/src/contig/SBPprocessor.R"
 

@@ -1,7 +1,7 @@
 # Create GGP objects with read depth information
 #   two files for every row in PlotList
 
-source ./DrawDepth.config
+source ./BPS_Stage.config
 
 FLANKN="50K"
 

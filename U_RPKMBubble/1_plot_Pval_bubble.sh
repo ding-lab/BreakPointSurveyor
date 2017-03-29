@@ -1,6 +1,6 @@
 # Create visual representation of per-gene Pval data 
 # Breakpoint positions given by Chrom A
-source ./RPKMBubble.config
+source ./BPS_Stage.config
 DATD="$BPS_DATA/L_Expression/dat"
 
 BIN="$BPS_CORE/src/plot/PvalBubblePlotter.R"

@@ -1,6 +1,6 @@
 # Add CBS (circular binary segmentation) annotation to depth plots
 
-source ./DrawDepth.config
+source ./BPS_Stage.config
 
 FLANKN="50K"
 

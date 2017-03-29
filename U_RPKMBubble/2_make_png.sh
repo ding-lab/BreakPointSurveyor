@@ -1,6 +1,6 @@
 # Create visual representation of per-gene Pval data 
 # Breakpoint positions given by Chrom A
-source ./RPKMBubble.config
+source ./BPS_Stage.config
 
 # ImageMagick https://www.imagemagick.org/script/download.php
 BIN="convert"

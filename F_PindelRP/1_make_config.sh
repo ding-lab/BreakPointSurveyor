@@ -1,6 +1,6 @@
 # Create Pindel configuration files which give the BAM path
 
-source ./PindelRP.config
+source ./BPS_Stage.config
 
 OUTDD="$OUTD/config" 
 mkdir -p $OUTDD

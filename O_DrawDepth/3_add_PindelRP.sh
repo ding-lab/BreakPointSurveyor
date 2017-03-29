@@ -1,6 +1,6 @@
 # Add Pindel_RP annotation to depth plots
 
-source ./DrawDepth.config
+source ./BPS_Stage.config
 
 FLANKN="50K"
 

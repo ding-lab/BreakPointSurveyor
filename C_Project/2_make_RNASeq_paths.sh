@@ -1,6 +1,6 @@
 # List of paths to aligned tumor RNA-Seq BAM files
 
-source ./Project.config
+source ./BPS_Stage.config
 
 OUT="$OUTD/RNA-Seq.samples.dat"
 

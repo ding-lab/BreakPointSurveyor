@@ -3,7 +3,7 @@
 
 # From: /gscmnt/gc7210/info/medseq/maw/Virus/Virus_2013.9a/analysis/Genbank/virus_codes.dat
 
-source ./ExonGene.config
+source ./BPS_Stage.config
 
 OUT="$OUTD/virus_names.dat"
 

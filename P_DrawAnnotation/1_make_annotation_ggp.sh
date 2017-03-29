@@ -1,7 +1,7 @@
 # create two gene annotation GGP files for every row in PlotList.dat
 # Using annotation from Ensembl 84, for GRCh38
 
-source ./DrawAnnotation.config
+source ./BPS_Stage.config
 
 DATD="$BPS_DATA/K_ReadDepth/dat"
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"

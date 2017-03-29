@@ -6,7 +6,7 @@
 # more than 5 integration events.  Keeping this code all the same for future workflows.
 
 
-source ./PlotList.config
+source ./BPS_Stage.config
 # Retain top 5 clusters per sample to use to create PlotList
 NCLUST=5
 

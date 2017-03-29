@@ -3,7 +3,7 @@
 # Turn queuing on/off with USE_BSUB=1/0
 USE_BSUB=0
 
-source ./Contig.config
+source ./BPS_Stage.config
 
 # Tigra version used is 0.4.3; see https://bitbucket.org/xianfan/tigra
 BIN="tigra-sv"

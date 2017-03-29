@@ -11,7 +11,7 @@
 # File $OUTD/exons.ensXX.bed is generated, which is used to illustrate gene
 # positions in BreakpointSurveyor plot.
 
-source ./ExonGene.config
+source ./BPS_Stage.config
 set +o posix
 
 TMP="$OUTD/tmp"
