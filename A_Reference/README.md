@@ -1,7 +1,23 @@
 #Reference
 *Construct Human + Virus reference*
 
+**TODO** Clean up documentation, explain origin of Human + Virus reference.  Not kept here except for .fai file
+
+Contents here:
+
+* TODO: Bring in FAI for human+virus reference here from GSC
+
+Source of `dat/GRCh37_selectVirus_9a.fa.fai`:
+linus301.gsc.wustl.edu:/home/archive/mwyczalk/BreakPointSurveyor.TCGA_Data/GRCh37-lite-+-selected-virus-2013.9.a/all_sequences.fa.fai
+
+Source of `dat/selectedVirus_2013.9a.bed`:
+TODO
+
+We currently do not construct the reference here, but notes for doing it are below.
+
 [GRCh37-lite information](http://genome.wustl.edu/pub/reference/GRCh37-lite/README.txt)
+
+ftp://genome.wustl.edu/pub/reference/GRCh37-lite/GRCh37-lite.fa.gz
 
 Old notes below from `/gscuser/mwyczalk/projects/Virus/Virus_2013.9a/Reference`
 
