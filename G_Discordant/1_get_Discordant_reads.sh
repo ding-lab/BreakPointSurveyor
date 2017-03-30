@@ -21,14 +21,18 @@ if [ $USE_BSUB == 1 ]; then
     echo "# This file created automatically by $0" >  $BSUBNAM
 fi  
 
+# Not tracking sam files due to TCGA restrictions
+UNTRACKED_OUTD="dat.untracked"
+mkdir -p $UNTRACKED_OUTD
+
 function process {
     BAR=$1
     BAM=$2
 
     # First, print all viral reads (into VOUT)
     # Then, process VOUT to get just the discordant reads (written to DOUT)
-    VOUT="$OUTD/virus_$BAR.sam"
-    DOUT="$OUTD/discordant_$BAR.sam"
+    VOUT="$UNTRACKED_OUTD/virus_$BAR.sam"
+    DOUT="$UNTRACKED_OUTD/discordant_$BAR.sam"
 
     if [ -f $VOUT ]; then # this is a safety thing so data not clobbered.  It can be discarded if necessary
         echo Skipping $BAR
