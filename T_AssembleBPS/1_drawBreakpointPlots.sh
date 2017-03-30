@@ -1,5 +1,5 @@
 # Combine GGP panels and draw a Breakpoint Surveyor PDF figure for each line in PlotList
-source ./AssembleBPS.config
+source ./BPS_Stage.config
 
 DATD="$BPS_DATA/K_ReadDepth/dat"
 

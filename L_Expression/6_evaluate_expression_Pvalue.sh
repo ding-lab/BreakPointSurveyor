@@ -1,14 +1,13 @@
 # Calcuate p-values representing degree of over/under-expression of 
 # case relative to controls.  See notes in ExonExpressionAnalyzer.R
-#
-# TODO: Describe algorithm 
-
+# and ./AlgorithmDetails.md
+# 
 # Support provided for cluster queuing system (bsub)
 # Turn queuing on/off with USE_BSUB=1/0
 USE_BSUB=1
 
 
-source ./Expression.config
+source ./BPS_Stage.config
 
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 BIN="$BPS_CORE/src/analysis/ExonExpressionAnalyzer.R"

@@ -5,7 +5,7 @@
 # Writes e.g., $DAT/BED/HNSC.roi.bed
 
 
-source ./Expression.config
+source ./BPS_Stage.config
 
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 FLANKN="1M"

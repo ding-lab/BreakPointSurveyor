@@ -1,7 +1,7 @@
 # Create visual representation of per-gene Pval data 
 # Breakpoint positions given by Chrom A
-source ./RPKMBubble.config
-DATD="$BPS_DATA/L_Expression/dat"
+source ./BPS_Stage.config
+DATD="$BPS_DATA/M_RSEM_Expression/dat"
 
 BIN="$BPS_CORE/src/plot/PvalBubblePlotter.R"
 
@@ -36,7 +36,7 @@ SAM=`echo $BAR | cut -c 1-15` # TCGA Sample Name, E.g., TCGA-BA-4077
 
 SHORT_NAM=`echo $BAR | cut -f 2-3 -d-`  # TCGA "Short Name", e.g., BA-4077
 
-OUT="$OUTD/${NAM}.FDR.bubble.pdf"
+OUT="$OUTD/${NAM}.RSEM.FDR.bubble.pdf"
 DAT="$DATD/FDR/${NAM}.gene.pval.FDR.dat"
 
 if [ ! -f $DAT ]; then

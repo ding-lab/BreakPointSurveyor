@@ -1,6 +1,6 @@
 # List of paths to aligned BAM files
 
-source ./Project.config
+source ./BPS_Stage.config
 
 # SAMPLE_LIST is defined in bps.config so that it is uniform across all stages
 

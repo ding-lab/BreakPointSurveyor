@@ -6,11 +6,17 @@
 # Number of mapped reads and domain size are reported by coverageBed (columns 5 and 7, resp)
 # and number of mapped reads is taken from the flagstat file.
 
+# One output file per sample,  e.g. dat/RPKM/TCGA-CN-4737-01A-01R-1436-07.rpkm 
+# Output format: 
+# ( chrom   start       end         gene    RPKM  )
+#   chr14   68026324    68026408    PLEKHH1 0.574461
+# Where each row indicates RPKM value per exon.  Exons of same gene must have same gene name
+
 # Support provided for cluster queuing system (bsub)
 # Turn queuing on/off with USE_BSUB=1/0
 USE_BSUB=1
 
-source ./Expression.config
+source ./BPS_Stage.config
 OUTDD="$OUTD/RPKM"
 mkdir -p $OUTDD
 
@@ -38,8 +44,8 @@ function process {
     # coverageBed output:
     # chr9    140335737   140335901   ENTPD8  0   0   164 0.0000000
 
-    # TODO: follow technique in ../G_Discordant/1_get_Discordant_reads.sh to first construct a command, then
-    # execute it either here or in bsub
+    # TODO: rewrite below to follow technique in ../G_Discordant/1_get_Discordant_reads.sh for more standard bsub implementation:
+    # first construct a command, then execute it either here or in bsub
     if [ $USE_BSUB == 0 ]; then
         echo Running $BAR
         samtools view -b -L $BED $BAM | bedtools bamtobed -split -i stdin | coverageBed -a stdin -b $BED | \
@@ -53,7 +59,6 @@ function process {
         echo $CMD > $SCRIPT
         echo "bsub -oo bsub/out-4.$BAR.bsub sh $SCRIPT" >> $BSUBOUT
     fi
-    exit
 }
 
 while read l

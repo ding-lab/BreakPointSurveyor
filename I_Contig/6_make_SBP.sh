@@ -1,7 +1,7 @@
 # See README for details of processing here.
 # From, /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/UnifiedVirus2/U_SAMBreakpoints/3_make_SBP.sh
 
-source ./Contig.config
+source ./BPS_Stage.config
 
 BIN="$BPS_CORE/src/contig/BreakPointParser.R"
 

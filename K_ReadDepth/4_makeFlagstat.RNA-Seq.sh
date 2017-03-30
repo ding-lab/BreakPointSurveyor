@@ -1,7 +1,7 @@
 # Generate flagstat files summarizing BAM read counts for RNA-Seq data.
 # See 2_makeFlagstat.sh for details
 
-source ./ReadDepth.config
+source ./BPS_Stage.config
 
 RNA_SAMPLE_LIST="$BPS_DATA/C_Project/dat/RNA-Seq.samples.dat"
 

@@ -1,6 +1,6 @@
 # Evaluate flagstat statistics for RNA-Seq data.  See 3_ for details.
 
-source ./ReadDepth.config
+source ./BPS_Stage.config
 
 RNA_SAMPLE_LIST="$BPS_DATA/C_Project/dat/RNA-Seq.samples.dat"
 

@@ -7,7 +7,7 @@
 # One line from Pindel BPR is one line of tigra CTX input.  Use average from Pindel positions for CTX position.
 #   Note that we could use Pindel RP directly, but will read BPR file since that performs filtering and normalization of breakpoints
 
-source ./Contig.config
+source ./BPS_Stage.config
 #OUT="$OUTD/Pindel_RP.dat"
 BIN="$BPS_CORE/src/analysis/TigraCTXMaker.R"
 

@@ -1,6 +1,6 @@
 # Start Pindel runs
 
-source ./PindelRP.config
+source ./BPS_Stage.config
 
 # This BED file lists just the virus genomes
 # This makes Pindel faster by focusing only on virus/virus and virus/human breakpoints

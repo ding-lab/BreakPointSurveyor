@@ -3,7 +3,7 @@
 # SAM files to a hex string using an MD5 hash; matching QUNAMEs will remain matching,
 # which is important for the processing here.
 
-source ./Contig.config
+source ./BPS_Stage.config
 BIN="/usr/bin/python2.7 $BPS_CORE/src/contig/qname_convert.py"
 
 DATD="$OUTD/BWA" # BWA-mem output SAM files:

@@ -1,7 +1,7 @@
 #GTF="dat/Homo_sapiens.GRCh37.75.gtf"
 #OUT="dat/genes.ens75.bed"
 
-source ./ExonGene.config
+source ./BPS_Stage.config
 set +o posix
 
 BIN="$BPS_CORE/src/annotation/GTFFilter.py"

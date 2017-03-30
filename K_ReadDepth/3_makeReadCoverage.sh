@@ -16,7 +16,7 @@
     #2136932 + 0 with mate mapped to a different chr
     #1091817 + 0 with mate mapped to a different chr (mapQ>=5)
 
-source ./ReadDepth.config
+source ./BPS_Stage.config
 
 OUT="$OUTD/flagstat.dat"
 

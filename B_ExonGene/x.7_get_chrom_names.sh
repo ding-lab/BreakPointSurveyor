@@ -8,7 +8,7 @@
 #
 # Here, just download the mapping file
 
-source ./ExonGene.config
+source ./BPS_Stage.config
 
 FN="GRCh38_ensembl2gencode.txt"
 OUT="$OUTD/$FN"

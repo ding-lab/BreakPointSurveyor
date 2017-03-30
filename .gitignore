@@ -2,4 +2,4 @@ bps.config
 .DS_Store
 flagstat/
 tmp/
-*.sam
+dat.untracked

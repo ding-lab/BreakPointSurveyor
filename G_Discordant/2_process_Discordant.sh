@@ -2,7 +2,7 @@
 
 # Writes dat/BPC/BAR.Discordant.BPC.dat for each sample
 
-source ./Discordant.config
+source ./BPS_Stage.config
 
 OUTDD="$OUTD/BPC"
 mkdir -p $OUTDD

@@ -5,7 +5,7 @@
 
 USE_BSUB=0
 
-source ./Contig.config
+source ./BPS_Stage.config
 BWA="/usr/bin/bwa0.7.10 mem"
 
 mkdir -p $OUTD/BWA

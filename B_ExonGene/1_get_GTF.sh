@@ -1,5 +1,5 @@
 # Download Ensembl GTF file for a given release
-source ./ExonGene.config
+source ./BPS_Stage.config
 
 GTF="Homo_sapiens.GRCh37.75.gtf.gz"
 SRC="ftp.ensembl.org/pub/release-75/gtf/homo_sapiens/$GTF"

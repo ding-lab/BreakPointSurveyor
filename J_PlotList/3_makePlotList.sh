@@ -21,7 +21,7 @@
 
 # We collect all PlotList lines for all samples into one PlotList file.
 
-source ./PlotList.config
+source ./BPS_Stage.config
 
 BIN="$BPS_CORE/src/util/PlotListMaker.py"
 
