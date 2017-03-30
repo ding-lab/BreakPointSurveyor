@@ -1,10 +1,11 @@
-# Create BED files based on PlotList regions with given "flank", or padding around integration event.
-# This region is independent of the "50K" region in PlotList, and is used to identify genes whose expression
+# Create BED file of exons in a region around integration event
+# This region (unrelated to the "50K" region in PlotList) is used to identify genes whose expression
 # will be evaluated.
-# One BED file is created for every integration event on human chrom.  
-# writes e.g., $DAT/BED/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.A.1M.bed
+# One BED file with multiple exons is created for every integration event on human chrom.  
+# writes e.g., dat/BED/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.B.1M.bed
+#   14	67656109	67656286	FAM71D	.	+
 
-source ./Expression.config
+source ./BPS_Stage.config
 
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 
