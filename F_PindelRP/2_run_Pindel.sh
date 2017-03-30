@@ -4,7 +4,7 @@ source ./BPS_Stage.config
 
 # This BED file lists just the virus genomes
 # This makes Pindel faster by focusing only on virus/virus and virus/human breakpoints
-BED="$BPS_DATA/A_Reference/selectedVirus_2013.9a.bed"
+BED="$BPS_DATA/A_Reference/dat/GRCh37_selectVirus_9a.bed"
 BIN='/gscuser/mwyczalk/src/pindel/pindel'
 
 
