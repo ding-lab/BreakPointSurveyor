@@ -108,13 +108,14 @@ Below are stages associated with the TCGA_Virus.Lite workflow and their descript
 * **[I_Contig](I_Contig/README.md)**: Create contigs using Tigra-SV and realign them
 * **[J_PlotList](J_PlotList/README.md)**: Identify target regions for further processing and visualization
 * **[K_ReadDepth](K_ReadDepth/README.md)**: Evaluate read depth in target regions, obtain BAM file statistics for both WGS and RNA-Seq data
-* **[L_Expression](L_Expression/README.md)**: Analyze RNA-Seq expression in vicinity of integration events. (`master` branch only)
+* **[L_Expression](L_Expression/README.md)**: Analyze expression in vicinity of integration events using RNA-Seq data. (`master` branch only)
+* **[M_RPKM_Expression](M_RPKM_Expression/README.md)**: Analyze expression in vicinity of integration events using TCGA RPKM data. (`master` branch only)
 * **[N_DrawBreakpoint](N_DrawBreakpoint/README.md)** Plot breakpoint coordinates from various predictors to breakpoint panel GGP.
 * **[O_DrawDepth](O_DrawDepth/README.md)** Create read depth/copy number panel GGP and add breakpoint predictions
 * **[P_DrawAnnotation](P_DrawAnnotation/README.md)** Create annotation panel GGP showing genes and exons
 * **[Q_DrawHistogram](Q_DrawHistogram/README.md)**: Create histogram panel GGP showing distribution of read depth
 * **[T_AssembleBPS](T_AssembleBPS/README.md)**: Assemble GGP panels into BPS structure plot and save as PDF
-* **[U_RPKMBubble](U_RPKMBubble)**: Create BPS Expression plot based on expression P-values and save as PDF (`master` branch only)
+* **[U_PlotExpression](U_PlotExpression/README.md)**: Create BPS Expression plot based on expression P-values and save as PDF (`master` branch only)
 
 ### Output
 
