@@ -4,7 +4,7 @@ source ./BPS_Stage.config
 
 OUT="$OUTD/RNA-Seq.samples.dat"
 
-echo -e "barcode\tdisease\tBAM_path" > $OUT
+printf "barcode\tdisease\tBAM_path\n" > $OUT
 cat <<EOF | sort | tr ' ' '\t' >> $OUT
 TCGA-BA-4077-01B-01R-1436-07 HNSC /gscmnt/gc13000/info/alignment_data/imported/2891007355/all_sequences.bam
 TCGA-CV-6942-01A-21R-2016-07 HNSC /gscmnt/gc8000/info/alignment_data/imported/2892780600/all_sequences.bam

@@ -33,7 +33,7 @@ function process {
     # Bedtools slop expands range of each breakpoint.  This creates the region of interest
     # bedtools intersect with genes gives list of genes in region of interest
     # we extract genes and use that as input into grep of all exons
-    echo -e "$CHR\t$START\t$END" | bedtools slop -g $FAI -i stdin -b $FLANK | bedtools intersect -a $GENES -b stdin | cut -f 4 | fgrep -w -f - $EXONS | bedtools sort -i stdin > $OUT
+    printf "$CHR\t$START\t$END\n" | bedtools slop -g $FAI -i stdin -b $FLANK | bedtools intersect -a $GENES -b stdin | cut -f 4 | fgrep -w -f - $EXONS | bedtools sort -i stdin > $OUT
     echo Written to $OUT
 }
 

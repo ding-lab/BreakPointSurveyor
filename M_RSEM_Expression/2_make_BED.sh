@@ -39,7 +39,7 @@ function process {
     # this is then written to RSEM BED file
 
     # We want to output the entire gene if any of it intersects with the expanded breakpoint region
-    echo -e "$CHR\t$START\t$END" | bedtools slop -g $FAI -i stdin -b $FLANK | bedtools intersect -wa -a $GENES -b stdin > $OUT
+    printf "$CHR\t$START\t$END\n" | bedtools slop -g $FAI -i stdin -b $FLANK | bedtools intersect -wa -a $GENES -b stdin > $OUT
     echo Written to $OUT
 }
 

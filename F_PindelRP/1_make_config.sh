@@ -13,7 +13,7 @@ function process {
 
     OUT="$OUTDD/${BAR}.cfg"
 
-    echo -e  "${BAM}\t500\t${BAR}" > $OUT
+    printf "${BAM}\t500\t${BAR}\n" > $OUT
     echo Written to $OUT
 }
 
