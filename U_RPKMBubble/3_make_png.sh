@@ -26,9 +26,12 @@ while read L; do
     BAR=`echo $L | awk '{print $1}'`
     NAM=`echo $L | awk '{print $2}'`
 
-    DAT="$OUTD/${NAM}.FDR.bubble.pdf"
-    OUT="$OUTD/${NAM}.FDR.bubble.png"
+    DAT="$OUTD/${NAM}.RSEM.FDR.bubble.pdf"
+    OUT="$OUTD/${NAM}.RSEM.FDR.bubble.png"
+    process $DAT $OUT
 
+    DAT="$OUTD/${NAM}.RPKM.FDR.bubble.pdf"
+    OUT="$OUTD/${NAM}.RPKM.FDR.bubble.png"
     process $DAT $OUT
 
 done < $PLOT_LIST
