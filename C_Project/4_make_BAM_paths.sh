@@ -1,7 +1,7 @@
 
-source ./Project.config
+source ./BPS_Stage.config
 
-OUT="$OUTD/WGS.samples.dat"
+OUT="$OUTD/samples.dat"
 
 echo -e "barcode\tdisease\tBAM_path\tref_path" > $OUT
 cat <<EOF | sort | tr ' ' '\t' >> $OUT

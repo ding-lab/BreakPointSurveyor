@@ -1,7 +1,7 @@
 # Align synthetic reads to chr9/chr22 reference
 # and write to BAM file
 
-source ./Project.config
+source ./BPS_Stage.config
 BWA="$HOME/pkg/bwa-0.7.15/bwa mem"
 
 

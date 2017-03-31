@@ -1,5 +1,5 @@
 
-source ./Project.config
+source ./BPS_Stage.config
 
 OUT="$OUTD/synthetic.fa"
 

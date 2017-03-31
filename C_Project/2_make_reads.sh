@@ -1,6 +1,6 @@
 # Create synthetic reads based on FASTA file
 
-source ./Project.config
+source ./BPS_Stage.config
 
 # wgsim is distributed with samtools
 BIN="wgsim"
