@@ -1,16 +1,18 @@
 # ExonGene
 
-*Reference-specific analysis and files.*
+*Reference-specific gene and exon definitions.*
 
-This directory contains gene and exon definitions based on Ensembl releases 75 and 84 which are
-used for gene/exon annotation plots, as well as a workflow to recreate it for other Ensembl versions.
+**NOTE** 
+In most cases you do not need to do anything here.  Simply use gene and
+exon definitions based on Ensembl releases XX=75 (GRCh37) or XX=84 (GRCh38):
+* `dat/genes.ensXX.bed` contains gene definitions.  
+* `dat/exons.ensXX.bed` contains exon definitions.  
+
 This workflow is necessary only if gene/exon definitions need to be recreated for other Ensembl
-versions or references.
+versions or references.  Note that workflow is not fully developed, and alternative approaches 
+may be better.
 
-* `dat/genes.ensXX.bed` contains gene definitions
-* `dat/exons.ensXX.bed` contains exon definitions
-
-Workflow parses Ensemble GTF file directly to pull out genes and exons.  Details of the selection process
+Here, w;orkflow parses Ensemble GTF file directly to pull out genes and exons.  Details of the selection process
 are in `GTFFilter.py`.  They are ad hoc and vary according to ensembl version.  There may be better and
 more standard ways to obtain gene and exon definitions, which would replace the work here.
 

@@ -2,8 +2,6 @@
 # and write to BAM file
 
 source ./BPS_Stage.config
-BWA="$HOME/pkg/bwa-0.7.15/bwa mem"
-
 
 mkdir -p $OUTD/BWA
 
@@ -14,8 +12,7 @@ function process {
     OUT=$4
 
 # bwa mem [options] <idxbase> <in1.fq> [in2.fq]
-    CMD="$BWA $REF $DAT1 $DAT2" 
-
+    CMD="$BWA mem $REF $DAT1 $DAT2" 
 
     echo Executing: $CMD
     echo Writing to $OUT
@@ -28,7 +25,7 @@ function process {
 
 DAT1="dat/synthetic.reads1.fq"
 DAT2="dat/synthetic.reads2.fq"
-REF="../A_Reference/dat/reference.chr9_chr22.fa"
+REF="../A_Reference/dat.untracked/reference.chr9_chr22.fa"
 OUT="dat/synthetic.BWA.bam"
 
 process $DAT1 $DAT2 $REF $OUT

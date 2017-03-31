@@ -9,3 +9,7 @@ After reference is created, make associated index files.  This requires bwa and 
 
 Because reference is relatively large, store in an untracked directory
 
+Timing:
+
+* Step 1 requires download of about 50Mb
+* Step 2 takes about 5 minutes

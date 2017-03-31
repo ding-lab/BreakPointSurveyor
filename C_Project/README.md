@@ -12,3 +12,5 @@ Constructing a synthetic BAM to demonstrate simple breakpoint
 3. Use BWA to realign these reads to a reference which contains chr9 and chr22.  This then generates
    a BAM file which will be analyzed in subsequent workflows
 4. Write samples.dat
+
+Step 3 is about 10 sec
