@@ -1,11 +1,9 @@
 # Create GGP object with read depth histogram
 
 source ./BPS_Stage.config
-FLANKN="50K"
 
 DATD_DEP="$BPS_DATA/K_ReadDepth/dat"
 DATD_PL="$BPS_DATA/J_PlotList/dat"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.${FLANKN}.dat"
 
 BIN="$BPS_CORE/src/plot/HistogramDrawer.R"
 
@@ -28,8 +26,8 @@ function process_chrom {
     A_CHROM=$3
     B_CHROM=$4
 
-    DEPA="$DATD_DEP/${BAR}/${NAME}.A.${FLANKN}.DEPTH.dat"
-    DEPB="$DATD_DEP/${BAR}/${NAME}.B.${FLANKN}.DEPTH.dat"
+    DEPA="$DATD_DEP/${BAR}/${NAME}.A.DEPTH.dat"
+    DEPB="$DATD_DEP/${BAR}/${NAME}.B.DEPTH.dat"
     LABELS="-e $A_CHROM,$B_CHROM"
 
     # barcode	filesize	read_length	reads_total	reads_mapped
@@ -53,7 +51,7 @@ function process_chrom {
 
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
-    OUT="$OUTDDD/${NAME}.${FLANKN}.histogram.ggp"
+    OUT="$OUTDDD/${NAME}.histogram.ggp"
 
     ARGS="-d -u $NUMREADS -n $READLEN $LABELS $HISTMAX"
 
