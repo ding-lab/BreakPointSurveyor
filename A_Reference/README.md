@@ -1,7 +1,5 @@
 #Reference
 
-* Define path to BWA in `2_prepare_reference.sh`
-
 Creating custom reference for Synthetic analysis, consisting only of GRCh38 chromosomes 9 and 22.
 This reference is smaller and demonstrates custom reference generation.
 
