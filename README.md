@@ -10,6 +10,7 @@ Three workflows are represented as git branches:
 * `1000SV`: Example analysis of discordant reads on publicly available 1000 Genomes sample NA19420
 * `Synthetic`: Create and analyze inter-chromosomal breakpoint
 
+Mention FLIPAB=1 here
 
 ## Getting Started
 ### Prerequisites
