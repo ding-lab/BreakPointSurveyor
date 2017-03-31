@@ -15,6 +15,9 @@ Mention FLIPAB=1 here
 ## Getting Started
 ### Prerequisites
 
+#### python
+Needs to be (currently) 2.7
+
 #### BreakPointSurveyor-Core
 Install [BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor-Core) and its prerequisites.  _Required._
 
