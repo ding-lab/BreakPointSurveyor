@@ -16,7 +16,7 @@
     #2136932 + 0 with mate mapped to a different chr
     #1091817 + 0 with mate mapped to a different chr (mapQ>=5)
 
-source ./ReadDepth.config
+source ./BPS_Stage.config
 
 OUT="$OUTD/flagstat.dat"
 
@@ -45,11 +45,11 @@ function parse_flagstat {
 
     BAMF=`readlink -f $BAM`   # BAMF is canonical filename, with all links dereferenced.
     FILESIZE=`stat -c%s $BAMF`
-    echo -e "${BAR}\t${FILESIZE}\t${READLEN}\t${TOT}\t${MAPPED}" >> $OUT
+    printf "${BAR}\t${FILESIZE}\t${READLEN}\t${TOT}\t${MAPPED}\n" >> $OUT
 }
 
 
-echo -e "barcode\tfilesize\tread_length\treads_total\treads_mapped" > $OUT
+printf "barcode\tfilesize\tread_length\treads_total\treads_mapped\n" > $OUT
 
 while read l; do
 

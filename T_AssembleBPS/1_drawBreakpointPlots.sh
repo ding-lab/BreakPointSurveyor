@@ -1,5 +1,5 @@
 # Combine GGP panels and draw a Breakpoint Surveyor PDF figure for each line in PlotList
-source ./AssembleBPS.config
+source ./BPS_Stage.config
 
 DATD="$BPS_DATA/K_ReadDepth/dat"
 
@@ -38,7 +38,7 @@ function process_plot {
 
     TITLE="$BAR Breakpoint Surveyor Structure Plot"
 
-    ARGS="-c $A_CHROM -C $B_CHROM"
+    ARGS="-c $A_CHROM -C $B_CHROM -b 12 "
     Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
 
 }

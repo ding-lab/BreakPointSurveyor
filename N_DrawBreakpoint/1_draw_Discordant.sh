@@ -1,5 +1,5 @@
 # Append Discordant read data to Breakpoint Coordinates GGP files
-source ./DrawBreakpoint.config
+source ./BPS_Stage.config
 
 PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 DATD="$BPS_DATA/G_Discordant/dat/BPC"
@@ -35,12 +35,10 @@ function process_plot {
     RANGE_A="-A ${A_CHROM}:${A_START}-${A_END}" 
     RANGE_B="-B ${B_CHROM}:${B_START}-${B_END}" 
 
-#    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -G $IN"
-    # -s 1: -c is outside, no fill
-    # -s 16: -c is fill, no outside
-    # -s 19: -c is fill and outside
-    # -s 21: -c is outside, -f is inside of circle
-    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -s 16"
+#   NOTE: add "-G $IN" to ARGS if adding to an existing GGP file
+
+    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -s 16"  
+
     if [ $FLIPAB == 1 ]; then  # defined in ../bps.config
         ARGS="$ARGS -l"
     fi

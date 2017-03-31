@@ -12,8 +12,11 @@ BPS_CORE="/path/to/BreakpointSurveyor"
 
 # Define Data layer path.  
 
-# Data may be written in directory dat/ relative to each stage directory 
-# or in a separate data directory
+# BPS_DATA points to data directory.  Defining `BPS_DATA=".."` (the default)
+# will write the data from a given stage (e.g., A_Project) into a data directory 
+# in that stage.  Alternatively, can define BPS_DATA to point to a separate directory 
+# tree, which allows the Workflow and Data layers to be independently located.
+
 BPS_DATA=".."  # ./dat relative to stage directory, default for Lite
 #
 #BPS_DATA="/path/to/Data"

@@ -1,6 +1,6 @@
 # Create GGP object with read depth histogram
 
-source ./DrawHistogram.config
+source ./BPS_Stage.config
 FLANKN="50K"
 
 DATD_DEP="$BPS_DATA/K_ReadDepth/dat"

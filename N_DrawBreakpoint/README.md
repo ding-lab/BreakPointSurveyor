@@ -1,5 +1,14 @@
 # DrawBreakpoint
 
+**TODO**
+Flesh out step 3 a bit more.  Indicate that that is a good place to start with new datasets.
+
+Add a Development Notes section.  Make the following points:
+
+* 3_contig.sh is a good place to start
+* use ggp2pdf to visualize ggp files
+`ggp2pdf foo.ggp foo.pdf`
+
 *Plot breakpoint coordinates from various predictors to breakpoint panel GGP.*
 
 Create a Breakpoint Panel (the upper right panel in BPS Structure plot), which illustrates

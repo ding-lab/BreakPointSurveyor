@@ -1,7 +1,7 @@
 # Create GGP objects with read depth information
 #   two files for every row in PlotList
 
-source ./DrawDepth.config
+source ./BPS_Stage.config
 
 FLANKN="50K"
 
@@ -47,7 +47,7 @@ function process_chrom {
     ARGS=" -M ${CHROM}:${START}-${END} \
            -u $NUMREADS \
            -n $READLEN -a 0.1 "
-    COLOR="-a 0.2 -s 16"
+    COLOR="-a 0.1 -s 16"
 
     if [ $CHROM_ID == 'B' ]; then
         ARGS="$ARGS -B"
