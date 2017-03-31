@@ -2,13 +2,8 @@
 
 source ./BPS_Stage.config
 
-FLANKN="50K"
 
 DATD="$BPS_DATA/G_Discordant/dat"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-
-#PLOT_LIST="./test.PlotList.dat"
-# echo Using $PLOT_LIST for testing only
 
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
@@ -33,12 +28,10 @@ function process_chrom {
     N_END=$9
 
     BPC="$DATD/BPC/${BAR}.Discordant.BPC.dat"
-
-    GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
-
+    GGP="$INDD/${BAR}/${NAME}.${CHROM_ID}.depth.ggp"
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
-    OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
+    OUT="$OUTDDD/${NAME}.${CHROM_ID}.depth.ggp"
 
     ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID "
     # filter data according to range of the opposite chrom/virus

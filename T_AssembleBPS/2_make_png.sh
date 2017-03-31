@@ -15,7 +15,6 @@ function process {
 
 }
 
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 while read L; do
 
     # Skip comments and header

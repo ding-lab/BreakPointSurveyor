@@ -2,11 +2,7 @@
 
 source ./BPS_Stage.config
 
-FLANKN="50K"
-
 DATD="$BPS_DATA/K_ReadDepth/dat"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-#PLOT_LIST="PlotList.test.dat"
 
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
@@ -33,13 +29,13 @@ function process_chrom {
     START=$5
     END=$6
 
-    DEP="$DATD/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
+    DEP="$DATD/${BAR}/${NAME}.${CHROM_ID}.DEPTH.dat"
 
-    GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
+    GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.depth.ggp"
 
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
-    OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
+    OUT="$OUTDDD/${NAME}.${CHROM_ID}.depth.ggp"
 
     # barcode	filesize	read_length	reads_total	reads_mapped
     # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930

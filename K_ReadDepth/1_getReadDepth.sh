@@ -3,10 +3,8 @@
 
 source ./BPS_Stage.config
 
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-
 # loops over PlotList, reads BAM files,.
-# Writes two depth files per PlotList entry to dat/BAR/*.50K.DEPTH.dat
+# Writes two depth files per PlotList entry to dat/BAR/*.DEPTH.dat
 
 # relevant for finding installed pysam libraries
 PYTHON="/usr/bin/python2.7"
@@ -28,7 +26,7 @@ function get_depth {
 
     OUTDD="$OUTD/$BAR"
     mkdir -p $OUTDD
-    OUT="$OUTDD/${NAME}.${CHROM_ID}.50K.DEPTH.dat"
+    OUT="$OUTDD/${NAME}.${CHROM_ID}.DEPTH.dat"
 
     ARGS=$N
     # -t is timing
