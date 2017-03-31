@@ -7,8 +7,9 @@
 
 # Last column of resulting BPR file is number of breakpoints in cluster
 
-source ./PlotList.config
+source ./BPS_Stage.config
 
+PYTHON="python"
 BIN="$BPS_CORE/src/util/makeBreakpointRegions.py"
 echo $BIN
 
@@ -34,7 +35,7 @@ function process_BPC {
         CHROMA=`echo $m | awk '{print $1}'`
         CHROMB=`echo $m | awk '{print $2}'`
 
-        python $BIN $HEADER -c -A $CHROMA -B $CHROMB -R $D $DAT stdout >> $OUT
+        $PYTHON $BIN $HEADER -c -A $CHROMA -B $CHROMB -R $D $DAT stdout >> $OUT
         HEADER=""
     # NOTE: the line below selects chromA, B columns from $DAT.  Assumptions about BPC, BPR format are embedded.
     done < <(grep -v "^#" $DAT | cut -f 1,3 | sort -u)  # this selects all unique chromA, chromB pairs and loops over them

@@ -24,12 +24,10 @@
 source ./BPS_Stage.config
 
 BIN="$BPS_CORE/src/util/PlotListMaker.py"
-REFD="../A_Reference/dat"  # this is where reference lives
 
-FLANK="50000"  # distance around each integration region to be included in PlotList
-FLANKN="50K"   # a short "code" for the above 
+FLANK="5000"  # distance around each integration region to be included in PlotList
 
-OUT="$OUTD/PlotList.50K.dat"
+OUT="$OUTD/PlotList.dat"
 rm -f $OUT
 
 HEADER="-H"
@@ -38,7 +36,6 @@ function process {
     BAR=$1
     FAI=$2
 
-    # Choose PindelRP data
     DAT="$OUTD/BPC/${BAR}.Discordant-prioritized.BPR.dat"
 
     if [ $FLIPAB == 1 ]; then  # see ../bps.config
@@ -58,8 +55,8 @@ while read l; do  # iterate over all barcodes
     # when looping around multiple barcodes, combine them all into one output file
     BAR=`echo $l | awk '{print $1}'`
     # We assume that appending .fai to reference file gives name of corresponding .fai file in $REFD directory
-    FAI=`echo $l | awk '{print $4}'`
-    FAI="$REFD/$FAI.fai"
+    REF=`echo $l | awk '{print $4}'`
+    FAI="$REF.fai"
 
     process $BAR $FAI
 
