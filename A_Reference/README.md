@@ -1,8 +1,11 @@
 #Reference
 
-Downloading GRCh38 reference for chr9 and 22, and generating associated files
+* Define path to BWA in `2_prepare_reference.sh`
 
-* Reference is not necessarily needed, depending on downstream analyses
-* Generated files are large, and not version controlled
+Creating custom reference for Synthetic analysis, consisting only of GRCh38 chromosomes 9 and 22.
+This reference is smaller and demonstrates custom reference generation.
 
+After reference is created, make associated index files.  This requires bwa and samtools.
+
+Because reference is relatively large, store in an untracked directory
 

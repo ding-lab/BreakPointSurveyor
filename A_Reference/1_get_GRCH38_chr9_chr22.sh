@@ -1,12 +1,15 @@
-source ./Reference.config
+source ./BPS_Stage.config
 
 # Download the GRCh38 human reference chr9 and chr22 and merge to combined
 # chrom.  Note the reference is relatively large and will not be saved on git
 SRC=http://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/
 
+UNTRACKED_DIR=dat.untracked
+mkdir -p $UNTRACKED_DIR
+
 function download {
 DAT=$1
-pushd $OUTD
+pushd $UNTRACKED_DIR
 wget $SRC/$DAT
 gunzip $DAT
 popd 
