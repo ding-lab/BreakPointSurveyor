@@ -1,3 +1,9 @@
+#!/usr/bin/env bash
+
+# Run all the steps in a given stage
+# Usage: 
+#   run_BPS O_DrawDepth
+
 DIR=$1
 
 function run_stage {
@@ -12,8 +18,11 @@ function run_stage {
         source ./$CONFIG
         # All steps are now specified in $STEPS
         
+        # TODO: step scripts should indicate whether they exited successfully or not with a return status.
+        # Then we should stop if an error is detected
         for step in $STEPS; do
             echo running $step
+            sh $step
         done
 
     popd
