@@ -13,11 +13,9 @@ mkdir -p $OUTDD
 rm -f $OUTD/GGP  # GGP is a link
 ln -s ../$OUTDD $OUTD/GGP
 
-# The flagstat data file contains pre-calculated statistics about BAM partly obtained from
-# the BAM's flagstat file.
-# For normalizing read depth, we use number of mapped reads and read length 
-# normalize read depth by num_reads * bp_per_read / (2 * num_reads_in_genome)
-FLAGSTAT="$DATD/flagstat.dat"
+# We are not normalizing the read depth to obtain copy number, since flagstat-based calculations
+# are not appropriate on Synthetic data.
+# FLAGSTAT="$DATD/flagstat.dat"
 
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
@@ -37,15 +35,17 @@ function process_chrom {
     mkdir -p $OUTDDD
     OUT="$OUTDDD/${NAME}.${CHROM_ID}.depth.ggp"
 
-    # barcode	filesize	read_length	reads_total	reads_mapped
-    # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
-    NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
-    READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
-    # TODO: deal gracefully if numreads, readlen unknown.
+    ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID "
+    if [ ! -z $FLAGSTAT ] && [ -f $FLAGSTAT ]; then  # If flagstat file is defined and it exists...
+        # barcode	filesize	read_length	reads_total	reads_mapped
+        # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
+        NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
+        READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
 
-    ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID -u $NUMREADS -n $READLEN "
+        ARGS=" $ARGS -u $NUMREADS -n $READLEN "
+    fi
 
-    Rscript $BIN $ARGS -G $GGP -p CBS -c "#E41A1C" $DEP $OUT
+    echo Rscript $BIN $ARGS -G $GGP -p CBS -c "#E41A1C" $DEP $OUT
 }
 
 while read l; do  
