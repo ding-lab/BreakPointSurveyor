@@ -1,7 +1,7 @@
 # Generate BED file indicating region of interest we'll be focusing on
 # see ../README.md for details
 
-source ./Project.config
+source ./BPS_Stage.config
 
 OUT="$OUTD/1000SV.ROI.bed"
 
