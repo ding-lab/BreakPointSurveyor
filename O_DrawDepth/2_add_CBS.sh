@@ -45,7 +45,7 @@ function process_chrom {
         ARGS=" $ARGS -u $NUMREADS -n $READLEN "
     fi
 
-    echo Rscript $BIN $ARGS -G $GGP -p CBS -c "#E41A1C" $DEP $OUT
+    Rscript $BIN $ARGS -G $GGP -p CBS -c "#E41A1C" $DEP $OUT
 }
 
 while read l; do  
