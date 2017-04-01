@@ -2,26 +2,7 @@
 
 *Reference-specific gene and exon definitions.*
 
-**NOTE** 
-In most cases you do not need to do anything here.  Simply use gene and
-exon definitions based on Ensembl releases XX=75 (GRCh37) or XX=84 (GRCh38):
-* `dat/genes.ensXX.bed` contains gene definitions.  
-* `dat/exons.ensXX.bed` contains exon definitions.  
+"Gene" and "exon" definitions in `genes.bed` and `exons.bed` are created by hand for
+demonstration purposes.
 
-This workflow is necessary only if gene/exon definitions need to be recreated for other Ensembl
-versions or references.  Note that workflow is not fully developed, and alternative approaches 
-may be better.
 
-Here, w;orkflow parses Ensemble GTF file directly to pull out genes and exons.  Details of the selection process
-are in `GTFFilter.py`.  They are ad hoc and vary according to ensembl version.  There may be better and
-more standard ways to obtain gene and exon definitions, which would replace the work here.
-
-We also provide a script called `src/TLAExamine.R` (see `x.5_examine_GTF.sh`)
-which conveniently examines GTF files by expanding the attributes column into
-multiple columns.  It is useful for debugging and understanding these files better.
-
-`2_get_merged_exon_bed.sh` and `3_get_gene_bed.sh` are production scripts which extract genes and exons
-    from GTF file.  These need to be run just once and then the resulting features file can be used
-    for downstream applications.
-
-Steps starting with x are optional or may be necessary only for certain ensembl releases (including release 84)
