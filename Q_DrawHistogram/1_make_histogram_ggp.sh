@@ -41,7 +41,6 @@ function process_chrom {
     # if histogram options file defined and histogram max range is set, define HISTMAX accordingly
     HISTMAX=""
     if [ -f $HIST_OPTS ]; then
-<<<<<<< HEAD
 
         if grep -Fq $NAME $HIST_OPTS
         then
