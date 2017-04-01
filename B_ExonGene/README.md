@@ -11,7 +11,7 @@ versions or references.
 * `dat/exons.ensXX.bed` contains exon definitions
 
 Workflow parses Ensemble GTF file directly to pull out genes and exons.  Details of the selection process
-are in `GTFFilter.py`.  They are ad hoc and vary according to ensembl version.  There may be better and
+are in `GTFFilter.py`.  They are ad hoc and vary according to ensembl version.  There are likely better and
 more standard ways to obtain gene and exon definitions, which would replace the work here.
 
 We also provide a script called `src/TLAExamine.R` (see `x.5_examine_GTF.sh`)
