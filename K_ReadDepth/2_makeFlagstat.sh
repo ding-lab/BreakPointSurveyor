@@ -4,7 +4,7 @@
 # if flagstat file exists for the BAM, simply copy that file
 # This step is optional, but necessary for normalizing read depth to get copy number
 
-source ./ReadDepth.config
+source ./BPS_Stage.config
 
 OUTDD="$OUTD/flagstat"
 mkdir -p $OUTDD

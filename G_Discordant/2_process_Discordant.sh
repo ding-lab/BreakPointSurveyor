@@ -9,7 +9,7 @@
 # - chrUn_
 # - HLA-
 
-source ./Discordant.config
+source ./BPS_Stage.config
 
 OUTDD="$OUTD/BPC"
 mkdir -p $OUTDD

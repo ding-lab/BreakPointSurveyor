@@ -9,7 +9,7 @@ USE_BSUB=0
 
 MAPQ=25	# Reads with quality < MAPQ are discarded
 
-source ./Discordant.config
+source ./BPS_Stage.config
 
 if [ $USE_BSUB == 1 ]; then    
     # using bsub

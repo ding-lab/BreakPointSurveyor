@@ -1,5 +1,5 @@
 # Combine GGP panels and draw a Breakpoint Surveyor PDF figure for each line in PlotList
-source ./AssembleBPS.config
+source ./BPS_Stage.config
 
 DATD="$BPS_DATA/K_ReadDepth/dat"
 
@@ -8,17 +8,14 @@ DEPD="$BPS_DATA/O_DrawDepth/dat/GGP"
 ANND="$BPS_DATA/P_DrawAnnotation/dat/GGP"
 HISTD="$BPS_DATA/Q_DrawHistogram/dat/GGP"
 
-FLANKN="50K"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-
 BIN="$BPS_CORE/src/plot/BreakpointSurveyAssembler.R"
 
 # Usage: process_plot NAME 
 function process_plot {
     BREAKPOINTS="$BPD/$BAR/${NAME}.Breakpoints.ggp"
-    A_DEPTH="$DEPD/$BAR/${NAME}.A.${FLANKN}.depth.ggp"
-    B_DEPTH="$DEPD/$BAR/${NAME}.B.${FLANKN}.depth.ggp"
-    HISTOGRAM="$HISTD/$BAR/${NAME}.${FLANKN}.histogram.ggp"
+    A_DEPTH="$DEPD/$BAR/${NAME}.A.depth.ggp"
+    B_DEPTH="$DEPD/$BAR/${NAME}.B.depth.ggp"
+    HISTOGRAM="$HISTD/$BAR/${NAME}.histogram.ggp"
 
     # chrom annotation may not exist in cases where no gene features in region of interest.  Handle this gracefully.
     ANNOTATION_A="$ANND/$BAR/${NAME}.chrom.A.annotation.ggp"
@@ -38,7 +35,7 @@ function process_plot {
 
     TITLE="$BAR Breakpoint Surveyor Structure Plot"
 
-    ARGS="-c $A_CHROM -C $B_CHROM"
+    ARGS="-c $A_CHROM -C $B_CHROM -b 12 "
     Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
 
 }

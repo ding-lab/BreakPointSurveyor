@@ -1,8 +1,3 @@
-bps.config
 .DS_Store
-flagstat/
 tmp/
-*.Discordant.BPC.dat
-bsub/
-run_all_bsub.sh
-GRCh38_full_analysis_set_plus_decoy_hla.fa
+dat.untracked

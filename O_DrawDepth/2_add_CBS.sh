@@ -1,12 +1,8 @@
 # Add CBS (circular binary segmentation) annotation to depth plots
 
-source ./DrawDepth.config
-
-FLANKN="50K"
+source ./BPS_Stage.config
 
 DATD="$BPS_DATA/K_ReadDepth/dat"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-#PLOT_LIST="PlotList.test.dat"
 
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
@@ -33,21 +29,23 @@ function process_chrom {
     START=$5
     END=$6
 
-    DEP="$DATD/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
+    DEP="$DATD/${BAR}/${NAME}.${CHROM_ID}.DEPTH.dat"
 
-    GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
+    GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.depth.ggp"
 
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
-    OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
+    OUT="$OUTDDD/${NAME}.${CHROM_ID}.depth.ggp"
 
-    # barcode	filesize	read_length	reads_total	reads_mapped
-    # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
-    NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
-    READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
-    # TODO: deal gracefully if numreads, readlen unknown.
+    ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID "
+    if [ ! -z $FLAGSTAT ] && [ -f $FLAGSTAT ]; then  # If flagstat file is defined and it exists...
+        # barcode	filesize	read_length	reads_total	reads_mapped
+        # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
+        NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
+        READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
 
-    ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID -u $NUMREADS -n $READLEN "
+        ARGS=" $ARGS -u $NUMREADS -n $READLEN "
+    fi
 
     Rscript $BIN $ARGS -G $GGP -p CBS -c "#E41A1C" $DEP $OUT
 }
