@@ -19,6 +19,11 @@ discovered and named, the names include the source info "RP11.”” (source:
 [biostars](https://www.biostars.org/p/51456/))
 
 
+Sequence data is publicly available NA19240 Illumina 80X coverage, [and can be downloaded here](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/hgsv_sv_discovery/data/YRI/NA19240/high_cov_alignment/NA19240.alt_bwamem_GRCh38DH.20150715.YRI.high_coverage.cram).
+We assume this dataset is locally available.  However, to make downstream
+analysis faster, we construct a smaller dataset which includes reads only from
+regions of interest.  See [C_Project](C_Project/README.md) for how to specify BAM file locations.
+As a result, we loop over two different BAM files.
 
 
 ## Usage
