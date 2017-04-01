@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# Run all the steps in a given stage
+# Run all the steps in a one or more stages
 # Usage: 
-#   run_BPS O_DrawDepth
+#   run_BPS O_DrawDepth P_DrawAnnotation ...
 
-DIR=$1
+start_time=`date +%s`
 
 function run_stage {
     DIR=$1
@@ -28,16 +28,22 @@ function run_stage {
     popd
 }
 
-if [ -z $DIR ]; then
+if [ -z $1 ]; then
     echo Target is not specified.  Exiting.
     exit
 fi
 
-if ! [ -d $DIR ]; then
-    echo Target $DIR unknown.  Exiting.
-    exit
-fi
+for DIR in $@; do
 
-echo Processing $DIR
-run_stage $DIR
+    if ! [ -d $DIR ]; then
+        echo Target $DIR unknown.  Exiting.
+        exit
+    fi
 
+    echo Processing $DIR
+    run_stage $DIR
+done
+
+end_time=`date +%s`
+
+echo Total execution time: `expr $end_time - $start_time` seconds.

@@ -16,6 +16,10 @@ Three workflows are represented as git branches:
 See [BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor-Core/README.md) 
 for background.
 
+## Timing
+
+Downloading and processing of two-chromosome reference (A_Reference) is about 5 minutes, uses about 684M
+Total execution time for steps J-T about 15 seconds
 
 ### Output
 

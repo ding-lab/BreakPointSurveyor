@@ -25,7 +25,7 @@ source ./BPS_Stage.config
 
 BIN="$BPS_CORE/src/util/PlotListMaker.py"
 
-FLANK="5000"  # distance around each integration region to be included in PlotList
+FLANK="1000"  # distance around each integration region to be included in PlotList
 
 OUT="$OUTD/PlotList.dat"
 rm -f $OUT
