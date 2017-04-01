@@ -1,12 +1,9 @@
 # Create GGP objects with read depth information
 #   two files for every row in PlotList
 
-source ./DrawDepth.config
-
-FLANKN="50K"
+source ./BPS_Stage.config
 
 DATD="$BPS_DATA/K_ReadDepth/dat"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.${FLANKN}.dat"
 
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
@@ -15,6 +12,7 @@ mkdir -p $OUTDD
 
 rm -f $OUTD/GGP  # GGP is a link
 ln -s ../$OUTDD $OUTD/GGP
+
 
 # The flagstat data file contains pre-calculated statistics about BAM partly obtained from
 # the BAM's flagstat file.
@@ -32,22 +30,27 @@ function process_chrom {
     START=$5
     END=$6
 
-    DEP="$DATD/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.DEPTH.dat"
+    DEP="$DATD/${BAR}/${NAME}.${CHROM_ID}.DEPTH.dat"
 
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
 
-    OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
+    OUT="$OUTDDD/${NAME}.${CHROM_ID}.depth.ggp"
 
-    # barcode	filesize	read_length	reads_total	reads_mapped
-    # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
-    NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
-    READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
+    ARGS=" -M ${CHROM}:${START}-${END} "
+    if [ ! -z $FLAGSTAT ] && [ -f $FLAGSTAT ]; then  # If flagstat file is defined and it exists...
+        # barcode	filesize	read_length	reads_total	reads_mapped
+        # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
+        NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
+        READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
 
-    ARGS=" -M ${CHROM}:${START}-${END} \
-           -u $NUMREADS \
-           -n $READLEN -a 0.1 "
-    COLOR="-a 0.2 -s 16"
+        # Recall, from "$BPS_CORE/src/plot/DepthDrawer.R":
+            # if both num.reads and read.length are defined (-u -n) then plot copy number
+            #   otherwise, plot read depth
+        ARGS=" $ARGS -u $NUMREADS -n $READLEN "
+    fi
+
+    COLOR="-a 0.1 -s 16"
 
     if [ $CHROM_ID == 'B' ]; then
         ARGS="$ARGS -B"

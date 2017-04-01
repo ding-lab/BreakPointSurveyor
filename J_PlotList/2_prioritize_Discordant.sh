@@ -2,7 +2,7 @@
 # The idea is to focus on integration events with the most breakpoints in them.
 # this is particularly useful when using techniques like discordant reads high false positive raters
 
-source ./PlotList.config
+source ./BPS_Stage.config
 # Retain top 5 clusters per sample to use to create PlotList
 NCLUST=25
 

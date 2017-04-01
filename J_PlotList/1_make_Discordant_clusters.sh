@@ -7,7 +7,7 @@
 
 # Last column of resulting BPR file is number of breakpoints in cluster
 
-source ./PlotList.config
+source ./BPS_Stage.config
 
 BIN="$BPS_CORE/src/util/makeBreakpointRegions.py"
 echo $BIN

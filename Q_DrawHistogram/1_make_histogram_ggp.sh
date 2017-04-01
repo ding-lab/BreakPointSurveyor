@@ -1,11 +1,9 @@
 # Create GGP object with read depth histogram
 
-source ./DrawHistogram.config
-FLANKN="50K"
+source ./BPS_Stage.config
 
 DATD_DEP="$BPS_DATA/K_ReadDepth/dat"
 DATD_PL="$BPS_DATA/J_PlotList/dat"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.${FLANKN}.dat"
 
 BIN="$BPS_CORE/src/plot/HistogramDrawer.R"
 
@@ -28,19 +26,22 @@ function process_chrom {
     A_CHROM=$3
     B_CHROM=$4
 
-    DEPA="$DATD_DEP/${BAR}/${NAME}.A.${FLANKN}.DEPTH.dat"
-    DEPB="$DATD_DEP/${BAR}/${NAME}.B.${FLANKN}.DEPTH.dat"
+    DEPA="$DATD_DEP/${BAR}/${NAME}.A.DEPTH.dat"
+    DEPB="$DATD_DEP/${BAR}/${NAME}.B.DEPTH.dat"
     LABELS="-e $A_CHROM,$B_CHROM"
 
-    # barcode	filesize	read_length	reads_total	reads_mapped
-    # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
-    NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
-    READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
-    # TODO: deal gracefully if numreads, readlen unknown.
+    if [ ! -z $FLAGSTAT ] && [ -f $FLAGSTAT ]; then  # If flagstat file is defined and it exists...
+        # barcode	filesize	read_length	reads_total	reads_mapped
+        # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
+        NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
+        READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
+        FSARGS="-u $NUMREADS -n $READLEN"
+    fi
 
     # if histogram options file defined and histogram max range is set, define HISTMAX accordingly
     HISTMAX=""
     if [ -f $HIST_OPTS ]; then
+<<<<<<< HEAD
 
         if grep -Fq $NAME $HIST_OPTS
         then
@@ -53,9 +54,9 @@ function process_chrom {
 
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
-    OUT="$OUTDDD/${NAME}.${FLANKN}.histogram.ggp"
+    OUT="$OUTDDD/${NAME}.histogram.ggp"
 
-    ARGS="-d -u $NUMREADS -n $READLEN $LABELS $HISTMAX"
+    ARGS="-d $FSARGS $LABELS $HISTMAX"
 
     Rscript $BIN $ARGS $DEPA $DEPB $OUT
 }
