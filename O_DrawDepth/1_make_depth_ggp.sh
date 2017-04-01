@@ -13,6 +13,7 @@ mkdir -p $OUTDD
 rm -f $OUTD/GGP  # GGP is a link
 ln -s ../$OUTDD $OUTD/GGP
 
+
 # The flagstat data file contains pre-calculated statistics about BAM partly obtained from
 # the BAM's flagstat file.
 # For normalizing read depth, we use number of mapped reads and read length 
@@ -36,14 +37,20 @@ function process_chrom {
 
     OUT="$OUTDDD/${NAME}.${CHROM_ID}.depth.ggp"
 
-    # barcode	filesize	read_length	reads_total	reads_mapped
-    # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
-    NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
-    READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
+    ARGS=" -M ${CHROM}:${START}-${END} "
+    if [ ! -z $FLAGSTAT ] && [ -f $FLAGSTAT ]; then  # If flagstat file is defined and it exists...
+        # barcode	filesize	read_length	reads_total	reads_mapped
+        # TCGA-DX-A1KU-01A-32D-A24N-09	163051085994	100	2042574546	1968492930
+        NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
+        READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
 
-    ARGS=" -M ${CHROM}:${START}-${END} \
-           -u $NUMREADS \
-           -n $READLEN -a 0.1 -s 16"
+        # Recall, from "$BPS_CORE/src/plot/DepthDrawer.R":
+            # if both num.reads and read.length are defined (-u -n) then plot copy number
+            #   otherwise, plot read depth
+        ARGS=" $ARGS -u $NUMREADS -n $READLEN "
+    fi
+
+    COLOR="-a 0.1 -s 16"
 
     if [ $CHROM_ID == 'B' ]; then
         ARGS="$ARGS -B"
