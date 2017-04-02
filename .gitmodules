@@ -1,0 +1,3 @@
+[submodule "bps-core"]
+	path = bps-core
+	url = https://github.com/ding-lab/BreakPointSurveyor-Core.git
