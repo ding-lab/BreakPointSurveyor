@@ -2,3 +2,4 @@ bps.config
 .DS_Store
 tmp/
 dat.untracked
+bps.config.local
