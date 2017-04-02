@@ -5,7 +5,7 @@ source ./BPS_Stage.config
 # This BED file lists just the virus genomes
 # This makes Pindel faster by focusing only on virus/virus and virus/human breakpoints
 BED="$BPS_DATA/A_Reference/dat/GRCh37_selectVirus_9a.bed"
-BIN='/gscuser/mwyczalk/src/pindel/pindel'
+PINDEL='/gscuser/mwyczalk/src/pindel/pindel'
 
 
 function process {
@@ -18,7 +18,7 @@ function process {
 
     # -I allows interchromosomal event detection
     JBED="-j $BED -I "
-    SHCMD="$BIN -f $REF -i $CFG $JBED -o $POUT"
+    SHCMD="$PINDEL -f $REF -i $CFG $JBED -o $POUT"
 
     $SHCMD
 }
