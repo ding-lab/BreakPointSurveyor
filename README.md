@@ -13,6 +13,9 @@ Three workflows are represented as git branches:
 Mention FLIPAB=1 here
 
 ## Getting Started
+
+
+
 ### Prerequisites
 
 #### python
@@ -57,16 +60,13 @@ _Mandatory in_ `Synthetic` _branch._
 
 Install from [GitHub](https://github.com/)
 
-`git clone https://github.com/ding-lab/BPS.TCGA_Virus.Lite`
+```
+git clone --recursive  https://github.com/ding-lab/BreakPointSurveyor-Workflow.git
+git checkout <branch>
+```
 
 The `1000SV` and `Synthetic` branches can be accessed with `git checkout <branch>` after the clone command.
 ([Background reading on branches](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell).)
-
-Create and edit local configuration file:
-
-```cp bps.config.template bps.config```
-
-Set `BPS_CORE` to location of BreakPointSurveyor-Core installation location
 
 
 ## Example Workflows and Data Availability
