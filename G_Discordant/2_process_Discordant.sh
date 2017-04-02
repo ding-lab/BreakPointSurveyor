@@ -7,7 +7,7 @@ source ./BPS_Stage.config
 OUTDD="$OUTD/BPC"
 mkdir -p $OUTDD
 
-UNTRACKED_OUTD="dat.untracked"
+U_DATD="dat.untracked"
 
 while read l; do
 [[ $l = \#* ]] && continue
@@ -16,7 +16,7 @@ while read l; do
 # write BPC file - this has all breakpoint coordinates listed just once.
 #    BPC: chromA, posA, chromB, posB
 BAR=`echo $l | awk '{print $1}'`
-DAT_FN="$UNTRACKED_OUTD/discordant_$BAR.sam"
+DAT_FN="$U_DATD/discordant_$BAR.sam"
 
 OUT="$OUTDD/${BAR}.Discordant.BPC.dat"
 
