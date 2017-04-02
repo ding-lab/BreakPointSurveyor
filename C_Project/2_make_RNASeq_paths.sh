@@ -2,7 +2,7 @@
 
 source ./BPS_Stage.config
 
-OUT="$OUTD/RNA-Seq.samples.dat"
+OUT=$EXPRESSION_LIST
 
 printf "barcode\tdisease\tBAM_path\n" > $OUT
 cat <<EOF | sort | tr ' ' '\t' >> $OUT

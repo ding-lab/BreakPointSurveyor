@@ -20,7 +20,7 @@ source ./BPS_Stage.config
 OUTDD="$OUTD/RPKM"
 mkdir -p $OUTDD
 
-RNA_SAMPLE_LIST="$BPS_DATA/A_Project/dat/RNA-Seq.samples.dat"
+RNA_SAMPLE_LIST=$EXPRESSION_LIST
 BEDD="$OUTD/BED"
 FLAGDAT="$BPS_DATA/K_ReadDepth/dat/RNA-Seq.flagstat.dat"
 

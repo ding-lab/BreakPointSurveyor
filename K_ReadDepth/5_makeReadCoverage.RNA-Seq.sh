@@ -2,7 +2,7 @@
 
 source ./BPS_Stage.config
 
-RNA_SAMPLE_LIST="$BPS_DATA/C_Project/dat/RNA-Seq.samples.dat"
+RNA_SAMPLE_LIST=$EXPRESSION_LIST
 
 OUT="$OUTD/RNA-Seq.flagstat.dat"
 
