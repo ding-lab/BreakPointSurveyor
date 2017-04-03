@@ -28,7 +28,6 @@ function process {
     # samtools view -L is very slow.
     # instead do this once for multiple regions
 
-    #samtools view -T $REF -b -o $OUT $BAM_ORIG $REG
     echo Processing $REG
     samtools view -b -o $OUT $BAM_ORIG $REG
 

@@ -5,7 +5,7 @@ source ./BPS_Stage.config
 
 OUT="$OUTD/1000SV.ROI.bed"
 
-cat <<EOF | tr ' ' '\t' | bedtools sort >> $OUT
+cat <<EOF | tr ' ' '\t' | bedtools sort > $OUT
 # AQ event, +/- 50Kbp
 chr10 41804249 41965847 AQa
 chr20 31001980 31291883 AQb

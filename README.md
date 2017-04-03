@@ -25,6 +25,9 @@ analysis faster, we construct a smaller dataset which includes reads only from
 regions of interest.  See [C_Project](C_Project/README.md) for how to specify BAM file locations.
 As a result, we loop over two different BAM files.
 
+Performance:
+Stage C_Project:128 sec
+Stage G-T: 16 sec
 
 ## Usage
 e.g., A_Project/1_...
