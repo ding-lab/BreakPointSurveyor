@@ -6,7 +6,6 @@
 USE_BSUB=0
 
 source ./BPS_Stage.config
-BWA="/usr/bin/bwa0.7.10 mem"
 
 mkdir -p $OUTD/BWA
 
@@ -22,7 +21,7 @@ function process {
     DAT="$OUTD/contig/$BAR.contig"
     OUT="$OUTD/BWA/$BAR.sam"
 
-    CMD="$BWA $FASTA $DAT" 
+    CMD="$BWA mem $FASTA $DAT" 
 
     if [ $USE_BSUB == 1 ]; then    
         bsub -e bsub/$BAR.3.bsub -o $OUT $CMD   # this appends bsub output to SAM file.  For now, clean manually

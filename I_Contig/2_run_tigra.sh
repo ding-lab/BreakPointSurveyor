@@ -5,8 +5,7 @@ USE_BSUB=0
 
 source ./BPS_Stage.config
 
-# Tigra version used is 0.4.3; see https://bitbucket.org/xianfan/tigra
-BIN="tigra-sv"
+# TIGRA is defined in ../bps.config
 
 if [ $USE_BSUB == 1 ]; then    
     # using bsub
@@ -22,13 +21,13 @@ function process {
     CTX="$OUTD/CTX/${BAR}.ctx"
     OUT="$OUTD/contig/${BAR}.contig"
 
-    if [ -e $OUT ]; then
-        echo $OUT exists.  Skipping.
-        continue
-    fi
+#    if [ -e $OUT ]; then
+#        echo $OUT exists.  Skipping.
+#        continue
+#    fi
 
     # adding -m flag, supported under 0.4.2
-    CMD="$BIN -o $OUT -R $FASTA -b $CTX -m $BAM"
+    CMD="$TIGRA -o $OUT -R $FASTA -b $CTX -m $BAM"
 
     if [ $USE_BSUB == 1 ]; then    
         bsub -oo bsub/$BAR.bsub $CMD   # this is functional
