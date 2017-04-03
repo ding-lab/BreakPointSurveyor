@@ -14,6 +14,8 @@ wget $SRC/$DAT
 popd $U_OUTD
 }
 
-
 # downloading the full reference for testing purposes
+# Also download the .fai file to the untracked directory, so that appending .fai to reference works.
+# Note that this means we have two copies of .fai file (dat, dat.untracked), but for now that's OK
 download GRCh38_full_analysis_set_plus_decoy_hla.fa
+download GRCh38_full_analysis_set_plus_decoy_hla.fa.fai

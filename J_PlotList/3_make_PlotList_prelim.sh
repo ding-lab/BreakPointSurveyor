@@ -1,6 +1,8 @@
-# Create a PlotList.BPS data file for Breakpoint Surveyor plots
+# Automatically generate a PlotList.BPS data file for Breakpoint Surveyor plots based
+# on prioritized discordant clusters.
 # 
-# This PlotList based on PindelRP data.  
+# Note that this step is for demonstration purposes, since step 4 will write a PlotList from
+# scratch to focus on the principal AU, AQ events.  See README.md for details.
 
 # PlotList is TSV format with the following columns,
 #  * barcode
@@ -24,11 +26,10 @@
 source ./BPS_Stage.config
 
 BIN="$BPS_CORE/src/util/PlotListMaker.py"
-REFD="../A_Reference/dat"  # this is where reference lives
 
 FLANK="50000"  # distance around each integration region to be included in PlotList
 
-OUT="$OUTD/PlotList.dat"
+OUT="$OUTD/PlotList-prelim.dat"
 rm -f $OUT
 
 HEADER="-H"
@@ -56,9 +57,9 @@ while read l; do  # iterate over all barcodes
 
     # when looping around multiple barcodes, combine them all into one output file
     BAR=`echo $l | awk '{print $1}'`
-    # We assume that appending .fai to reference file gives name of corresponding .fai file in $REFD directory
-    FAI=`echo $l | awk '{print $4}'`
-    FAI="$REFD/$FAI.fai"
+    # We assume that appending .fai to reference file gives name of corresponding .fai 
+    REF=`echo $l | awk '{print $4}'`
+    FAI="$REF.fai"
 
     process $BAR $FAI
 
