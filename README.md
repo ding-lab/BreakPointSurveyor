@@ -27,7 +27,10 @@ As a result, we loop over two different BAM files.
 
 Performance:
 Stage C_Project:128 sec
-Stage G-T: 16 sec
+Stage G: 16 sec
+Stage J: 13 minutes
+Stage K: 55 sec
+Stage N-T: 73 sec
 
 ## Usage
 e.g., A_Project/1_...
