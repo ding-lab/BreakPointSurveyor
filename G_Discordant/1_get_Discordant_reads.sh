@@ -35,7 +35,7 @@ function process {
     DOUT="$U_OUTD/discordant_$BAR.sam"
 
     if [ -f $VOUT ]; then # this is a safety thing so data not clobbered.  It can be discarded if necessary
-        echo Skipping $BAR
+        echo Skipping $BAR because $VOUT exists.
         continue
     fi
     echo Processing $BAR

@@ -15,6 +15,9 @@ Mention FLIPAB=1 here
 Performance:
 
 M_RSEM_Expression: 368 seconds.  Includes download of RSEM data.  Can vary length of step 5 by changing number of permutation tests
+F_PindelRP: 370 seconds (though on slow disk.)
+G_Discordant/: Total execution time: 3804 seconds.
+
 
 ## Getting Started
 
