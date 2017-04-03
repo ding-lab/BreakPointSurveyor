@@ -25,7 +25,7 @@ function make_barcode_list {
         OUT="$OUTD/${DIS}_barcodes.dat"
         DAT="$OUTD/RPKM/$BAR.rpkm"
 
-        echo -e "$BAR\t$DAT" >> $OUT
+        printf "$BAR\t$DAT\n" >> $OUT
 
     done < $RNA_SAMPLE_LIST
 }
