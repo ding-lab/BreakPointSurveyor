@@ -20,7 +20,7 @@ for background.
 ## Timing
 
 * Downloading and processing of two-chromosome reference (A_Reference) is about 5 minutes, uses about 684M
-* Total execution time for steps C-T about 20 seconds
+* Total execution time for steps B-T about 25 seconds
 
 ### Output
 
