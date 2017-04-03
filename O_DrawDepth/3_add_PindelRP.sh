@@ -2,13 +2,7 @@
 
 source ./BPS_Stage.config
 
-FLANKN="50K"
-
 DATD="$BPS_DATA/F_PindelRP/dat"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-
-#PLOT_LIST="./test.PlotList.dat"
-# echo Using $PLOT_LIST for testing only
 
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
@@ -31,11 +25,11 @@ function process_chrom {
 
     BPR="$DATD/BPR/${BAR}.PindelRP.BPR.dat"
 
-    GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
+    GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.depth.ggp"
 
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
-    OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
+    OUT="$OUTDDD/${NAME}.${CHROM_ID}.depth.ggp"
 
     # Make Pindel annotation light gray and partly transparent
     COLOR="-a 0.1 -f gray10"

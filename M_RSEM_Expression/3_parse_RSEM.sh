@@ -20,8 +20,6 @@ source ./BPS_Stage.config
 # Enable process substitution, used in tee >() 
 set +o posix
 
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-
 # for safety against overwriting existing data set this to 0
 OVERWRITE_OUTPUT=1
 

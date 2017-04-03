@@ -10,7 +10,6 @@ FLANK="1000000"
 # We plot either panel A or B by choosing PLOTA=0 or 1, resp.
 PLOTA=1
 
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 while read L; do
 
 # barcode name    chrom.A event.A.start   event.A.end range.A.start   range.A.end chrom.B event.B.start   event.B.end range.B.start   range.B.end

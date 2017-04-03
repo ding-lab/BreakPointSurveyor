@@ -39,7 +39,6 @@ function process {
     Rscript $BIN $ARGS >> $SUMMARY
 }
 
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 SUMMARY="$OUTD/NeighborSummary.dat"
 rm -f $SUMMARY
 

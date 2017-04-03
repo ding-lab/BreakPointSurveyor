@@ -2,10 +2,7 @@
 
 source ./BPS_Stage.config
 
-FLANKN="50K"
-
 DATD="$BPS_DATA/I_Contig/dat/BPC"
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 
 BIN="$BPS_CORE/src/plot/DepthDrawer.R"
 
@@ -31,11 +28,11 @@ function process_chrom {
 
     BPC="$DATD/${BAR}.BPC.dat"
 
-    GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
+    GGP="$IND/${BAR}/${NAME}.${CHROM_ID}.depth.ggp"
 
     OUTDDD="$OUTDD/$BAR"
     mkdir -p $OUTDDD
-    OUT="$OUTDDD/${NAME}.${CHROM_ID}.${FLANKN}.depth.ggp"
+    OUT="$OUTDDD/${NAME}.${CHROM_ID}.depth.ggp"
 
     # If data file does not exist, simply copy IN to OUT (so it exists for downstream processing) and continue
     if [ ! -f $BPC ]; then

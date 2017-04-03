@@ -7,13 +7,10 @@
 
 source ./BPS_Stage.config
 
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-
 EXONS="$BPS_DATA/B_ExonGene/dat/exons.ens75.bed"
 GENES="$BPS_DATA/B_ExonGene/dat/genes.ens75.bed"
 
 FLANK="1000000"  # distance around each integration region to be included in BED file
-FLANKN="1M"
 
 OUTDD="$OUTD/BED"
 mkdir -p $OUTDD
@@ -28,7 +25,7 @@ function process {
     END=$5
     FAI=$6
 
-    OUT="$OUTDD/${NAME}.${CHROM_ID}.${FLANKN}.bed"
+    OUT="$OUTDD/${NAME}.${CHROM_ID}.bed"
 
     # Bedtools slop expands range of each breakpoint.  This creates the region of interest
     # bedtools intersect with genes gives list of genes in region of interest

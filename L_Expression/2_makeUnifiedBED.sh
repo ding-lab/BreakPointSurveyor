@@ -7,9 +7,6 @@
 
 source ./BPS_Stage.config
 
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
-FLANKN="1M"
-
 TMPD="$OUTD/tmp"
 mkdir -p $TMPD
 rm -f $TMPD/*
@@ -37,7 +34,7 @@ function process {
     CHROM_ID=$2
     DIS=$3
 
-    DAT="$OUTD/BED/${NAME}.${CHROM_ID}.${FLANKN}.bed"
+    DAT="$OUTD/BED/${NAME}.${CHROM_ID}.bed"
     OUT="$TMPD/${DIS}.tmp"  # this would be same for chrom A and B, so that the BED files are merged
     if [ ! -f $DAT ]; then
         echo $DAT does not exist.  Skipping.

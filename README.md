@@ -12,6 +12,10 @@ Three workflows are represented as git branches:
 
 Mention FLIPAB=1 here
 
+Performance:
+
+M_RSEM_Expression: 368 seconds.  Includes download of RSEM data.  Can vary length of step 5 by changing number of permutation tests
+
 ## Getting Started
 
 

@@ -6,7 +6,6 @@
 
 source ./BPS_Stage.config
 
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 
 # In many cases, we can obtain FAI file by appending .fai to the reference name (RELATIVE_FAI=1)
 # That is not the case here.  Instead, we know that the FAI is in the reference directory

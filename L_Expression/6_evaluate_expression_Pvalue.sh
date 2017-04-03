@@ -9,7 +9,6 @@ USE_BSUB=1
 
 source ./BPS_Stage.config
 
-PLOT_LIST="$BPS_DATA/J_PlotList/dat/PlotList.50K.dat"
 BIN="$BPS_CORE/src/analysis/ExonExpressionAnalyzer.R"
 
 EXOND="$OUTD/BED"
