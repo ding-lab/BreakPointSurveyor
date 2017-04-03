@@ -1,7 +1,7 @@
 
 source ./BPS_Stage.config
 
-OUT="$OUTD/samples.dat"
+OUT=$SAMPLE_LIST
 
 echo -e "barcode\tdisease\tBAM_path\tref_path" > $OUT
 cat <<EOF | sort | tr ' ' '\t' >> $OUT

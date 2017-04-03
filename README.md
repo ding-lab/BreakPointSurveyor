@@ -14,8 +14,6 @@ small BAM representing an interchromosomal translocation,
 analyze it using BreakpointSurveyor.  
 
 
-## Documentation
-
 See [BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor-Core/README.md) 
 for background.
 

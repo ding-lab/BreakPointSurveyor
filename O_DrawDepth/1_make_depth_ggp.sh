@@ -41,6 +41,7 @@ function process_chrom {
         NUMREADS=`grep $BAR $FLAGSTAT | cut -f 5`  # using number of mapped reads
         READLEN=`grep $BAR $FLAGSTAT | cut -f 3`
 
+
         # Recall, from "$BPS_CORE/src/plot/DepthDrawer.R":
             # if both num.reads and read.length are defined (-u -n) then plot copy number
             #   otherwise, plot read depth
