@@ -61,7 +61,7 @@ Below are stages associated with the TCGA_Virus.Lite workflow and their descript
 * **[O_DrawDepth](O_DrawDepth/README.md)** Create read depth/copy number panel GGP and add breakpoint predictions
 * **[P_DrawAnnotation](P_DrawAnnotation/README.md)** Create annotation panel GGP showing genes and exons
 * **[Q_DrawHistogram](Q_DrawHistogram/README.md)**: Create histogram panel GGP showing distribution of read depth
-* **[T_AssembleBPS](T_AssembleBPS/README.md)**: Assemble GGP panels into BPS structure plot and save as PDF
+* **[T_PlotStructure](T_T_PlotStructure/README.md)**: Assemble GGP panels into BPS structure plot and save as PDF
 * **[U_PlotExpression](U_PlotExpression/README.md)**: Create BPS Expression plot based on expression P-values and save as PDF (`master` branch only)
 
 ### Output
