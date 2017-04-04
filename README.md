@@ -25,6 +25,9 @@ Linus301 (slow disk):  Has WGS BAMs
     K_ReadDepth: 3329 seconds.
     L_Expression: 1602 seconds.
 
+Linus300:
+    M_RSEM_Expression: 649 seconds.
+
 
 
 
