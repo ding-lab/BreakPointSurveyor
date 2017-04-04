@@ -1,3 +1,4 @@
+
 # BPS.TCGA_Virus.Lite - Synthetic branch
 
 Sample BreakPoint Surveyor project: synthetic human-human breakpoint
@@ -25,9 +26,9 @@ for background.
 ### Output
 
 ** TODO ** fix link below
-* [BreakPoint Surveyor Structure Plot](T_AssembleBPS/plots/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.BreakpointSurvey.pdf)
-T_AssembleBPS/plots/synthetic.9-22.AA.chr22_chr9.BreakpointSurvey.png
-T_AssembleBPS/plots/synthetic.9-22.AA.chr22_chr9.BreakpointSurvey.pdf
+* [BreakPoint Surveyor Structure Plot](T_PlotStructure/plots/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.BreakpointSurvey.pdf)
+T_PlotStructure/plots/synthetic.9-22.AA.chr22_chr9.BreakpointSurvey.png
+T_PlotStructure/plots/synthetic.9-22.AA.chr22_chr9.BreakpointSurvey.pdf
 
 
 ## Authors
