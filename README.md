@@ -14,9 +14,18 @@ Mention FLIPAB=1 here
 
 Performance:
 
-M_RSEM_Expression: 368 seconds.  Includes download of RSEM data.  Can vary length of step 5 by changing number of permutation tests
-F_PindelRP: 370 seconds (though on slow disk.)
-G_Discordant/: Total execution time: 3804 seconds.
+GSC:
+    M_RSEM_Expression: 368 seconds.  Includes download of RSEM data.  Can vary length of step 5 by changing number of permutation tests
+
+Linus301 (slow disk):  Has WGS BAMs 
+    F_PindelRP: 370 seconds 
+    G_Discordant/: 3804 seconds.
+    I_Contig: 716 seconds
+    J_PlotList: 666 seconds
+    K_ReadDepth: 3329 seconds.
+    L_Expression: 1602 seconds.
+
+
 
 
 ## Getting Started

@@ -5,7 +5,10 @@ source ./BPS_Stage.config
 
 RNA_SAMPLE_LIST=$EXPRESSION_LIST
 
-OUTDD="$OUTD/flagstat"
+U_OUTD="dat.untracked"
+mkdir -p $U_OUTD
+
+OUTDD="$U_OUTD/flagstat"
 mkdir -p $OUTDD
 
 function make_flagstat {

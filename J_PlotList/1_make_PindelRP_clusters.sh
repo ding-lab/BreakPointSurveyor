@@ -16,8 +16,8 @@ BIN="$BPS_CORE/src/util/makeBreakpointRegions.py"
 echo $BIN
 
 # writing all output per sample to BPR/BAR.CTX-cluster.BPR.dat
-# Define D as 5M; combine all breakpoints that are within D of each other along both chrom into one cluster
-D=5000000
+# Define D as 50K; combine all breakpoints that are within D of each other along both chrom into one cluster
+D=50000
 set +o posix
 
 OUTDD="$OUTD/BPR"

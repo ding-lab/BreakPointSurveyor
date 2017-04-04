@@ -5,6 +5,7 @@ source ./BPS_Stage.config
 RNA_SAMPLE_LIST=$EXPRESSION_LIST
 
 OUT="$OUTD/RNA-Seq.flagstat.dat"
+U_OUTD="dat.untracked"
 
 # Usage: parse_flagstat barcode bampath 
 # Writes flagstat statistics to $OUT. Statistics include,
@@ -24,7 +25,7 @@ function parse_flagstat {
     READLEN=`expr length $SEQ`
 
     # FLAGSTAT=${BAM}.flagstat    # This if flagstat is based on BAM filename
-    FLAGSTAT="$OUTD/flagstat/${BAR}.flagstat"  # this if flagstat created in step 2_
+    FLAGSTAT="$U_OUTD/flagstat/${BAR}.flagstat"  # this if flagstat created in step 2_
 
     # Deal appropriately with missing flagstat file
     if [ ! -e $FLAGSTAT ];
