@@ -1,126 +1,91 @@
-# BPS.TCGA_Virus.Lite 
-Example workflows for BreakPoint Surveyor project.  
+# BreakPointSurveyor
 
-Comprehensive workflows starting with downloaded data, through processing, and visualization.  See manuscript
-for more information.  
+A comprehensive workflow to analyze and visualize interchromosomal breakpoints.
 
-Three workflows are represented as git branches:
+## Overview
 
-* `master`: Comprehensive workflow and data for one TCGA virus-positive sample (TCGA-BA-4077-01).
-* `1000SV`: Example analysis of discordant reads on publicly available 1000 Genomes sample NA19420
-* `Synthetic`: Create and analyze inter-chromosomal breakpoint
+BreakPointSurveyor (BPS) is a set of core libraries
+([BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor-Core))
+and [workflows](https://github.com/ding-lab/BreakPointSurveyor) which
+evaluate genomic sequence data to discover, analyze, and provide a visual summary of
+interchromosomal breakpoint events.
 
-Mention FLIPAB=1 here
+The BreakPointSurveyor project provides three reference workflows, each implemented as separate [git
+branches](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell).
+These workflows are,
 
-Performance:
+* **TCGA_Virus** (`master` branch):  Comprehensive workflow and data for one
+  TCGA virus-positive sample
+  ([TCGA-BA-4077-01B-01D-2268-08](https://gdc-portal.nci.nih.gov/legacy-archive/files/6533e56c-b5b8-4c85-862b-a5526c5c2e0a))
+  which has been aligned to a custom reference
+* **1000SV** (`1000SV` branch): Analysis of discordant reads on publicly available human sample 
+* **Synthetic** (`Synthetic` branch): Creation and analysis of a dataset containing an inter-chromosomal breakpoint 
 
-GSC:
-    M_RSEM_Expression: 368 seconds.  Includes download of RSEM data.  Can vary length of step 5 by changing number of permutation tests
-
-Linus301 (slow disk):  Has WGS BAMs 
-    F_PindelRP: 370 seconds 
-    G_Discordant/: 3804 seconds.
-    I_Contig: 716 seconds
-    J_PlotList: 666 seconds
-    K_ReadDepth: 3329 seconds.
-    L_Expression: 1602 seconds.
-
-Linus300:
-    M_RSEM_Expression: 649 seconds.
-
-
-
+**TODO** See manuscript for more information. 
 
 ## Getting Started
 
+Download BreakPointSurveyor with three example workflows with,
 
-### Prerequisites
+``` git clone --recursive  https://github.com/ding-lab/BreakPointSurveyor.git ```
 
-#### python
-Needs to be (currently) 2.7
+See installation details in [INSTALL.md](./INSTALL.md).
 
-#### BreakPointSurveyor-Core
-Install [BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor-Core) and its prerequisites.  _Required._
+[Getting started with the Synthetic branch](#getting_started) section below has instructions on working
+with a relatively small test dataset.
 
-#### Tigra-SV
+## Output
 
-_Optional_.  [Tigra SV site](git clone https://bitbucket.org/xianfan/tigra.git).  To compile, modify Makefile as appropriate, then `make` and `make install`.
+BPS generates two types of plots: structure plots and expression plots.  Plots below are the output of
+the TCGA-Virus workflow.
 
-`git clone https://bitbucket.org/xianfan/tigra.git`
+### Structure Plots
 
-#### Pindel
+Structure plots visualize interchromosomal breakpoints as points with X,Y coordinates given by the breakpoint position
+along each chromosome.  Such figures also display read depth, chromosomal annotations for each chromosome, and copy 
+number histogram.  Read depth and discordant reads are obtained from aligned WGS data directly, and calls from
+various structural variant tools are readily integrated.
 
-_Optional._ [Pindel site](https://github.com/genome/pindel) with installation
-instructions.  Note that will need to install
-[htslib](https://github.com/samtools/htslib) for both Pindel and Tigra-SV.
+<img src="T_PlotStructure/plots/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.BreakpointSurvey.png" width="600"/>
 
-#### Perl XML
+See [T_PlotStructure](T_PlotStructure/README.md) for details.
 
-_Mandatory in_ `Synthetic` _branch._
+### Expression Plots
 
-`cpanm XML::XPath`
+Expression plots illustrate relative gene expression near breakpoints, with gene position, size, orientation, and name shown.
+Expression is obtained for the sample and a population of controls from either processed expression data or RNA-Seq 
+data directly.
 
-#### BWA
+<img src="U_PlotExpression/plots/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.RPKM.FDR.bubble.png" width="800"/>
 
-[Installation instructions](https://sourceforge.net/projects/bio-bwa/files/).  _Optional_.
+See [U_PlotExpression](U_PlotExpression/README.md) for details.
 
-#### bcftools
+## Design
 
-[See instructions here](https://github.com/samtools/bcftools).  Needed for parsing 1000SV VCFs.  _Optional._ 
+### Architecture
 
-#### ImageMagick
+There are three layers of BreakPoint Surveyor project:
 
-[See instructions here](https://www.imagemagick.org/script/download.php).  Needed for converting PDF images to PNG.  _Optional._
+* BPS Core: core analysis and plotting, typically in R or Python
+* BPS Workflow: Project- and locale-specific workflows. Mostly as BASH scripts
+* BPS Data: BPS-generated secondary data, graphical objects, and plots
 
-**TODO** Install this on DC2, make updated PNGs for all output
+<img src="doc/BPS_Architecture.png" width="400"/>
 
-### Installing BPS Workflow
+For convenience, the workflows demonstrated here combine the Workflow and Data layers; also, the Core
+layer is implemented as a submodule and downloaded together with this project.
 
-Install from [GitHub](https://github.com/)
+### Workflows
 
-```
-git clone --recursive  https://github.com/ding-lab/BreakPointSurveyor-Workflow.git
-git checkout <branch>
-```
+Workflows consist of a series of directories, each of which implements a stage
+in the BPS workflow. The order of processing indicated by the stage's letter
+prefix. In general, a given stage may depend on data generated by a preceding
+stage.  The figure below illustrates the stages and their relationship in the
+TCGA_Virus workflow.
 
-The `1000SV` and `Synthetic` branches can be accessed with `git checkout <branch>` after the clone command.
-([Background reading on branches](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell).)
+<img src="doc/TCGA_Virus.Workflow.v1.0.png" width="600"/>
 
-
-## Example Workflows and Data Availability
-
-### master branch
-
-Partial data available for TCGA sample TCGA-BA-4077-01 (**provide specifics**).  We do not
-provide this dataset, nor the realigned data.
-
-Provide data for steps XXX
-
-#### RNA-Seq Workflow
-RNA-Seq RSEM Expression.  Optional, required for expression plot.  Can avoid steps xxx
-
-### 1000SV Branch
-
-**TODO** for each of these, show output
-
-### Synthetic Branch
-
-
-
-## Usage
-e.g., A_Project/1_...
-
-
-## Documentation
-
-**TODO** Add manuscript PDF
-
-BPS.TCGA_Virus.Lite contains a series of directories, each of which implements
-a stage in the BPS workflow. The order of processing indicated by the stage's letter prefix.  
-In general, a given stage may depend on data generated by a preceding stage.
-See [BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor-Core) for additional details.
-
-Below are stages associated with the TCGA_Virus.Lite workflow and their description:
+Below is a list of the stages associated with the TCGA_Virus workflow (`master` branch) and their description:
 
 * **[A_Reference](A_Reference/README.md)**: Reference-specific analysis and files.
 * **[B_ExonGene](B_ExonGene/README.md)**: Generate exon and gene definitions files.
@@ -131,18 +96,110 @@ Below are stages associated with the TCGA_Virus.Lite workflow and their descript
 * **[J_PlotList](J_PlotList/README.md)**: Identify target regions for further processing and visualization
 * **[K_ReadDepth](K_ReadDepth/README.md)**: Evaluate read depth in target regions, obtain BAM file statistics for both WGS and RNA-Seq data
 * **[L_Expression](L_Expression/README.md)**: Analyze expression in vicinity of integration events using RNA-Seq data. (`master` branch only)
-* **[M_RPKM_Expression](M_RPKM_Expression/README.md)**: Analyze expression in vicinity of integration events using TCGA RPKM data. (`master` branch only)
+* **[M_RSEM_Expression](M_RSEM_Expression/README.md)**: Analyze expression in vicinity of integration events using TCGA RSEM data. (`master` branch only)
 * **[N_DrawBreakpoint](N_DrawBreakpoint/README.md)** Plot breakpoint coordinates from various predictors to breakpoint panel GGP.
 * **[O_DrawDepth](O_DrawDepth/README.md)** Create read depth/copy number panel GGP and add breakpoint predictions
 * **[P_DrawAnnotation](P_DrawAnnotation/README.md)** Create annotation panel GGP showing genes and exons
 * **[Q_DrawHistogram](Q_DrawHistogram/README.md)**: Create histogram panel GGP showing distribution of read depth
-* **[T_PlotStructure](T_T_PlotStructure/README.md)**: Assemble GGP panels into BPS structure plot and save as PDF
+* **[T_PlotStructure](T_PlotStructure/README.md)**: Assemble GGP panels into BPS structure plot and save as PDF
 * **[U_PlotExpression](U_PlotExpression/README.md)**: Create BPS Expression plot based on expression P-values and save as PDF (`master` branch only)
 
-### Output
+The 1000SV and Synthetic workflows generally have a subset of these stages.
 
-* [BreakPoint Surveyor Structure Plot](T_AssembleBPS/plots/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.BreakpointSurvey.pdf)
-* [BreakPoint Surveyor Expression Plot](U_RPKMBubble/plots/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.FDR.bubble.pdf)
+
+## Data Availability 
+
+Genomic datasets tend to be very large and frequently have restrictions
+on access and distribution.  Each of the three workflows operates on distinct datasets
+of various size, clinical relevance, and availability, to demonstrate different BreakPointSurveyor capabilities.
+
+In general, the workflows include all intermediate data which is allowed to be distributed and which is not prohibitively large
+in size.
+
+### TCGA_Virus workflow (`master` branch)
+
+The TCGA_Virus workflow provides an in-depth analysis of a virus integration event in the TCGA WGS sample 
+([TCGA-BA-4077-01B-01D-2268-08](https://gdc-portal.nci.nih.gov/legacy-archive/files/6533e56c-b5b8-4c85-862b-a5526c5c2e0a)),
+which is a head and neck cancer sample.  Because of TCGA restictions we do not make distribute any sequence data.
+After downloadeding, sequence data was aligned to a custom reference which includes human and virus sequences ([details](A_Reference/README.md)).
+We do not distribute the reference because of size constraints.  
+
+Relative expression calcuations require a case and a population of controls.  We provide two examples of expression calculations:
+
+* Expression calculated directly from RNA-Seq data (RPKM)
+* Expression obtained from a precomputed matrix of expression (TCGA RSEM)
+
+### 1000SV Workflow
+
+The 1000SV workflow investigates interchromosomal human-human breakpoints in a
+publicly available human sample from the 1000 Genomes project,
+[NA19240](http://www.internationalgenome.org/data-portal/sample/NA19240), which
+was sequenced at high (80X) coverage; this 65Gb file [can be downloaded
+here](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/hgsv_sv_discovery/data/YRI/NA19240/high_cov_alignment/NA19240.alt_bwamem_GRCh38DH.20150715.YRI.high_coverage.cram).  
+
+The analysis focuses on two events with interchromosal discordant reads.  To simplify and speed up
+downstream processing, a new sequence dataset (BAM file) with only the chromosomes of interest is created, though
+it is not distributed due to its size.  Expression analalysis is not performed in the 1000SV workflow.
+
+### Synthetic Workflow
+
+The Synthetic workflow generates a simple interchromosomal breakpoint and a
+corresponding small, synthetic dataset which can be analyzed and visualized in
+BPS.  We create a custom reference, consisting only of the chromosomes of
+interest, for improved performance (this reference is not distributed due to
+size).
+
+We then generate a breakpoint sequence from sections of the human reference,
+and synthetic (simulated) reads are create.  These are re-aligned to the custom
+reference.  The resulting BAM file is then analyzed similarly to the 1000SV
+workflow.  Expression analysis is not performed in the Synthetic workflow.
+
+The Synthetic branch also illustrates more elaborate exon/gene annotations.
+
+
+#### Getting started with the `Synthetic` workflow <a name="getting_started"></a>
+
+Because it uses a relatively small dataset which is created from scratch, the
+Synthetic workflow is a good place to start working with BPS.  
+
+There are a number of dependencies you'll need to install to get stated.  You'll
+need the Core dependencies and BWA described in [INSTALL.md](INSTALL.md).
+
+Get a fresh copy of BPS and switch to the `Synthetic` branch with,
+
+```
+git clone --recursive  https://github.com/ding-lab/BreakPointSurveyor.git
+git checkout Synthetic
+```
+
+Next, edit `bps.config` to point to the installed software. 
+
+The idea is to run each stage in order according to its first letter. You can run
+an entire stage with,
+
+```./run_bps A_Reference ```
+
+Each of these eleven stages consists of one or more steps.  These steps are named starting with a number
+(e.g., `1_get_BAM_paths.sh`), and consist of shell scripts which execute a specific task.  See the 
+documentation for each stage, as well as the contents of each step's script file, for details 
+about implementation and debugging.
+
+## Performance:
+
+### TCGA_Virus
+
+Peformed on an overloaded server, typical performance significantly faster:
+* F_PindelRP: 370 seconds 
+* G_Discordant/: 3804 seconds.
+* I_Contig: 716 seconds
+* J_PlotList: 666 seconds
+* K_ReadDepth: 3329 seconds.
+* L_Expression: 1602 seconds.
+* M_RSEM_Expression: 649 seconds.
+* N - U: tens of seconds
+
+
+
 
 
 ## Authors
