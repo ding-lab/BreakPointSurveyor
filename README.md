@@ -25,6 +25,7 @@ These workflows (and the links to view them) are:
 
 **Citation** *In prep*
 
+
 ## Getting Started
 
 Download BreakPointSurveyor with three example workflows with,
@@ -34,7 +35,7 @@ Download BreakPointSurveyor with three example workflows with,
 [Installation details](./INSTALL.md).
 
 [Getting started with the Synthetic branch](#getting_started) section below has instructions on working
-with a relatively small test dataset.
+with a relatively small test dataset.  See also the [BPS developer guide](Development.md).
 
 ## Output
 
@@ -106,7 +107,7 @@ Below is a list of the stages associated with the TCGA_Virus workflow (`master` 
 * **[T_PlotStructure](T_PlotStructure/README.md)**: Assemble GGP panels into BPS structure plot and save as PDF
 * **[U_PlotExpression](U_PlotExpression/README.md)**: Create BPS Expression plot based on expression P-values and save as PDF (`master` branch only)
 
-The 1000SV and Synthetic workflows generally have a subset of these stages. See [BPS Developer's Guide](Development.md)
+The 1000SV and Synthetic workflows generally have a subset of these stages. See [BPS Developer Guide](Development.md)
 for additional information about developing new workflow stages.
 
 ## Data Availability 

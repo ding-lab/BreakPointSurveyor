@@ -3,8 +3,8 @@
 *Draw breakpoints with coordinates given by posA, posB.  Add additional layers for 
 additional datasets as required.*
 
-This stage has expanded discussion of modifying of workflow.  See
-[Development Notes](Development.md) for additional details.
+This stage has expanded discussion of modifying of workflow, which is applicable for other drawing stages.  See
+[Development Notes](../Development.md) for additional details.
 
 The Breakpoint Panel (the upper right panel in BPS Structure plot), illustrates
 positions of breakpoints on an X,Y plane.  For the TCGA_Virus workflow, the steps are,
@@ -32,7 +32,7 @@ We create `dat/GGP` as a soft link (`ln -s`) to the output directory of the most
 as a convenience for downstream stages.
 
 By definition, here chrom A and B correspond to X and Y axes, resp.  Also by
-definition of BPC/BPR data, `chrom a < chrom b`.  By default, chrom a = chrom A
+definition of [BPC/BPR](../Development.md) data, `chrom a < chrom b`.  By default, chrom a = chrom A
 and chrom b = chrom B, but this can be changed with `FLIP_AB` parameter defined
 in `../bps.config`.  This allows control chrom/virus axes.
 

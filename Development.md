@@ -1,7 +1,5 @@
 # BreakPointSurveyor Developer's Guide
 
-
-
 ## Figure generation
 
 The structure plot is generated using the [ggplot2](http://ggplot2.org/)
@@ -32,8 +30,12 @@ into the workflow without modifications to the core apps.
 See the documentation in [N_DrawBreakpoint](N_DrawBreakpoint/README.md) for additional
 details.
 
-## File Formats
+## Job Management 
+Time consuming steps are designed to be run using cluster job management (e.g., bsub) 
+Reference implementation of such scripts: [discordant read analysis](../G_Discordant/1_get_Discordant_reads.sh)
 
+
+## File Formats
 
 ### BPC and BPR file formats <a name="bpc"></a>
 

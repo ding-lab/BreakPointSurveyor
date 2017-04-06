@@ -33,7 +33,7 @@ example of expression analysis using TCGA preprocessed expression data.
 
 ## Getting started
 
-Most simply, edit and run `1_get_BAM_paths.sh` to include information about sequence data used for creating structure plots.  
+Edit and run `1_get_BAM_paths.sh` to include information about sequence data used for creating structure plots.  
 
 If calculating RPKM data from RNA-Seq data, edit `2_make_RNASeq_paths.sh` accordingly.
 

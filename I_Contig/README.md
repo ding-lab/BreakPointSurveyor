@@ -1,15 +1,13 @@
 # Contig
 *Create contigs using Tigra-SV and realign them*
 
-TODO: *copy notes from notebook p. 125*
-
 ## Background
 
 Contig alignment improves breakpoint predictions by assembling a consensus
 sequence (contig) from reads spanning a breakpoint, then re-aligning the contig
 to the human+virus reference.  Contigs are created using Tigra-SV based on
-breakpoint predictions from Pindel and aligned with BWA mem (v. 0.7.10) to the
-human+virus reference described above. The resulting SAM file is then processed
+breakpoint predictions from Pindel and aligned with BWA mem to the
+[human+virus reference](../A_Reference/README.md). The resulting SAM file is then processed
 to yield a series of files (described below) used for plotting and analysis,
 with support for multiple breakpoints per contig.
 
@@ -47,3 +45,5 @@ contigs span two lines).  Writes pSBP file, which has the columns,
 Tigra-sv sometimes creates pathologically long contig names
 which makes samtools (and pysam) choke.  `qname_convert.py`
 shortens QNAMEs in all SAM files to a hex string using an MD5 hash.
+
+The resulting BPC files are used for visualization.

@@ -51,9 +51,10 @@ includes a larger domain to identify genes of interest for that analysis.
 
 ## Getting started
 
-If regions of interest for downstream analysis are known, it is possible to create a BPR
-file based on them, then use that as input into `3_make_PlotList.sh`, which will calculate
-the range values.
+If regions of interest for downstream analysis are known, clustering and
+prioritization is not necessary.  A simple approach then is to create a BPR
+file to define regions of interest to be used as input into
+`3_make_PlotList.sh`, which will calculate the range values.
 
 Clustering of discordant reads to prioritize regions of interest is demonstrated in the
 1000SV workflow.

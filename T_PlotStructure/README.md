@@ -1,6 +1,12 @@
 # BPS Structure Plot
 
-*Assemble GGP panels into BPS structure plot and save as PDF*
+*Assemble GGP panels into BPS structure plot and save as PDF and PNG files*
+
+All GGP panels required for the structure plot are aligned and assembled into 
+a composite figure and saved as PDF.  The PDF is then converted to a PNG file.
+
+Figures below illustrate interpretation of structure plots in general, and 
+discuss the biological interpretation of the TCGA-BA-4077-01 integration event.
 
 ## Key
 <img src="../doc/StructurePlotKey.png" width="600"/>
