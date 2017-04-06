@@ -51,7 +51,7 @@ on a plane yields patterns and interpretations which would not be discernable in
 
 ## Workflow
 
-Stages below are associated with the 1000SV workflow:
+Stages associated with 1000SV workflow:
 
 * **[A_Reference](A_Reference/README.md)**: Reference-specific analysis and files.
 * **[B_ExonGene](B_ExonGene/README.md)**: Generate exon and gene definitions files.
@@ -64,6 +64,11 @@ Stages below are associated with the 1000SV workflow:
 * **[P_DrawAnnotation](P_DrawAnnotation/README.md)** Create annotation panel GGP showing genes and exons
 * **[Q_DrawHistogram](Q_DrawHistogram/README.md)**: Create histogram panel GGP showing distribution of read depth
 * **[T_PlotStructure](T_PlotStructure/README.md)**: Assemble GGP panels into BPS structure plot and save as PDF
+
+## Installation
+
+[Installation instructions](https://github.com/ding-lab/BreakPointSurveyor/blob/master/INSTALL.md).  Besides the core libraries, also install,
+* BWA
 
 ## Performance
 * C_Project: 128 sec
