@@ -2,31 +2,31 @@
 
 *Generate PlotList to define regions for plotting*
 
-Provide step-by-step example of how might implement new datasets into PlotList
-generation.  Considerations
-
-* May be BPC or BPR - point out 1000SV branch has BPC implementation
-  * Change name of steps in these two branches to reflect the BPC/BPR distinction
-* May or may not need clustering
-  * Synthetic branch just creates the PlotList file de novo
-    * Maybe have a script to generate PlotList in Synthetic?
-
 The goal of this stage is to generate the PlotList.dat file, which defines
 regions of interest for subsequent analysis and plotting; each line of PlotList.dat
-will become one figure.
+will become one figure.  See
+[TCGA_Virus](https://github.com/ding-lab/BreakPointSurveyor/blob/master/J_PlotList/README.md)
+workflow documentation for more details about PlotList and clustering.
 
-*Identify target regions for further processing and visualization*
+## Selecting events
 
-"AQ" event: chr10:41854249-41915847	to chr20:31051980-31241883	
-"AU" event: chr13:62947705-63061713	to chr17:221247350-22180085	
+We focus on two discordant read "events":
 
+* "AQ" event: chr10:41854249-41915847	to chr20:31051980-31241883	
+* "AU" event: chr13:62947705-63061713	to chr17:221247350-22180085	
 
-Below is PlotList.dat from a run with all NA19240 reads, with top 50 regions of interest.  We are focusing on 
-just the AQ and AU events for illustrative purposes (processing of discordant reads from all vs. all chromsomes
-is time consuming)
+From preliminary work, below is PlotList.dat from a run with all NA19240 reads,
+with top 50 regions of interest (prioritized by number of discordant reads).
+We are focusing on just the AQ and AU events for demonstration purposes (since
+processing of discordant reads from all vs. all chromsomes is time consuming)
 
-To keep things simple, we actually discard the preliminary PlotList generated in step 3, and replace it with 
-one generated in step 4.
+To keep things simple and retain the naming from the preliminary analysis
+below, we discard the preliminary PlotList generated in
+`3_make_PlotList_prelim.sh`, and replace it with the one constructed in
+`4_make_PlotList.sh`.
+
+### Preliminary PlotList.dat
+For illustration purposes, output of `3_make_PlotList_prelim.sh` for the entire NA19240 dataset is below:
 
 ```
 barcode	name	chrom.A	event.A.start	event.A.end	range.A.start	range.A.end	chrom.B	event.B.start	event.B.end	range.B.start	range.B.end

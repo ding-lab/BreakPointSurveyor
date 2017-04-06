@@ -7,8 +7,7 @@ source ./BPS_Stage.config
 # file, but performance is really slow.  Instead, we'll extract regions one by one, and
 # then merge the BAM files individually.
 
-# ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/hgsv_sv_discovery/data/YRI/NA19240/high_cov_alignment/NA19240.alt_bwamem_GRCh38DH.20150715.YRI.high_coverage.cram
-BAM_ORIG="/diskmnt/Datasets/1000G_SV/ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/hgsv_sv_discovery/data/YRI/NA19240/high_cov_alignment/NA19240.alt_bwamem_GRCh38DH.20150715.YRI.high_coverage.cram"
+# BAM_ORIG is defined in bps.config
 
 U_OUTD="dat.untracked"
 mkdir -p $U_OUTD
