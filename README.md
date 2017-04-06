@@ -190,7 +190,10 @@ about implementation and debugging.
 
 ### TCGA_Virus
 
-Peformed on an overloaded server, typical performance significantly faster:
+Performance per stage for TCGA_Virus branch, obtained with `run_BPS <STAGE>`.  
+These numbers were performed on an overloaded server, and typical performance is expected to be significantly.
+
+* A_Reference B_ExonGene C_Project: 0 seconds
 * F_PindelRP: 370 seconds 
 * G_Discordant/: 3804 seconds.
 * I_Contig: 716 seconds
@@ -198,11 +201,7 @@ Peformed on an overloaded server, typical performance significantly faster:
 * K_ReadDepth: 3329 seconds.
 * L_Expression: 1602 seconds.
 * M_RSEM_Expression: 649 seconds.
-* N - U: tens of seconds
-
-
-
-
+* N_DrawBreakpoint O_DrawDepth P_DrawAnnotation Q_DrawHistogram T_PlotStructure U_PlotExpression: 20 seconds
 
 ## Authors
 Matthew A. Wyczalkowski, m.wyczalkowski@wustl.edu
