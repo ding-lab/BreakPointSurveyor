@@ -1,27 +1,29 @@
 # BreakPointSurveyor
 
-A comprehensive workflow to analyze and visualize interchromosomal breakpoints.
+*A comprehensive workflow to analyze and visualize interchromosomal breakpoints.*
+
+`master` branch, TCGA_Virus workflow 
 
 ## Overview
 
 BreakPointSurveyor (BPS) is a set of core libraries
-([BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor-Core))
-and [workflows](https://github.com/ding-lab/BreakPointSurveyor) which
+([BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor-Core)) and 
+[workflows](https://github.com/ding-lab/BreakPointSurveyor) which, with optional external tools,
 evaluate genomic sequence data to discover, analyze, and provide a visual summary of
 interchromosomal breakpoint events.
 
-The BreakPointSurveyor project provides three reference workflows, each implemented as separate [git
-branches](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell).
-These workflows are,
+The BreakPointSurveyor project provides three reference workflows, each implemented as a separate [git
+branch](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell).
+These workflows (and the links to view them) are:
 
-* **TCGA_Virus** (`master` branch):  Comprehensive workflow and data for one
+* **TCGA_Virus** ([`master` branch](https://github.com/ding-lab/BreakPointSurveyor)):  Comprehensive workflow and data for one
   TCGA virus-positive sample
   ([TCGA-BA-4077-01B-01D-2268-08](https://gdc-portal.nci.nih.gov/legacy-archive/files/6533e56c-b5b8-4c85-862b-a5526c5c2e0a))
   which has been aligned to a custom reference
-* **1000SV** (`1000SV` branch): Analysis of discordant reads on publicly available human sample 
-* **Synthetic** (`Synthetic` branch): Creation and analysis of a dataset containing an inter-chromosomal breakpoint 
+* **1000SV** ([`1000SV` branch](https://github.com/ding-lab/BreakPointSurveyor/tree/1000SV)): Analysis of discordant reads on publicly available human sample 
+* **Synthetic** ([`Synthetic` branch](https://github.com/ding-lab/BreakPointSurveyor/tree/Synthetic)): Creation and analysis of a dataset containing an inter-chromosomal breakpoint 
 
-**TODO** See manuscript for more information. 
+**Citation** *In prep*
 
 ## Getting Started
 
@@ -29,7 +31,7 @@ Download BreakPointSurveyor with three example workflows with,
 
 ``` git clone --recursive  https://github.com/ding-lab/BreakPointSurveyor.git ```
 
-See installation details in [INSTALL.md](./INSTALL.md).
+[Installation details](./INSTALL.md).
 
 [Getting started with the Synthetic branch](#getting_started) section below has instructions on working
 with a relatively small test dataset.
@@ -104,8 +106,8 @@ Below is a list of the stages associated with the TCGA_Virus workflow (`master` 
 * **[T_PlotStructure](T_PlotStructure/README.md)**: Assemble GGP panels into BPS structure plot and save as PDF
 * **[U_PlotExpression](U_PlotExpression/README.md)**: Create BPS Expression plot based on expression P-values and save as PDF (`master` branch only)
 
-The 1000SV and Synthetic workflows generally have a subset of these stages.
-
+The 1000SV and Synthetic workflows generally have a subset of these stages. See [BPS Developer's Guide](Development.md)
+for additional information about developing new workflow stages.
 
 ## Data Availability 
 
@@ -113,8 +115,7 @@ Genomic datasets tend to be very large and frequently have restrictions
 on access and distribution.  Each of the three workflows operates on distinct datasets
 of various size, clinical relevance, and availability, to demonstrate different BreakPointSurveyor capabilities.
 
-In general, the workflows include all intermediate data which is allowed to be distributed and which is not prohibitively large
-in size.
+In general, the workflows include all intermediate data which is allowed to be distributed and which is not prohibitively large.
 
 ### TCGA_Virus workflow (`master` branch)
 
@@ -157,13 +158,13 @@ workflow.  Expression analysis is not performed in the Synthetic workflow.
 The Synthetic branch also illustrates more elaborate exon/gene annotations.
 
 
-#### Getting started with the `Synthetic` workflow <a name="getting_started"></a>
+#### Getting started with the Synthetic workflow <a name="getting_started"></a>
 
 Because it uses a relatively small dataset which is created from scratch, the
 Synthetic workflow is a good place to start working with BPS.  
 
 There are a number of dependencies you'll need to install to get stated.  You'll
-need the Core dependencies and BWA described in [INSTALL.md](INSTALL.md).
+need the Core dependencies and as well as BWA, [described here](INSTALL.md).
 
 Get a fresh copy of BPS and switch to the `Synthetic` branch with,
 
@@ -172,7 +173,7 @@ git clone --recursive  https://github.com/ding-lab/BreakPointSurveyor.git
 git checkout Synthetic
 ```
 
-Next, edit `bps.config` to point to the installed software. 
+Next, edit `bps.config` to locate the installed software. 
 
 The idea is to run each stage in order according to its first letter. You can run
 an entire stage with,

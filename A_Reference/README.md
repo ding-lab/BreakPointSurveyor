@@ -1,4 +1,5 @@
-#Reference
+# Reference
+
 *Construct Human + Virus reference*
 
 The "GRCh37_selectVirus_9a" human+virus reference used for TCGA-Virus alignment is a concatenation of the human genome (GRCh37) and 
@@ -27,4 +28,4 @@ The "GRCh37_selectVirus_9a" human+virus reference used for TCGA-Virus alignment 
 The combined reference is too large to distribute, but the index file [dat/GRCh37_selectVirus_9a.fa.fai](dat/GRCh37_selectVirus_9a.fa.fai)
 is available.
 
-
+Realignment was performed using BWA v. 0.5.9 with parameters `-t 4 -q 5::`

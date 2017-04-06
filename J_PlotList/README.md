@@ -1,60 +1,60 @@
 # PlotList
 
-*Generate PlotList to define regions for plotting*
+`dat/PlotList.dat` defines integration event and regions of interest.
 
-Provide step-by-step example of how might implement new datasets into PlotList
-generation.  Considerations
+The goal of this stage is to generate the PlotList.dat file, a key step for
+downstream plotting and analysis.  Each line of `PlotList.dat` will generally
+yield one structure plot and one expresssion plot figure.
 
-* May be BPC or BPR - point out 1000SV branch has BPC implementation
-  * Change name of steps in these two branches to reflect the BPC/BPR distinction
-* May or may not need clustering
-  * Synthetic branch just creates the PlotList file de novo
-    * Maybe have a script to generate PlotList in Synthetic?
+## PlotList File Format
 
-*Identify target regions for further processing and visualization*
+`PlotList.dat` is a tab separated (TSV) format with the columns,
 
-Provide step-by-step example of how might implement new datasets into PlotList
-generation.  Considerations
+* `barcode`
+* `event.name` (unique)
+* `chrom.a` (first chromosome of coordinate pair)
+* `event.a.start, event.a.end` (indicates region of e.g. SV event)
+* `range.a.start, range.a.end` 
+* `chrom.b`, (second chromosome of coordiante pair)
+* `event.b.start, event.b.end, range.b.start, range.b.end`
 
-* May be BPC or BPR - point out 1000SV branch has BPC implementation
-  * Change name of steps in these two branches to reflect the BPC/BPR distinction
-* May or may not need clustering
-  * Synthetic branch just creates the PlotList file de novo
-    * Maybe have a script to generate PlotList in Synthetic?
+The `event` positions identify the predicted integration event.  The `range` positions
+define a region of interest around the integration event which will be used for plotting
+of structure plots. (This region is not used for expression plots).  The "padding" around
+the integration event to the `context`:
+```
+range.a.start = event.start - context 
+range.a.end = event.end + context
+```
 
-*Identify target regions for further processing and visualization*
+## Clustering
 
+To automatically generate regions of interest, we group multiple nearby breakpoints on the same chromosome pair into clusters
+to serve as preliminary integration event predictions.
 
-*TODO* mention that use FAI in step 3.  Focusing on BPC since doing discordant.
+With each breakpoint between chromA and chromB represented by a point with
+coordinates (posA, posB), the clustering algorithm draws a square with sides
+length L/2 centered at each breakpoint, and all breakpoints within overlapping
+squares are grouped into one cluster.  Details in
+[makeBreakpointRegions.py](https://github.com/ding-lab/BreakPointSurveyor-Core/blob/master/src/util/makeBreakpointRegions.py).
 
-The goal of this stage is to generate the PlotList.dat file, which defines
-regions of interest for subsequent analysis and plotting; each line of PlotList.dat
-will become one figure.
+### TCGA_Virus
+Nearby Pindel breakpoints between the same chromosome and virus (those
+occurring within 50Kbp of one another along both genomes) were clustered into
+integration events, which defined regions of interest for all subsequent
+analyses.  Note that for the sample of interest all three breakpoints were
+nearby.
 
-Defining the PlotList is a critical step for downstream plotting and analysis:
-it defines the list of regions for further processing.  In particular, the "range"
-defined in PlotList defines the region which will be plotted, in this case the
-integration event +/- 50kBP
+We include an additional 50Kbps "padding" around the integration event to include in structure plot.
+Note that expression analysis uses integration event positions from `PlotList`, but 
+includes a larger domain to identify genes of interest for that analysis.
 
-Here, the regions of interest are defined based on clustering of discordant
-reads (even though we know what they are because we generated the data).
+## Getting started
 
-Note that you already know the regions of interest, the steps in this directory can be skipped,
-and edit `dat/PlotList.dat` manually to define them.
+If regions of interest for downstream analysis are known, it is possible to create a BPR
+file based on them, then use that as input into `3_make_PlotList.sh`, which will calculate
+the range values.
 
-We choose to include an additional 50Kbps "padding" around the integration event; this will be
-the region of the BPS structure plot (note, BPS expression analysis and plot, which is not 
-illustrated for the Synthetic branch, has a much larger domain unrelated to this one).
-
-Note, step 3 requires an FAI file, which is generally provided with the reference.
-
-PlotList is TSV format with the following columns,
-
-* barcode
-* event.name (unique)
-* chrom.a, (first chromosome of coordinate pair)
-* event.a.start, event.a.end (indicates region of e.g. SV event)
-* range.a.start, range.a.end (indicates region to plot; calculated as event.start - context, event.end + context, respectively)
-* chrom.b, (second chromosome of coordiante pair)
-* event.b.start, event.b.end, range.b.start, range.b.end 
+Clustering of discordant reads to prioritize regions of interest is demonstrated in the
+1000SV workflow.
 

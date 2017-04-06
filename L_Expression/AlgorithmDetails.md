@@ -1,11 +1,10 @@
-
-## Algorithm description
+# Per-Gene Expression Calculations
 
 The expression of all exons in a gene is combined to yield per-gene
 P-value.  When an integration event occurs within a gene, we treat upstream,
 intra-gene, and downstream exons independently (i.e., consider 3 separate "genes").
 
-### Per-gene permutation test (repeated once for every gene)
+## Per-gene permutation test (repeated once for every gene)
 
 Exons of interest are all the exons within the gene being considered.
 
@@ -40,3 +39,5 @@ The smaller the value of p, the more likely it is that this gene in the case is
 significantly dysregulated with respect to this gene in the control samples.
 The direction of this dysregulation is given by e\*: gene expression is
 upregulated if e\* > 0, downregulated if e\* < 0.
+
+We then perform multiple test correction ([Benjamini and Hochberg, 1995](http://www.jstor.org/stable/2346101?seq=1#page_scan_tab_contents)) to obtain per-gene FDRs.
