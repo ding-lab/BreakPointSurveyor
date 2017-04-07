@@ -1,6 +1,6 @@
 # BreakPointSurveyor
 
-*A comprehensive workflow to analyze and visualize interchromosomal breakpoints.*
+*A comprehensive pipeline to analyze and visualize structural variants*
 
 This is the `master` branch which implements the TCGA_Virus workflow.
 
