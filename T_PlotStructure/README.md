@@ -13,9 +13,10 @@ The "AQ" event occurs between genomic regions chr10:41854249-41915847 and chr20:
 
 <img src="plots/NA19240.AQ.chr10_chr20.BreakpointSurvey.png" width="600"/>
 
-AQ event has a discordant read signature which is frequently observed: a
-relatively random distribution of discordant reads and a spike in copy number.
-This likely represents anomalous mapping between two repetitive regions.
+AQ event has a discordant read signature which is frequently observed: no
+correlation between discordant read positions on the two chromosomes and a
+spike in copy number.  This likely represents anomalous mapping between two
+repetitive regions.
 
 ### AU Event
 
