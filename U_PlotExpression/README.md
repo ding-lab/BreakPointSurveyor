@@ -19,7 +19,7 @@ with blue and red indicating down- and up-regulation, respectively.
  
 
 
-# TCGA-BA-4077-01 expression: RPKM Analysis
+## TCGA-BA-4077-01 expression: RPKM Analysis
 <img src="plots/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.RPKM.FDR.bubble.png" width="800"/>
 
 Virus integration occurs in gene *RAD51B*, and exons upstream and downstream
