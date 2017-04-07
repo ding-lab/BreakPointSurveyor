@@ -1,6 +1,6 @@
 # BreakPointSurveyor: Synthetic branch
 
-*A comprehensive workflow to generate, analyze, and visualize interchromosomal breakpoints in a synthetic dataset.*
+*A comprehensive pipeline to generate, analyze, and visualize structural variants in a synthetic dataset*
 
 See [TCGA_Virus](https://github.com/ding-lab/BreakPointSurveyor) workflow for comprehensive documentation.
 
