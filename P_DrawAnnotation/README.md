@@ -1,4 +1,4 @@
-# P_DrawAnnotation
+# DrawAnnotation
 *Create annotation panel GGP showing genes and exons*
 
 Exons and genes are represented as [BED](http://bedtools.readthedocs.io/en/latest/content/general-usage.html) files in
