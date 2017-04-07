@@ -210,3 +210,6 @@ Matthew A. Wyczalkowski, m.wyczalkowski@wustl.edu
 This software is licensed under the GNU General Public License v3.0
 
 ## Acknowledgements
+This work was supported by the National Cancer Institute [R01CA178383 and
+R01CA180006 to Li Ding, R01CA172652 to Ken Chen]; and National Human Genome Research
+Institute [U01HG006517 to Li Ding]. 
