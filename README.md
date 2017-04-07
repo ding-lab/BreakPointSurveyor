@@ -1,6 +1,6 @@
 # BreakPointSurveyor: 1000SV branch
 
-*A comprehensive workflow to analyze and visualize interchromosomal breakpoints in 1000 Genome dataset.*
+*A comprehensive pipeline to analyze and visualize structural variants in 1000 Genomes dataset*
 
 See [TCGA_Virus](https://github.com/ding-lab/BreakPointSurveyor) workflow for comprehensive documentation.
 
