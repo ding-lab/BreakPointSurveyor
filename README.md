@@ -53,17 +53,17 @@ on a plane yields patterns and interpretations which would not be discernable in
 
 Stages associated with 1000SV workflow:
 
-* **[A_Reference](A_Reference/README.md)**: Reference-specific analysis and files.
-* **[B_ExonGene](B_ExonGene/README.md)**: Generate exon and gene definitions files.
-* **[C_Project](C_Project/README.md)**: Create list of BAMs, both realigned WGS and RNA-Seq.  Create BAMs in `Synthetic` branch.
-* **[G_Discordant](G_Discordant/README.md)**: Process realigned BAM file to extract discordant human-virus reads
-* **[J_PlotList](J_PlotList/README.md)**: Identify target regions for further processing and visualization
-* **[K_ReadDepth](K_ReadDepth/README.md)**: Evaluate read depth in target regions, obtain BAM file statistics for both WGS and RNA-Seq data
-* **[N_DrawBreakpoint](N_DrawBreakpoint/README.md)** Plot breakpoint coordinates from various predictors to breakpoint panel GGP.
+* **[A_Reference](A_Reference/README.md)**: Download GRCh38 human reference and associated files.
+* **[B_ExonGene](B_ExonGene/README.md)**: Reference-specific analysis and files.
+* **[C_Project](C_Project/README.md)**: Create list of sample WGS BAMs and references.
+* **[G_Discordant](G_Discordant/README.md)**: Process realigned BAM file to extract discordant reads.
+* **[J_PlotList](J_PlotList/README.md)**: Generate PlotList to define regions for plotting.
+* **[K_ReadDepth](K_ReadDepth/README.md)**: Evaluate read depth in target regions.
+* **[N_DrawBreakpoint](N_DrawBreakpoint/README.md)** Draw breakpoints with coordinates given by posA, posB.
 * **[O_DrawDepth](O_DrawDepth/README.md)** Create read depth/copy number panel GGP and add breakpoint predictions
 * **[P_DrawAnnotation](P_DrawAnnotation/README.md)** Create annotation panel GGP showing genes and exons
 * **[Q_DrawHistogram](Q_DrawHistogram/README.md)**: Create histogram panel GGP showing distribution of read depth
-* **[T_PlotStructure](T_PlotStructure/README.md)**: Assemble GGP panels into BPS structure plot and save as PDF
+* **[T_PlotStructure](T_PlotStructure/README.md)**: Assemble GGP panels into BPS structure plot and save as PDF and PNG files.
 
 ## Installation
 

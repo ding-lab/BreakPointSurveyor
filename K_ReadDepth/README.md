@@ -1,6 +1,6 @@
 # ReadDepth
 
-*Evaluate read depth in target regions, and obtain BAM file statistics used for calculating copy number*
+*Evaluate read depth in target regions*
 
 * Evaluate read depth (number of reads mapping to a genomic position) in WGS data for regions defined in PlotList.  `depthFilter.py` will subsample
   the depth so that no more than about 10K data points are returned, no matter the region size.
