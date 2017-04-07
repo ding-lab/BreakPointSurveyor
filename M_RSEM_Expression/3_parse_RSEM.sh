@@ -78,7 +78,7 @@ function process {
 
     # using -s 3 to remove leading 'chr' from chrom names  
 
-    tar -zxOf $DAT | grep -v "exon_quantification__data.data.txt" | cut -f "1,$SEQ2" | tee >(python $BIN -s 3 -p -H -D $BED | awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,$4,".",$5}' > $EXON_OUT) >(python $BIN -s 3 -c -o $DATA_OUT $BED) 1> /dev/null
+    tar -zxOf $DAT | grep -v "exon_quantification__data.data.txt" | cut -f "1,$SEQ2" | tee >($PYTHON $BIN -s 3 -p -H -D $BED | awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,$4,".",$5}' > $EXON_OUT) >($PYTHON $BIN -s 3 -c -o $DATA_OUT $BED) 1> /dev/null
 
     # Equivalent
     # tar -zxOf $DAT | grep -v "exon_quantification__data.data.txt" | cut -f "1,$SEQ2" | python $BIN -s 3 -c -o $DATA_OUT $BED 

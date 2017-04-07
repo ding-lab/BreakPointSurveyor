@@ -40,7 +40,7 @@ TMP1="$TMP/all.exons.bed"        # temporary BED file of unsorted and unmerged e
 TMP2="$TMP/merged.exons.bed"     # temporary BED file of merged but unsorted exons
 rm -f $TMP2; touch $TMP2
 
-python $BIN $ARG -s -b exon  < <(zcat $GTF) | bedtools sort -i stdin > $TMP1
+$PYTHON $BIN $ARG -s -b exon  < <(zcat $GTF) | bedtools sort -i stdin > $TMP1
 echo Written to $TMP1
 
 # now go through genes one by one and and merge all their beds together

@@ -4,7 +4,7 @@
 # which is important for the processing here.
 
 source ./BPS_Stage.config
-BIN="/usr/bin/python2.7 $BPS_CORE/src/contig/qname_convert.py"
+BIN="$PYTHON $BPS_CORE/src/contig/qname_convert.py"
 
 DATD="$OUTD/BWA" # BWA-mem output SAM files:
 

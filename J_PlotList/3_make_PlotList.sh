@@ -43,7 +43,7 @@ function process {
         FLIP="-l"
     fi
 
-    python $BIN $HEADER -c $FLANK -i $DAT -o stdout -r $FAI -n $BAR -N A -p chr $FLIP >> $OUT  
+    $PYTHON $BIN $HEADER -c $FLANK -i $DAT -o stdout -r $FAI -n $BAR -N A -p chr $FLIP >> $OUT  
     HEADER=""
 
 }

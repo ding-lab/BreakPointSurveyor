@@ -24,6 +24,6 @@ ARG="-e 84"
 define_75
 # define_84
   
-python $BIN $ARG -b gene < <(zcat $GTF) | bedtools sort -i stdin > $OUT
+$PYTHON $BIN $ARG -b gene < <(zcat $GTF) | bedtools sort -i stdin > $OUT
 
 echo Written to $OUT

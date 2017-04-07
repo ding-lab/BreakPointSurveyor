@@ -2,7 +2,7 @@
 # From, /gscuser/mwyczalk/projects/Virus/Virus_2013.9a/analysis/UnifiedVirus2/U_SAMBreakpoints/2_make_pSBP.sh
 
 source ./BPS_Stage.config
-BIN="/usr/bin/python2.7 $BPS_CORE/src/contig/SAMReader.py"
+BIN="$PYTHON $BPS_CORE/src/contig/SAMReader.py"
 
 DATD="$OUTD/SAM" 
 OUTDD="$OUTD/pSBP"

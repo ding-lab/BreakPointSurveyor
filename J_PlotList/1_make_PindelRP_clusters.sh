@@ -41,7 +41,7 @@ function process_BPR {
         CHROMA=`echo $m | awk '{print $1}'`
         CHROMB=`echo $m | awk '{print $2}'`
 
-        python $BIN $HEADER -r -c -A $CHROMA -B $CHROMB -R $D $DAT stdout >> $OUT
+        $PYTHON $BIN $HEADER -r -c -A $CHROMA -B $CHROMB -R $D $DAT stdout >> $OUT
         HEADER=""
     # NOTE: the line below selects chromA, B columns from $DAT.  Assumptions about BPC, BPR format are embedded.
     done < <(grep -v "^#" $DAT | cut -f 1,4 | sort -u)  # this selects all unique chromA, chromB pairs and loops over them
