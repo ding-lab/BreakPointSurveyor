@@ -1,5 +1,5 @@
 # Discordant
-*Process realigned BAM file to extract discordant human-virus reads*
+*Process realigned BAM file to extract discordant reads*
 
 Proceeds in two steps:
 

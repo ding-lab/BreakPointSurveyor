@@ -9,9 +9,7 @@
 
 source ./BPS_Stage.config
 
-PYTHON="python"
 BIN="$BPS_CORE/src/util/makeBreakpointRegions.py"
-echo $BIN
 
 # writing all output per sample to BPC/BAR.Discordant-cluster.BPC.dat
 # Define D as 50K; combine all breakpoints that are within D of each other along both chrom into one cluster

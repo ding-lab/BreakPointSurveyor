@@ -42,7 +42,8 @@ function process {
         FLIP="-l"
     fi
 
-    python $BIN $HEADER -c $FLANK -i $DAT -o stdout -r $FAI -n $BAR -N AB $FLIP >> $OUT  
+    # PYTHON defined in bps.config
+    $PYTHON $BIN $HEADER -c $FLANK -i $DAT -o stdout -r $FAI -n $BAR -N AB $FLIP >> $OUT  
     HEADER=""
 
 }

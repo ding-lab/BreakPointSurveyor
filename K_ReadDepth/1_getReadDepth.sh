@@ -6,9 +6,6 @@ source ./BPS_Stage.config
 # loops over PlotList, reads BAM files,.
 # Writes two depth files per PlotList entry to dat/BAR/*.DEPTH.dat
 
-# relevant for finding installed pysam libraries
-PYTHON="/usr/bin/python2.7"
-
 BIN="$BPS_CORE/src/analysis/depthFilter.py"
 
 # limit number of points to 10K or so per segment.
@@ -31,6 +28,7 @@ function get_depth {
     ARGS=$N
     # -t is timing
     echo $NAME $CHROM $START $END
+    # PYTHON defined in bps.config
     $PYTHON $BIN $N -o $OUT $CHROM $START $END $BAM
 }
 

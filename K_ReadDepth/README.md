@@ -1,7 +1,9 @@
 # ReadDepth
 
-*Evaluate read depth in target regions, obtain BAM file statistics for both WGS and RNA-Seq data*
+*Evaluate read depth in target regions, and obtain BAM file statistics used for calculating copy number*
 
-Evaluate read depth in region of interest around each integration event.
-We will not evaluate read depth for normalization purposes because the custom reference will
-make calculations meaningless
+* Evaluate read depth (number of reads mapping to a genomic position) in WGS data for regions defined in PlotList.  `depthFilter.py` will subsample
+  the depth so that no more than about 10K data points are returned, no matter the region size.
+
+Copy number estimation performed in the [TCGA_Virus workflow](https://github.com/ding-lab/BreakPointSurveyor/blob/master/K_ReadDepth/README.md) is not 
+valid for the small BAM file constructed in C_Project, so we skip the flagstat calculations described for TCGA_Virus.
