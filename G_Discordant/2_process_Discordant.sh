@@ -11,7 +11,13 @@
 
 source ./BPS_Stage.config
 
-OUTDD="$OUTD/BPC"
+# Using entire (not reduced) BAM here
+SAMPLE_LIST="$BPS_DATA/C_Project/dat/BPS.samples.dat"
+
+# We are not tracking this data due to size
+U_OUTD="dat.untracked"
+
+OUTDD="$U_OUTD/BPC"
 mkdir -p $OUTDD
 
 while read l; do
@@ -21,7 +27,7 @@ while read l; do
 # write BPC file - this has all breakpoint coordinates listed just once.
 #    BPC: chromA, posA, chromB, posB
 BAR=`echo $l | awk '{print $1}'`
-DAT_FN="$OUTD/discordant_$BAR.sam"
+DAT_FN="$U_OUTD/discordant_$BAR.sam"
 
 OUT="$OUTDD/${BAR}.Discordant.BPC.dat"
 

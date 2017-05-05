@@ -1,6 +1,8 @@
 # Discordant
 *Process realigned BAM file to extract discordant reads*
 
+Note we're analyzing the original data file, rather than the reduced one generated in `I_ReducedBAMs`
+
 Proceeds in two steps:
 
 ## Step 1

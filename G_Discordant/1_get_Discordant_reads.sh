@@ -9,7 +9,14 @@ USE_BSUB=0
 
 MAPQ=25	# Reads with quality < MAPQ are discarded
 
+# We are not tracking this data due to size
+U_OUTD="dat.untracked"
+mkdir -p $U_OUTD
+
 source ./BPS_Stage.config
+
+# Using entire (not reduced) BAM here
+SAMPLE_LIST="$BPS_DATA/C_Project/dat/BPS.samples.dat"
 
 if [ $USE_BSUB == 1 ]; then    
     # using bsub
@@ -24,7 +31,7 @@ function process {
     BAM=$2
 
     # process BAM to get just the discordant reads (written to DOUT)
-    DOUT="$OUTD/discordant_$BAR.sam"
+    DOUT="$U_OUTD/discordant_$BAR.sam"
 
     # SAM specs: https://samtools.github.io/hts-specs/SAMv1.pdf
     # col 5 is MAPQ of read
