@@ -38,7 +38,7 @@ function process {
 
     echo Processing $BAR
 
-    SHCMD1="samtools view  $BAM | awk -v mapq=$MAPQ 'BEGIN{FS=\"\t\"} {if ((\$7 !~ /=/) && (\$5 >= mapq))  print}' > $DOUT"
+    SHCMD1="samtools view -H $BAM > $DOUT; samtools view $BAM | awk -v mapq=$MAPQ 'BEGIN{FS=\"\t\"} {if ((\$7 !~ /=/) && (\$5 >= mapq))  print}' >> $DOUT"
 
     if [ $USE_BSUB == 1 ]; then
         SHNAM="bsub/run_$BAR.sh"
