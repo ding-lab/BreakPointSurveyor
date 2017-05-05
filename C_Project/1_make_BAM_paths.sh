@@ -2,12 +2,9 @@
 
 # for 1000SV, reference obtained from alignment file
 
-# Note, SAMPLE_LIST is defined in ../bps.config
+# Here we write BPS.samples.dat which refers to the original 1000SV data
 
 source ./BPS_Stage.config
-
-# Here we write BPS.samples.dat which refers to the original 1000SV data
-SAMPLE_LIST="$BPS_DATA/C_Project/dat/BPS.samples.dat"
 
 U_OUTD="$BPS_DATA/C_Project/dat.untracked"
 

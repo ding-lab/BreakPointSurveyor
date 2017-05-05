@@ -3,17 +3,18 @@
 # this is particularly useful when using techniques like discordant reads high false positive raters
 
 source ./BPS_Stage.config
-# Retain top 5 clusters per sample to use to create PlotList
+# Retain top 25 clusters per sample to use to create PlotList
 NCLUST=25
 
-mkdir -p $OUTD
 
+U_DATDD="dat.untracked/BPC"
 OUTDD="$OUTD/BPC"
+mkdir -p $OUTDD
 
 function process {
     BAR=$1
 
-    DAT="$OUTDD/${BAR}.Discordant-cluster.BPR.dat"
+    DAT="$U_DATDD/${BAR}.Discordant-cluster.BPR.dat"
     OUT="$OUTDD/${BAR}.Discordant-prioritized.BPR.dat"
 
     head -n1 $DAT > $OUT
@@ -29,5 +30,5 @@ while read l; do  # iterate over all barcodes
     BAR=`echo $l | awk '{print $1}'`
     process $BAR
 
-done < $SAMPLE_LIST  # iterate over all barcodes
+done < $SAMPLE_LIST
 

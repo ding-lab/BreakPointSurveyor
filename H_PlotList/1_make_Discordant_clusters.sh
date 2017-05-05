@@ -1,4 +1,5 @@
 # Cluster nearby discordant breakpoints
+# This is a relatively slow step, about 12 hours for NA19240 discordant reads
 
 # Create BPR file which has regions of clustered breakpoints.
 # Such events are per unique chromA/chromB pair
@@ -17,14 +18,18 @@ echo $BIN
 D=50000
 set +o posix
 
-OUTDD="$OUTD/BPC"
+# Not tracking all clusters because this is a large file.
+U_OUTD="dat.untracked"
+mkdir -p $U_OUTD
+
+OUTDD="$U_OUTD/BPC"
 mkdir -p $OUTDD
 
 function process_BPC {
     BAR=$1
 
     # Making assumptions about where Discordant data live
-    DAT="$BPS_DATA/G_Discordant/dat/BPC/$BAR.Discordant.BPC.dat"
+    DAT="$BPS_DATA/G_Discordant/dat.untracked/BPC/$BAR.Discordant.BPC.dat"
     OUT="$OUTDD/${BAR}.Discordant-cluster.BPR.dat"
     rm -f $OUT
     HEADER="-H"
@@ -53,4 +58,4 @@ while read l; do  # iterate over all barcodes
     BAR=`echo $l | awk '{print $1}'`
     process_BPC $BAR
 
-done < $SAMPLE_LIST  # iterate over all barcodes
+done < $SAMPLE_LIST

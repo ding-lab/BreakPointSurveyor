@@ -58,7 +58,7 @@ Stages associated with 1000SV workflow:
 * **[B_ExonGene](B_ExonGene/README.md)**: Reference-specific analysis and files.
 * **[C_Project](C_Project/README.md)**: Create list of sample WGS BAMs and references.
 * **[G_Discordant](G_Discordant/README.md)**: Process realigned BAM file to extract discordant reads.
-* **[J_PlotList](J_PlotList/README.md)**: Generate PlotList to define regions for plotting.
+* **[H_PlotList](H_PlotList/README.md)**: Generate PlotList to define regions for plotting.
 * **[K_ReadDepth](K_ReadDepth/README.md)**: Evaluate read depth in target regions.
 * **[N_DrawBreakpoint](N_DrawBreakpoint/README.md)** Draw breakpoints with coordinates given by posA, posB.
 * **[O_DrawDepth](O_DrawDepth/README.md)** Create read depth/copy number panel GGP and add breakpoint predictions
@@ -74,6 +74,6 @@ Stages associated with 1000SV workflow:
 ## Performance
 * C_Project: 128 sec
 * G_Discordant: 16 sec
-* J_PlotList: 13 minutes
+* H_PlotList: 12 hours (clustering is time consuming)
 * K_ReadDepth: 55 sec
 * N_DrawBreakpoint - T_PlotStructure: 73 sec

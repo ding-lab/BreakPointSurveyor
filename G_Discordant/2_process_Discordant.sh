@@ -11,9 +11,6 @@
 
 source ./BPS_Stage.config
 
-# Using entire (not reduced) BAM here
-SAMPLE_LIST="$BPS_DATA/C_Project/dat/BPS.samples.dat"
-
 # We are not tracking this data due to size
 U_OUTD="dat.untracked"
 

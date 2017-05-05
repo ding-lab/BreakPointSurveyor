@@ -1,9 +1,6 @@
 # Automatically generate a PlotList.BPS data file for Breakpoint Surveyor plots based
 # on prioritized discordant clusters.
 # 
-# Note that this step is for demonstration purposes, since step 4 will write a PlotList from
-# scratch to focus on the principal AU, AQ events.  See README.md for details.
-
 # PlotList is TSV format with the following columns,
 #  * barcode
 #  * event.name (unique)
@@ -63,6 +60,6 @@ while read l; do  # iterate over all barcodes
 
     process $BAR $FAI
 
-done < $SAMPLE_LIST  # iterate over all barcodes
+done < $SAMPLE_LIST
 
 echo Written to $OUT

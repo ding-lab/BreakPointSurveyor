@@ -15,9 +15,6 @@ mkdir -p $U_OUTD
 
 source ./BPS_Stage.config
 
-# Using entire (not reduced) BAM here
-SAMPLE_LIST="$BPS_DATA/C_Project/dat/BPS.samples.dat"
-
 if [ $USE_BSUB == 1 ]; then    
     # using bsub
     mkdir -p bsub
@@ -64,7 +61,7 @@ do
     BAM=`echo $l | awk '{print $3}'`
 
     process $BAR $BAM
-done < $SAMPLE_LIST 
+done < $SAMPLE_LIST
 
 
 if [ $USE_BSUB == 1 ]; then
