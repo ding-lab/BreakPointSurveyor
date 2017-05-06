@@ -28,7 +28,8 @@ function process_chrom {
     # chr10 41817042    chr4    49711560    Reverse
     OUT="$OUTDD/${NAME}.${CHROM_ID}.ICB.dat"
 
-    awk -v c=$CHROM 'BEGIN{FS="\t";OFS="\t"}{if ($1 == c) print $1,$2,$3,$4,$3; else if ($3 == c) print $3,$4,$1,$2,$1}' $BPC > $OUT
+    # chrom B position does not matter, only its name.  Repeating chrom A position alleviates issues with filtering of data in step 4
+    awk -v c=$CHROM 'BEGIN{FS="\t";OFS="\t"}{if ($1 == c) print $1,$2,$1,$2,$3; else if ($3 == c) print $3,$4,$3,$4,$1}' $BPC > $OUT
     echo Written to $OUT
 }
 

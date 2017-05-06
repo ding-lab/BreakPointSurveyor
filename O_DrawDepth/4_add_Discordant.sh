@@ -38,9 +38,9 @@ function process_chrom {
     ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID "
     # filter data according to range of the opposite chrom/virus
 #    ARGS="$ARGS -N ${N_CHROM}:${N_START}-${N_END}"
-#    if [ $FLIPAB == 1 ]; then    # defined in ../bps.config
-#        ARGS="$ARGS -l"
-#    fi
+    if [ $FLIPAB == 1 ]; then    # defined in ../bps.config
+        ARGS="$ARGS -l"
+    fi
 
     # using BPC.chromB data so that the attribute is the name of chromB, which allows us to color 
     # points according to the which chrom the breakpoint is with
