@@ -8,7 +8,7 @@ Proceeds in two steps:
 ## Step 1
 
 Extract all paired-end discordant reads (i.e., reads of a pair map to different chrom) which have MAPQ>=25
-Write `dat/discordant_XXX.sam` 
+Write `dat.untracked/discordant_XXX.sam`
 
 ## Step 2
 
