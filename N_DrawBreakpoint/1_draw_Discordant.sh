@@ -1,7 +1,7 @@
 # Append Discordant read data to Breakpoint Coordinates GGP files
 source ./BPS_Stage.config
 
-DATD="$BPS_DATA/G_Discordant/dat/BPC"
+DATD="$BPS_DATA/I_FilterDiscordant/dat/BPC"
 BIN="$BPS_CORE/src/plot/BreakpointDrawer.R"
 
 #INDD="$OUTD/GGP.PindelRP"
@@ -34,7 +34,9 @@ function process_plot {
     RANGE_A="-A ${A_CHROM}:${A_START}-${A_END}" 
     RANGE_B="-B ${B_CHROM}:${B_START}-${B_END}" 
 
-    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -s 16"
+    # ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -s 16"
+    # To have fill be defined by BPC attribute, don't define color here 
+    ARGS=" -p point -a 0.25 -z 2.5 -s 16"
 
     if [ $FLIPAB == 1 ]; then  # defined in ../bps.config
         ARGS="$ARGS -l"
