@@ -35,7 +35,8 @@ function process_plot {
 
     TITLE="$BAR Breakpoint Surveyor Structure Plot"
 
-    ARGS="-c $A_CHROM -C $B_CHROM -b 12 "
+    # showing legend for attributes
+    ARGS="-c $A_CHROM -C $B_CHROM -b 12 -M "
     Rscript $BIN $MARKS -P $AA $AB -t "$TITLE" -H $HISTOGRAM $ARGS $BREAKPOINTS $A_DEPTH $B_DEPTH $OUT
 
 }
@@ -57,6 +58,7 @@ B_START=`echo "$l" | cut -f 11`
 B_END=`echo "$l" | cut -f 12`
 
 process_plot $NAME
+
 done < $PLOT_LIST
 
 
