@@ -142,9 +142,10 @@ publicly available human sample from the 1000 Genomes project,
 was sequenced at high (80X) coverage; this 65Gb file [can be downloaded
 here](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/hgsv_sv_discovery/data/YRI/NA19240/high_cov_alignment/NA19240.alt_bwamem_GRCh38DH.20150715.YRI.high_coverage.cram).  
 
-The analysis focuses on two events with interchromosal discordant reads.  To simplify and speed up
-downstream processing, a new sequence dataset (BAM file) with only the chromosomes of interest is created, though
-it is not distributed due to its size.  Expression analalysis is not performed in the 1000SV workflow.
+The analysis focuses on two events with interchromosal discordant reads.
+Expression analalysis is not performed in the 1000SV workflow.  We demonstrate
+using attributes to provide additional information about discordant reads.
+
 
 ### Synthetic Workflow
 
