@@ -1,20 +1,17 @@
-# Add Discordant breakpoints to depth plots
+# prepare interchromosomal breakpoint data
+
+# Create a custom datafile for each depth panel.  From filtered discordant BPC data, create BPC-like dataset
+# which is filtered to retain only reads containing chrom of interest, rearranged as necessary so
+# chrom of interest is first (chromA).  Second chrom is also written as attribute
 
 source ./BPS_Stage.config
 
 
-DATD="$BPS_DATA/G_Discordant/dat"
+DATD="$BPS_DATA/I_FilterDiscordant/dat"
 
-BIN="$BPS_CORE/src/plot/DepthDrawer.R"
-
-INDD="$OUTD/GGP.CBS"
-OUTDD="$OUTD/GGP.Discordant"
+OUTDD="$OUTD/ICB"
 mkdir -p $OUTDD
 
-rm -f $OUTD/GGP  # GGP is a link
-ln -s ../$OUTDD $OUTD/GGP
-
-# usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
 function process_chrom {
     CHROM_ID=$1
@@ -28,21 +25,11 @@ function process_chrom {
     N_END=$9
 
     BPC="$DATD/BPC/${BAR}.Discordant.BPC.dat"
-    GGP="$INDD/${BAR}/${NAME}.${CHROM_ID}.depth.ggp"
-    OUTDDD="$OUTDD/$BAR"
-    mkdir -p $OUTDDD
-    OUT="$OUTDDD/${NAME}.${CHROM_ID}.depth.ggp"
+    # chr10 41817042    chr4    49711560    Reverse
+    OUT="$OUTDD/${NAME}.${CHROM_ID}.ICB.dat"
 
-    ARGS=" -M ${CHROM}:${START}-${END} -m $CHROM_ID "
-    # filter data according to range of the opposite chrom/virus
-    ARGS="$ARGS -N ${N_CHROM}:${N_START}-${N_END}"
-    if [ $FLIPAB == 1 ]; then    # defined in ../bps.config
-        ARGS="$ARGS -l"
-    fi
-
-    COLOR="-c #377EB8 -z 2.5 -a 0.05 -s 16"
-
-    Rscript $BIN $ARGS $COLOR -G $GGP -p point $BPC $OUT
+    awk -v c=$CHROM 'BEGIN{FS="\t";OFS="\t"}{if ($1 == c) print $1,$2,$3,$4,$3; else if ($3 == c) print $3,$4,$1,$2,$1}' $BPC > $OUT
+    echo Written to $OUT
 }
 
 while read l; do  

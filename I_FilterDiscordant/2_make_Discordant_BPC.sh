@@ -1,4 +1,4 @@
-# Get discordant read pair positions
+# Get discordant read pair positions and forward/reverse attributes
 
 # Writes dat/BPC/BAR.Discordant.BPC.dat for each sample
 
