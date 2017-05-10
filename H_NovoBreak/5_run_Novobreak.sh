@@ -37,7 +37,6 @@ function process {
 # process only BA-4077
 
 BAR=`grep BA-4077 $SAMPLE_LIST | awk '{print $1}'`
-# BAM=`echo $l | awk '{print $3}'`
 BAM="$U_OUTD/BA-4077.ROI.bam"
 REF=`grep BA-4077 $SAMPLE_LIST | awk '{print $4}'`
 

@@ -40,6 +40,7 @@ BPS Core applications are written either in R or Python.  Required libraries for
 
 * [Python](https://www.python.org/).  Requires python 2.7 and above.  Developed under 2.7.5.  Not tested in python 3
     * Install `pysam` with, ``` pip install pysam ``` (```--user``` to user directory))
+    * Install `pyvcf` similarly
 * [R](https://www.r-project.org/).  Developed under R version 3.3.2.
     * Install the following packages at the R console as, ```install.packages("XXX")```
         * ggplot2
