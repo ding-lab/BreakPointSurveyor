@@ -1,4 +1,4 @@
-# BreakPointSurveyor
+# <img src="doc/BreakpointSurveyor.png" width="64"/> BreakPointSurveyor
 
 *A comprehensive pipeline to analyze and visualize structural variants*
 
@@ -97,6 +97,7 @@ Below is a list of the stages associated with the TCGA_Virus workflow (`master` 
 * **[C_Project](C_Project/README.md)**: Create list of BAMs, both realigned WGS and RNA-Seq.  Create BAMs in `Synthetic` branch.
 * **[F_PindelRP](F_PindelRP/README.md)**: Run Pindel and process breakpoint predictions.
 * **[G_Discordant](G_Discordant/README.md)**: Process realigned BAM file to extract discordant human-virus reads
+* **[H_NovoBreak](H_NovoBreak/README.md)**: Identify breakpoint with novoBreak
 * **[I_Contig](I_Contig/README.md)**: Create contigs using Tigra-SV and realign them
 * **[J_PlotList](J_PlotList/README.md)**: Identify target regions for further processing and visualization
 * **[K_ReadDepth](K_ReadDepth/README.md)**: Evaluate read depth in target regions, obtain BAM file statistics for both WGS and RNA-Seq data
@@ -125,7 +126,7 @@ In general, the workflows include all intermediate data which is allowed to be d
 
 The TCGA_Virus workflow provides an in-depth analysis of a virus integration event in the TCGA WGS sample 
 ([TCGA-BA-4077-01B-01D-2268-08](https://gdc-portal.nci.nih.gov/legacy-archive/files/6533e56c-b5b8-4c85-862b-a5526c5c2e0a)),
-which is a head and neck cancer sample.  Because of TCGA restictions we do not make distribute any sequence data.
+which is a head and neck cancer sample.  Because of TCGA restictions we do not distribute any sequence data.
 After downloadeding, sequence data was aligned to a custom reference which includes human and virus sequences ([details](A_Reference/README.md)).
 We do not distribute the reference because of size constraints.  
 
@@ -195,11 +196,12 @@ about implementation and debugging.
 ### TCGA_Virus
 
 Performance per stage for TCGA_Virus branch, obtained with `run_BPS <STAGE>`.  
-These numbers were performed on an overloaded server, and typical performance is expected to be significantly.
+These numbers were performed on an overloaded server, and typical performance is expected to be significantly improved.
 
 * A_Reference B_ExonGene C_Project: 0 seconds
 * F_PindelRP: 370 seconds 
-* G_Discordant/: 3804 seconds.
+* G_Discordant: 3804 seconds.
+* H_NovoBreak: **TODO**
 * I_Contig: 716 seconds
 * J_PlotList: 666 seconds
 * K_ReadDepth: 3329 seconds.

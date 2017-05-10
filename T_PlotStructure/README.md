@@ -14,6 +14,8 @@ discuss the biological interpretation of the TCGA-BA-4077-01 integration event.
 ## TCGA-BA-4077-01 Structure Plot
 <img src="plots/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.BreakpointSurvey.png" width="600"/>
 
+Additional purple X marks indicate [novoBreak](https://sourceforge.net/projects/novobreak/) breakpoint predictions.
+
 Integration occurs in an intronic section of gene *RAD51B* and copy number
 changes are coincident with breakpoints.
 

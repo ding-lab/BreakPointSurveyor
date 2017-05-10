@@ -47,7 +47,8 @@ Similarly, a breakpoint region (BPR), has a pair of chromosome, start, and end v
 BPC and BPR files may optionaly have a final "attributes" column.  This is a
 text field whose interpretation is application-specific. For instance, the BPC
 attribute column may code for the color of a point plotted at the given
-coordinates.
+coordinates.  The `1000SV` branch implements attributes to identify read mapping direction
+and illustrate multi-chromosome breakpoints.
 
 Each breakpoint coordinate or region is represented just once, with chromA <
 chromB (or posA < posB if chromA==chromB), in a tab-separated (TSV) format:
@@ -57,6 +58,7 @@ chromB (or posA < posB if chromA==chromB), in a tab-separated (TSV) format:
 ```
 
 BPC and BPR files have no headers.  Lines starting with # are ignored.
+
 
 ### Depth file format <a name="depth"></a>
 
