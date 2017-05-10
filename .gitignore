@@ -1,4 +1,6 @@
 .DS_Store
 tmp/
+bsub/
 dat.untracked
 bps.config.local
+.*.swp
