@@ -8,9 +8,10 @@ sequence (contig) from reads spanning a breakpoint, then re-aligning the contig
 to the human+virus reference.  Contigs are created using Tigra-SV based on
 breakpoint predictions from Pindel and aligned with BWA mem to the
 [human+virus reference](../A_Reference/README.md). The resulting SAM file is then processed
-to yield a series of files (described below) used for plotting and analysis,
+with custom scripts to yield a series of files used for plotting and analysis,
 with support for multiple breakpoints per contig.
 
+Files generated during processing of SAM files to extract breakpoint positions:
 * pSBP: One entry per alignment (line) of SAM file, describing alignment of
   one segment to reference
 * SBP: Incorporates pair of pSBP segments, Sa and Sb, describing one

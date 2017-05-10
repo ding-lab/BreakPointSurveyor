@@ -39,7 +39,7 @@ they use, but all require libraries used by BPS Core.
 BPS Core applications are written either in R or Python.  Required libraries for each are listed below.
 
 * [Python](https://www.python.org/).  Requires python 2.7 and above.  Developed under 2.7.5.  Not tested in python 3
-    * Install `pysam` with, ``` pip install pysam ``` (```--user``` to user directory))
+    * Install `pysam` with, ``` pip install pysam ``` (```--user``` to user directory)
     * Install `pyvcf` similarly
 * [R](https://www.r-project.org/).  Developed under R version 3.3.2.
     * Install the following packages at the R console as, ```install.packages("XXX")```
@@ -56,21 +56,23 @@ source("https://bioconductor.org/biocLite.R")
 biocLite("DNAcopy")
 ```
 * [bedtools](http://bedtools.readthedocs.io/en/latest/) Requires v2.20.0 or newer
-* [samtools](http://www.htslib.org/download/)
+* [samtools](http://www.htslib.org/download/) Developed with v1.4.1
 
 ### Workflow
 
 System dependencies for `master` branch (TCGA_Virus Workflow) listed below.  Additional dependencies for 
 other workflows (`1000SV`, `Synthetic` branches) listed in that branch's documentation.
 
-* [bwa](https://sourceforge.net/projects/bio-bwa/files/).  Required for contig realignment (`I_Contig`), creating datasets and references in 
-`Synthetic` and `1000SV` branches.
+* [bwa](https://sourceforge.net/projects/bio-bwa/files/).  Required for contig realignment (`I_Contig`), novoBreak execution (`H_NovoBreak`),
+and creating datasets and references in `Synthetic` and `1000SV` branches.
 * [Tigra SV](https://bitbucket.org/xianfan/tigra.git).  Required for contig realignment (stage `I_Contig`)
     * `git clone https://bitbucket.org/xianfan/tigra.git`
     * Modify Makefile as appropriate, `make`, `make install`.
     * Requires [htslib](https://github.com/samtools/htslib) 
 * [Pindel](https://github.com/genome/pindel).  Required for Pindel breakpoint detection (stage `F_PindelRP`) 
     * Follow installation instructions on web site.  Requires [htslib](https://github.com/samtools/htslib) 
+* [novoBreak](https://sourceforge.net/projects/novobreak/).  Required for novoBreak breakpoint detection (stage `H_NovoBreak`)
+    * Source available with, `git clone https://git.code.sf.net/p/novobreak/git novobreak-git` 
 * [ImageMagick](https://www.imagemagick.org/script/download.php).  Needed for converting PDF images to PNG in stages `T_PlotStructure` and
 `U_PlotExpression`.
 

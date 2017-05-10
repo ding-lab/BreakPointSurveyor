@@ -73,11 +73,14 @@ Use the utility `ggp2pdf` to convert GGP to PDF:
 
 ```bps-core/src/plot/ggp2pdf test.ggp test.pdf``` 
 
-Continue:
+## Adding new tools
 
-Supplemental figures - get rid of multi panels
-Get legends working
+Breakpoint Surveyor is designed to easily accommodate and visualize a variety of breakpoint prediction tools.
+The general procedure for adding a new tool is as follows,
+* Prepare and run a new tool in a new stage.  Breakpoint predictions may be output as VCF files with a pair of chromosome names 
+and positions, or to BPC/BPR format directly
+    * If necessary convert VCF file to a BPC file.  See `BPS_CORE/src/util/processVCF.py` for a basic conversion utility.
+* Add new predictions as a new layer in Breakpoint panel; this is implemented as a new step in stage `N_DrawBreakpoint`
 
-Finish response
-
-Every J_PlotList should have a description of clustering methodology
+For a specific example see novoBreak processing in the TCGA_Virus workflow; specifically, the first two tasks are performed in
+the `H_NovoBreak` stage, while the last task is performed in the `N_DrawBreakpoint/4_draw_novoBreak.sh` step.
