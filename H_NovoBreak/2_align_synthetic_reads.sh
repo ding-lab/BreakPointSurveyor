@@ -5,6 +5,8 @@
 
 source ./BPS_Stage.config
 
+U_OUTD="dat.untracked"
+
 function align_reads {
     DAT1=$1
     DAT2=$2
@@ -27,11 +29,11 @@ function align_reads {
 # Synthetic BAM is created for the first reference seen in SAMPLE_LIST.  In general,
 # would make one such BAM for each different reference
 
-READS1="$OUTD/reads/synthetic.reads1.fq"
-READS2="$OUTD/reads/synthetic.reads2.fq"
+READS1="$U_OUTD/reads/synthetic.reads1.fq"
+READS2="$U_OUTD/reads/synthetic.reads2.fq"
 
 REF="/home/archive/mwyczalk/BreakPointSurveyor.TCGA_Data/GRCh37-lite-+-selected-virus-2013.9.a/all_sequences.fa"
-OUT="$OUTD/synthetic_normal-9a.bam"
+OUT="$U_OUTD/synthetic_normal-9a.bam"
 
 align_reads $READS1 $READS2 $REF $OUT
 

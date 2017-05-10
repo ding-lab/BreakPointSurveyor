@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Based on file of the same name in novoBreak_distribution_v1.1.3rc
+# https://sourceforge.net/projects/novobreak/
+
 if [ $# != 5 -a $# != 6 ]; then
 	echo $0 \<novoBreak_exe_dir\> \<ref\> \<tumor_bam\> \<normal_bam\> \<n_CPUs:INT\> \[outputdir:-PWD\]
 	exit 1
@@ -14,27 +17,32 @@ if [ $# == 6 ]; then
 	output=`readlink -f $6`
 fi
 novobreak=$nbbin/novoBreak
-bwa=$nbbin/bwa
-samtools=$nbbin/samtools
+bwa=$BWA  # As defined in bps.config
+samtools=$SAMTOOLS # As defined in bps.config
+
+# Setting the path is necessary so that $nbbin/run_ssake.pl finds SSAKE
+export PATH=$PATH:$nbbin
 
 lastdir=`pwd`
 
 if [ $# == 6 ]; then
-	mkdir $output
+	mkdir -p $output
 	cd $output
 fi
-$novobreak -i $tumor_bam -c $normal_bam -r $ref  -o kmer.stat 
-#$samtools collate somaticreads.bam somaticreads.srt
 
-mkdir group_reads
+# This step takes a while...
+$novobreak -i $tumor_bam -c $normal_bam -r $ref  -o kmer.stat 
+
+mkdir -p group_reads
 cd group_reads
-#$samtools view -h ../somaticreads.srt.bam | perl $nbbin/fetch_discordant.pl - $tumor_bam > discordant.sam
-$samtools bam2fq -1 read1.fq -2 read2.fq ../somaticreads.bam
+
+# samtools v1.4 requires 'fasta'
+$samtools fastq -1 read1.fq -2 read2.fq ../somaticreads.bam
 perl $nbbin/group_bp_reads.pl ../kmer.stat read1.fq read2.fq  > bp_reads.txt
 cls=`tail -1 bp_reads.txt | cut -f1`
 rec=`echo $cls/$n_cpus | bc`
 rec=$((rec+1))
-mkdir split
+mkdir -p split
 cd split
 awk -v rec=$rec '{print > int($1/rec)".txt"}' ../bp_reads.txt
 for file in *.txt
@@ -45,19 +53,25 @@ done
 wait
 cd ..
 cd ..
-mkdir ssake
+mkdir -p ssake
 cd ssake
 #you can split the bp_reads.txt into multiple files to run them together
 #perl $nbbin/run_ssake.pl ../group_reads/bp_reads.txt > /dev/null
 awk 'length($0)>1' ../group_reads/split/*.ssake.asm.out > ssake.fa
 $bwa mem -t $n_cpus -M $ref ssake.fa > ssake.sam
 perl $nbbin/infer_sv.pl ssake.sam > ssake.vcf
-grep -v '^#' ssake.vcf | sed 's/|/\t/g' | sed 's/read//' |  awk '{if(!x[$1$2]){y[$1$2]=$14;x[$1$2]=$0}else{if($14>y[$1$2]){y[$1$2]=$14; x[$1$2]=$0}}}END{for(i in x){print x[i]}}' | sort -k1,1 -k2,2n  | perl -ne 'if(/TRA/){print}elsif(/SVLEN=(\d+)/){if($1>100){print $_}}elsif(/SVLEN=-(\d+)/){if($1>100){print}}' > ssake.pass.vcf
+
+# Suggested edit from Zechen Chong
+#grep -v '^#' ssake.vcf | sed 's/|/\t/g' | sed 's/read//' |  awk '{if(!x[$1$2]){y[$1$2]=$14;x[$1$2]=$0}else{if($14>y[$1$2]){y[$1$2]=$14; x[$1$2]=$0}}}END{for(i in x){print x[i]}}' | sort -k1,1 -k2,2n  | perl -ne 'if(/TRA/){print}elsif(/SVLEN=(\d+)/){if($1>100){print $_}}elsif(/SVLEN=-(\d+)/){if($1>100){print}}' > ssake.pass.vcf
+
+grep -v '^#' ssake.vcf | awk  -v OFS="\t" '{gsub(/\|/, "\t", $11); print}' | sed 's/read//' |  awk '{if(!x[$1$2]){y[$1$2]=$14;x[$1$2]=$0}else{if($14>y[$1$2]){y[$1$2]=$14; x[$1$2]=$0}}}END{for(i in x){print x[i]}}' | sort -k1,1 -k2,2n  | perl -ne 'if(/TRA/){print}elsif(/SVLEN=(\d+)/){if($1>100){print $_}}elsif(/SVLEN=-(\d+)/){if($1>100){print}}' > ssake.pass.vcf
+
+
 #you can split the ssake.pass.vcf into multiple files to run them together
 num=`wc -l ssake.pass.vcf | cut -f1 -d' '`
 rec=`echo $num/$n_cpus | bc`
 rec=$((rec+1))
-mkdir split
+mkdir -p split
 cd split
 split -l $rec ../ssake.pass.vcf # set proper split parameters when needed
 for file in x??

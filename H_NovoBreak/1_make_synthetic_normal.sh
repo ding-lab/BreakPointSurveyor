@@ -5,6 +5,9 @@
 
 source ./BPS_Stage.config
 
+U_OUTD="dat.untracked"
+mkdir -p $U_OUTD
+
 function synthesize_reads {
     # wgsim [options] <in.ref.fa> <out.read1.fq> <out.read2.fq>
     # Make reads be 126bp in length
@@ -18,18 +21,18 @@ function synthesize_reads {
 
     ARGS="-N $NREADS -1 126 -2 126"
 
-    $WGSIM $ARGS $REF $OUT1 $OUT2 > $OUTD/reads/wgsim.log
+    $WGSIM $ARGS $REF $OUT1 $OUT2 > /dev/null
     echo Written to $OUT1 and $OUT2
 }
 
 # Create reads based on the human+virus reference.  This is used as a "synthetic normal"
 # for novobreak analysis.
 
-mkdir -p $OUTD/reads
-READS1="$OUTD/reads/synthetic.reads1.fq"
-READS2="$OUTD/reads/synthetic.reads2.fq"
+mkdir -p $U_OUTD/reads
+READS1="$U_OUTD/reads/synthetic.reads1.fq"
+READS2="$U_OUTD/reads/synthetic.reads2.fq"
 
-REF="/home/archive/mwyczalk/BreakPointSurveyor.TCGA_Data/GRCh37-lite-+-selected-virus-2013.9.a/all_sequences.fa"
+REF=`grep "BA-4077" $SAMPLE_LIST | cut -f 4`
 
 synthesize_reads $REF $READS1 $READS2
 
