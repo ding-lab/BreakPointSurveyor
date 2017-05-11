@@ -20,10 +20,12 @@ function SAMtoBPC {
 # Note that a discordant read is listed twice for each read pair, so we keep only one
 # This version also deals with intrachromosomal discordant reads, where chromA=chromB, where we require that posA < posB
 
+# forward/reverse given by FLAG bitwise_and 16.  See https://samtools.github.io/hts-specs/SAMv1.pdf and https://broadinstitute.github.io/picard/explain-flags.html
+
 DAT=$1
 OUT=$2
 
-awk 'BEGIN{FS="\t";OFS="\t"}{if ($3"" <= $7"") print $3,$4,$7,$8; else if ($7 ~ "=") {if ($4 < $8) print $3,$4,$3,$8} }' $DAT | grep -v "_alt\|_decoy\|_random\|chrUn_\|HLA-" | sort > $OUT
+awk 'BEGIN{FS="\t";OFS="\t"}{if (and($2, 16)) d = "Reverse"; else d = "Forward"; if ($3"" <= $7"") print $3,$4,$7,$8,d; else if ($7 ~ "=") {if ($4 < $8) print $3,$4,$3,$8,d} }' $DAT | grep -v "_alt\|_decoy\|_random\|chrUn_\|HLA-" | sort > $OUT
 
 echo Written to $OUT
 
