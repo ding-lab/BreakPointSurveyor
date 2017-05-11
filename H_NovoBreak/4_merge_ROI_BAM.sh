@@ -12,7 +12,7 @@ function merge {
 
     echo Merging $@ into $OUT
 
-    samtools merge $OUT $@
+    samtools merge -f $OUT $@
     samtools index $OUT
 
 }
