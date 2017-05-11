@@ -12,9 +12,9 @@ of which virus integratin is a special case.  Here, we demonstrate an INTRAchrom
 ### IntraA.bam
 
 Consists of three concatenated segments AC'B, where
+* Segment A : chr9:36833000,36843000 ( 10Kbp )
+* Segment B : chr9:36843000,36853000( 10KBp, adjacent to A )
+* Segment C : chr9:37843000,37853000 ( 10Kbp, some other region of chrom 9 )
+    * Segment C' : reverse complement of Segment C
 
-* Segment A : chr9:130,840,000-130,850,000 ( 10Kbp )
-* Segment B : chr9:130,850,000-130,860,000 ( 10KBp, adjacent to A )
-* Segment C : chr9:131,855,000-131,860,000 ( 5Kbp, some other region of chrom 9 )
-    * Segment C' : reverse sequence of Segment C
-
+The segments are chosen relatively randomly, taking care they don't fall onto repetitive regions
