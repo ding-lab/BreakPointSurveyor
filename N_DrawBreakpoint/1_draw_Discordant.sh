@@ -36,7 +36,7 @@ function process_plot {
 
 #   NOTE: add "-G $IN" to ARGS if adding to an existing GGP file
 
-    ARGS=" -p point -a 0.25 -z 2.5 -c #377EB8 -s 16"  
+    ARGS=" -p point -a 0.25 -z 2.5 -s 16"  
 
     if [ $FLIPAB == 1 ]; then  # defined in ../bps.config
         ARGS="$ARGS -l"
