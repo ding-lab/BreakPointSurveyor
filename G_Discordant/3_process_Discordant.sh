@@ -1,6 +1,6 @@
-# Get discordant read pair positions
+# Get discordant read pair positions based on inter- and intra-chromosomal discordant reads
 
-# Writes dat/BPC/BAR.Discordant.BPC.dat for each sample
+# Writes dat/BPC/BAR.Discordant.BPC.dat for each sample with both types of discordant types
 
 # Removes the following "chromosomes":
 # - *_alt
@@ -41,13 +41,19 @@ BAR=`echo $l | awk '{print $1}'`
 
 # First do inter-chromosomal discordant
 DAT="$OUTD/discordant_$BAR.sam"
-OUT="$OUTDD/${BAR}.Discordant.BPC.dat"
-SAMtoBPC $DAT $OUT
+OUTA="$OUTDD/${BAR}.InterDiscordant.BPC.dat"
+SAMtoBPC $DAT $OUTA
 
 # Now do intra-chromosomal discordant
 DAT="$OUTD/intraDiscordant_$BAR.sam"
-OUT="$OUTDD/${BAR}.IntraDiscordant.BPC.dat"
-SAMtoBPC $DAT $OUT
+OUTB="$OUTDD/${BAR}.IntraDiscordant.BPC.dat"
+SAMtoBPC $DAT $OUTB
+
+# Combine inter-, intra-
+OUT="$OUTDD/${BAR}.Discordant.BPC.dat"
+cat $OUTA $OUTB > $OUT
+
+echo Combined and written to $OUT
 
 done < $SAMPLE_LIST
 
