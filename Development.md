@@ -84,3 +84,43 @@ and positions, or to BPC/BPR format directly
 
 For a specific example see novoBreak processing in the TCGA_Virus workflow; specifically, the first two tasks are performed in
 the `H_NovoBreak` stage, while the last task is performed in the `N_DrawBreakpoint/4_draw_novoBreak.sh` step.
+
+# Git basics
+
+**This section is under development** 
+
+BreakpointSurveyor relies heavily on `git`, particularly to manage multiple branches 
+* `master` (TCGA_Virus workflow)
+* `1000SV` 
+* `Synthetic` 
+
+If you want to see the various branches and make your own changes, some basic
+knowledge of `git` is helpful.  The purpose of this section is to provide some
+basics to get started; the free [Pro Git](https://git-scm.com/book/en/v2) reference is highly
+recommended for additional reading.
+
+### Getting BreakpointSurveyor and looking around
+
+Topics to cover:
+* Cloning repository
+  * How to change to see other branches
+  * Making your own branch
+
+### Making your own changes
+
+* Making changes and how to keep them 
+  * git add, git commit
+* How to change, manage branches
+* Undoing your changes and starting over
+
+### Sharing your changes 
+
+* how to set up your own remote and why you would want to 
+  * useful for development within your group
+  * Good way to share data between machines
+    * Preliminary processing on server
+    * Visualization on laptop
+  * Basics of git remote, git push, git pull
+* Sharing your changes on github
+  * Additions welcome
+  * Learning about pull requests as I go along...
