@@ -7,9 +7,6 @@
 
 # Last column of resulting BPR file is number of breakpoints in cluster
 
-# To generate both inter- and intra-chromosomal clusters, we run the clustering algorithm on both the 
-# inter- and intra-chromosomal discordant reads BPC, and combine them together
-
 source ./BPS_Stage.config
 
 BIN="$BPS_CORE/src/util/makeBreakpointRegions.py"
@@ -24,9 +21,12 @@ mkdir -p $OUTDD
 
 function process_BPC {
     BAR=$1
-    DAT=$2
-    OUT=$3
-    HEADER=$4  # defined as -H only on first iteration
+
+    # Making assumptions about where Discordant data live
+    DAT="$BPS_DATA/G_Discordant/dat/BPC/$BAR.Discordant.BPC.dat"
+    OUT="$OUTDD/${BAR}.Discordant-cluster.BPR.dat"
+    rm -f $OUT
+    HEADER="-H"
 
     # Iterate over all unique chromA, chromB pairs in each sample
     while read m; do
@@ -38,22 +38,8 @@ function process_BPC {
     # NOTE: the line below selects chromA, B columns from $DAT.  Assumptions about BPC, BPR format are embedded.
     done < <(grep -v "^#" $DAT | cut -f 1,3 | sort -u)  # this selects all unique chromA, chromB pairs and loops over them
 
-}
-
-function process_inter_intra {
-    BAR=$1
-    # Making assumptions about where Discordant data live
-    OUT="$OUTDD/${BAR}.Discordant-cluster.BPR.dat"
-    rm -f $OUT
-
-    HEADER="-H"
-    DAT="$BPS_DATA/G_Discordant/dat/BPC/${BAR}.Discordant.BPC.dat"
-    process_BPC $BAR $DAT $OUT -H
-
-    DAT="$BPS_DATA/G_Discordant/dat/BPC/${BAR}.IntraDiscordant.BPC.dat"
-    process_BPC $BAR $DAT $OUT -H
-
     echo Written to $OUT
+
 }
 
 # For each sample to process, loop over all unique (chromA, chromB) pairs
@@ -64,6 +50,6 @@ while read l; do  # iterate over all barcodes
     [[ $l = barcode* ]] && continue
 
     BAR=`echo $l | awk '{print $1}'`
-    process_inter_intra $BAR
+    process_BPC $BAR
 
 done < $SAMPLE_LIST  # iterate over all barcodes
