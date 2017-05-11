@@ -196,17 +196,16 @@ about implementation and debugging.
 ### TCGA_Virus
 
 Performance per stage for TCGA_Virus branch, obtained with `run_BPS <STAGE>`.  
-These numbers were performed on an overloaded server, and typical performance is expected to be significantly improved.
 
-* A_Reference B_ExonGene C_Project: 0 seconds
-* F_PindelRP: 370 seconds 
-* G_Discordant: 3804 seconds.
-* H_NovoBreak: **TODO**
-* I_Contig: 716 seconds
+* A_Reference B_ExonGene C_Project: <1 seconds
+* F_PindelRP: 124 seconds 
+* G_Discordant: 3800 seconds
+* H_NovoBreak: 1614 seconds
+* I_Contig: 210 seconds
 * J_PlotList: 666 seconds
-* K_ReadDepth: 3329 seconds.
-* L_Expression: 1602 seconds.
-* M_RSEM_Expression: 649 seconds.
+* K_ReadDepth: 3329 seconds
+* L_Expression: 1602 seconds
+* M_RSEM_Expression: 649 seconds
 * N_DrawBreakpoint O_DrawDepth P_DrawAnnotation Q_DrawHistogram T_PlotStructure U_PlotExpression: 20 seconds
 
 ## Authors
