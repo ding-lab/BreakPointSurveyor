@@ -8,3 +8,6 @@ we keep only a subset of these for further analysis and visualization.
 1. Based on top 25 clusters identified in `H_PlotList`, retain only the discordant reads which fall in them, and
    save as a sam file.  This file is still relatively large so is not tracked.
 2. Create a BPC file from the SAM file created above, and add attribute indicating mapping direction of read.
+
+A [circos](http://circos.ca/) plot illustrating these 25 clusters is shown below.
+<img src="../doc/NA19240.png" width="600"/>
