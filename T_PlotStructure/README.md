@@ -31,3 +31,5 @@ which [is consistent with this interpretation](https://www.biostars.org/p/51456/
 The BPS Structure plots of events AQ and AU clearly illustrate how visualizing discordant reads as coordinates 
 on a plane yields patterns and interpretations which would not be discernable in other representations.
 
+For comparison, see [Circos](http://circos.ca) plots of of events [AQ](../doc/NA19240-AQ.png) and [AU](../doc/NA19240-AU.png).
+
