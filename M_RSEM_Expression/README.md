@@ -2,8 +2,14 @@
 
 *Analyze TCGA RSEM expression in vicinity of integration events.*
 
-This is closely related to workflow in L_Expression, but uses publicly available RPKM expression data
-from [TCGA Firehose](http://gdac.broadinstitute.org/).
+This is closely related to workflow in L_Expression, but uses publicly available expression data
+from [TCGA Firehose](http://gdac.broadinstitute.org/).  
+
+While the processing steps here are specific to the [TCGA Firehose RSEM data
+format](https://confluence.broadinstitute.org/download/attachments/29790363/DESCRIPTION.txt?version=1&modificationDate=1363806109000)
+(a tabular format with samples as columns, regions as rows) they can be
+extended to any data format which provides expression per region for a number
+of samples.
 
 In L_Expression, RPKM expression data is evaluated by processing RNA-Seq data directly.
 Here, RSEM expression data is obtained in a tabular pre-processed form from.

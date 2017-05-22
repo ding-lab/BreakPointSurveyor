@@ -57,7 +57,7 @@ See [T_PlotStructure](T_PlotStructure/README.md) for interpretation and details.
 ### Expression Plots
 
 Expression plots illustrate relative gene expression near breakpoints, with gene position, size, orientation, and name shown.
-Expression is obtained for the sample and a population of controls from either processed expression data (TCGA RSEM) or RNA-Seq 
+Expression is obtained for the sample and a population of controls from either processed expression data (e.g., TCGA RSEM) or RNA-Seq 
 data directly.
 
 <img src="U_PlotExpression/plots/TCGA-BA-4077-01B-01D-2268-08.AA.chr14.RPKM.FDR.bubble.png" width="800"/>

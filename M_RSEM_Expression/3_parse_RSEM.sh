@@ -10,7 +10,8 @@
 
 # For all samples with detected breakpoints, extract lines of RSEM exon file from 
 # region around breakpoints.
-# This processing is very specific to TCGA RSEM data format
+# This processing is very specific to TCGA RSEM data format:
+#  https://confluence.broadinstitute.org/download/attachments/29790363/DESCRIPTION.txt?version=1&modificationDate=1363806109000
 # We extract only the exon name and RSEM value columns.
 # Samples which have already been processed will be skipped.
 
