@@ -87,28 +87,59 @@ the `H_NovoBreak` stage, while the last task is performed in the `N_DrawBreakpoi
 
 # Git basics
 
-**This section is under development** 
-
-BreakpointSurveyor relies heavily on `git`, particularly to manage multiple branches 
+BreakpointSurveyor relies heavily on `git`, particularly to manage multiple branches, with each branch
+demonstrating a different workflow.  Branches distributed with BreakpointSurveyor are,
 * `master` (TCGA_Virus workflow)
 * `1000SV` 
 * `Synthetic` 
 
-If you want to see the various branches and make your own changes, some basic
-knowledge of `git` is helpful.  The purpose of this section is to provide some
-basics to get started; the free [Pro Git](https://git-scm.com/book/en/v2) reference is highly
-recommended for additional reading.
+To examine, execute, and modify the various branches some basic knowledge of
+`git` is helpful.  Here we provide some basics to get started; the free [Pro
+Git](https://git-scm.com/book/en/v2) reference is highly recommended for
+additional reading.
 
 ### Getting BreakpointSurveyor and looking around
 
-Topics to cover:
-* Cloning repository
-  * How to change to see other branches
-  * Making your own branch
+After BPS is cloned from GitHub with,
+
+``` git clone --recursive  https://github.com/ding-lab/BreakPointSurveyor.git ```
+
+you can see which branch you are on and switch branches with,
+
+```
+git branch
+git checkout *branch_name*
+```
+
+Branches are useful if you want to make modifications to BPS while keeping the original branches
+intact.  Make your own branch and switch to it with,
+
+```
+git branch *new_branch_name*
+git checkout *new_branch_name*
+```
 
 ### Making your own changes
 
-* Making changes and how to keep them 
+As you make changes to BPS and want to keep a history of your edits and the new data, you will want to
+periodically add your changes to the branch's revision history using `git commit`.  To do so, first
+examine the changes you've made with,
+
+```git status```
+
+Select the changes you want to commit with,
+
+``` git add *filename* ```
+
+(and use `git rm *filename*` to delete tracked files).  Finally,
+
+```git commit```
+
+will store the changes.  (You'll be asked for a brief description of the changes.)  Note that you'll need
+generally need to commit your changes before changing branches (or else use `git stash`).
+
+
+
   * git add, git commit
 * How to change, manage branches
 * Undoing your changes and starting over
