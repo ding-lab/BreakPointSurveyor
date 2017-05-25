@@ -138,20 +138,32 @@ Select the changes you want to commit with,
 will store the changes.  (You'll be asked for a brief description of the changes.)  Note that you'll need
 generally need to commit your changes before changing branches (or else use `git stash`).
 
-
-
-  * git add, git commit
-* How to change, manage branches
-* Undoing your changes and starting over
+Any changes you make to BPS can be easily undone.  For example, if you are working on your own branch, 
+you can discard all changes and revert to an unmodified branch with, e.g., `git checkout master`.
 
 ### Sharing your changes 
 
-* how to set up your own remote and why you would want to 
-  * useful for development within your group
-  * Good way to share data between machines
-    * Preliminary processing on server
-    * Visualization on laptop
-  * Basics of git remote, git push, git pull
-* Sharing your changes on github
-  * Additions welcome
-  * Learning about pull requests as I go along...
+Sharing your code internally (i.e., not to GitHub) is useful for several reasons:
+
+* To share changes with other members of your team
+* To execute different stages on different computers.  For instance, preliminary processing can be
+performed on a high performance cluster, and visualization on a laptop.  Processed data is shared
+by committing it to the repository.
+
+Create a new repository with,
+
+``` git init --bare /my/path/src/BreakpointSurveyor.git ```
+
+In your working BPS branch (with the edits you wish to share), add the new external reposity with,
+
+``` git remote add origin ssh://user_name@hostname/my/path/src/BreakpointSurveyor.git/ ```
+
+You can then share commits from your local repository to the external one with,
+
+``` 
+git push origin *branch_name* 
+git pull origin *branch_name* 
+```
+
+Finally, we welcome additions and improvements to BPS at the [GitHub](https://github.com/ding-lab/BreakPointSurveyor) repository.
+Please contact us for more details.
