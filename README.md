@@ -10,7 +10,7 @@ BreakPointSurveyor (BPS) is a set of core libraries
 ([BreakPointSurveyor-Core](https://github.com/ding-lab/BreakPointSurveyor-Core)) and 
 workflows ([this project](https://github.com/ding-lab/BreakPointSurveyor)) which, with optional external tools,
 evaluate genomic sequence data to discover, analyze, and provide a visual summary of
-interchromosomal breakpoint events.
+breakpoint events.
 
 The BreakPointSurveyor project provides three reference workflows, each implemented as a separate [git
 branch](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell).
@@ -48,7 +48,7 @@ the TCGA-Virus workflow.
 
 ### Structure Plots
 
-Structure plots visualize interchromosomal breakpoints as points with X,Y coordinates given by the breakpoint position
+Structure plots visualize breakpoints as points with X,Y coordinates given by the breakpoint position
 along each chromosome.  Such figures also display read depth, gene and exon annotations, and a copy 
 number histogram.  In this workflow, read depth and discordant reads are obtained from aligned WGS data, and calls from
 various structural variant tools shown.  Breakpoint predictions from other tools, whether from WGS or RNA-Seq data, can 
@@ -165,7 +165,8 @@ and synthetic (simulated) reads are create.  These are re-aligned to the custom
 reference.  The resulting BAM file is then analyzed similarly to the 1000SV
 workflow.  Expression analysis is not performed in the Synthetic workflow.
 
-The Synthetic branch also illustrates more elaborate exon/gene annotations.
+The Synthetic branch also illustrates more elaborate exon/gene annotations as well
+as an intrachromosomal inversion/duplication event.
 
 
 #### Getting started with the Synthetic workflow <a name="getting_started"></a>
