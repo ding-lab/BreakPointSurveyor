@@ -23,7 +23,12 @@ These workflows (and the links to view them) are:
 * **1000SV** ([`1000SV` branch](https://github.com/ding-lab/BreakPointSurveyor/tree/1000SV)): Analysis of discordant reads on publicly available human sample 
 * **Synthetic** ([`Synthetic` branch](https://github.com/ding-lab/BreakPointSurveyor/tree/Synthetic)): Creation and analysis of a dataset containing an inter-chromosomal breakpoint 
 
-**Citation** *In prep*
+**Citation** 
+
+Matthew A. Wyczalkowski, Kristine M. Wylie, Song Cao, Michael D. McLellan, Jennifer Flynn, Mo Huang, Kai Ye, Xian Fan, Ken Chen, Michael C. Wendl, Li Ding; *BreakPoint Surveyor: A Pipeline for Structural Variant Visualization*. [Bioinformatics](https://academic.oup.com/bioinformatics) 2017. doi: 10.1093/bioinformatics/btx362
+
+[Online manuscript](https://academic.oup.com/bioinformatics/article/3861338/BreakPoint-Surveyor-A-Pipeline-for-Structural) 
+and [supplemental information](https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/bioinformatics/PAP/10.1093_bioinformatics_btx362/1/btx362_Supp.pdf?Expires=1497034020&Signature=ZZsPjlFyrec-nnLJcatUg~wS3K6~cQwnCgz9UBf5QhctwQADDGlWUESTF0y9tHMmkhGOyItCPqQmYuZwULZi0L-LmYXdcCSZTjX41yhTolVBvXI9gc6JODowmnkckkJeW8Fi9HLhHvHrcohMBmlho1jMjK6gYH3ZPpMyuvTQK3XvEJRdDQknxI3d1OmBDZie1mpWpQPp4QR4unHO2AQxpNE7auPP2hYQKrsMFHqh360~e2NjBKtAS8qy~tL004KdFWbpi4yXXn2YyFRdlvD0CjiHdeaXDVuiKRDxQ4pPyDrwBT2CApaLOjO9EYIYb9CseZWaVomsX-o8aw3-aBRipg__&Key-Pair-Id=APKAIUCZBIA4LVPAVW3Q).
 
 
 ## Getting Started
@@ -32,8 +37,7 @@ Download BreakPointSurveyor with three example workflows with,
 
 ``` git clone --recursive  https://github.com/ding-lab/BreakPointSurveyor.git ```
 
-See [here](./INSTALL.md) for detailed installation instructions.  The "[Getting
-started with the Synthetic branch](#getting_started)" section has
+See [here](./INSTALL.md) for detailed installation instructions.  The [Getting started with the Synthetic branch](#getting_started) section has
 instructions on working with a relatively small test dataset.  See also the [BPS developer guide](Development.md)
 for information about implementing your own workflow.
 
@@ -166,8 +170,9 @@ The Synthetic branch also illustrates more elaborate exon/gene annotations.
 
 #### Getting started with the Synthetic workflow <a name="getting_started"></a>
 
-Because it uses a relatively small dataset which is created from scratch, the
-Synthetic workflow is a good place to start working with BPS.  
+The Synthetic workflow utilizes a relatively small dataset which is created
+from scratch, and can be run relatively quickly on a laptop computer.  It is a
+good place to start working with BPS.  
 
 There are a number of dependencies you'll need to install to get stated.  You'll
 need the Core dependencies and as well as BWA, [described here](INSTALL.md).

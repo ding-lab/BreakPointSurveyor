@@ -2,8 +2,10 @@
 
 *Analyze TCGA RSEM expression in vicinity of integration events.*
 
-This is closely related to workflow in L_Expression, but uses publicly available expression data
-from [TCGA Firehose](http://gdac.broadinstitute.org/).  
+This is closely related to workflow in [`L_Expression`](../L_Expression/README.md), but uses publicly
+available
+"[RSEM](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-323)"
+expression data from [TCGA Firehose](http://gdac.broadinstitute.org/).  
 
 While the processing steps here are specific to the [TCGA Firehose RSEM data
 format](https://confluence.broadinstitute.org/download/attachments/29790363/DESCRIPTION.txt?version=1&modificationDate=1363806109000)
@@ -11,11 +13,10 @@ format](https://confluence.broadinstitute.org/download/attachments/29790363/DESC
 extended to any data format which provides expression per region for a number
 of samples.
 
-In L_Expression, RPKM expression data is evaluated by processing RNA-Seq data directly.
+In [`L_Expression`](../L_Expression/README.md), RPKM expression data is evaluated by processing RNA-Seq data directly.
 Here, RSEM expression data is obtained in a tabular pre-processed form from.
-RPKM and RSEM data are used interchangeably for the purpose of this illlustrative example.
 The primary difference in these two workflows stems from the fact that RPKM data lists only the
-regions for which expression is evaluated, but not the associated gene names.  Workflow proceeds as follows:
+regions for which expression is evaluated, but not the associated gene names.  `M_RSEM_Expression` workflow proceeds as follows:
 
 1. `1_get_data.sh`. Download [HNSC RSEM data][RSEM].  This is a 1.3Gb file.
 2. `2_make_BED.sh`.  Create a BED file which lists all genes +/- 1Mbp of integration event
