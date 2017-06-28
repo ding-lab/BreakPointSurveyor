@@ -83,10 +83,11 @@ layer is implemented as a submodule and downloaded together with this project.
 
 ### Workflow
 
-The BPS workflow consist of a series of directories, each of which implements a stage
-in the BPS workflow. The order of processing indicated by the stage 
-prefix. The figure below illustrates the stages and their relationship in the
-TCGA_Virus workflow.
+The BPS workflow is designed for scalability, and has been used to process
+batches of hundreds of whole genome and RNA-Seq datasets.  It consists of a
+series of directories, each of which implements a stage in the BPS workflow.
+The order of processing indicated by the stage prefix. The figure below
+illustrates the stages and their relationship in the TCGA_Virus workflow.
 
 <img src="doc/TCGA_Virus.Workflow.v1.0.png" width="600"/>
 
@@ -152,14 +153,14 @@ using attributes to provide additional information about discordant reads.
 
 ### Synthetic Workflow
 
-The Synthetic workflow generates a simple interchromosomal breakpoint and a
-corresponding small, synthetic dataset which can be analyzed and visualized in
+The Synthetic workflow generates a simple breakpoints (inter- and intra-chromosomal)
+and corresponding synthetic read datasets of modest size which can be analyzed and visualized in
 BPS.  We create a custom reference, consisting only of the chromosomes of
 interest, for improved performance (this reference is not distributed due to
 size).
 
 We then generate a breakpoint sequence from sections of the human reference,
-and synthetic (simulated) reads are create.  These are re-aligned to the custom
+and synthetic (simulated) reads are created.  These are re-aligned to the custom
 reference.  The resulting BAM file is then analyzed similarly to the 1000SV
 workflow.  Expression analysis is not performed in the Synthetic workflow.
 
@@ -222,3 +223,7 @@ This software is licensed under the GNU General Public License v3.0
 This work was supported by the National Cancer Institute [R01CA178383 and
 R01CA180006 to Li Ding, R01CA172652 to Ken Chen]; and National Human Genome Research
 Institute [U01HG006517 to Li Ding]. 
+
+This work was supported by the National Cancer Institute [R01CA178383,
+R01CA180006, 1U24CA211006-01, and 1U24CA210972-01 to Li Ding, R01CA172652 to
+Ken Chen]; and National Human Genome Research Institute 60 [U01HG006517 to Li Ding].
