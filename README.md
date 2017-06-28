@@ -21,15 +21,13 @@ These workflows (and the links to view them) are:
   ([TCGA-BA-4077-01B-01D-2268-08](https://gdc-portal.nci.nih.gov/legacy-archive/files/6533e56c-b5b8-4c85-862b-a5526c5c2e0a))
   which has been aligned to a custom reference
 * **1000SV** ([`1000SV` branch](https://github.com/ding-lab/BreakPointSurveyor/tree/1000SV)): Analysis of discordant reads on publicly available human sample 
-* **Synthetic** ([`Synthetic` branch](https://github.com/ding-lab/BreakPointSurveyor/tree/Synthetic)): Creation and analysis of a dataset containing an inter-chromosomal breakpoint 
+* **Synthetic** ([`Synthetic` branch](https://github.com/ding-lab/BreakPointSurveyor/tree/Synthetic)): Creation and analysis of a small dataset containing inter-chromosomal and intra-chromosomal breakpoints 
 
 **Citation** 
 
-Matthew A. Wyczalkowski, Kristine M. Wylie, Song Cao, Michael D. McLellan, Jennifer Flynn, Mo Huang, Kai Ye, Xian Fan, Ken Chen, Michael C. Wendl, Li Ding; *BreakPoint Surveyor: A Pipeline for Structural Variant Visualization*. [Bioinformatics](https://academic.oup.com/bioinformatics) 2017. doi: 10.1093/bioinformatics/btx362
+Matthew A. Wyczalkowski, Kristine M. Wylie, Song Cao, Michael D. McLellan, Jennifer Flynn, Mo Huang, Kai Ye, Xian Fan, Ken Chen, Michael C. Wendl, Li Ding; *BreakPoint Surveyor: A Pipeline for Structural Variant Visualization*. Bioinformatics 2017. doi: 10.1093/bioinformatics/btx362
 
-[Online manuscript](https://academic.oup.com/bioinformatics/article/3861338/BreakPoint-Surveyor-A-Pipeline-for-Structural) 
-and [supplemental information](https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/bioinformatics/PAP/10.1093_bioinformatics_btx362/1/btx362_Supp.pdf?Expires=1497034020&Signature=ZZsPjlFyrec-nnLJcatUg~wS3K6~cQwnCgz9UBf5QhctwQADDGlWUESTF0y9tHMmkhGOyItCPqQmYuZwULZi0L-LmYXdcCSZTjX41yhTolVBvXI9gc6JODowmnkckkJeW8Fi9HLhHvHrcohMBmlho1jMjK6gYH3ZPpMyuvTQK3XvEJRdDQknxI3d1OmBDZie1mpWpQPp4QR4unHO2AQxpNE7auPP2hYQKrsMFHqh360~e2NjBKtAS8qy~tL004KdFWbpi4yXXn2YyFRdlvD0CjiHdeaXDVuiKRDxQ4pPyDrwBT2CApaLOjO9EYIYb9CseZWaVomsX-o8aw3-aBRipg__&Key-Pair-Id=APKAIUCZBIA4LVPAVW3Q).
-
+[Online preprint with supplemental information.](https://academic.oup.com/bioinformatics/article/3861338/BreakPoint-Surveyor-A-Pipeline-for-Structural) 
 
 ## Getting Started
 
