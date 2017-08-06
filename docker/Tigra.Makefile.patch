@@ -1,0 +1,27 @@
+--- Makefile.orig	2017-08-06 17:23:40.321815352 +0000
++++ Makefile	2017-08-06 17:21:53.835043166 +0000
+@@ -1,17 +1,16 @@
+-
+-PREFIX=/usr
+-SAMTOOLS=/scratch/bcb/xfan3/pkg/samtools/samtools-1.3.1/
+-HTSLIB=/scratch/bcb/xfan3/pkg/samtools/samtools-1.3.1/htslib-1.3.1/
+-SAMHTSLIB=/scratch/bcb/xfan3/pkg/samtools/samtools-1.3.1/htslib-1.3.1/htslib
++# Patching paths for Dockerization
++PREFIX=/usr/local
++SAMTOOLS=/usr/local/samtools
++HTSLIB=/usr/local/htslib
++SAMHTSLIB=/usr/local/htslib/htslib
+ 
+ all:
+-	g++ -g -Wall -O2 -I${SAMTOOLS} -I${HTSLIB} -I${SAMHTSLIB} main.cpp -o tigra-sv -lm -lz -L${SAMTOOLS} -L${HTSLIB} -L${SAMHTSLIB} -lbam -lpthread -lhts
++	g++ -g -w -O2 -I${SAMTOOLS} -I${HTSLIB} -I${SAMHTSLIB} main.cpp -o tigra-sv -lm -lz -L${SAMTOOLS} -L${HTSLIB} -L${SAMHTSLIB} -lbam -lpthread -lhts
+ static:
+-	#g++ -g -Wall -O2 -I/gsc/pkg/bio/samtools/samtools-0.1.9/ tigra_sv.cpp -o tigra_sv_static -lm /gsc/pkg/bio/samtools/samtools-0.1.9/libbam.a /usr/lib/libz.a /usr/lib/gcc/x819_194-linux-gnu/4.2/libstdc++.a
+ 	g++ -g -Wall -O2 -static-libgcc -L. -I${SAMTOOLS} main.cpp -o tigra-sv_static -Wl,-Bstatic -L${SAMTOOLS} -lbam -lz -Wl,-Bdynamic
+ debug:
+ 	g++ -g -Wall -O1 -I${SAMTOOLS} main.cpp -o tigra-sv_test -lm -lz -L${SAMTOOLS} -lbam
+ clean:
+ 	rm -f tigra-sv tigra-sv_test
+ install:
+-	install -D -m 755 tigra-sv $(DESTDIR)$(PREFIX)/bin/tigra-sv
++	install -D -m 755 tigra-sv $(PREFIX)/bin/tigra-sv
