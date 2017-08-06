@@ -10,8 +10,8 @@ OUTDD="$OUTD/GGP"
 mkdir -p $OUTDD
 
 AD="$BPS_DATA/B_ExonGene/dat"
-GENES="$BPS_DATA/B_ExonGene/genes.bed"
-EXONS="$BPS_DATA/B_ExonGene/exons.bed"
+GENES="$AD/genes.bed"
+EXONS="$AD/exons.bed"
 
 # usage: process_chrom A
 function process_chrom {

@@ -11,7 +11,7 @@ function download {
 DAT=$1
 pushd $UNTRACKED_DIR
 wget $SRC/$DAT
-gunzip $DAT
+gunzip -f $DAT
 popd 
 }
 

@@ -24,10 +24,10 @@ function process {
 }
 
 EVENT="IntraA"
-DAT1="dat/${EVENT}.reads1.fq"
-DAT2="dat/${EVENT}.reads2.fq"
+DAT1="$OUTD/${EVENT}.reads1.fq"
+DAT2="$OUTD/${EVENT}.reads2.fq"
 REF="$BPS_DATA/A_Reference/dat/reference.chr9_chr22.fa"
-OUT="dat/${EVENT}.bam"
+OUT="$OUTD/${EVENT}.bam"
 
 process $DAT1 $DAT2 $REF $OUT
 

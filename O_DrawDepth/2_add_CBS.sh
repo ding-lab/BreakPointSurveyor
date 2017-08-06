@@ -11,7 +11,7 @@ OUTDD="$OUTD/GGP.CBS"
 mkdir -p $OUTDD
 
 rm -f $OUTD/GGP  # GGP is a link
-ln -s ../$OUTDD $OUTD/GGP
+ln -s $OUTDD $OUTD/GGP
 
 # We are not normalizing the read depth to obtain copy number, since flagstat-based calculations
 # are not appropriate on Synthetic data.

@@ -1,4 +1,4 @@
-#Reference
+# Reference
 
 *Construct minimal reference consisting only of GRCh38 chromosomes 9 and 22.*
 

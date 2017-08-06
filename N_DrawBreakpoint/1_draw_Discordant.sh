@@ -9,7 +9,7 @@ OUTDD="$OUTD/GGP.Discordant"
 mkdir -p $OUTDD
 
 rm -f $OUTD/GGP  # GGP is a link
-ln -s ../$OUTDD $OUTD/GGP
+ln -s $OUTDD $OUTD/GGP
 
 # Usage: process_plot BAR NAME A_CHROM A_START A_END B_CHROM B_START B_END 
 function process_plot {

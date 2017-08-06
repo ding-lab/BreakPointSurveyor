@@ -12,7 +12,7 @@ OUTDD="$OUTD/GGP.Discordant"
 mkdir -p $OUTDD
 
 rm -f $OUTD/GGP  # GGP is a link
-ln -s ../$OUTDD $OUTD/GGP
+ln -s $OUTDD $OUTD/GGP
 
 # usage: process_chrom CHROM_ID BAR NAME CHROM RANGE_START RANGE_END
 # CHROM_ID is either A or B
