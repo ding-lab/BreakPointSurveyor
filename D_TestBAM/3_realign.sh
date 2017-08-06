@@ -26,7 +26,7 @@ function process {
 EVENT="IntraA"
 DAT1="dat/${EVENT}.reads1.fq"
 DAT2="dat/${EVENT}.reads2.fq"
-REF="../A_Reference/dat.untracked/reference.chr9_chr22.fa"
+REF="$BPS_DATA/A_Reference/dat/reference.chr9_chr22.fa"
 OUT="dat/${EVENT}.bam"
 
 process $DAT1 $DAT2 $REF $OUT

@@ -25,7 +25,7 @@ function process {
 
 DAT1="dat/synthetic.reads1.fq"
 DAT2="dat/synthetic.reads2.fq"
-REF="../A_Reference/dat.untracked/reference.chr9_chr22.fa"
+REF="$BPS_DATA/A_Reference/dat/reference.chr9_chr22.fa"
 OUT="dat/synthetic.BWA.bam"
 
 process $DAT1 $DAT2 $REF $OUT

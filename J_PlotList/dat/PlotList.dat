@@ -1,3 +1,0 @@
-barcode	name	chrom.A	event.A.start	event.A.end	range.A.start	range.A.end	chrom.B	event.B.start	event.B.end	range.B.start	range.B.end
-synthetic.9-22	synthetic.9-22.AA.chr22_chr9	chr22	22917823	22918228	22916823	22919228	chr9	128087177	128087658	128086177	128088658
-IntraA	IntraA.AA.chr9_chr9	chr9	36842497	36843446	36841497	36844446	chr9	37843003	37852944	37842003	37853944

@@ -1,3 +1,0 @@
-barcode	disease	BAM_path	ref_path
-synthetic.9-22	NA	../C_SyntheticBAM/dat/synthetic.BWA.bam	../A_Reference/dat.untracked/reference.chr9_chr22.fa
-IntraA	NA	../D_TestBAM/dat/IntraA.bam	../A_Reference/dat.untracked/reference.chr9_chr22.fa
