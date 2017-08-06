@@ -4,7 +4,7 @@ source ./BPS_Stage.config
 # chrom.  Note the reference is relatively large and will not be saved on git
 SRC=http://hgdownload.cse.ucsc.edu/goldenPath/hg38/chromosomes/
 
-UNTRACKED_DIR=dat.untracked
+UNTRACKED_DIR=$OUTD
 mkdir -p $UNTRACKED_DIR
 
 function download {
