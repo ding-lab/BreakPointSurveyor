@@ -22,7 +22,7 @@ function run_stage {
         # Then we should stop if an error is detected
         for step in $STEPS; do
             echo running $step
-            sh $step
+            bash $step
         done
 
     popd
