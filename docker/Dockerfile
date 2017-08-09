@@ -26,6 +26,20 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     && apt-get clean
 
+#  Various R packgages
+RUN echo 'install.packages(c("ggplot2", "plyr", "reshape2", "RColorBrewer", "scales", "bitops", "gridExtra", "gridBase", "stringr"), repos="http://cran.us.r-project.org", dependencies=TRUE)' > /tmp/packages.R ; \
+echo 'source("https://bioconductor.org/biocLite.R"); biocLite("DNAcopy")' >> /tmp/packages.R \
+&& Rscript /tmp/packages.R
+
+# Various Python packages
+RUN pip install \
+    pyvcf \
+    pysam \
+    numpy
+
+# Perl packags
+RUN cpanm XML::XPath
+
 # Installing HTSLIB
 RUN cd /usr/local \
     && git clone https://github.com/samtools/htslib.git \
@@ -58,7 +72,7 @@ RUN cd /usr/local/ \
 #       patch Makefile Tigra.Makefile.patch
 #
 
-COPY Tigra.Makefile.patch /usr/local
+COPY container-init/Tigra.Makefile.patch /usr/local
 RUN cd /usr/local \
     && git clone https://bitbucket.org/xianfan/tigra.git \
     && cd tigra \
@@ -72,28 +86,23 @@ RUN cd /usr/local \
     && cd novobreak-git \
     && make
 
-#  Various R packgages
-RUN echo 'install.packages(c("ggplot2", "plyr", "reshape2", "RColorBrewer", "scales", "bitops", "gridExtra", "gridBase", "stringr"), repos="http://cran.us.r-project.org", dependencies=TRUE)' > /tmp/packages.R ; \
-echo 'source("https://bioconductor.org/biocLite.R"); biocLite("DNAcopy")' >> /tmp/packages.R \
-&& Rscript /tmp/packages.R
-
-# Various Python packages
-RUN pip install \
-    pyvcf \
-    pysam \
-    numpy
-
-# Perl packags
-RUN cpanm XML::XPath
+RUN groupadd -r bps && useradd -r -g bps -m bps
 
 # Finally install Breakpoint Surveyor
 RUN cd /usr/local \
-    && git clone --recursive https://github.com/ding-lab/BreakPointSurveyor.git
+    && git clone --recursive https://github.com/ding-lab/BreakPointSurveyor.git \
+    && chown -R bps:bps /usr/local/BreakPointSurveyor 
+
+# below places user in BPS path, but not on MGI
+WORKDIR /usr/local/BreakPointSurveyor
+USER bps
 
 # cd /usr/local/BreakPointSurveyor
 # git checkout Synthetic
 # ./run_BPS A_Reference/ B_ExonGene/ C_SyntheticBAM/ D_TestBAM/ F_Project/ G_Discordant/ J_PlotList/ K_ReadDepth/ N_DrawBreakpoint/ O_DrawDepth/ P_DrawAnnotation/ Q_DrawHistogram/ T_PlotStructure/
 
+# following invocation will create common data dir in ./
+# docker run -v $PWD/data:/data -it breakpoint_surveyor
+VOLUME ["/data"]
 
-# cd /usr/local
 CMD ["/bin/bash"]
